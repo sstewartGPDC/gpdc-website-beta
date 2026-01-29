@@ -23,7 +23,7 @@
             position: 'center center'
         },
         'team': {
-            image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1454923634634-bd1614719a7b?w=1600&q=80',
             label: 'ABOUT US',
             title: 'Our Team',
             subtitle: 'Meet the dedicated professionals working to ensure justice for all Georgians.',
@@ -44,21 +44,21 @@
             position: 'center center'
         },
         'clients': {
-            image: 'https://images.unsplash.com/photo-1454923634634-bd1614719a7b?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'Clients and Families',
             subtitle: 'Resources and information for those we serve and their loved ones.',
             position: 'center center'
         },
         'find-defender': {
-            image: 'https://images.unsplash.com/photo-1454923634634-bd1614719a7b?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'Find My Public Defender',
             subtitle: 'Locate the public defender office serving your county.',
             position: 'center center'
         },
         'apply': {
-            image: 'https://images.unsplash.com/photo-1454923634634-bd1614719a7b?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'Applying For Legal Representation',
             subtitle: 'Learn how to request a public defender if you cannot afford an attorney.',
@@ -72,7 +72,7 @@
             position: 'center center'
         },
         'faq': {
-            image: 'https://images.unsplash.com/photo-1454923634634-bd1614719a7b?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'FAQs and Resources',
             subtitle: 'Answers to common questions about public defense in Georgia.',
