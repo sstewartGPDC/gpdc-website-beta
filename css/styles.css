@@ -3487,6 +3487,19 @@ section {
     color: var(--primary);
 }
 
+.circuit-email-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.circuit-email-link svg {
+    transition: stroke 0.2s ease;
+}
+
+.circuit-email-link:hover svg {
+    stroke: var(--primary);
+}
+
 .circuit-info-card .circuit-description {
     font-size: 0.8125rem;
     color: var(--text-medium);

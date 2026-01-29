@@ -601,6 +601,16 @@ function showCircuitInfo(circuit, countyName = null) {
                     <strong>Phone:</strong>
                     <a href="tel:${circuit.phone.replace(/-/g, '')}">${circuit.phone}</a>
                 </div>
+                <div class="circuit-info-row">
+                    <strong>Email:</strong>
+                    <a href="mailto:help@gapubdef.org?subject=Inquiry%20-%20${encodeURIComponent(circuit.circuit)}" class="circuit-email-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <path d="M22 6l-10 7L2 6"/>
+                        </svg>
+                        help@gapubdef.org
+                    </a>
+                </div>
             </div>
             <p class="circuit-description">${circuit.description}</p>
             <a href="local-offices/${circuit.slug}.html" class="btn btn-primary btn-sm">

@@ -161,6 +161,14 @@
             color: var(--text-dark);
         }
 
+        .section-explainer {
+            max-width: 700px;
+            margin: 1rem auto 0;
+            font-size: 0.9375rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
         /* New Team Grid */
         .team-grid-new {
             display: grid;
@@ -388,6 +396,232 @@
                 max-width: 280px;
             }
         }
+
+        /* Contact Icons for Team Cards */
+        .team-contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .team-contact-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .team-contact-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .team-contact-btn svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-medium);
+            transition: color 0.3s ease;
+        }
+
+        .team-contact-btn:hover svg {
+            color: white;
+        }
+
+        /* Contact Modal */
+        .contact-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .contact-modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .contact-modal {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-modal-overlay.visible .contact-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .contact-modal-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-modal-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .contact-modal-info h3 {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-modal-info p {
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .contact-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--bg-light);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .contact-modal-close:hover {
+            background: var(--border-light);
+        }
+
+        .contact-modal-close svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-medium);
+        }
+
+        .contact-modal form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-modal label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .contact-modal input,
+        .contact-modal textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.9375rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .contact-modal input:focus,
+        .contact-modal textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(199, 94, 0, 0.1);
+        }
+
+        .contact-modal textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-modal .btn {
+            margin-top: 0.5rem;
+        }
+
+        /* CPD Grid - Similar to Council */
+        .cpd-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cpd-card {
+            background: var(--bg-white);
+            padding: 1.25rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s var(--ease-out);
+            border: 1px solid var(--border-light);
+        }
+
+        .cpd-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .cpd-card h4 {
+            font-size: 0.9375rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .cpd-card .cpd-circuit {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cpd-card .cpd-counties {
+            font-size: 0.6875rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .cpd-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cpd-grid {
+                grid-template-columns: 1fr;
+                max-width: 280px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -401,9 +635,9 @@
 
     <!-- Team Navigation Tabs -->
     <div class="team-tabs">
-        <button class="team-tab active" data-section="all">All</button>
-        <button class="team-tab" data-section="executives">Executives</button>
+        <button class="team-tab active" data-section="executives">Executives</button>
         <button class="team-tab" data-section="directors">Division Directors</button>
+        <button class="team-tab" data-section="cpds">Circuit Public Defenders</button>
         <button class="team-tab" data-section="council">Council Members</button>
     </div>
 
@@ -418,7 +652,7 @@
                 <h2>Omotayo Alli</h2>
                 <p class="featured-title">JD, MPA, SPHR</p>
                 <p class="featured-bio">Leading the Georgia Public Defender Council with a commitment to ensuring quality legal representation for all Georgians. Focused on augmenting indigent defense services and promoting rehabilitative outcomes throughout the state.</p>
-                <a href="#" class="btn btn-primary" style="width: auto; display: inline-flex;" download>
+                <a href="assets/docs/Omotayo-Alli-Biography.pdf" class="btn btn-primary" style="width: auto; display: inline-flex;" download>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
                             <polyline points="7 10 12 15 17 10"/>
@@ -436,56 +670,122 @@
             <div class="team-section-header fade-in">
                 <p class="label">LEADERSHIP TEAM</p>
                 <h2>Executive Leadership</h2>
+                <p class="section-explainer">Our executive team provides strategic direction and oversight for the Georgia Public Defender Council, ensuring effective administration of indigent defense services across the state.</p>
             </div>
 
             <div class="team-grid-new">
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="dberry">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c67762d2fade434e262703_1Q8A9141-2.jpg" alt="D'Andre Berry">
                     </div>
                     <div class="team-info">
                         <h3>D'Andre Berry</h3>
                         <p class="team-title">Director, Information Systems & Performance Metrics</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('D\'Andre Berry', 'Director, Information Systems & Performance Metrics', 'dberry')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('D\'Andre Berry', 'Director, Information Systems & Performance Metrics', 'dberry', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="nglaser">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872c9ffbd0f9572847b9dd_1Q8A7858%20-%20Natalie%20Glaser.jpg" alt="Natalie Glaser">
                     </div>
                     <div class="team-info">
                         <h3>Natalie Glaser</h3>
                         <p class="team-title">Chief Legal Officer</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('Natalie Glaser', 'Chief Legal Officer', 'nglaser')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('Natalie Glaser', 'Chief Legal Officer', 'nglaser', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="toconnor">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b903965e2274281ccde_1Q8A7048%20-%20Thomas%20O%27Connor.jpg" alt="Thomas O'Connor">
                     </div>
                     <div class="team-info">
                         <h3>Thomas O'Connor</h3>
                         <p class="team-title">Director, Strategic Planning, Research & Communications</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('Thomas O\'Connor', 'Director, Strategic Planning, Research & Communications', 'toconnor')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('Thomas O\'Connor', 'Director, Strategic Planning, Research & Communications', 'toconnor', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="lonley">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c677863ff4222b883eea29_1Q8A9150.jpg" alt="LaWanda Onley">
                     </div>
                     <div class="team-info">
                         <h3>LaWanda Onley</h3>
-                        <p class="team-title">Director, Administration & Human Resources</p>
+                        <p class="team-title">Director, Administration</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('LaWanda Onley', 'Director, Administration', 'lonley')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('LaWanda Onley', 'Director, Administration', 'lonley', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="traiford">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b7a0e15d3bc250a0509_1Q8A7063%20-%20Terry%20Raiford.jpg" alt="Terry Raiford">
                     </div>
                     <div class="team-info">
                         <h3>Terry Raiford</h3>
                         <p class="team-title">Chief Financial Officer</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('Terry Raiford', 'Chief Financial Officer', 'traiford')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('Terry Raiford', 'Chief Financial Officer', 'traiford', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -493,81 +793,173 @@
     </section>
 
     <!-- Division Directors Section -->
-    <section class="team-section-new team-section-alt" id="section-directors">
+    <section class="team-section-new team-section-alt" id="section-directors" style="display: none;">
         <div class="container">
             <div class="team-section-header fade-in">
                 <p class="label">DIVISION LEADERSHIP</p>
                 <h2>Division Directors</h2>
+                <p class="section-explainer">Division Directors lead specialized units that provide critical support services, training, and expertise to public defenders throughout Georgia's 49 judicial circuits.</p>
             </div>
 
             <div class="team-grid-new">
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="tbertram">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Trish Bertram">
                     </div>
                     <div class="team-info">
                         <h3>Trish Bertram</h3>
                         <p class="team-title">Director, Professional Development and Training</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('Trish Bertram', 'Director, Professional Development and Training', 'tbertram')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('Trish Bertram', 'Director, Professional Development and Training', 'tbertram', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="whewitt">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg" alt="William Hewitt">
                     </div>
                     <div class="team-info">
                         <h3>William Hewitt</h3>
                         <p class="team-title">Director, Appeals</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('William Hewitt', 'Director, Appeals', 'whewitt')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('William Hewitt', 'Director, Appeals', 'whewitt', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="gmurray">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69667a90b3630f4474adc250_Murray%2C%20Gayle%20Large.jpeg" alt="Gayle Murray">
                     </div>
                     <div class="team-info">
                         <h3>Gayle Murray</h3>
                         <p class="team-title">Director, Youth Advocacy</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('Gayle Murray', 'Director, Youth Advocacy', 'gmurray')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('Gayle Murray', 'Director, Youth Advocacy', 'gmurray', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="aragas">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a58835e230b9f2298be_1Q8A7115%20-%20Arnold%20Ragas.jpg" alt="Arnold Ragas">
                     </div>
                     <div class="team-info">
                         <h3>Arnold Ragas</h3>
                         <p class="team-title">Director, Specialized Unit</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('Arnold Ragas', 'Director, Specialized Unit', 'aragas')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('Arnold Ragas', 'Director, Specialized Unit', 'aragas', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="srhinehart">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg" alt="Sabrina Rhinehart">
                     </div>
                     <div class="team-info">
                         <h3>Sabrina Rhinehart</h3>
                         <p class="team-title">Director, Mental Health Defense</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('Sabrina Rhinehart', 'Director, Mental Health Defense', 'srhinehart')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('Sabrina Rhinehart', 'Director, Mental Health Defense', 'srhinehart', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="nstudelska">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Nathaniel Studelska">
                     </div>
                     <div class="team-info">
                         <h3>Nathaniel Studelska</h3>
                         <p class="team-title">Director, Capital Defense</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('Nathaniel Studelska', 'Director, Capital Defense', 'nstudelska')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('Nathaniel Studelska', 'Director, Capital Defense', 'nstudelska', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="team-card-new fade-in">
+                <div class="team-card-new fade-in" data-person="jwalker">
                     <div class="team-image">
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg" alt="Joy Walker">
                     </div>
                     <div class="team-info">
                         <h3>Joy Walker</h3>
                         <p class="team-title">Manager, Customer Support & Compliance</p>
+                        <div class="team-contact-icons">
+                            <button class="team-contact-btn" onclick="openContactModal('Joy Walker', 'Manager, Customer Support & Compliance', 'jwalker')" title="Send Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <path d="M22 6l-10 7L2 6"/>
+                                </svg>
+                            </button>
+                            <button class="team-contact-btn" onclick="openContactModal('Joy Walker', 'Manager, Customer Support & Compliance', 'jwalker', true)" title="Request Call">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -575,11 +967,12 @@
     </section>
 
     <!-- Council Members Section -->
-    <section class="team-section-new" id="section-council">
+    <section class="team-section-new" id="section-council" style="display: none;">
         <div class="container">
             <div class="team-section-header fade-in">
                 <p class="label">GOVERNING BODY</p>
                 <h2>Council Members</h2>
+                <p class="section-explainer">The Georgia Public Defender Council is the governing body responsible for policy oversight and ensuring the effective delivery of indigent defense services statewide. Members are appointed by the Governor, Lieutenant Governor, and Speaker of the House.</p>
             </div>
 
             <div class="council-grid-new fade-in">
@@ -673,8 +1066,63 @@
         </div>
     </section>
 
+    <!-- Circuit Public Defenders Section -->
+    <section class="team-section-new team-section-alt" id="section-cpds" style="display: none;">
+        <div class="container">
+            <div class="team-section-header fade-in">
+                <p class="label">49 JUDICIAL CIRCUITS</p>
+                <h2>Circuit Public Defenders</h2>
+                <p class="section-explainer">Circuit Public Defenders lead local offices across Georgia's 49 judicial circuits, providing direct legal representation to individuals who cannot afford an attorney. Each CPD manages a team of attorneys and staff serving their circuit's counties.</p>
+            </div>
+
+            <div class="cpd-grid fade-in" id="cpd-grid">
+                <!-- CPDs will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal-overlay" id="contactModal">
+        <div class="contact-modal" style="position: relative;">
+            <button class="contact-modal-close" onclick="closeContactModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="contact-modal-header">
+                <img src="" alt="" class="contact-modal-avatar" id="modalAvatar">
+                <div class="contact-modal-info">
+                    <h3 id="modalName"></h3>
+                    <p id="modalTitle"></p>
+                </div>
+            </div>
+            <form id="contactForm" onsubmit="submitContactForm(event)">
+                <div>
+                    <label for="contactName">Your Name</label>
+                    <input type="text" id="contactName" name="name" required>
+                </div>
+                <div>
+                    <label for="contactEmail">Your Email</label>
+                    <input type="email" id="contactEmail" name="email" required>
+                </div>
+                <div>
+                    <label for="contactMessage" id="messageLabel">Message</label>
+                    <textarea id="contactMessage" name="message" required></textarea>
+                </div>
+                <input type="hidden" id="contactRecipient" name="recipient">
+                <input type="hidden" id="contactType" name="type">
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <span id="submitBtnText">Send Message</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Circuit Public Defenders CTA -->
-    <section class="team-section-new team-section-alt">
+    <section class="team-section-new team-section-alt" id="section-cta" style="display: none;">
         <div class="container">
             <div class="circuit-cta fade-in">
                 <h3>Find Your Circuit Public Defender</h3>
@@ -695,6 +1143,101 @@
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
     <script>
+        // Team member images for modal
+        const teamImages = {
+            'dberry': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c67762d2fade434e262703_1Q8A9141-2.jpg',
+            'nglaser': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872c9ffbd0f9572847b9dd_1Q8A7858%20-%20Natalie%20Glaser.jpg',
+            'toconnor': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b903965e2274281ccde_1Q8A7048%20-%20Thomas%20O%27Connor.jpg',
+            'lonley': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c677863ff4222b883eea29_1Q8A9150.jpg',
+            'traiford': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b7a0e15d3bc250a0509_1Q8A7063%20-%20Terry%20Raiford.jpg',
+            'tbertram': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png',
+            'whewitt': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg',
+            'gmurray': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69667a90b3630f4474adc250_Murray%2C%20Gayle%20Large.jpeg',
+            'aragas': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a58835e230b9f2298be_1Q8A7115%20-%20Arnold%20Ragas.jpg',
+            'srhinehart': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg',
+            'nstudelska': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png',
+            'jwalker': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg'
+        };
+
+        // Contact modal functions
+        function openContactModal(name, title, personId, isCallRequest = false) {
+            const modal = document.getElementById('contactModal');
+            const avatar = document.getElementById('modalAvatar');
+            const modalName = document.getElementById('modalName');
+            const modalTitle = document.getElementById('modalTitle');
+            const messageLabel = document.getElementById('messageLabel');
+            const submitBtnText = document.getElementById('submitBtnText');
+            const contactType = document.getElementById('contactType');
+            const contactRecipient = document.getElementById('contactRecipient');
+
+            avatar.src = teamImages[personId] || 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png';
+            avatar.alt = name;
+            modalName.textContent = name;
+            modalTitle.textContent = title;
+            contactRecipient.value = personId;
+
+            if (isCallRequest) {
+                messageLabel.textContent = 'Please include your phone number and preferred callback time';
+                submitBtnText.textContent = 'Request Callback';
+                contactType.value = 'callback';
+            } else {
+                messageLabel.textContent = 'Message';
+                submitBtnText.textContent = 'Send Message';
+                contactType.value = 'email';
+            }
+
+            modal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('visible');
+            document.body.style.overflow = '';
+            document.getElementById('contactForm').reset();
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // For now, show a success message (backend integration would go here)
+            alert('Thank you! Your message has been sent to ' + document.getElementById('modalName').textContent + '. They will respond within 2-3 business days.');
+            closeContactModal();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeContactModal();
+            }
+        });
+
+        // Populate CPDs grid from circuitData
+        function populateCPDs() {
+            const grid = document.getElementById('cpd-grid');
+            if (!grid || typeof circuitData === 'undefined') return;
+
+            grid.innerHTML = circuitData.map(circuit => `
+                <div class="cpd-card">
+                    <h4>${circuit.defender}</h4>
+                    <p class="cpd-circuit">${circuit.circuit}</p>
+                    <p class="cpd-counties">${circuit.counties.join(', ')}</p>
+                </div>
+            `).join('');
+        }
+
+        // Initialize CPDs on page load
+        document.addEventListener('DOMContentLoaded', populateCPDs);
+
         // Team tabs functionality
         document.querySelectorAll('.team-tab').forEach(tab => {
             tab.addEventListener('click', function() {
@@ -706,29 +1249,29 @@
 
                 // Show/hide sections based on selection
                 const featuredSection = document.querySelector('.featured-executive');
-                const executivesSection = document.querySelector('.team-section-new:not(.team-section-alt)');
+                const executivesSection = document.querySelector('.team-section-new:not(.team-section-alt):not(#section-council)');
                 const directorsSection = document.getElementById('section-directors');
                 const councilSection = document.getElementById('section-council');
+                const cpdsSection = document.getElementById('section-cpds');
+                const ctaSection = document.getElementById('section-cta');
 
-                if (section === 'all') {
+                // Hide all sections first
+                featuredSection.style.display = 'none';
+                executivesSection.style.display = 'none';
+                directorsSection.style.display = 'none';
+                councilSection.style.display = 'none';
+                cpdsSection.style.display = 'none';
+                ctaSection.style.display = 'none';
+
+                // Show selected section
+                if (section === 'executives') {
                     featuredSection.style.display = 'block';
                     executivesSection.style.display = 'block';
-                    directorsSection.style.display = 'block';
-                    councilSection.style.display = 'block';
-                } else if (section === 'executives') {
-                    featuredSection.style.display = 'block';
-                    executivesSection.style.display = 'block';
-                    directorsSection.style.display = 'none';
-                    councilSection.style.display = 'none';
                 } else if (section === 'directors') {
-                    featuredSection.style.display = 'none';
-                    executivesSection.style.display = 'none';
                     directorsSection.style.display = 'block';
-                    councilSection.style.display = 'none';
+                } else if (section === 'cpds') {
+                    cpdsSection.style.display = 'block';
                 } else if (section === 'council') {
-                    featuredSection.style.display = 'none';
-                    executivesSection.style.display = 'none';
-                    directorsSection.style.display = 'none';
                     councilSection.style.display = 'block';
                 }
             });
