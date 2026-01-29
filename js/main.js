@@ -369,11 +369,23 @@ function initSmoothScroll() {
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollAnimations();
-    initCircuitSearch();
-    initTypewriter();
     initButtonRipples();
     initPageTransitions();
     initSmoothScroll();
+
+    // Initialize search after header component loads (since search is in header)
+    document.addEventListener('componentLoaded', (e) => {
+        if (e.detail && e.detail.component === 'components/header.html') {
+            initCircuitSearch();
+            initTypewriter();
+        }
+    });
+
+    // Fallback: also try initializing if elements already exist
+    if (document.getElementById('defenderSearch')) {
+        initCircuitSearch();
+        initTypewriter();
+    }
 });
 
 // Export circuit data for use in other scripts
