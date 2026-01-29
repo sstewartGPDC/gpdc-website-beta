@@ -3842,13 +3842,29 @@ section {
     padding: 0.75rem 1.5rem;
     text-align: center;
     font-size: 0.875rem;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1001;
     display: none;
 }
 
 .announcement-banner.visible {
     display: block;
+}
+
+/* Push nav down when announcement is visible */
+body.has-announcement .nav {
+    top: 44px;
+}
+
+body.has-announcement .mobile-nav {
+    top: 104px; /* 44px banner + 60px nav */
+}
+
+body.has-announcement .scroll-progress {
+    top: 44px;
 }
 
 .announcement-banner-content {
@@ -3906,17 +3922,17 @@ section {
     height: 18px;
 }
 
-/* Adjust nav position when banner is visible */
-.announcement-banner.visible + #site-header .nav,
-body.has-announcement .nav {
-    top: 0;
-}
-
 /* ==================== BREADCRUMB NAVIGATION ==================== */
 .breadcrumbs {
     padding: 1rem 1.5rem;
+    padding-top: calc(60px + 1rem); /* Account for fixed nav */
+    margin-top: 0;
     background: var(--bg-white);
     border-bottom: 1px solid var(--border-light);
+}
+
+body.has-announcement .breadcrumbs {
+    padding-top: calc(104px + 1rem); /* Account for banner + nav */
 }
 
 .breadcrumbs-inner {
