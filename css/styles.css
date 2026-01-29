@@ -773,7 +773,7 @@ h1, h2, h3, h4 {
 
 .hero-title em {
     font-style: italic;
-    color: #C4963F;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .hero-actions {
