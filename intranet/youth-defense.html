@@ -386,13 +386,13 @@
 <body>
     <!-- Navigation -->
     <nav class="intranet-nav">
-        <a href="dashboard.html" class="intranet-nav-brand">
+        <a href="dashboard-full.html" class="intranet-nav-brand">
             <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/66e9df4a3e925a89e1be2971_BlackGold%20-%20SYMBOL%20MARK.png" alt="GPDC Logo">
             <span>Team GPDC</span>
             <span class="badge">Intranet</span>
         </a>
         <div class="intranet-nav-links">
-            <a href="dashboard.html">Home</a>
+            <a href="dashboard-full.html">Home</a>
             <a href="training.html">Training</a>
             <a href="resources.html">Resources</a>
             <a href="forensics.html">Forensics</a>
@@ -615,12 +615,12 @@
 
     <script>
         // Check authentication
-        if (sessionStorage.getItem('gpdc_intranet_auth') !== 'true') {
+        if (sessionStorage.getItem('gpdc_dev_auth') !== 'true') {
             window.location.href = 'index.html';
         }
 
         function logout() {
-            sessionStorage.removeItem('gpdc_intranet_auth');
+            sessionStorage.removeItem('gpdc_dev_auth');
             window.location.href = 'index.html';
         }
     </script>

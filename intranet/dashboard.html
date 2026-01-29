@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Team GPDC</title>
+    <title>Staff Directory | Team GPDC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        /* Intranet-specific styles */
+        /* Intranet Navigation */
         .intranet-nav {
             background: var(--text-dark);
             padding: 0.75rem 1.5rem;
@@ -48,28 +48,6 @@
             text-transform: uppercase;
         }
 
-        .intranet-nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .intranet-nav-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .intranet-nav-links a:hover {
-            color: white;
-        }
-
-        .intranet-nav-links a.active {
-            color: var(--primary-light);
-        }
-
         .logout-btn {
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
@@ -87,323 +65,799 @@
             background: rgba(255,255,255,0.2);
         }
 
-        /* Dashboard Hero */
-        .dashboard-hero {
+        /* Hero */
+        .directory-hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 3rem 1.5rem;
+            padding: 2.5rem 1.5rem;
             color: white;
         }
 
-        .dashboard-hero-inner {
+        .directory-hero-inner {
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .dashboard-hero h1 {
+        .directory-hero h1 {
             font-size: 2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
-        .dashboard-hero p {
+        .directory-hero p {
             opacity: 0.9;
             font-size: 1rem;
         }
 
-        /* Quick Links Bar */
-        .quick-links-bar {
-            background: var(--bg-white);
-            border-bottom: 1px solid var(--border-light);
-            padding: 1rem 1.5rem;
+        .dev-access-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Manrope', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .quick-links-inner {
+        .dev-access-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .dev-access-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Directory Tabs */
+        .directory-tabs {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+        }
+
+        .directory-tabs-inner {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            padding: 0 1.5rem;
         }
 
-        .quick-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--bg-light);
-            border-radius: 50px;
-            font-size: 0.8125rem;
+        .directory-tab {
+            padding: 1rem 1.5rem;
+            border: none;
+            background: transparent;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.875rem;
             font-weight: 600;
             color: var(--text-medium);
-            text-decoration: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .quick-link:hover {
-            background: var(--primary);
-            color: white;
+        .directory-tab:hover {
+            color: var(--text-dark);
         }
 
-        .quick-link svg {
-            width: 14px;
-            height: 14px;
+        .directory-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
         }
 
-        /* Main Content */
-        .dashboard-main {
+        .directory-tab svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .tab-count {
+            background: var(--bg-light);
+            color: var(--text-medium);
+            font-size: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .directory-tab.active .tab-count {
+            background: var(--primary-subtle);
+            color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Directory Section */
+        .directory-section {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
 
-        /* Section Grid */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .dashboard-card {
-            background: var(--bg-white);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
+        /* Search and Filter Bar */
+        .directory-controls {
             display: flex;
-            flex-direction: column;
-        }
-
-        .dashboard-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
-
-        .dashboard-card-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 12px;
-            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
         }
 
-        .dashboard-card-icon svg {
-            width: 24px;
-            height: 24px;
-            color: white;
-        }
-
-        .dashboard-card h3 {
-            font-size: 1.125rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .dashboard-card p {
-            font-size: 0.8125rem;
-            color: var(--text-light);
-            line-height: 1.6;
+        .directory-search {
             flex: 1;
+            min-width: 250px;
+            position: relative;
         }
 
-        .dashboard-card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-top: 1rem;
+        .directory-search input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg-white);
+            transition: all 0.2s ease;
         }
 
-        .dashboard-card-link svg {
-            width: 14px;
-            height: 14px;
-            transition: transform 0.3s ease;
+        .directory-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(199, 94, 0, 0.1);
         }
 
-        .dashboard-card:hover .dashboard-card-link svg {
-            transform: translateX(4px);
+        .directory-search svg {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--text-light);
         }
 
-        /* Featured Section */
-        .featured-section {
-            background: var(--bg-light);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+        .directory-count {
+            font-size: 0.875rem;
+            color: var(--text-medium);
+            font-weight: 500;
         }
 
-        .featured-section h2 {
-            font-size: 1.25rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .featured-section h2 svg {
-            width: 20px;
-            height: 20px;
-            color: var(--primary);
-        }
-
-        .featured-grid {
+        /* Directory Grid */
+        .directory-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1rem;
         }
 
-        .featured-item {
+        /* Staff Card */
+        .staff-card {
             background: var(--bg-white);
             border-radius: 12px;
             padding: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            color: inherit;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border-light);
             transition: all 0.3s ease;
         }
 
-        .featured-item:hover {
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        .staff-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
         }
 
-        .featured-item-icon {
+        .staff-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.875rem;
+            margin-bottom: 0.875rem;
+        }
+
+        .staff-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+        }
+
+        .staff-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .staff-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .staff-title {
+            font-size: 0.75rem;
+            color: var(--text-medium);
+            margin-bottom: 0.375rem;
+        }
+
+        .staff-circuit {
+            font-size: 0.6875rem;
+            color: var(--primary);
+            font-weight: 600;
+            background: var(--primary-subtle);
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .staff-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+            padding-top: 0.875rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-medium);
+        }
+
+        .contact-item svg {
+            width: 14px;
+            height: 14px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .contact-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            word-break: break-all;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        .staff-counties {
+            font-size: 0.6875rem;
+            color: var(--text-light);
+            margin-top: 0.375rem;
+        }
+
+        /* Statewide Support Cards */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .support-card {
+            background: var(--bg-white);
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .support-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .support-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .support-avatar {
             width: 40px;
             height: 40px;
-            background: var(--primary-subtle);
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .support-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .support-name {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.125rem;
+        }
+
+        .support-title {
+            font-size: 0.75rem;
+            color: var(--text-medium);
+            line-height: 1.3;
+        }
+
+        .support-poc {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 0.625rem 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .support-poc-label {
+            font-size: 0.625rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 0.375rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .support-poc-label svg {
+            width: 10px;
+            height: 10px;
+        }
+
+        .support-poc-value {
+            font-size: 0.8125rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* POC Pills */
+        .support-poc-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .poc-pill {
+            display: inline-block;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+        }
+
+        /* Category-colored pills - subtle tints with darker border */
+        .poc-pill.cat-communications { background: #f0f9fa; border: 1px solid #d4eaed; color: #4b7c83; }
+        .poc-pill.cat-customerservice { background: #faf0f8; border: 1px solid #edcfe6; color: #7a4b6e; }
+        .poc-pill.cat-finance { background: #faf8f0; border: 1px solid #ede8d4; color: #8a7340; }
+        .poc-pill.cat-investigations { background: #faf5f0; border: 1px solid #ede2d4; color: #8a6040; }
+        .poc-pill.cat-jcats { background: #f0faf8; border: 1px solid #d4ede9; color: #4b837a; }
+        .poc-pill.cat-legal { background: #f0f4fa; border: 1px solid #d4deeb; color: #4b6083; }
+        .poc-pill.cat-operations { background: #f0faf5; border: 1px solid #d4ede3; color: #4b8367; }
+        .poc-pill.cat-social { background: #faf0f0; border: 1px solid #edd4d4; color: #834b4b; }
+        .poc-pill.cat-itsupport { background: #f5f6f8; border: 1px solid #dfe1e5; color: #5a6270; }
+        .poc-pill.cat-training { background: #f5f0fa; border: 1px solid #e2d4ed; color: #6b4b83; }
+
+        .support-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+
+        .support-contact .contact-item {
+            font-size: 0.75rem;
+        }
+
+        .support-contact .contact-item a {
+            color: var(--text-dark);
+        }
+
+        .support-contact .contact-item svg {
+            color: var(--primary);
+        }
+
+        /* Category Headers for Support */
+        .category-section {
+            margin-bottom: 2rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .category-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-icon svg {
+            width: 18px;
+            height: 18px;
+            color: white;
+        }
+
+        .category-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .category-count {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Support Layout with Sidebar */
+        .support-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        .support-sidebar {
+            position: sticky;
+            top: 140px;
+            height: fit-content;
+        }
+
+        .sidebar-header {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-header p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
             border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .sidebar-item:hover {
+            border-color: var(--text-light);
+            background: var(--bg-light);
+        }
+
+        .sidebar-item.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .sidebar-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
 
-        .featured-item-icon svg {
+        .sidebar-icon svg {
             width: 18px;
             height: 18px;
-            color: var(--primary);
+            color: white;
         }
 
-        .featured-item h4 {
-            font-size: 0.9rem;
+        .sidebar-label {
+            flex: 1;
+            font-size: 0.8125rem;
+            font-weight: 600;
             color: var(--text-dark);
-            margin-bottom: 0.25rem;
         }
 
-        .featured-item p {
+        .sidebar-count {
             font-size: 0.75rem;
+            font-weight: 600;
             color: var(--text-light);
+            background: var(--bg-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
         }
 
-        /* News/Announcements */
-        .announcements-section {
-            margin-bottom: 2rem;
+        .sidebar-item.active .sidebar-count {
+            background: #dbeafe;
+            color: #2563eb;
         }
 
-        .section-header-row {
+        .support-main {
+            min-width: 0;
+        }
+
+        .active-filter {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
         }
 
-        .section-header-row h2 {
-            font-size: 1.25rem;
-            color: var(--text-dark);
-        }
-
-        .section-header-row a {
-            font-size: 0.8125rem;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .announcement-card {
-            background: var(--bg-white);
-            border-radius: 12px;
-            padding: 1.25rem;
-            margin-bottom: 0.75rem;
-            border-left: 4px solid var(--primary);
-        }
-
-        .announcement-card h4 {
-            font-size: 1rem;
-            color: var(--text-dark);
-            margin-bottom: 0.375rem;
-        }
-
-        .announcement-card p {
+        .active-filter span {
             font-size: 0.875rem;
-            color: var(--text-medium);
-            line-height: 1.6;
+            color: #1e40af;
         }
 
-        .announcement-meta {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            margin-top: 0.5rem;
+        .active-filter strong {
+            font-weight: 700;
         }
 
-        /* Contact Section */
-        .contact-section {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .contact-card {
-            background: var(--bg-white);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .contact-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1rem;
-        }
-
-        .contact-card h4 {
-            font-size: 1rem;
-            color: var(--text-dark);
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-card .title {
-            font-size: 0.8125rem;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .contact-card a {
-            display: inline-flex;
+        .active-filter button {
+            display: flex;
             align-items: center;
             gap: 0.375rem;
-            font-size: 0.8125rem;
-            color: var(--text-medium);
-            text-decoration: none;
+            padding: 0.375rem 0.75rem;
+            background: white;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1e40af;
+            cursor: pointer;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.2s ease;
         }
 
-        .contact-card a:hover {
-            color: var(--primary);
+        .active-filter button:hover {
+            background: #dbeafe;
         }
 
-        .contact-card a svg {
+        .active-filter button svg {
             width: 14px;
             height: 14px;
+        }
+
+        /* Updated support grid for sidebar layout */
+        .support-main .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.875rem;
+        }
+
+        /* Dev Password Modal */
+        .dev-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .dev-modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dev-modal {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .dev-modal-overlay.visible .dev-modal {
+            transform: scale(1);
+        }
+
+        .dev-modal-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .dev-modal-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .dev-modal-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        .dev-modal h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .dev-modal > p {
+            font-size: 0.8125rem;
+            color: var(--text-medium);
+            text-align: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .dev-modal-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            font-family: 'Manrope', sans-serif;
+            text-align: center;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .dev-modal-input:focus {
+            outline: none;
+            border-color: #f59e0b;
+        }
+
+        .dev-modal-input.error {
+            border-color: #dc2626;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .dev-modal-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dev-modal-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            font-family: 'Manrope', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dev-modal-btn.cancel {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            color: var(--text-medium);
+        }
+
+        .dev-modal-btn.cancel:hover {
+            background: var(--bg-white);
+            border-color: var(--text-light);
+        }
+
+        .dev-modal-btn.submit {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border: none;
+            color: white;
+        }
+
+        .dev-modal-btn.submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Features Preview in Modal */
+        .dev-features-preview {
+            border-top: 1px solid var(--border-light);
+            padding-top: 1.25rem;
+        }
+
+        .dev-features-preview h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .dev-features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .dev-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-medium);
+        }
+
+        .dev-feature-item svg {
+            width: 14px;
+            height: 14px;
+            color: #f59e0b;
         }
 
         /* Footer */
@@ -417,24 +871,98 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .dashboard-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .support-layout {
+                grid-template-columns: 240px 1fr;
+                gap: 1.5rem;
             }
         }
 
         @media (max-width: 768px) {
-            .intranet-nav-links {
-                display: none;
-            }
-
-            .dashboard-grid,
-            .featured-grid,
-            .contact-section {
+            .directory-grid,
+            .support-main .support-grid {
                 grid-template-columns: 1fr;
             }
 
-            .dashboard-hero h1 {
+            .directory-hero h1 {
                 font-size: 1.5rem;
+            }
+
+            .directory-hero-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .dev-features-list {
+                grid-template-columns: 1fr;
+            }
+
+            .directory-tabs-inner {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .directory-tab {
+                white-space: nowrap;
+                padding: 0.875rem 1rem;
+                font-size: 0.8125rem;
+            }
+
+            /* Mobile sidebar - horizontal scrolling */
+            .support-layout {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .support-sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .sidebar-header {
+                display: none;
+            }
+
+            .sidebar-nav {
+                flex-direction: row;
+                gap: 0.5rem;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .sidebar-item {
+                flex-shrink: 0;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .sidebar-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .sidebar-icon svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            .sidebar-label {
+                font-size: 0.75rem;
+                white-space: nowrap;
+            }
+
+            .sidebar-count {
+                font-size: 0.6875rem;
+                padding: 0.15rem 0.375rem;
+            }
+
+            .active-filter {
+                padding: 0.625rem 0.875rem;
+            }
+
+            .active-filter span {
+                font-size: 0.8125rem;
             }
         }
     </style>
@@ -447,288 +975,301 @@
             <span>Team GPDC</span>
             <span class="badge">Intranet</span>
         </a>
-        <div class="intranet-nav-links">
-            <a href="dashboard.html" class="active">Home</a>
-            <a href="training.html">Training</a>
-            <a href="resources.html">Resources</a>
-            <a href="forensics.html">Forensics</a>
-            <a href="mental-health.html">Mental Health</a>
-        </div>
         <button class="logout-btn" onclick="logout()">Sign Out</button>
     </nav>
 
     <!-- Hero -->
-    <section class="dashboard-hero">
-        <div class="dashboard-hero-inner">
-            <h1>Welcome to Team GPDC</h1>
-            <p>Your hub for professional development, resources, and collaboration.</p>
+    <section class="directory-hero">
+        <div class="directory-hero-inner">
+            <div>
+                <h1>Staff Directory</h1>
+                <p>Statewide Support and Circuit Public Defender contact information.</p>
+            </div>
+            <button class="dev-access-btn" id="openDevModal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                In Development
+            </button>
         </div>
     </section>
 
-    <!-- Quick Links -->
-    <div class="quick-links-bar">
-        <div class="quick-links-inner">
-            <a href="https://lawschool.westlaw.com/" target="_blank" class="quick-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
-                </svg>
-                Westlaw
-            </a>
-            <a href="https://www.gapubdef.org" target="_blank" class="quick-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                </svg>
-                GPDC Public Site
-            </a>
-            <a href="https://www.office.com" target="_blank" class="quick-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="18" height="18" rx="2"/>
-                    <path d="M3 9h18M9 21V9"/>
-                </svg>
-                Office 365
-            </a>
-            <a href="#" class="quick-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-                </svg>
-                JCATS NG+
-            </a>
+    <!-- Dev Password Modal -->
+    <div class="dev-modal-overlay" id="devModalOverlay">
+        <div class="dev-modal">
+            <div class="dev-modal-header">
+                <div class="dev-modal-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <h2>Access Development Features</h2>
+            </div>
+            <p>Enter the developer access code to unlock additional intranet features currently in development.</p>
+            <input type="password" class="dev-modal-input" id="devPassword" placeholder="Enter access code" autocomplete="off">
+            <div class="dev-modal-buttons">
+                <button class="dev-modal-btn cancel" id="devCancel">Cancel</button>
+                <button class="dev-modal-btn submit" id="devSubmit">Unlock</button>
+            </div>
+            <div class="dev-features-preview">
+                <h4>Features in Development</h4>
+                <div class="dev-features-list">
+                    <div class="dev-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+                        </svg>
+                        Training & CLE
+                    </div>
+                    <div class="dev-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <path d="M14 2v6h6"/>
+                        </svg>
+                        Motions & Templates
+                    </div>
+                    <div class="dev-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        Forensic Resources
+                    </div>
+                    <div class="dev-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                        </svg>
+                        Mental Health
+                    </div>
+                    <div class="dev-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                        </svg>
+                        Youth Defense
+                    </div>
+                    <div class="dev-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9H4.5a2.5 2.5 0 010-5H6"/>
+                            <path d="M18 9h1.5a2.5 2.5 0 000-5H18"/>
+                            <path d="M4 22h16"/>
+                            <path d="M10 22V8a2 2 0 114 0v14"/>
+                        </svg>
+                        Triumphs
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="dashboard-main">
-        <!-- Announcements -->
-        <section class="announcements-section">
-            <div class="section-header-row">
-                <h2>Latest Announcements</h2>
+    <!-- Directory Tabs -->
+    <div class="directory-tabs">
+        <div class="directory-tabs-inner">
+            <button class="directory-tab active" data-tab="support">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                Statewide Support
+                <span class="tab-count">22</span>
+            </button>
+            <button class="directory-tab" data-tab="cpd">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Circuit Public Defenders
+                <span class="tab-count">46</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Statewide Support Tab Content -->
+    <div class="tab-content active" id="support-tab">
+        <div class="support-layout">
+            <!-- Sidebar -->
+            <aside class="support-sidebar">
+                <div class="sidebar-header">
+                    <h3>Agency Areas</h3>
+                    <p>Click to filter by department</p>
+                </div>
+                <nav class="sidebar-nav">
+                    <button class="sidebar-item active" data-category="all">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"/>
+                                <rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/>
+                                <rect x="3" y="14" width="7" height="7"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">All Areas</span>
+                        <span class="sidebar-count">22</span>
+                    </button>
+                    <button class="sidebar-item" data-category="communications">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #0891b2, #0e7490);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">Communications & Outreach</span>
+                        <span class="sidebar-count">3</span>
+                    </button>
+                    <button class="sidebar-item" data-category="customerservice">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #db2777, #be185d);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">Customer Service</span>
+                        <span class="sidebar-count">1</span>
+                    </button>
+                    <button class="sidebar-item" data-category="finance">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #d97706, #b45309);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"/>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">Finance</span>
+                        <span class="sidebar-count">2</span>
+                    </button>
+                    <button class="sidebar-item" data-category="investigations">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #ea580c, #c2410c);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">Investigations</span>
+                        <span class="sidebar-count">1</span>
+                    </button>
+                    <button class="sidebar-item" data-category="itsupport">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #475569, #334155);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">IT Support</span>
+                        <span class="sidebar-count">1</span>
+                    </button>
+                    <button class="sidebar-item" data-category="jcats">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #0d9488, #0f766e);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">JCATS</span>
+                        <span class="sidebar-count">1</span>
+                    </button>
+                    <button class="sidebar-item" data-category="legal">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #2563eb, #1d4ed8);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">Legal & Defense</span>
+                        <span class="sidebar-count">7</span>
+                    </button>
+                    <button class="sidebar-item" data-category="operations">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #059669, #047857);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">Operations & Admin</span>
+                        <span class="sidebar-count">5</span>
+                    </button>
+                    <button class="sidebar-item" data-category="social">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">Social Services</span>
+                        <span class="sidebar-count">2</span>
+                    </button>
+                    <button class="sidebar-item" data-category="training">
+                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-label">Training & Development</span>
+                        <span class="sidebar-count">1</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="support-main">
+                <div class="directory-controls">
+                    <div class="directory-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <input type="text" id="supportSearch" placeholder="Search by name, title, or area of support...">
+                    </div>
+                    <div class="directory-count">
+                        <span id="supportCount">22</span> contacts
+                    </div>
+                </div>
+
+                <div class="active-filter" id="activeFilter" style="display: none;">
+                    <span>Showing: <strong id="filterName">All</strong></span>
+                    <button id="clearFilter">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                        Clear filter
+                    </button>
+                </div>
+
+                <div class="support-grid" id="supportGrid">
+                    <!-- Support cards will be populated by JavaScript -->
+                </div>
             </div>
-            <div class="announcement-card">
-                <h4>GPDC Case Law Update Committee - Call for Volunteers</h4>
-                <p>The Georgia Public Defender Council is forming a Case Law Update Committee to produce a monthly summary of significant appellate decisions. We are seeking Case Summarizers, Editors, and Trainers.</p>
-                <div class="announcement-meta">Posted January 15, 2026</div>
-            </div>
-            <div class="announcement-card">
-                <h4>Expert Database Now Available</h4>
-                <p>Access our new Expert Database featuring consultants and witnesses shared by fellow public defenders. To request approval for an expert, email the notification form to expertrequest@gapublicdefender.org.</p>
-                <div class="announcement-meta">Posted January 10, 2026</div>
-            </div>
-        </section>
+        </div>
+    </div>
 
-        <!-- Main Navigation Cards -->
-        <div class="dashboard-grid">
-            <a href="training.html" class="dashboard-card">
-                <div class="dashboard-card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
-                        <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
-                    </svg>
-                </div>
-                <h3>Training & CLE</h3>
-                <p>Access on-demand courses, training calendar, TILPP resources, and track your CLE requirements.</p>
-                <span class="dashboard-card-link">
-                    Explore Training
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </span>
-            </a>
-
-            <a href="resources.html" class="dashboard-card">
-                <div class="dashboard-card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-                    </svg>
-                </div>
-                <h3>Motions & Templates</h3>
-                <p>Browse our motions database, forms, and templates. Help us build this resource by contributing your own.</p>
-                <span class="dashboard-card-link">
-                    View Resources
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </span>
-            </a>
-
-            <a href="forensics.html" class="dashboard-card">
-                <div class="dashboard-card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4"/>
-                    </svg>
-                </div>
-                <h3>Forensic Resources</h3>
-                <p>DNA, fingerprints, firearms, drug analysis, and more. Learn to effectively challenge forensic evidence.</p>
-                <span class="dashboard-card-link">
-                    Explore Forensics
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </span>
-            </a>
-
-            <a href="mental-health.html" class="dashboard-card">
-                <div class="dashboard-card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
-                    </svg>
-                </div>
-                <h3>Mental Health Advocacy</h3>
-                <p>Resources from the Office of Mental Health Advocate for representing clients with mental illness.</p>
-                <span class="dashboard-card-link">
-                    View Resources
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </span>
-            </a>
-
-            <a href="youth-defense.html" class="dashboard-card">
-                <div class="dashboard-card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                    </svg>
-                </div>
-                <h3>Youth Defense</h3>
-                <p>Juvenile court resources, Youth Defense Manual, and specialized training for juvenile cases.</p>
-                <span class="dashboard-card-link">
-                    View Resources
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </span>
-            </a>
-
-            <a href="investigators.html" class="dashboard-card">
-                <div class="dashboard-card-icon">
+    <!-- CPD Tab Content -->
+    <div class="tab-content" id="cpd-tab">
+        <section class="directory-section">
+            <!-- Search and Controls -->
+            <div class="directory-controls">
+                <div class="directory-search">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
+                    <input type="text" id="directorySearch" placeholder="Search by name, circuit, or county...">
                 </div>
-                <h3>Investigators (SWIG)</h3>
-                <p>Statewide Investigators Group shared resources, JCATS guides, and investigator collaboration.</p>
-                <span class="dashboard-card-link">
-                    View Resources
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </span>
-            </a>
-        </div>
-
-        <!-- Featured Resources -->
-        <section class="featured-section">
-            <h2>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                </svg>
-                Featured On-Demand Training
-            </h2>
-            <div class="featured-grid">
-                <a href="#" class="featured-item">
-                    <div class="featured-item-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="5 3 19 12 5 21 5 3"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4>2025 Annual Conference Videos</h4>
-                        <p>1 CLE credit per session</p>
-                    </div>
-                </a>
-                <a href="#" class="featured-item">
-                    <div class="featured-item-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="5 3 19 12 5 21 5 3"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4>How to Litigate Forensic Evidence</h4>
-                        <p>Complete CLE Request Form</p>
-                    </div>
-                </a>
-                <a href="#" class="featured-item">
-                    <div class="featured-item-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="5 3 19 12 5 21 5 3"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4>Motions to Suppress</h4>
-                        <p>Complete CLE Request Form</p>
-                    </div>
-                </a>
-                <a href="#" class="featured-item">
-                    <div class="featured-item-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="5 3 19 12 5 21 5 3"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4>Gang Defense Conference</h4>
-                        <p>Complete CLE Request Form</p>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Triumphs Section -->
-        <section class="featured-section" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white;">
-            <h2 style="color: white;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6 9H4.5a2.5 2.5 0 010-5H6"/>
-                    <path d="M18 9h1.5a2.5 2.5 0 000-5H18"/>
-                    <path d="M4 22h16"/>
-                    <path d="M10 22V8a2 2 0 114 0v14"/>
-                </svg>
-                Triumphs in the Trenches
-            </h2>
-            <p style="opacity: 0.9; margin-bottom: 1rem;">Defenders accrue a wealth of hard-won experience and well-earned victories. GPDC is spotlighting the against-all-odds victories of our public defenders from across the state.</p>
-            <a href="triumphs.html" style="color: white; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-                Share Your Story
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
-        </section>
-
-        <!-- Contact Section -->
-        <section>
-            <div class="section-header-row">
-                <h2>Training Division Contacts</h2>
-            </div>
-            <div class="contact-section">
-                <div class="contact-card">
-                    <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Trish McCann-Bertram">
-                    <h4>Trish McCann-Bertram</h4>
-                    <p class="title">Director, Professional Development</p>
-                    <a href="mailto:training@gapubdef.org">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                            <path d="M22 6l-10 7L2 6"/>
-                        </svg>
-                        training@gapubdef.org
-                    </a>
-                </div>
-                <div class="contact-card">
-                    <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Natalie Glaser">
-                    <h4>Natalie Glaser</h4>
-                    <p class="title">Chief Legal Officer</p>
-                    <a href="tel:4047952453">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-                        </svg>
-                        (404) 795-2453
-                    </a>
+                <div class="directory-count">
+                    <span id="staffCount">46</span> Circuit Public Defenders
                 </div>
             </div>
+
+            <!-- Staff Directory Grid -->
+            <div class="directory-grid" id="directoryGrid">
+                <!-- Staff cards will be populated by JavaScript -->
+            </div>
         </section>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="intranet-footer">
@@ -743,8 +1284,404 @@
 
         function logout() {
             sessionStorage.removeItem('gpdc_intranet_auth');
+            sessionStorage.removeItem('gpdc_dev_auth');
             window.location.href = 'index.html';
         }
+
+        // Statewide Support Data
+        const statewideSupport = [
+            { name: "D'Andre Berry", title: "Deputy Director, Information Systems and Performance Metrics", poc: "Conflict Assignment Division, Information Systems, JCATS, Performance Metrics", email: "dberry@gapubdef.org", phone: "404-795-2436", category: "itsupport" },
+            { name: "D'Andre Berry", title: "Deputy Director, Information Systems and Performance Metrics", poc: "Conflict Assignment Division, Information Systems, JCATS, Performance Metrics", email: "dberry@gapubdef.org", phone: "404-795-2436", category: "jcats" },
+            { name: "Trish Bertram", title: "Director, Professional Development", poc: "Professional Development and Training", email: "tbertram@gapubdef.org", phone: "404-795-2453", category: "training" },
+            { name: "Catia De Los Santos", title: "Manager, Social Services", poc: "Social Services (Client Support Services)", email: "cdelossantos@gapubdef.org", phone: "404-719-4167", category: "social" },
+            { name: "Natalie Glaser", title: "Chief Legal Officer", poc: "Appellate Defense, Monthly Contractors, Legal, Managing Attorneys", email: "nglaser@gapubdef.org", phone: "470-597-1864", category: "legal" },
+            { name: "Kenya Holmes", title: "Manager, Social Services", poc: "Social Services (Ladders Program)", email: "kholmes@gapubdef.org", phone: "404-537-1803", category: "social" },
+            { name: "Shawn Hoover", title: "Director, Gang and RICO", poc: "Gang and RICO", email: "shoover@gapubdef.org", phone: "470-827-5305", category: "legal" },
+            { name: "Timi Jafojo", title: "Manager, Fleet", poc: "Fleet", email: "tjafojo@gapubdef.org", phone: "470-240-6621", category: "operations" },
+            { name: "Vera Moore", title: "Manager, Customer Service", poc: "Business Cards", email: "vmoore@gapubdef.org", phone: "470-795-2492", category: "operations" },
+            { name: "Gayle Murray", title: "Director, Youth Defense", poc: "Youth Defense", email: "gmurray@gapubdef.org", phone: "404-629-2343", category: "legal" },
+            { name: "Thomas O'Connor", title: "Deputy Director, Strategic Planning, Research and Communications", poc: "Communications, Research and Strategic Initiatives", email: "toconnor@gapubdef.org", phone: "404-795-2432", category: "communications" },
+            { name: "LaWanda Onley", title: "Deputy Director, Administration, Human Resources and Operations", poc: "Administration, Human Resources", email: "lawanda.onley@gapubdef.org", phone: "404-795-2456", category: "operations" },
+            { name: "Don Plummer", title: "Contractor, Media Relations", poc: "Media Relations", email: "dplummer@gapubdef.org", phone: "", category: "communications" },
+            { name: "Arnold Ragas", title: "Director, Specialized Unit", poc: "Specialized Unit", email: "arnold.ragas@gapublicdefender.org", phone: "404-795-2417", category: "legal" },
+            { name: "Terry Raiford", title: "Chief Financial Officer", poc: "Finance", email: "traiford@gapubdef.org", phone: "404-795-2433", category: "finance" },
+            { name: "Jason Ring", title: "Manager, Fiscal Services", poc: "Concur", email: "jring@gapubdef.org", phone: "404-795-2410", category: "finance" },
+            { name: "Sabrina Rhinehart", title: "Director, Mental Health Defense", poc: "Mental Health Defense", email: "srhinehart@gapubdef.org", phone: "404-795-2461", category: "legal" },
+            { name: "Sean Stewart", title: "Manager, Special Projects", poc: "Leadership Academy, Marketing, Procurement (P-Card), Special Projects and Events, Web Master", email: "sstewart@gapubdef.org", phone: "470-621-8124", category: "operations" },
+            { name: "Nathaniel Studelska", title: "Director, Capital Defense", poc: "Capital Defense", email: "nstudelska@gacapdef.org", phone: "470-306-4306", category: "legal" },
+            { name: "Helen Tate", title: "Director, Operations", poc: "Operations, Real Estate Leases, Vendor Management", email: "htate@gapubdef.org", phone: "", category: "operations" },
+            { name: "Joy Walker", title: "Director, Special Projects", poc: "Appellate Defense, Customer Service", email: "joy.walker@gapublicdefender.org", phone: "404-239-2083", category: "customerservice" },
+            { name: "Yasmin Neal", title: "Manager, Investigator Unit", poc: "Investigators", email: "yneal@gapublicdefender.org", phone: "", category: "investigations" },
+            { name: "Jo-Anna Zackery", title: "Community Outreach", poc: "Community Events and Outreach, Fundraising", email: "jzackery@gapubdef.org", phone: "", category: "communications" }
+        ];
+
+        // Staff Directory Data (work contact info only - no personal cell/email)
+        const staffDirectory = [
+            { name: "Gabriel Cason", title: "Circuit Public Defender", circuit: "Alapaha", counties: "Atkinson, Berrien, Clinch, Cook, Lanier", email: "gcason@gapublicdefender.org", phone: "229-507-6401" },
+            { name: "Anthony Carter", title: "Circuit Public Defender", circuit: "Alcovy", counties: "Newton, Walton", email: "acarter@gapublicdefender.org", phone: "770-266-1540" },
+            { name: "Clint Hooker", title: "Circuit Public Defender", circuit: "Appalachian", counties: "Fannin, Gilmer, Pickens", email: "chooker@gapublicdefender.org", phone: "706-669-4941" },
+            { name: "Maurice Kenner", title: "Circuit Public Defender", circuit: "Atlanta", counties: "Fulton", email: "mauricekenner@gapublicdefender.org", phone: "404-612-0731" },
+            { name: "Joshua Brockington", title: "Circuit Public Defender", circuit: "Atlantic", counties: "Bryan, Evans, Liberty, Long, McIntosh, Tattnall", email: "jbrockington@gapublicdefender.org", phone: "912-256-6101" },
+            { name: "Lee Prescott", title: "Circuit Public Defender", circuit: "Augusta", counties: "Burke, Richmond", email: "hprescott@gapublicdefender.org", phone: "" },
+            { name: "Stephen Tillman", title: "Circuit Public Defender", circuit: "Brunswick", counties: "Appling, Camden, Glynn, Jeff Davis, Wayne", email: "stillman@gapublicdefender.org", phone: "912-240-1770" },
+            { name: "Matthew Flournoy", title: "Circuit Public Defender", circuit: "Chattahoochee", counties: "Chattahoochee, Harris, Marion, Muscogee, Talbot, Taylor", email: "tflournoy@gapublicdefender.org", phone: "706-225-4621" },
+            { name: "Christopher Paul", title: "Circuit Public Defender", circuit: "Cherokee", counties: "Bartow, Gordon", email: "chris.paul@gapublicdefender.org", phone: "770-881-6172" },
+            { name: "Douglas Smith", title: "Circuit Public Defender", circuit: "Clayton", counties: "Clayton", email: "doug.smith@gapublicdefender.org", phone: "706-876-1576" },
+            { name: "Amanda Cosson-McCoy", title: "Circuit Public Defender", circuit: "Conasauga", counties: "Columbia", email: "amccoy@gapublicdefender.org", phone: "706-447-6750" },
+            { name: "Mack Taylor", title: "Chief Public Defender", circuit: "Columbia", counties: "Murray, Whitfield", email: "mtaylor@gapublicdefender.org", phone: "229-322-4111" },
+            { name: "Kyle Hollomon", title: "Circuit Public Defender", circuit: "Cordele", counties: "Ben Hill, Crisp, Dooly, Wilcox", email: "khollomon@gapubdef.org", phone: "770-830-1323" },
+            { name: "Ricardo Samper", title: "Circuit Public Defender", circuit: "Coweta", counties: "Coweta, Meriwether, Troup", email: "rsamper@gapublicdefender.org", phone: "770-830-1323" },
+            { name: "Letitia Delan", title: "Circuit Public Defender", circuit: "Dekalb", counties: "DeKalb", email: "LDelan@gapublicdefender.org", phone: "404-371-2802" },
+            { name: "Troy Golden", title: "Circuit Public Defender", circuit: "Dougherty", counties: "Dougherty", email: "tgolden@gapublicdefender.org", phone: "229-302-3769" },
+            { name: "Clay Tapley", title: "Circuit Public Defender", circuit: "Dublin", counties: "Johnson, Laurens, Treutlen, Twiggs", email: "ctapley@gapublicdefender.org", phone: "478-609-0533" },
+            { name: "Todd Martin", title: "Circuit Public Defender", circuit: "Eastern", counties: "Chatham", email: "tmartin@gapublicdefender.org", phone: "912-447-4908" },
+            { name: "Penny Hunter", title: "Circuit Public Defender", circuit: "Enotah", counties: "Lumpkin, Towns, Union, White", email: "hunterp@gapublicdefender.org", phone: "706-348-8577" },
+            { name: "Jennifer Lewis", title: "Circuit Public Defender", circuit: "Flint", counties: "Henry", email: "jlewis@gapublicdefender.org", phone: "770-288-7471" },
+            { name: "William Imhoff", title: "Circuit Public Defender", circuit: "Griffin", counties: "Fayette, Pike, Spalding, Upson", email: "wimhoff@gapublicdefender.org", phone: "404-200-5870" },
+            { name: "Jad Johnson", title: "Circuit Public Defender", circuit: "Lookout Mountain", counties: "Catoosa, Chattooga, Dade, Walker", email: "jjohnson@gapublicdefender.org", phone: "706-638-3290" },
+            { name: "Rick Waller Jr.", title: "Circuit Public Defender", circuit: "Macon", counties: "Bibb, Crawford, Peach", email: "rwaller@gapublicdefender.org", phone: "478-310-2059" },
+            { name: "Brandi Payne", title: "Circuit Public Defender", circuit: "Middle Georgia", counties: "Candler, Emanuel, Jefferson, Toombs, Washington", email: "bpayne@gapublicdefender.org", phone: "478-237-9014" },
+            { name: "Jeanne Tiger", title: "Circuit Public Defender", circuit: "Mountain", counties: "Habersham, Rabun, Stephens", email: "jtiger@gapublicdefender.org", phone: "706-754-6427" },
+            { name: "Mark Alexander", title: "Circuit Public Defender", circuit: "Northeastern", counties: "Dawson, Hall", email: "malexander@gapublicdefender.org", phone: "770-718-5528" },
+            { name: "Amanda Grantham", title: "Circuit Public Defender", circuit: "Northern", counties: "Elbert, Franklin, Hart, Madison, Oglethorpe", email: "agrantham@gapublicdefender.org", phone: "706-246-9320" },
+            { name: "Kristin Waller", title: "Circuit Public Defender", circuit: "Ocmulgee", counties: "Baldwin, Greene, Hancock, Jasper, Jones, Morgan, Putnam, Wilkinson", email: "kwaller@gapublicdefender.org", phone: "478-445-8100" },
+            { name: "Ashley McLaughlin", title: "Circuit Public Defender", circuit: "Oconee", counties: "Bleckley, Dodge, Montgomery, Pulaski, Telfair, Wheeler", email: "amclaughlin@gapublicdefender.org", phone: "478-448-1801" },
+            { name: "Renata Newbill-Jallow", title: "Circuit Public Defender", circuit: "Ogeechee", counties: "Bulloch, Effingham, Jenkins, Screven", email: "rjallow@gapublicdefender.org", phone: "912-764-6292" },
+            { name: "Marla Chambless", title: "Circuit Public Defender", circuit: "Pataula", counties: "Clay, Early, Miller, Quitman, Randolph, Seminole, Terrell", email: "mchambless@gapublicdefender.org", phone: "229-886-8153" },
+            { name: "Michael Syrop", title: "Circuit Public Defender", circuit: "Paulding", counties: "Paulding", email: "msyrop@gapubliddefender.org", phone: "770-443-3463" },
+            { name: "Donna Seagraves", title: "Circuit Public Defender", circuit: "Piedmont", counties: "Banks, Barrow, Jackson", email: "dseagraves@gapublicdefender.org", phone: "706-387-6317" },
+            { name: "Gina Bernard", title: "Circuit Public Defender", circuit: "Rockdale", counties: "Rockdale", email: "gmbernard@gapublicdefender.org", phone: "470-621-8085" },
+            { name: "Sean Lowe", title: "Circuit Public Defender", circuit: "Rome", counties: "Floyd", email: "slowe@gapublicdefender.org", phone: "706-234-0975" },
+            { name: "Tre McLendon", title: "Chief Circuit Public Defender", circuit: "South Georgia", counties: "Baker, Calhoun, Decatur, Grady, Mitchell", email: "tmclendon@gapublicdefender.org", phone: "229-246-2877" },
+            { name: "Wade Krueger", title: "Circuit Public Defender", circuit: "Southern", counties: "Brooks, Colquitt, Echols, Lowndes, Thomas", email: "wkrueger@gapublicdefender.org", phone: "229-300-6334" },
+            { name: "David Winheim", title: "Circuit Public Defender", circuit: "Southwestern", counties: "Lee, Macon, Schley, Stewart, Sumter, Webster", email: "david.winheim@gapublicdefender.org", phone: "229-928-4610" },
+            { name: "David Smith", title: "Circuit Public Defender", circuit: "Tallapoosa", counties: "Haralson, Polk", email: "dsmith@gapublicdefender.org", phone: "770-646-6629" },
+            { name: "Janice Prince", title: "Circuit Public Defender", circuit: "Tifton", counties: "Irwin, Tift, Turner, Worth", email: "jprince@gapublicdefender.org", phone: "229-387-6488" },
+            { name: "Caryn Lobdell", title: "Circuit Public Defender", circuit: "Toombs", counties: "Glascock, Lincoln, McDuffie, Taliaferro, Warren, Wilkes", email: "clobdell@gapublicdefender.org", phone: "706-595-7650" },
+            { name: "David Tatem", title: "Circuit Public Defender", circuit: "Towaliga", counties: "Butts, Lamar, Monroe", email: "dtatem@gapublicdefender.org", phone: "478-994-0040" },
+            { name: "Joshua Larkey", title: "Circuit Public Defender", circuit: "Waycross", counties: "Bacon, Brantley, Charlton, Coffee, Pierce, Ware", email: "jlarkey@gapublicdefender.org", phone: "912-287-4360" },
+            { name: "Maryellen Simmons", title: "Circuit Public Defender", circuit: "West Georgia", counties: "Clarke, Oconee", email: "msimmons@gapublicdefender.org", phone: "770-830-1323" },
+            { name: "John Donnelly", title: "Circuit Public Defender", circuit: "Western", counties: "Carroll, Heard", email: "jdonnelly@gapublicdefender.org", phone: "706-369-6447" }
+        ];
+
+        // Get initials from name
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').toUpperCase();
+        }
+
+        // Render staff cards
+        function renderDirectory(staff) {
+            const grid = document.getElementById('directoryGrid');
+            const countEl = document.getElementById('staffCount');
+
+            countEl.textContent = staff.length;
+
+            grid.innerHTML = staff.map(person => `
+                <div class="staff-card">
+                    <div class="staff-header">
+                        <div class="staff-avatar">${getInitials(person.name)}</div>
+                        <div class="staff-info">
+                            <div class="staff-name">${person.name}</div>
+                            <div class="staff-title">${person.title}</div>
+                            <span class="staff-circuit">${person.circuit} Circuit</span>
+                        </div>
+                    </div>
+                    <div class="staff-contact">
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:${person.email}">${person.email}</a>
+                        </div>
+                        ${person.phone ? `
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            <a href="tel:${person.phone.replace(/[^0-9]/g, '')}">${person.phone}</a>
+                        </div>
+                        ` : ''}
+                        <div class="staff-counties">Counties: ${person.counties}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize directory
+        renderDirectory(staffDirectory);
+
+        // CPD Search functionality
+        document.getElementById('directorySearch').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (!query) {
+                renderDirectory(staffDirectory);
+                return;
+            }
+
+            const filtered = staffDirectory.filter(person =>
+                person.name.toLowerCase().includes(query) ||
+                person.circuit.toLowerCase().includes(query) ||
+                person.counties.toLowerCase().includes(query)
+            );
+
+            renderDirectory(filtered);
+        });
+
+        // Render statewide support cards
+        function renderSupport(staff) {
+            const grid = document.getElementById('supportGrid');
+            const countEl = document.getElementById('supportCount');
+
+            countEl.textContent = staff.length;
+
+            // Helper to convert POC string to pills with category color
+            function getPocPills(pocString, category) {
+                return pocString.split(',').map(item =>
+                    `<span class="poc-pill cat-${category}">${item.trim()}</span>`
+                ).join('');
+            }
+
+            grid.innerHTML = staff.map(person => `
+                <div class="support-card">
+                    <div class="support-header">
+                        <div class="support-avatar">${getInitials(person.name)}</div>
+                        <div class="support-info">
+                            <div class="support-name">${person.name}</div>
+                            <div class="support-title">${person.title}</div>
+                        </div>
+                    </div>
+                    <div class="support-poc">
+                        <div class="support-poc-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                            Point of Contact For
+                        </div>
+                        <div class="support-poc-pills">${getPocPills(person.poc, person.category)}</div>
+                    </div>
+                    <div class="support-contact">
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:${person.email}">${person.email}</a>
+                        </div>
+                        ${person.phone ? `
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            <a href="tel:${person.phone.replace(/[^0-9]/g, '')}">${person.phone}</a>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize statewide support
+        renderSupport(statewideSupport);
+
+        // Current filter state
+        let currentCategory = 'all';
+
+        // Category labels for display
+        const categoryLabels = {
+            all: 'All Areas',
+            communications: 'Communications & Outreach',
+            customerservice: 'Customer Service',
+            finance: 'Finance',
+            investigations: 'Investigations',
+            itsupport: 'IT Support',
+            jcats: 'JCATS',
+            legal: 'Legal & Defense',
+            operations: 'Operations & Admin',
+            social: 'Social Services',
+            training: 'Training & Development'
+        };
+
+        // Update sidebar counts dynamically
+        function updateSidebarCounts() {
+            const counts = {
+                all: statewideSupport.length,
+                communications: statewideSupport.filter(p => p.category === 'communications').length,
+                customerservice: statewideSupport.filter(p => p.category === 'customerservice').length,
+                finance: statewideSupport.filter(p => p.category === 'finance').length,
+                investigations: statewideSupport.filter(p => p.category === 'investigations').length,
+                itsupport: statewideSupport.filter(p => p.category === 'itsupport').length,
+                jcats: statewideSupport.filter(p => p.category === 'jcats').length,
+                legal: statewideSupport.filter(p => p.category === 'legal').length,
+                operations: statewideSupport.filter(p => p.category === 'operations').length,
+                social: statewideSupport.filter(p => p.category === 'social').length,
+                training: statewideSupport.filter(p => p.category === 'training').length
+            };
+
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                const category = item.dataset.category;
+                const countEl = item.querySelector('.sidebar-count');
+                if (countEl && counts[category] !== undefined) {
+                    countEl.textContent = counts[category];
+                }
+            });
+        }
+
+        // Filter support contacts by category
+        function filterByCategory(category) {
+            currentCategory = category;
+            const searchQuery = document.getElementById('supportSearch').value.toLowerCase().trim();
+
+            let filtered = statewideSupport;
+
+            // Apply category filter
+            if (category !== 'all') {
+                filtered = filtered.filter(person => person.category === category);
+            }
+
+            // Apply search filter if there's a query
+            if (searchQuery) {
+                filtered = filtered.filter(person =>
+                    person.name.toLowerCase().includes(searchQuery) ||
+                    person.title.toLowerCase().includes(searchQuery) ||
+                    person.poc.toLowerCase().includes(searchQuery)
+                );
+            }
+
+            renderSupport(filtered);
+
+            // Update active sidebar item
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.category === category) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Show/hide active filter bar
+            const activeFilterEl = document.getElementById('activeFilter');
+            const filterNameEl = document.getElementById('filterName');
+            if (category !== 'all') {
+                activeFilterEl.style.display = 'flex';
+                filterNameEl.textContent = categoryLabels[category];
+            } else {
+                activeFilterEl.style.display = 'none';
+            }
+        }
+
+        // Sidebar click handlers
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', () => {
+                filterByCategory(item.dataset.category);
+            });
+        });
+
+        // Clear filter button
+        document.getElementById('clearFilter').addEventListener('click', () => {
+            filterByCategory('all');
+            document.getElementById('supportSearch').value = '';
+        });
+
+        // Support Search functionality
+        document.getElementById('supportSearch').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            let filtered = statewideSupport;
+
+            // Apply category filter first
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(person => person.category === currentCategory);
+            }
+
+            // Then apply search filter
+            if (query) {
+                filtered = filtered.filter(person =>
+                    person.name.toLowerCase().includes(query) ||
+                    person.title.toLowerCase().includes(query) ||
+                    person.poc.toLowerCase().includes(query)
+                );
+            }
+
+            renderSupport(filtered);
+        });
+
+        // Initialize sidebar counts
+        updateSidebarCounts();
+
+        // Tab switching
+        document.querySelectorAll('.directory-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+
+                // Update active tab
+                document.querySelectorAll('.directory-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Show corresponding content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // ==================== DEVELOPMENT ACCESS ====================
+        const DEV_CODE = 'devaccess';
+        const devModalOverlay = document.getElementById('devModalOverlay');
+        const devPasswordInput = document.getElementById('devPassword');
+        const devSubmit = document.getElementById('devSubmit');
+        const devCancel = document.getElementById('devCancel');
+        const openDevModal = document.getElementById('openDevModal');
+
+        // Check if already authenticated for dev
+        if (sessionStorage.getItem('gpdc_dev_auth') === 'true') {
+            // Redirect to full dashboard
+            window.location.href = 'dashboard-full.html';
+        }
+
+        // Open modal
+        openDevModal.addEventListener('click', () => {
+            devModalOverlay.classList.add('visible');
+            devPasswordInput.focus();
+        });
+
+        // Close modal
+        function closeDevModal() {
+            devModalOverlay.classList.remove('visible');
+            devPasswordInput.value = '';
+            devPasswordInput.classList.remove('error');
+        }
+
+        devCancel.addEventListener('click', closeDevModal);
+        devModalOverlay.addEventListener('click', (e) => {
+            if (e.target === devModalOverlay) closeDevModal();
+        });
+
+        // Submit dev password
+        devSubmit.addEventListener('click', () => {
+            const enteredCode = devPasswordInput.value.trim();
+            if (enteredCode === DEV_CODE) {
+                sessionStorage.setItem('gpdc_dev_auth', 'true');
+                window.location.href = 'dashboard-full.html';
+            } else {
+                devPasswordInput.classList.add('error');
+                setTimeout(() => devPasswordInput.classList.remove('error'), 500);
+            }
+        });
+
+        // Handle Enter key in dev modal
+        devPasswordInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') devSubmit.click();
+        });
+
+        // Handle Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && devModalOverlay.classList.contains('visible')) {
+                closeDevModal();
+            }
+        });
     </script>
 </body>
 </html>
