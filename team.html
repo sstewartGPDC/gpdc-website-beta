@@ -567,6 +567,59 @@
             margin-top: 0.5rem;
         }
 
+        /* Callback Phone Banner */
+        .callback-phone-banner {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--primary-subtle);
+            border-radius: 10px;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(184, 92, 56, 0.15);
+        }
+
+        .callback-phone-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .callback-phone-icon svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        .callback-phone-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .callback-phone-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .callback-phone-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .callback-phone-number:hover {
+            text-decoration: underline;
+        }
+
         /* CPD Grid - Similar to Council */
         .cpd-grid {
             display: grid;
@@ -1119,6 +1172,19 @@
                     <p id="modalTitle"></p>
                 </div>
             </div>
+            <!-- Central Office Number Banner (shown for callbacks) -->
+            <div class="callback-phone-banner" id="callbackBanner" style="display: none;">
+                <div class="callback-phone-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                </div>
+                <div class="callback-phone-info">
+                    <span class="callback-phone-label">Central Office</span>
+                    <a href="tel:4047952440" class="callback-phone-number">(404) 795-2440</a>
+                </div>
+            </div>
+
             <form id="contactForm" onsubmit="submitContactForm(event)">
                 <div>
                     <label for="contactName">Your Name</label>
@@ -1127,6 +1193,10 @@
                 <div>
                     <label for="contactEmail">Your Email</label>
                     <input type="email" id="contactEmail" name="email" required>
+                </div>
+                <div id="phoneFieldWrapper" style="display: none;">
+                    <label for="contactPhone">Your Phone Number</label>
+                    <input type="tel" id="contactPhone" name="phone" placeholder="(555) 555-5555">
                 </div>
                 <div>
                     <label for="contactMessage" id="messageLabel">Message</label>
@@ -1193,6 +1263,9 @@
             const submitBtnText = document.getElementById('submitBtnText');
             const contactType = document.getElementById('contactType');
             const contactRecipient = document.getElementById('contactRecipient');
+            const callbackBanner = document.getElementById('callbackBanner');
+            const phoneFieldWrapper = document.getElementById('phoneFieldWrapper');
+            const contactPhone = document.getElementById('contactPhone');
 
             avatar.src = teamImages[personId] || 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png';
             avatar.alt = name;
@@ -1201,10 +1274,16 @@
             contactRecipient.value = personId;
 
             if (isCallRequest) {
-                messageLabel.textContent = 'Please include your phone number and preferred callback time. Our central office number is (404) 795-2440.';
+                callbackBanner.style.display = 'flex';
+                phoneFieldWrapper.style.display = 'block';
+                contactPhone.required = true;
+                messageLabel.textContent = 'Preferred callback time or additional details';
                 submitBtnText.textContent = 'Request Callback';
                 contactType.value = 'callback';
             } else {
+                callbackBanner.style.display = 'none';
+                phoneFieldWrapper.style.display = 'none';
+                contactPhone.required = false;
                 messageLabel.textContent = 'Message';
                 submitBtnText.textContent = 'Send Message';
                 contactType.value = 'email';
@@ -1228,22 +1307,31 @@
             const recipientTitle = document.getElementById('modalTitle').textContent;
             const senderName = document.getElementById('contactName').value;
             const senderEmail = document.getElementById('contactEmail').value;
+            const senderPhone = document.getElementById('contactPhone').value;
             const message = document.getElementById('contactMessage').value;
             const contactType = document.getElementById('contactType').value;
 
             // Build subject line with executive name
             let subject;
+            let body;
+
             if (contactType === 'callback') {
                 subject = `Callback Request for ${recipientName} - ${recipientTitle}`;
+                body = `CALLBACK REQUEST
+
+From: ${senderName}
+Email: ${senderEmail}
+Phone: ${senderPhone}
+
+Preferred Time/Details:
+${message}`;
             } else {
                 subject = `Message for ${recipientName} - ${recipientTitle}`;
-            }
-
-            // Build email body
-            const body = `From: ${senderName}
+                body = `From: ${senderName}
 Email: ${senderEmail}
 
 ${message}`;
+            }
 
             // Open mailto link
             const mailtoLink = `mailto:help@gapubdef.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
