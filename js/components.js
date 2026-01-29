@@ -51,7 +51,7 @@
             position: 'center center'
         },
         'find-defender': {
-            image: 'https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1743796055664-3473eedab36e?q=80&w=2148&auto=format&fit=crop',
             label: 'CLIENTS & FAMILIES',
             title: 'Find My Public Defender',
             subtitle: 'Locate the public defender office serving your county.',
