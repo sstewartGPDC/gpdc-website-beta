@@ -387,64 +387,19 @@
         }
     </style>
 
-    <script>
-        // Home page events
-        const homeEvents = [
-            {
-                title: "Be Well Wednesday: Mindfulness for Lawyers",
-                date: new Date(2026, 1, 5),
-                location: "Online",
-                type: "online",
-                description: "Join us for a drop-in wellness session focused on mindfulness practices designed specifically for public defenders managing high-stress caseloads.",
-                image: "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/66e891aa2febf78fe64b3da0_1Q8A3235_2.jpg",
-                url: "divisions/training.html"
-            },
-            {
-                title: "PSLF Webinar: Repayment Strategies",
-                date: new Date(2026, 1, 12),
-                location: "Online",
-                type: "online",
-                description: "Learn about Public Service Loan Forgiveness repayment strategies and the limited waiver opportunity.",
-                image: null,
-                url: "divisions/training.html"
-            },
-            {
-                title: "Juvenile Defense Training",
-                date: new Date(2026, 1, 28),
-                location: "Online",
-                type: "online",
-                description: "Specialized training for attorneys handling juvenile cases.",
-                image: null,
-                url: "divisions/training.html"
-            },
-            {
-                title: "Leadership Academy - Spring Cohort",
-                date: new Date(2026, 2, 15),
-                location: "Atlanta, GA",
-                type: "in-person",
-                description: "Intensive leadership development program for Assistant and Circuit Public Defenders.",
-                image: "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200c524675d5f75d8021d_Leadership%20Academy%20Graduation-10%20Large.jpeg",
-                url: "divisions/training.html"
-            },
-            {
-                title: "Mental Health Defense Seminar",
-                date: new Date(2026, 2, 22),
-                location: "Atlanta, GA / Online",
-                type: "hybrid",
-                description: "Understanding mental health issues in criminal defense cases.",
-                image: null,
-                url: "divisions/training.html"
-            }
-        ];
+    <!-- Footer (loaded dynamically) -->
+    <div id="site-footer"></div>
 
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/events-data.js"></script>
+    <script>
+        // Render home page events widget (limit to 5 events)
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('homeEventsLayout');
             if (!container) return;
 
-            const now = new Date();
-            const upcomingEvents = homeEvents
-                .filter(e => e.date >= now)
-                .sort((a, b) => a.date - b.date);
+            const upcomingEvents = getUpcomingEvents(5);
 
             if (upcomingEvents.length === 0) {
                 container.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 1/-1;">No upcoming events. Check back soon!</p>';
@@ -452,7 +407,8 @@
             }
 
             const featured = upcomingEvents[0];
-            const sideEvents = upcomingEvents.slice(1, 4);
+            const sideEvents = upcomingEvents.slice(1);
+            const defaultImage = 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/66e891aa2febf78fe64b3da0_1Q8A3235_2.jpg';
 
             const featuredDate = featured.date.toLocaleDateString('en-US', {
                 weekday: 'long',
@@ -462,9 +418,9 @@
             });
 
             const featuredHtml = `
-                <a href="${featured.url}" class="home-event-featured">
+                <a href="divisions/training.html" class="home-event-featured">
                     <div class="home-event-featured-image">
-                        <img src="${featured.image || 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/66e891aa2febf78fe64b3da0_1Q8A3235_2.jpg'}" alt="${featured.title}">
+                        <img src="${featured.image || defaultImage}" alt="${featured.title}">
                         <span class="home-event-featured-badge">Next Event</span>
                     </div>
                     <div class="home-event-featured-content">
@@ -494,47 +450,44 @@
                 </a>
             `;
 
-            const sideHtml = `
-                <div class="home-events-side">
-                    <div class="home-events-side-header">More Upcoming</div>
-                    ${sideEvents.map(event => {
-                        const monthStr = event.date.toLocaleDateString('en-US', { month: 'short' });
-                        const dayStr = event.date.getDate();
-                        const typeLabel = event.type.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            let sideHtml = '';
+            if (sideEvents.length > 0) {
+                sideHtml = `
+                    <div class="home-events-side">
+                        <div class="home-events-side-header">More Upcoming</div>
+                        ${sideEvents.map(event => {
+                            const monthStr = event.date.toLocaleDateString('en-US', { month: 'short' });
+                            const dayStr = event.date.getDate();
+                            const typeLabel = event.type.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
-                        return `
-                            <a href="${event.url}" class="home-event-mini">
-                                <div class="home-event-mini-date">
-                                    <div class="month">${monthStr}</div>
-                                    <div class="day">${dayStr}</div>
-                                </div>
-                                <div class="home-event-mini-info">
-                                    <h4>${event.title}</h4>
-                                    <div class="home-event-mini-meta">
-                                        <span>
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                                                <circle cx="12" cy="10" r="3"/>
-                                            </svg>
-                                            ${event.location}
-                                        </span>
-                                        <span class="home-event-mini-badge ${event.type}">${typeLabel}</span>
+                            return `
+                                <a href="divisions/training.html" class="home-event-mini">
+                                    <div class="home-event-mini-date">
+                                        <div class="month">${monthStr}</div>
+                                        <div class="day">${dayStr}</div>
                                     </div>
-                                </div>
-                            </a>
-                        `;
-                    }).join('')}
-                </div>
-            `;
+                                    <div class="home-event-mini-info">
+                                        <h4>${event.title}</h4>
+                                        <div class="home-event-mini-meta">
+                                            <span>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                                    <circle cx="12" cy="10" r="3"/>
+                                                </svg>
+                                                ${event.location}
+                                            </span>
+                                            <span class="home-event-mini-badge ${event.type}">${typeLabel}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            }
 
             container.innerHTML = featuredHtml + sideHtml;
         });
     </script>
-
-    <!-- Footer (loaded dynamically) -->
-    <div id="site-footer"></div>
-
-    <script src="js/components.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
