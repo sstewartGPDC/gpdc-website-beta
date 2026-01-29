@@ -231,8 +231,8 @@
         .featured-division-stats-panel {
             background: linear-gradient(145deg, var(--primary) 0%, var(--primary-dark) 100%);
             display: flex;
-            flex-direction: column;
-            align-items: stretch;
+            flex-direction: row;
+            align-items: center;
             justify-content: center;
             padding: 0;
             position: relative;
@@ -251,9 +251,10 @@
 
         .featured-division-stats-panel .featured-stat {
             text-align: center;
-            padding: 1.75rem 2rem;
+            padding: 2rem 1.5rem;
             position: relative;
             transition: background 0.3s ease;
+            flex: 1;
         }
 
         .featured-division-stats-panel .featured-stat:hover {
@@ -263,16 +264,16 @@
         .featured-division-stats-panel .featured-stat:not(:last-child)::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 1px;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 50px;
             background: rgba(255,255,255,0.2);
         }
 
         .featured-division-stats-panel .featured-stat .number {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: white;
             line-height: 1;
@@ -283,7 +284,7 @@
         .featured-division-stats-panel .featured-stat .label {
             color: rgba(255,255,255,0.7);
             margin-top: 0.5rem;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 0.15em;
         }
 
@@ -302,27 +303,12 @@
                 margin: 0 auto;
             }
 
-            .featured-division-stats-panel {
-                flex-direction: row;
-            }
-
             .featured-division-stats-panel .featured-stat {
-                flex: 1;
                 padding: 1.5rem 1rem;
             }
 
-            .featured-division-stats-panel .featured-stat:not(:last-child)::after {
-                top: 50%;
-                bottom: auto;
-                left: auto;
-                right: 0;
-                transform: translateY(-50%);
-                width: 1px;
-                height: 50px;
-            }
-
             .featured-division-stats-panel .featured-stat .number {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
         }
 
@@ -340,7 +326,11 @@
             }
 
             .featured-division-stats-panel .featured-stat .number {
-                font-size: 2rem;
+                font-size: 1.75rem;
+            }
+
+            .featured-division-stats-panel .featured-stat:not(:last-child)::after {
+                height: 35px;
             }
         }
     </style>
