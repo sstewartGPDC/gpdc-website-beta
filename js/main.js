@@ -499,6 +499,209 @@ function initDarkMode() {
     });
 }
 
+// ==================== ANNOUNCEMENT BANNER ====================
+function initAnnouncementBanner() {
+    // Configuration - Edit this to change the announcement
+    const announcement = {
+        enabled: true,
+        id: 'winter-cpd-2026', // Unique ID for dismissal tracking
+        icon: 'calendar', // 'calendar', 'megaphone', 'alert', or 'info'
+        text: 'Winter CPD Meeting - February 27-28, 2026',
+        linkText: 'Learn More',
+        linkUrl: 'divisions/training.html'
+    };
+
+    if (!announcement.enabled) return;
+
+    // Check if user has dismissed this announcement
+    if (localStorage.getItem('dismissed-' + announcement.id)) return;
+
+    // Create banner HTML
+    const icons = {
+        calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
+        megaphone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>',
+        alert: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+        info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+    };
+
+    const banner = document.createElement('div');
+    banner.className = 'announcement-banner visible';
+    banner.innerHTML = `
+        <div class="announcement-banner-content">
+            <span class="announcement-banner-text">
+                ${icons[announcement.icon] || icons.info}
+                ${announcement.text}
+                ${announcement.linkUrl ? `<a href="${announcement.linkUrl}" class="announcement-banner-link">${announcement.linkText}</a>` : ''}
+            </span>
+        </div>
+        <button class="announcement-banner-close" aria-label="Dismiss">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+    `;
+
+    document.body.insertBefore(banner, document.body.firstChild);
+    document.body.classList.add('has-announcement');
+
+    // Handle close button
+    banner.querySelector('.announcement-banner-close').addEventListener('click', () => {
+        banner.classList.remove('visible');
+        document.body.classList.remove('has-announcement');
+        localStorage.setItem('dismissed-' + announcement.id, 'true');
+        setTimeout(() => banner.remove(), 300);
+    });
+}
+
+// ==================== BREADCRUMB NAVIGATION ====================
+function initBreadcrumbs() {
+    // Define page hierarchy
+    const pageHierarchy = {
+        'index.html': { title: 'Home', parent: null },
+        'about.html': { title: 'About Us', parent: 'index.html' },
+        'team.html': { title: 'Our Team', parent: 'about.html' },
+        'divisions.html': { title: 'Divisions and Services', parent: 'about.html' },
+        'foundation.html': { title: 'Our Foundation', parent: 'about.html' },
+        'clients.html': { title: 'Clients & Families', parent: 'index.html' },
+        'fypd.html': { title: 'Find Your Public Defender', parent: 'clients.html' },
+        'find-defender.html': { title: 'Find Your Public Defender', parent: 'clients.html' },
+        'apply.html': { title: 'Apply for Representation', parent: 'clients.html' },
+        'faq.html': { title: 'FAQ', parent: 'clients.html' },
+        'careers.html': { title: 'Careers', parent: 'index.html' },
+        'positions.html': { title: 'Available Positions', parent: 'careers.html' },
+        'newsroom.html': { title: 'Newsroom', parent: 'index.html' },
+        'contact.html': { title: 'Contact Us', parent: 'index.html' },
+        // Division pages
+        'divisions/training.html': { title: 'Professional Development & Training', parent: 'divisions.html' },
+        'divisions/appellate-defense.html': { title: 'Appellate Defense', parent: 'divisions.html' },
+        'divisions/capital-defense.html': { title: 'Capital Defense', parent: 'divisions.html' },
+        'divisions/mental-health-defense.html': { title: 'Mental Health Defense', parent: 'divisions.html' },
+        'divisions/youth-defense.html': { title: 'Youth Advocacy', parent: 'divisions.html' },
+        'divisions/social-services.html': { title: 'Social Services', parent: 'divisions.html' },
+        'divisions/customer-support.html': { title: 'Customer Support', parent: 'divisions.html' },
+        'divisions/administration.html': { title: 'Administration', parent: 'divisions.html' },
+        'divisions/local-public-defense.html': { title: 'Local Public Defense', parent: 'divisions.html' }
+    };
+
+    // Get current page
+    const path = window.location.pathname;
+    let currentPage = path.split('/').pop() || 'index.html';
+
+    // Check if in divisions folder
+    if (path.includes('/divisions/')) {
+        currentPage = 'divisions/' + currentPage;
+    }
+
+    const pageInfo = pageHierarchy[currentPage];
+    if (!pageInfo || currentPage === 'index.html') return; // No breadcrumbs for home
+
+    // Build breadcrumb trail
+    const trail = [];
+    let page = currentPage;
+    while (page) {
+        const info = pageHierarchy[page];
+        if (info) {
+            trail.unshift({ page, title: info.title });
+            page = info.parent;
+        } else {
+            break;
+        }
+    }
+
+    if (trail.length < 2) return; // Need at least 2 items for breadcrumbs
+
+    // Determine base path
+    const basePath = path.includes('/divisions/') ? '../' : '';
+
+    // Create breadcrumbs HTML
+    const breadcrumbs = document.createElement('div');
+    breadcrumbs.className = 'breadcrumbs';
+    breadcrumbs.innerHTML = `
+        <div class="breadcrumbs-inner">
+            ${trail.map((item, i) => {
+                if (i === trail.length - 1) {
+                    return `<span class="breadcrumb-current">${item.title}</span>`;
+                }
+                const href = item.page.startsWith('divisions/') ? basePath + item.page : basePath + item.page;
+                return `<a href="${href}" class="breadcrumb-item">${item.title}</a><span class="breadcrumb-separator">/</span>`;
+            }).join('')}
+        </div>
+    `;
+
+    // Insert after header
+    const header = document.getElementById('site-header');
+    if (header) {
+        header.insertAdjacentElement('afterend', breadcrumbs);
+    }
+}
+
+// ==================== STICKY SECTION NAVIGATION ====================
+function initStickySectionNav() {
+    // Only initialize on pages with sections
+    const sections = document.querySelectorAll('[data-section-nav]');
+    if (sections.length < 3) return; // Need at least 3 sections
+
+    // Create sticky nav
+    const stickyNav = document.createElement('nav');
+    stickyNav.className = 'sticky-section-nav';
+    stickyNav.innerHTML = `
+        <div class="sticky-section-nav-title">On This Page</div>
+        <div class="sticky-section-nav-links">
+            ${Array.from(sections).map(section => {
+                const id = section.id;
+                const title = section.getAttribute('data-section-nav');
+                return `<a href="#${id}" class="sticky-section-nav-link">${title}</a>`;
+            }).join('')}
+        </div>
+    `;
+    document.body.appendChild(stickyNav);
+
+    // Show/hide based on scroll
+    const firstSection = sections[0];
+    const lastSection = sections[sections.length - 1];
+
+    const updateVisibility = () => {
+        const scrollY = window.pageYOffset;
+        const firstTop = firstSection.offsetTop - 200;
+        const lastBottom = lastSection.offsetTop + lastSection.offsetHeight;
+
+        if (scrollY > firstTop && scrollY < lastBottom) {
+            stickyNav.classList.add('visible');
+        } else {
+            stickyNav.classList.remove('visible');
+        }
+
+        // Update active link
+        const links = stickyNav.querySelectorAll('.sticky-section-nav-link');
+        let activeIndex = 0;
+        sections.forEach((section, i) => {
+            if (scrollY >= section.offsetTop - 150) {
+                activeIndex = i;
+            }
+        });
+        links.forEach((link, i) => {
+            link.classList.toggle('active', i === activeIndex);
+        });
+    };
+
+    window.addEventListener('scroll', updateVisibility);
+    updateVisibility();
+
+    // Smooth scroll on click
+    stickyNav.querySelectorAll('.sticky-section-nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
 // ==================== INITIALIZE ALL ====================
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
@@ -510,6 +713,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initBackToTop();
     initAnimatedStats();
     initDarkMode();
+    initAnnouncementBanner();
+    initBreadcrumbs();
+    initStickySectionNav();
 
     // Initialize search after header component loads (since search is in header)
     document.addEventListener('componentLoaded', (e) => {
