@@ -16,49 +16,49 @@
             position: 'center center'
         },
         'about': {
-            image: 'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1617957796155-5f7797659e4e?w=1600&q=80',
             label: 'ABOUT US',
             title: 'Who We Are',
             subtitle: 'Providing high-quality legal defense for individuals accused of crimes who cannot afford representation.',
-            position: 'center center'
+            position: 'center 40%'
         },
         'team': {
-            image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80',
             label: 'ABOUT US',
             title: 'Our Team',
             subtitle: 'Meet the dedicated professionals working to ensure justice for all Georgians.',
             position: 'center center'
         },
         'divisions': {
-            image: 'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1617957796155-5f7797659e4e?w=1600&q=80',
             label: 'ABOUT US',
             title: 'Divisions and Services',
             subtitle: 'Specialized divisions working together to provide comprehensive legal defense across Georgia.',
-            position: 'center center'
+            position: 'center 40%'
         },
         'foundation': {
-            image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1617957796155-5f7797659e4e?w=1600&q=80',
             label: 'ABOUT US',
             title: 'Our Foundation',
             subtitle: 'The history, mission, and impact of public defense in Georgia.',
-            position: 'center center'
+            position: 'center 40%'
         },
         'clients': {
-            image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'Clients and Families',
             subtitle: 'Resources and information for those we serve and their loved ones.',
             position: 'center center'
         },
         'find-defender': {
-            image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'Find My Public Defender',
             subtitle: 'Locate the public defender office serving your county.',
             position: 'center center'
         },
         'apply': {
-            image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'Applying For Legal Representation',
             subtitle: 'Learn how to request a public defender if you cannot afford an attorney.',
@@ -72,21 +72,21 @@
             position: 'center center'
         },
         'faq': {
-            image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'FAQs and Resources',
             subtitle: 'Answers to common questions about public defense in Georgia.',
             position: 'center center'
         },
         'careers': {
-            image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1600&q=80',
             label: 'CAREERS',
             title: 'Join Our Team',
             subtitle: 'Build a meaningful career defending the constitutional rights of Georgians.',
             position: 'center center'
         },
         'positions': {
-            image: 'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1600&q=80',
             label: 'CAREERS',
             title: 'Available Positions',
             subtitle: 'Current job openings across Georgia\'s public defender offices.',
