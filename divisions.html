@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisions and Services | Georgia Public Defender Council</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Division Cards Grid */
+        .divisions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .division-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-out);
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .division-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .division-card-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e0dcd6 100%);
+        }
+
+        .division-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--ease-out);
+        }
+
+        .division-card:hover .division-card-image img {
+            transform: scale(1.05);
+        }
+
+        .division-card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .division-card-content .label {
+            margin-bottom: 0.5rem;
+            font-size: 0.65rem;
+        }
+
+        .division-card-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            transition: color 0.3s ease;
+        }
+
+        .division-card:hover .division-card-content h3 {
+            color: var(--primary);
+        }
+
+        .division-card-content p {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .division-card-leader {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .division-card-leader img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 2px solid var(--primary);
+        }
+
+        .division-card-leader-info {
+            flex: 1;
+        }
+
+        .division-card-leader-info .name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .division-card-leader-info .title {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .division-card-arrow {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .division-card-arrow svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-medium);
+            transition: all 0.3s ease;
+        }
+
+        .division-card:hover .division-card-arrow {
+            background: var(--primary);
+        }
+
+        .division-card:hover .division-card-arrow svg {
+            color: white;
+            transform: translateX(2px);
+        }
+
+        /* Featured Division - Local Public Defense */
+        .featured-division {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.4s var(--ease-out);
+            box-shadow: 0 8px 32px rgba(184, 92, 56, 0.25);
+        }
+
+        .featured-division:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(184, 92, 56, 0.35);
+        }
+
+        .featured-division-content .label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .featured-division-content h2 {
+            font-size: 2rem;
+            margin: 0.5rem 0 1rem;
+            color: white;
+        }
+
+        .featured-division-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-division-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-stat {
+            text-align: center;
+        }
+
+        .featured-stat .number {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .featured-stat .label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .featured-division-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: var(--primary);
+            padding: 0.875rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .featured-division:hover .featured-division-btn {
+            background: var(--text-dark);
+            color: white;
+        }
+
+        .featured-division-btn svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .featured-division:hover .featured-division-btn svg {
+            transform: translateX(4px);
+        }
+
+        .featured-division-map {
+            position: relative;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .featured-division-map img {
+            max-width: 100%;
+            height: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        .featured-division-map .map-placeholder {
+            width: 100%;
+            height: 250px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .featured-division-map .map-placeholder svg {
+            width: 80px;
+            height: 80px;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .featured-division {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .featured-division-stats {
+                justify-content: center;
+            }
+
+            .featured-division-map {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .divisions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-division {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- Header (loaded dynamically) -->
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="page-hero page-hero-sm">
+        <div class="page-hero-bg">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1920&q=80" alt="Legal professionals in courtroom">
+        </div>
+        <div class="page-hero-content">
+            <p class="label">ABOUT US</p>
+            <h1 class="page-hero-title">Divisions & Services</h1>
+            <p class="page-hero-subtitle">Expert legal defense through specialized divisions serving all of Georgia.</p>
+        </div>
+    </section>
+
+    <!-- Featured Division: Local Public Defense -->
+    <section class="content-section" style="padding-top: 4rem;">
+        <div class="container">
+            <a href="find-defender.html" class="featured-division fade-in">
+                <div class="featured-division-content">
+                    <p class="label">STATEWIDE NETWORK</p>
+                    <h2>Local Public Defense</h2>
+                    <p>The backbone of Georgia's public defense system. Our network of local offices serves as the frontline of justice, providing dedicated legal representation to those who cannot afford an attorney.</p>
+                    <div class="featured-division-stats">
+                        <div class="featured-stat">
+                            <div class="number">45</div>
+                            <div class="label">Offices</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="number">49</div>
+                            <div class="label">Circuits</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="number">159</div>
+                            <div class="label">Counties</div>
+                        </div>
+                    </div>
+                    <div class="featured-division-btn">
+                        <span>Find Your Public Defender</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="featured-division-map">
+                    <img src="images/georgia-wiki.svg" alt="Georgia Counties Map">
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Statewide Divisions -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header centered fade-in">
+                <p class="label">SPECIALIZED SERVICES</p>
+                <h2 class="section-title">Statewide Divisions</h2>
+                <p class="section-subtitle">Each division brings specialized expertise to serve our clients and support public defenders across Georgia.</p>
+            </div>
+
+            <div class="divisions-grid">
+                <!-- Administration & Executive -->
+                <a href="divisions/administration.html" class="division-card fade-in fade-in-delay-1">
+                    <div class="division-card-image">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Administration">
+                    </div>
+                    <div class="division-card-content">
+                        <p class="label">ADMINISTRATION</p>
+                        <h3>Administration & Executive</h3>
+                        <p>Strategic leadership ensuring Georgia's public defenders have the support, resources, and guidance needed to serve clients.</p>
+                        <div class="division-card-leader">
+                            <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69656b087d941f495fc4f0ca_Photo_OmotayoAlli%20Large.jpeg" alt="Omotayo Alli">
+                            <div class="division-card-leader-info">
+                                <div class="name">Omotayo Alli</div>
+                                <div class="title">Executive Director</div>
+                            </div>
+                            <div class="division-card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Appellate Defense -->
+                <a href="divisions/appellate-defense.html" class="division-card fade-in fade-in-delay-2">
+                    <div class="division-card-image">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80" alt="Georgia Supreme Court">
+                    </div>
+                    <div class="division-card-content">
+                        <p class="label">APPELLATE DIVISION</p>
+                        <h3>Appellate Defense</h3>
+                        <p>Skilled representation for indigent clients before the Supreme Court and Court of Appeals of Georgia.</p>
+                        <div class="division-card-leader">
+                            <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg" alt="William Hewitt">
+                            <div class="division-card-leader-info">
+                                <div class="name">William Hewitt</div>
+                                <div class="title">Division Director</div>
+                            </div>
+                            <div class="division-card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Capital Defense -->
+                <a href="divisions/capital-defense.html" class="division-card fade-in fade-in-delay-3">
+                    <div class="division-card-image">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80" alt="Capital defense representation">
+                    </div>
+                    <div class="division-card-content">
+                        <p class="label">CAPITAL DIVISION</p>
+                        <h3>Capital Defense</h3>
+                        <p>Expert representation in death penalty cases through specialized defense teams with two qualified attorneys per case.</p>
+                        <div class="division-card-leader">
+                            <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Nathaniel Studelska">
+                            <div class="division-card-leader-info">
+                                <div class="name">Nathaniel Studelska</div>
+                                <div class="title">Division Director</div>
+                            </div>
+                            <div class="division-card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Customer Support & Compliance -->
+                <a href="divisions/customer-support.html" class="division-card fade-in fade-in-delay-1">
+                    <div class="division-card-image">
+                        <img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=800&q=80" alt="Customer support">
+                    </div>
+                    <div class="division-card-content">
+                        <p class="label">SUPPORT</p>
+                        <h3>Customer Support & Compliance</h3>
+                        <p>Ensuring clients receive the assistance they need while upholding the highest legal and ethical standards.</p>
+                        <div class="division-card-leader">
+                            <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg" alt="Joy Walker">
+                            <div class="division-card-leader-info">
+                                <div class="name">Joy Walker</div>
+                                <div class="title">Division Director</div>
+                            </div>
+                            <div class="division-card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Mental Health -->
+                <a href="divisions/mental-health-defense.html" class="division-card fade-in fade-in-delay-2">
+                    <div class="division-card-image">
+                        <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=800&q=80" alt="Mental health advocacy">
+                    </div>
+                    <div class="division-card-content">
+                        <p class="label">MENTAL HEALTH</p>
+                        <h3>Office of Mental Health Advocate</h3>
+                        <p>Supporting public defenders, courts, and mental health facilities in navigating complex legal and clinical issues.</p>
+                        <div class="division-card-leader">
+                            <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg" alt="Sabrina Rhinehart">
+                            <div class="division-card-leader-info">
+                                <div class="name">Sabrina Rhinehart</div>
+                                <div class="title">Division Director</div>
+                            </div>
+                            <div class="division-card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Professional Development & Training -->
+                <a href="divisions/training.html" class="division-card fade-in fade-in-delay-3">
+                    <div class="division-card-image">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80" alt="Professional development training">
+                    </div>
+                    <div class="division-card-content">
+                        <p class="label">TRAINING</p>
+                        <h3>Professional Development & Training</h3>
+                        <p>Training programs including the Leadership Academy to ensure high-quality, zealous, and ethical representation.</p>
+                        <div class="division-card-leader">
+                            <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Trish Bertram">
+                            <div class="division-card-leader-info">
+                                <div class="name">Trish Bertram</div>
+                                <div class="title">Division Director</div>
+                            </div>
+                            <div class="division-card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Social Services -->
+                <a href="divisions/social-services.html" class="division-card fade-in fade-in-delay-1">
+                    <div class="division-card-image">
+                        <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=800&q=80" alt="Social services support">
+                    </div>
+                    <div class="division-card-content">
+                        <p class="label">SOCIAL SERVICES</p>
+                        <h3>Social Services Division</h3>
+                        <p>Holistic, client-centered support offering alternatives to sentencing and mitigation strategies through the Ladders Program.</p>
+                        <div class="division-card-leader">
+                            <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Division Director">
+                            <div class="division-card-leader-info">
+                                <div class="name">Division Director</div>
+                                <div class="title">Social Services</div>
+                            </div>
+                            <div class="division-card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Youth Advocacy -->
+                <a href="divisions/youth-defense.html" class="division-card fade-in fade-in-delay-2">
+                    <div class="division-card-image">
+                        <img src="https://images.unsplash.com/photo-1529390079861-591f64b2ee54?auto=format&fit=crop&w=800&q=80" alt="Youth advocacy">
+                    </div>
+                    <div class="division-card-content">
+                        <p class="label">YOUTH DIVISION</p>
+                        <h3>Youth Advocacy Division</h3>
+                        <p>Improving outcomes for justice-involved youth by providing immediate, skilled, and dedicated legal representation.</p>
+                        <div class="division-card-leader">
+                            <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69667a90b3630f4474adc250_Murray%2C%20Gayle%20Large.jpeg" alt="Gayle Murray">
+                            <div class="division-card-leader-info">
+                                <div class="name">Gayle Murray</div>
+                                <div class="title">Division Director</div>
+                            </div>
+                            <div class="division-card-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card fade-in">
+                <h2>Need Legal Assistance?</h2>
+                <p>Contact your local public defender office to learn about the services available in your judicial circuit.</p>
+                <div class="cta-actions">
+                    <a href="find-defender.html" class="btn btn-primary">
+                        <span>Find My Public Defender</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="contact.html" class="btn btn-outline">
+                        <span>Contact Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (loaded dynamically) -->
+    <div id="site-footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

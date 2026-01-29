@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Positions | Georgia Public Defender Council</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- Header (loaded dynamically) -->
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="page-hero page-hero-sm">
+        <div class="page-hero-bg">
+            <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/6787f196c0dfd7063d06fa8f_1Q8A6310.png" alt="Available Positions">
+        </div>
+        <div class="page-hero-content">
+            <p class="label">CAREERS</p>
+            <h1 class="page-hero-title">Available Positions</h1>
+            <p class="page-hero-subtitle">Find your next opportunity with the Georgia Public Defender Council.</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="positions-section">
+        <div class="container">
+            <div class="positions-filters fade-in">
+                <button class="filter-btn active" data-filter="all">All Positions</button>
+                <button class="filter-btn" data-filter="attorney">Attorneys</button>
+                <button class="filter-btn" data-filter="non-attorney">Non-Attorneys</button>
+                <button class="filter-btn" data-filter="contractor">Contractors</button>
+                <button class="filter-btn" data-filter="internship">Internships</button>
+            </div>
+
+            <!-- Positions Grid -->
+            <div class="positions-grid" id="positionsGrid">
+                <div class="position-card fade-in" data-type="attorney">
+                    <div class="position-header">
+                        <span class="position-type">Attorney</span>
+                        <span class="position-new">New</span>
+                    </div>
+                    <h3 class="position-title">Assistant Public Defender</h3>
+                    <p class="position-location">Atlanta Circuit - Fulton County</p>
+                    <p class="position-description">Represent indigent clients in criminal proceedings, including felony and misdemeanor cases. Requires Georgia Bar admission.</p>
+                    <div class="position-footer">
+                        <span class="position-posted">Posted January 15, 2026</span>
+                        <a href="contact.html" class="btn btn-primary btn-sm">
+                            <span>Apply Now</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="position-card fade-in" data-type="attorney">
+                    <div class="position-header">
+                        <span class="position-type">Attorney</span>
+                    </div>
+                    <h3 class="position-title">Senior Trial Attorney</h3>
+                    <p class="position-location">Cobb Circuit - Marietta</p>
+                    <p class="position-description">Handle complex felony cases and mentor junior attorneys. Minimum 5 years criminal defense experience required.</p>
+                    <div class="position-footer">
+                        <span class="position-posted">Posted January 10, 2026</span>
+                        <a href="contact.html" class="btn btn-primary btn-sm">
+                            <span>Apply Now</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="position-card fade-in" data-type="attorney">
+                    <div class="position-header">
+                        <span class="position-type">Attorney</span>
+                        <span class="position-new">New</span>
+                    </div>
+                    <h3 class="position-title">Juvenile Defense Attorney</h3>
+                    <p class="position-location">DeKalb Circuit - Decatur</p>
+                    <p class="position-description">Specialize in juvenile defense matters. Experience with juvenile court proceedings preferred.</p>
+                    <div class="position-footer">
+                        <span class="position-posted">Posted January 20, 2026</span>
+                        <a href="contact.html" class="btn btn-primary btn-sm">
+                            <span>Apply Now</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="position-card fade-in" data-type="non-attorney">
+                    <div class="position-header">
+                        <span class="position-type">Non-Attorney</span>
+                    </div>
+                    <h3 class="position-title">Investigator</h3>
+                    <p class="position-location">Gwinnett Circuit - Lawrenceville</p>
+                    <p class="position-description">Conduct investigations, interview witnesses, and gather evidence for criminal defense cases. Prior law enforcement or investigative experience required.</p>
+                    <div class="position-footer">
+                        <span class="position-posted">Posted January 8, 2026</span>
+                        <a href="contact.html" class="btn btn-primary btn-sm">
+                            <span>Apply Now</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="position-card fade-in" data-type="non-attorney">
+                    <div class="position-header">
+                        <span class="position-type">Non-Attorney</span>
+                        <span class="position-new">New</span>
+                    </div>
+                    <h3 class="position-title">Social Worker</h3>
+                    <p class="position-location">Central Office - Atlanta</p>
+                    <p class="position-description">Provide social work services to clients and families. MSW required, LCSW preferred. Experience with criminal justice populations a plus.</p>
+                    <div class="position-footer">
+                        <span class="position-posted">Posted January 18, 2026</span>
+                        <a href="contact.html" class="btn btn-primary btn-sm">
+                            <span>Apply Now</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="position-card fade-in" data-type="non-attorney">
+                    <div class="position-header">
+                        <span class="position-type">Non-Attorney</span>
+                    </div>
+                    <h3 class="position-title">Legal Administrative Assistant</h3>
+                    <p class="position-location">Multiple Locations</p>
+                    <p class="position-description">Provide administrative support to attorneys, manage case files, and coordinate court schedules. Legal office experience preferred.</p>
+                    <div class="position-footer">
+                        <span class="position-posted">Posted January 5, 2026</span>
+                        <a href="contact.html" class="btn btn-primary btn-sm">
+                            <span>Apply Now</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="position-card fade-in" data-type="contractor">
+                    <div class="position-header">
+                        <span class="position-type">Contractor</span>
+                    </div>
+                    <h3 class="position-title">Contract Attorney - Appellate</h3>
+                    <p class="position-location">Remote / Statewide</p>
+                    <p class="position-description">Handle appellate cases on a contract basis. Georgia Bar admission and appellate experience required.</p>
+                    <div class="position-footer">
+                        <span class="position-posted">Posted January 12, 2026</span>
+                        <a href="contact.html" class="btn btn-primary btn-sm">
+                            <span>Apply Now</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="position-card fade-in" data-type="internship">
+                    <div class="position-header">
+                        <span class="position-type">Internship</span>
+                        <span class="position-new">New</span>
+                    </div>
+                    <h3 class="position-title">Summer Law Intern</h3>
+                    <p class="position-location">Various Circuits</p>
+                    <p class="position-description">Gain hands-on experience in public defense. Open to 1L and 2L law students. Stipend available for qualifying applicants.</p>
+                    <div class="position-footer">
+                        <span class="position-posted">Posted January 22, 2026</span>
+                        <a href="contact.html" class="btn btn-primary btn-sm">
+                            <span>Apply Now</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-positions" id="noPositions" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <h3>No positions found</h3>
+                <p>There are currently no openings in this category. Check back soon or contact us to express your interest.</p>
+                <a href="contact.html" class="btn btn-outline">Contact HR</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card fade-in">
+                <h2>Don't See the Right Position?</h2>
+                <p>We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future openings.</p>
+                <a href="contact.html" class="btn btn-primary">
+                    <span>Contact HR</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (loaded dynamically) -->
+    <div id="site-footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Positions filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const positionCards = document.querySelectorAll('.position-card');
+            const noPositions = document.getElementById('noPositions');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.dataset.filter;
+                    let visibleCount = 0;
+
+                    positionCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.type === filter) {
+                            card.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    // Show/hide no results message
+                    noPositions.style.display = visibleCount === 0 ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

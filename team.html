@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team | Georgia Public Defender Council</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Enhanced Team Page Styles */
+        .team-hero {
+            text-align: center;
+            padding: 2rem 1.5rem 3rem;
+            background: var(--bg-white);
+        }
+
+        .team-hero .section-title {
+            margin-bottom: 1rem;
+        }
+
+        .team-hero .section-subtitle {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Team Navigation Tabs */
+        .team-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .team-tab {
+            padding: 0.625rem 1.25rem;
+            border: none;
+            background: transparent;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-medium);
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .team-tab:hover {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .team-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Featured Executive */
+        .featured-executive {
+            padding: 3rem 1.5rem;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        }
+
+        .featured-card {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            align-items: center;
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .featured-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-content .label {
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-content h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .featured-content .featured-title {
+            font-size: 1.125rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .featured-content .featured-bio {
+            font-size: 1rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-credentials {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .credential-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            background: var(--primary-subtle);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .credential-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Team Section Updates */
+        .team-section-new {
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .team-section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .team-section-header .label {
+            margin-bottom: 0.5rem;
+        }
+
+        .team-section-header h2 {
+            font-size: 1.75rem;
+            color: var(--text-dark);
+        }
+
+        /* New Team Grid */
+        .team-grid-new {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .team-card-new {
+            background: var(--bg-white);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-out);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .team-section-alt .team-card-new {
+            background: var(--bg-white);
+        }
+
+        .team-card-new:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-card-new .team-image {
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card-new .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.6s var(--ease-out);
+        }
+
+        .team-card-new:hover .team-image img {
+            transform: scale(1.08);
+        }
+
+        .team-card-new .team-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.4s var(--ease-out);
+        }
+
+        .team-card-new:hover .team-image::after {
+            opacity: 1;
+        }
+
+        .team-card-new .team-info {
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .team-card-new .team-info h3 {
+            font-size: 1.0625rem;
+            margin-bottom: 0.375rem;
+            color: var(--text-dark);
+        }
+
+        .team-card-new .team-title {
+            font-size: 0.8125rem;
+            color: var(--primary);
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Council Grid - Enhanced */
+        .council-grid-new {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .council-card-new {
+            background: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s var(--ease-out);
+            border: 1px solid var(--border-light);
+        }
+
+        .council-card-new:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .council-card-new .council-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-subtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .council-card-new .council-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+        }
+
+        .council-card-new h4 {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .council-card-new p {
+            font-size: 0.8125rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Circuit CTA */
+        .circuit-cta {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+        }
+
+        .circuit-cta h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .circuit-cta p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .circuit-cta .btn {
+            background: white;
+            color: var(--primary);
+        }
+
+        .circuit-cta .btn:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .featured-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .featured-image {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .featured-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .featured-credentials {
+                justify-content: center;
+            }
+
+            .team-tabs {
+                gap: 0.375rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .team-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.8125rem;
+            }
+
+            .team-grid-new {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .team-card-new .team-image {
+                height: 200px;
+            }
+
+            .council-grid-new {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .circuit-cta {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid-new {
+                grid-template-columns: 1fr;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .council-grid-new {
+                grid-template-columns: 1fr;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- Header (loaded dynamically) -->
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="page-hero page-hero-sm">
+        <div class="page-hero-bg">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80" alt="Professional team collaboration">
+        </div>
+        <div class="page-hero-content">
+            <p class="label">ABOUT US</p>
+            <h1 class="page-hero-title">Our Team</h1>
+            <p class="page-hero-subtitle">Meet the dedicated professionals leading the Georgia Public Defender Council.</p>
+        </div>
+    </section>
+
+    <!-- Team Navigation Tabs -->
+    <div class="team-tabs">
+        <button class="team-tab active" data-section="all">All</button>
+        <button class="team-tab" data-section="executives">Executives</button>
+        <button class="team-tab" data-section="directors">Division Directors</button>
+        <button class="team-tab" data-section="council">Council Members</button>
+    </div>
+
+    <!-- Featured Executive Director -->
+    <section class="featured-executive" id="section-executives">
+        <div class="featured-card fade-in">
+            <div class="featured-image">
+                <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69656b087d941f495fc4f0ca_Photo_OmotayoAlli%20Large.jpeg" alt="Omotayo Alli">
+            </div>
+            <div class="featured-content">
+                <p class="label">EXECUTIVE DIRECTOR</p>
+                <h2>Omotayo Alli</h2>
+                <p class="featured-title">JD, MPA, SPHR</p>
+                <p class="featured-bio">Leading the Georgia Public Defender Council with a commitment to ensuring quality legal representation for all Georgians. Focused on augmenting indigent defense services and promoting rehabilitative outcomes throughout the state.</p>
+                <div class="featured-credentials">
+                    <span class="credential-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                        Juris Doctor
+                    </span>
+                    <span class="credential-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                        Master of Public Administration
+                    </span>
+                    <span class="credential-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                        SPHR Certified
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Team -->
+    <section class="team-section-new">
+        <div class="container">
+            <div class="team-section-header fade-in">
+                <p class="label">LEADERSHIP TEAM</p>
+                <h2>Executive Leadership</h2>
+            </div>
+
+            <div class="team-grid-new">
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c67762d2fade434e262703_1Q8A9141-2.jpg" alt="D'Andre Berry">
+                    </div>
+                    <div class="team-info">
+                        <h3>D'Andre Berry</h3>
+                        <p class="team-title">Director, Information Systems & Performance Metrics</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872c9ffbd0f9572847b9dd_1Q8A7858%20-%20Natalie%20Glaser.jpg" alt="Natalie Glaser">
+                    </div>
+                    <div class="team-info">
+                        <h3>Natalie Glaser</h3>
+                        <p class="team-title">Chief Legal Officer</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b903965e2274281ccde_1Q8A7048%20-%20Thomas%20O%27Connor.jpg" alt="Thomas O'Connor">
+                    </div>
+                    <div class="team-info">
+                        <h3>Thomas O'Connor</h3>
+                        <p class="team-title">Director, Strategic Planning, Research & Communications</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c677863ff4222b883eea29_1Q8A9150.jpg" alt="LaWanda Onley">
+                    </div>
+                    <div class="team-info">
+                        <h3>LaWanda Onley</h3>
+                        <p class="team-title">Director, Administration & Human Resources</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b7a0e15d3bc250a0509_1Q8A7063%20-%20Terry%20Raiford.jpg" alt="Terry Raiford">
+                    </div>
+                    <div class="team-info">
+                        <h3>Terry Raiford</h3>
+                        <p class="team-title">Chief Financial Officer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Division Directors Section -->
+    <section class="team-section-new team-section-alt" id="section-directors">
+        <div class="container">
+            <div class="team-section-header fade-in">
+                <p class="label">DIVISION LEADERSHIP</p>
+                <h2>Division Directors</h2>
+            </div>
+
+            <div class="team-grid-new">
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Trish Bertram">
+                    </div>
+                    <div class="team-info">
+                        <h3>Trish Bertram</h3>
+                        <p class="team-title">Director, Professional Development and Training</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg" alt="William Hewitt">
+                    </div>
+                    <div class="team-info">
+                        <h3>William Hewitt</h3>
+                        <p class="team-title">Director, Appeals</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69667a90b3630f4474adc250_Murray%2C%20Gayle%20Large.jpeg" alt="Gayle Murray">
+                    </div>
+                    <div class="team-info">
+                        <h3>Gayle Murray</h3>
+                        <p class="team-title">Director, Youth Advocacy</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a58835e230b9f2298be_1Q8A7115%20-%20Arnold%20Ragas.jpg" alt="Arnold Ragas">
+                    </div>
+                    <div class="team-info">
+                        <h3>Arnold Ragas</h3>
+                        <p class="team-title">Director, Specialized Unit</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg" alt="Sabrina Rhinehart">
+                    </div>
+                    <div class="team-info">
+                        <h3>Sabrina Rhinehart</h3>
+                        <p class="team-title">Director, Mental Health Defense</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Nathaniel Studelska">
+                    </div>
+                    <div class="team-info">
+                        <h3>Nathaniel Studelska</h3>
+                        <p class="team-title">Director, Capital Defense</p>
+                    </div>
+                </div>
+
+                <div class="team-card-new fade-in">
+                    <div class="team-image">
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg" alt="Joy Walker">
+                    </div>
+                    <div class="team-info">
+                        <h3>Joy Walker</h3>
+                        <p class="team-title">Manager, Customer Support & Compliance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Council Members Section -->
+    <section class="team-section-new" id="section-council">
+        <div class="container">
+            <div class="team-section-header fade-in">
+                <p class="label">GOVERNING BODY</p>
+                <h2>Council Members</h2>
+            </div>
+
+            <div class="council-grid-new fade-in">
+                <div class="council-card-new">
+                    <div class="council-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h4>Chris Cohilas</h4>
+                    <p>Chairman</p>
+                </div>
+
+                <div class="council-card-new">
+                    <div class="council-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h4>Judge Murphy Miller</h4>
+                    <p>Council Member</p>
+                </div>
+
+                <div class="council-card-new">
+                    <div class="council-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h4>E. Lee Morris</h4>
+                    <p>Council Member</p>
+                </div>
+
+                <div class="council-card-new">
+                    <div class="council-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h4>Lamar Paris</h4>
+                    <p>Council Member</p>
+                </div>
+
+                <div class="council-card-new">
+                    <div class="council-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h4>Carlos Rodriguez</h4>
+                    <p>Council Member</p>
+                </div>
+
+                <div class="council-card-new">
+                    <div class="council-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h4>Donna Seagraves</h4>
+                    <p>Council Member</p>
+                </div>
+
+                <div class="council-card-new">
+                    <div class="council-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h4>Edward D. Tolley</h4>
+                    <p>Council Member</p>
+                </div>
+
+                <div class="council-card-new">
+                    <div class="council-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h4>Johnny E. C. Vines</h4>
+                    <p>Council Member</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Circuit Public Defenders CTA -->
+    <section class="team-section-new team-section-alt">
+        <div class="container">
+            <div class="circuit-cta fade-in">
+                <h3>Find Your Circuit Public Defender</h3>
+                <p>Our Circuit Public Defenders lead offices across all 49 judicial circuits in Georgia. Use our search tool to find your local office.</p>
+                <a href="find-defender.html" class="btn">
+                    <span>Find My Public Defender</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (loaded dynamically) -->
+    <div id="site-footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Team tabs functionality
+        document.querySelectorAll('.team-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.team-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                const section = this.dataset.section;
+
+                // Show/hide sections based on selection
+                const featuredSection = document.querySelector('.featured-executive');
+                const executivesSection = document.querySelector('.team-section-new:not(.team-section-alt)');
+                const directorsSection = document.getElementById('section-directors');
+                const councilSection = document.getElementById('section-council');
+
+                if (section === 'all') {
+                    featuredSection.style.display = 'block';
+                    executivesSection.style.display = 'block';
+                    directorsSection.style.display = 'block';
+                    councilSection.style.display = 'block';
+                } else if (section === 'executives') {
+                    featuredSection.style.display = 'block';
+                    executivesSection.style.display = 'block';
+                    directorsSection.style.display = 'none';
+                    councilSection.style.display = 'none';
+                } else if (section === 'directors') {
+                    featuredSection.style.display = 'none';
+                    executivesSection.style.display = 'none';
+                    directorsSection.style.display = 'block';
+                    councilSection.style.display = 'none';
+                } else if (section === 'council') {
+                    featuredSection.style.display = 'none';
+                    executivesSection.style.display = 'none';
+                    directorsSection.style.display = 'none';
+                    councilSection.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

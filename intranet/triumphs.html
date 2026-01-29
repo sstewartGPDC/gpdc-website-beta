@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triumphs in the Trenches | Team GPDC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Intranet-specific styles */
+        .intranet-nav {
+            background: var(--text-dark);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .intranet-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .intranet-nav-brand img {
+            height: 36px;
+        }
+
+        .intranet-nav-brand span {
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .intranet-nav-brand .badge {
+            background: var(--primary);
+            color: white;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .intranet-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .intranet-nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .intranet-nav-links a:hover {
+            color: white;
+        }
+
+        .intranet-nav-links a.active {
+            color: var(--primary-light);
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 3rem 1.5rem;
+            color: white;
+        }
+
+        .page-header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .page-header h1 svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        .page-header p {
+            opacity: 0.9;
+            font-size: 1rem;
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        /* Main Content */
+        .page-main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Introduction */
+        .intro-section {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .intro-section h2 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            font-size: 0.9375rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .form-section h2 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-section h2 svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group .helper-text {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.375rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(184, 92, 56, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237a7a8a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 0.125rem;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-group label {
+            font-size: 0.875rem;
+            color: var(--text-medium);
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Manrope', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(184, 92, 56, 0.3);
+        }
+
+        .submit-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            color: #166534;
+            padding: 1.25rem;
+            border-radius: 12px;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-message.show {
+            display: flex;
+        }
+
+        .success-message svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        /* Recent Triumphs */
+        .recent-section {
+            margin-top: 3rem;
+        }
+
+        .recent-section h2 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recent-section h2 svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+        }
+
+        .triumph-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .triumph-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .triumph-card h3 {
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .triumph-card .outcome {
+            background: #dcfce7;
+            color: #166534;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .triumph-card p {
+            font-size: 0.875rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+
+        .triumph-card-meta {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        .intranet-footer {
+            background: var(--text-dark);
+            color: rgba(255,255,255,0.7);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-size: 0.8125rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intranet-nav-links {
+                display: none;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="intranet-nav">
+        <a href="dashboard.html" class="intranet-nav-brand">
+            <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/66e9df4a3e925a89e1be2971_BlackGold%20-%20SYMBOL%20MARK.png" alt="GPDC Logo">
+            <span>Team GPDC</span>
+            <span class="badge">Intranet</span>
+        </a>
+        <div class="intranet-nav-links">
+            <a href="dashboard.html">Home</a>
+            <a href="training.html">Training</a>
+            <a href="resources.html">Resources</a>
+            <a href="forensics.html">Forensics</a>
+            <a href="mental-health.html">Mental Health</a>
+        </div>
+        <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-inner">
+            <h1>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9H4.5a2.5 2.5 0 010-5H6"/>
+                    <path d="M18 9h1.5a2.5 2.5 0 000-5H18"/>
+                    <path d="M4 22h16"/>
+                    <path d="M10 22V8a2 2 0 114 0v14"/>
+                </svg>
+                Triumphs in the Trenches
+            </h1>
+            <p>Defenders accrue a wealth of hard-won experience and well-earned victories. GPDC is spotlighting the against-all-odds victories of our public defenders from across the state. Share your story and inspire your colleagues.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-main">
+        <!-- Introduction -->
+        <div class="intro-section">
+            <h2>Why Share Your Victories?</h2>
+            <p>Every victory matters. Whether it's a not guilty verdict, a suppression motion granted, charges dismissed, or a sentence far below what the State requested, your success stories deserve to be celebrated and shared.</p>
+            <p>Sharing triumphs helps build a culture of excellence and reminds us all why we do this work. Your story could inspire a colleague facing a similar case or demonstrate to the public the vital role public defenders play in our justice system.</p>
+        </div>
+
+        <!-- Submission Form -->
+        <div class="form-section">
+            <div class="success-message" id="successMessage">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <span>Thank you for sharing your triumph! We'll review your submission and be in touch soon.</span>
+            </div>
+
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Share Your Victory
+            </h2>
+
+            <form id="triumphForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="office">Office/Circuit</label>
+                        <input type="text" id="office" placeholder="e.g., Atlanta Circuit" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="caseType">Case Type</label>
+                        <select id="caseType" required>
+                            <option value="">Select case type</option>
+                            <option value="felony">Felony</option>
+                            <option value="misdemeanor">Misdemeanor</option>
+                            <option value="juvenile">Juvenile</option>
+                            <option value="appeal">Appeal</option>
+                            <option value="post-conviction">Post-Conviction</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="outcome">Outcome/Victory</label>
+                    <select id="outcome" required>
+                        <option value="">Select outcome</option>
+                        <option value="not-guilty">Not Guilty Verdict</option>
+                        <option value="dismissed">Charges Dismissed</option>
+                        <option value="suppression">Suppression Motion Granted</option>
+                        <option value="reduced">Reduced Charges</option>
+                        <option value="sentence">Favorable Sentence</option>
+                        <option value="appeal-won">Appeal Won</option>
+                        <option value="other">Other Victory</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="story">Tell Us Your Story</label>
+                    <textarea id="story" placeholder="Describe the case, the challenges you faced, and how you achieved this victory. Include any strategies or lessons learned that might help other defenders." required></textarea>
+                    <p class="helper-text">Please do not include identifying client information. We may edit submissions for length and clarity.</p>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="consent" required>
+                        <label for="consent">I consent to having my story shared on the GPDC intranet and potentially in training materials. I confirm that no confidential client information is included.</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="anonymous">
+                        <label for="anonymous">I would prefer to have my story shared anonymously (your name/office will not be published)</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Submit Your Triumph
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- Recent Triumphs -->
+        <section class="recent-section">
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                Recent Victories
+            </h2>
+
+            <div class="triumph-card">
+                <div class="triumph-card-header">
+                    <h3>Murder Case - Not Guilty After Trial</h3>
+                    <span class="outcome">Not Guilty</span>
+                </div>
+                <p>Client was charged with felony murder after a fatal shooting. Through extensive investigation and expert testimony on self-defense, the jury returned a not guilty verdict after deliberating for less than two hours.</p>
+                <div class="triumph-card-meta">
+                    <span>Felony</span>
+                    <span>Atlanta Circuit</span>
+                    <span>January 2026</span>
+                </div>
+            </div>
+
+            <div class="triumph-card">
+                <div class="triumph-card-header">
+                    <h3>DUI Suppression - Key Evidence Excluded</h3>
+                    <span class="outcome">Motion Granted</span>
+                </div>
+                <p>Successfully argued that the traffic stop lacked reasonable suspicion. The court suppressed the breath test results and field sobriety tests, leading to dismissal of DUI charges.</p>
+                <div class="triumph-card-meta">
+                    <span>Misdemeanor</span>
+                    <span>Cobb Circuit</span>
+                    <span>December 2025</span>
+                </div>
+            </div>
+
+            <div class="triumph-card">
+                <div class="triumph-card-header">
+                    <h3>Juvenile Transfer Hearing - Case Kept in Juvenile Court</h3>
+                    <span class="outcome">Transfer Denied</span>
+                </div>
+                <p>15-year-old client faced transfer to adult court for armed robbery. Through mitigation evidence and adolescent brain development testimony, the court denied the State's motion to transfer.</p>
+                <div class="triumph-card-meta">
+                    <span>Juvenile</span>
+                    <span>DeKalb Circuit</span>
+                    <span>November 2025</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="intranet-footer">
+        <p>&copy; 2026 Georgia Public Defender Council. Internal Use Only.</p>
+    </footer>
+
+    <script>
+        // Check authentication
+        if (sessionStorage.getItem('gpdc_intranet_auth') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        function logout() {
+            sessionStorage.removeItem('gpdc_intranet_auth');
+            window.location.href = 'index.html';
+        }
+
+        // Form submission
+        document.getElementById('triumphForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+
+            // Reset form
+            this.reset();
+
+            // Scroll to top of form
+            document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+                document.getElementById('successMessage').classList.remove('show');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

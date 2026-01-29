@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applying For Legal Representation | Georgia Public Defender Council</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- Header (loaded dynamically) -->
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67e19c378ea9d881704ef7cc_67c9e88671b7f6e28f196e65_pexels-jep-gambardella-7689684.jpg" alt="Legal consultation">
+        </div>
+        <div class="page-hero-content">
+            <p class="label">CLIENTS & FAMILIES</p>
+            <h1 class="page-hero-title">Applying For Legal Representation</h1>
+            <p class="page-hero-subtitle">Learn how to request a public defender if you cannot afford an attorney.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="apply-content fade-in">
+                <div class="apply-intro">
+                    <h2>How to Get a Public Defender</h2>
+                    <p>If you have been charged with a crime and cannot afford to hire an attorney, you have a constitutional right to legal representation. Here's what you need to know about applying for a public defender in Georgia.</p>
+                </div>
+
+                <div class="apply-steps">
+                    <div class="apply-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Request at Your First Court Appearance</h3>
+                            <p>When you appear in court for the first time (usually at your arraignment or first appearance hearing), tell the judge that you need a public defender. The court will provide you with an application to complete.</p>
+                        </div>
+                    </div>
+
+                    <div class="apply-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Complete the Application</h3>
+                            <p>You will need to fill out an application that asks about your income, assets, expenses, and household size. This information helps determine if you qualify for a public defender based on financial eligibility guidelines.</p>
+                        </div>
+                    </div>
+
+                    <div class="apply-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Provide Documentation</h3>
+                            <p>Be prepared to provide documentation of your financial situation, such as pay stubs, tax returns, benefit statements, or proof of unemployment. The more complete your application, the faster it can be processed.</p>
+                        </div>
+                    </div>
+
+                    <div class="apply-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Eligibility Determination</h3>
+                            <p>The court or the public defender's office will review your application to determine if you are financially eligible. Eligibility is generally based on federal poverty guidelines, but courts may consider individual circumstances.</p>
+                        </div>
+                    </div>
+
+                    <div class="apply-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Meet Your Public Defender</h3>
+                            <p>If approved, a public defender will be assigned to your case. They will contact you to discuss your case, explain the charges, and begin preparing your defense.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="apply-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                    <div>
+                        <h4>Important Information</h4>
+                        <p>You must be truthful on your application. Providing false information can result in denial of services or criminal charges. If your financial situation changes during your case, notify your public defender immediately.</p>
+                    </div>
+                </div>
+
+                <div class="apply-cta">
+                    <h3>Need Help Finding Your Public Defender Office?</h3>
+                    <p>Use our search tool to find the public defender office serving your county.</p>
+                    <a href="find-defender.html" class="btn btn-primary">
+                        <span>Find My Public Defender</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .apply-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .apply-intro {
+            margin-bottom: 3rem;
+        }
+
+        .apply-intro h2 {
+            font-size: 1.75rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .apply-intro p {
+            font-size: 1.0625rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        .apply-steps {
+            margin-bottom: 2rem;
+        }
+
+        .apply-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .apply-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            font-size: 0.9375rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        .apply-note {
+            background: #fef3c7;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .apply-note svg {
+            width: 24px;
+            height: 24px;
+            color: #d97706;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        .apply-note h4 {
+            font-size: 1rem;
+            color: #92400e;
+            margin-bottom: 0.375rem;
+        }
+
+        .apply-note p {
+            font-size: 0.875rem;
+            color: #a16207;
+            line-height: 1.6;
+        }
+
+        .apply-cta {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .apply-cta h3 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .apply-cta p {
+            font-size: 0.9375rem;
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .apply-step {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .apply-note {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+    <!-- Footer (loaded dynamically) -->
+    <div id="site-footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

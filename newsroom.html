@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsroom | Georgia Public Defender Council</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Newsroom Page Styles */
+
+        /* Achievements Ticker - Subtle */
+        .ticker-bar {
+            background: var(--primary);
+            display: flex;
+            align-items: stretch;
+        }
+
+        .ticker-label {
+            background: var(--primary-dark);
+            padding: 10px 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ticker-label::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 0;
+            bottom: 0;
+            width: 12px;
+            background: linear-gradient(90deg, var(--primary-dark) 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        .ticker-wrapper {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .ticker-track {
+            display: flex;
+            animation: tickerScroll 40s linear infinite;
+        }
+
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-items {
+            display: flex;
+            flex-shrink: 0;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 28px;
+            color: white;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            white-space: nowrap;
+            border-right: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .ticker-item strong {
+            font-weight: 700;
+        }
+
+        /* Category Tabs */
+        .category-section {
+            background: var(--bg-white);
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .category-tab {
+            padding: 10px 20px;
+            border: none;
+            background: var(--bg-light);
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-medium);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .category-tab:hover {
+            background: var(--primary-subtle);
+            color: var(--primary);
+        }
+
+        .category-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-count {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-left: 4px;
+        }
+
+        .category-tab.active .tab-count {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Main Content */
+        .newsroom-main {
+            background: var(--bg-light);
+            padding: 40px 24px 60px;
+        }
+
+        .newsroom-container {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        /* Featured Article */
+        .featured-article {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            background: var(--bg-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .featured-article:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .featured-image {
+            position: relative;
+            min-height: 360px;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-article:hover .featured-image img {
+            transform: scale(1.05);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .featured-category {
+            background: var(--primary-subtle);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .featured-date {
+            color: var(--text-medium);
+            font-size: 0.8125rem;
+        }
+
+        .featured-content h2 {
+            font-size: 1.625rem;
+            line-height: 1.35;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .featured-excerpt {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.9375rem;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+
+        .read-more svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .featured-article:hover .read-more svg {
+            transform: translateX(4px);
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 1.375rem;
+            color: var(--text-dark);
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .news-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .card-image img {
+            transform: scale(1.08);
+        }
+
+        .card-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-date {
+            font-size: 0.75rem;
+            color: var(--text-medium);
+            margin-bottom: 8px;
+        }
+
+        .card-content h3 {
+            font-size: 1rem;
+            line-height: 1.45;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            flex: 1;
+        }
+
+        .card-excerpt {
+            font-size: 0.8125rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.8125rem;
+        }
+
+        .card-link svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .card-link svg {
+            transform: translateX(4px);
+        }
+
+        /* Newsletter CTA */
+        .newsletter-cta {
+            background: linear-gradient(135deg, var(--text-dark) 0%, #2d2d44 100%);
+            border-radius: 16px;
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .newsletter-text h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .newsletter-text p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9375rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            padding: 4px;
+            min-width: 380px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            border: none;
+            padding: 14px 16px;
+            font-size: 0.9375rem;
+            font-family: 'Manrope', sans-serif;
+            outline: none;
+            background: transparent;
+            min-width: 200px;
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-medium);
+            transition: all 0.2s ease;
+        }
+
+        .page-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .page-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .page-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                min-height: 260px;
+            }
+
+            .featured-content {
+                padding: 32px;
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .newsletter-cta {
+                flex-direction: column;
+                text-align: center;
+                padding: 36px;
+            }
+
+            .newsletter-form {
+                min-width: auto;
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .category-tabs {
+                gap: 6px;
+            }
+
+            .category-tab {
+                padding: 8px 14px;
+                font-size: 0.8125rem;
+            }
+
+            .newsroom-main {
+                padding: 32px 20px 48px;
+            }
+
+            .featured-content h2 {
+                font-size: 1.375rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .newsletter-cta {
+                padding: 28px 24px;
+            }
+
+            .newsletter-text h3 {
+                font-size: 1.25rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                border-radius: 8px;
+            }
+
+            .ticker-item {
+                padding: 8px 20px;
+                font-size: 0.75rem;
+            }
+
+            .ticker-label {
+                padding: 8px 14px;
+                font-size: 0.6875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- Header (loaded dynamically) -->
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="page-hero page-hero-sm">
+        <div class="page-hero-bg">
+            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1920&q=80" alt="News and Media">
+        </div>
+        <div class="page-hero-content">
+            <p class="label">Newsroom</p>
+            <h1 class="page-hero-title">News & Updates</h1>
+            <p class="page-hero-subtitle">Stay informed with the latest news, events, and announcements from the Georgia Public Defender Council.</p>
+        </div>
+    </section>
+
+    <!-- Milestones Ticker -->
+    <div class="ticker-bar">
+        <div class="ticker-label">Milestones since 2020</div>
+        <div class="ticker-wrapper">
+            <div class="ticker-track">
+                <div class="ticker-items">
+                    <div class="ticker-item">Record-breaking <strong>$108.3 million</strong> budget secured for fiscal year 2024</div>
+                    <div class="ticker-item"><strong>HB 1391</strong> established pay parity between circuit public defenders and district attorneys statewide</div>
+                    <div class="ticker-item"><strong>14 new regional offices</strong> opened — the largest expansion in GPDC history</div>
+                    <div class="ticker-item">Per-case attorney payments increased <strong>60%</strong> since 2020</div>
+                    <div class="ticker-item">The Ladders Program achieved a <strong>90% graduation rate</strong> in reducing recidivism</div>
+                    <div class="ticker-item"><strong>GPDC University</strong> launched as an online training platform for public defenders</div>
+                    <div class="ticker-item"><strong>Youth Advocacy Division</strong> established to serve juvenile clients statewide</div>
+                </div>
+                <div class="ticker-items">
+                    <div class="ticker-item">Record-breaking <strong>$108.3 million</strong> budget secured for fiscal year 2024</div>
+                    <div class="ticker-item"><strong>HB 1391</strong> established pay parity between circuit public defenders and district attorneys statewide</div>
+                    <div class="ticker-item"><strong>14 new regional offices</strong> opened — the largest expansion in GPDC history</div>
+                    <div class="ticker-item">Per-case attorney payments increased <strong>60%</strong> since 2020</div>
+                    <div class="ticker-item">The Ladders Program achieved a <strong>90% graduation rate</strong> in reducing recidivism</div>
+                    <div class="ticker-item"><strong>GPDC University</strong> launched as an online training platform for public defenders</div>
+                    <div class="ticker-item"><strong>Youth Advocacy Division</strong> established to serve juvenile clients statewide</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <section class="category-section">
+        <div class="category-tabs">
+            <button class="category-tab active" data-filter="all">All News <span class="tab-count">6</span></button>
+            <button class="category-tab" data-filter="events">Events <span class="tab-count">2</span></button>
+            <button class="category-tab" data-filter="local-offices">Local Offices <span class="tab-count">2</span></button>
+            <button class="category-tab" data-filter="training">Training <span class="tab-count">1</span></button>
+            <button class="category-tab" data-filter="divisions">Divisions <span class="tab-count">1</span></button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="newsroom-main">
+        <div class="newsroom-container">
+
+            <!-- Featured Article -->
+            <a href="articles/leadership-academy-graduates-2025.html" class="featured-article" data-category="events">
+                <div class="featured-image">
+                    <span class="featured-badge">Featured</span>
+                    <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200c524675d5f75d8021d_Leadership%20Academy%20Graduation-10%20Large.jpeg" alt="Leadership Academy Graduation">
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <span class="featured-category">Events</span>
+                        <span class="featured-date">June 4, 2025</span>
+                    </div>
+                    <h2>A Tribute to Purpose-Driven Leadership: GPDC Celebrates 2025 Leadership Academy Graduates</h2>
+                    <p class="featured-excerpt">The Georgia Public Defender Council recognized graduates of the GPDC Leadership Academy during a ceremony at the Georgia State Capitol, honoring their commitment to excellence in public defense.</p>
+                    <span class="read-more">
+                        Read Full Article
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2>Recent Articles</h2>
+            </div>
+
+            <!-- News Grid -->
+            <div class="news-grid" id="newsGrid">
+                <a href="articles/syrop-sworn-in-paulding-circuit.html" class="news-card" data-category="local-offices">
+                    <div class="card-image">
+                        <span class="card-category">Local Offices</span>
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/6817d4509735081b444bfe07_1Q8A9538-2048x1365.jpg" alt="Syrop Sworn In">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-date">April 11, 2025</div>
+                        <h3>Veteran Cobb Defense Attorney Syrop Sworn in as Paulding Circuit Public Defender</h3>
+                        <p class="card-excerpt">Executive Director Omotayo Alli presided over the installation ceremony for the new Circuit Public Defender.</p>
+                        <span class="card-link">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="articles/golf-tournament-public-defense.html" class="news-card" data-category="events">
+                    <div class="card-image">
+                        <span class="card-category">Events</span>
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67d9eeebe731ac5a59774191_1Q8A9207.jpg" alt="Golf Tournament">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-date">April 8, 2025</div>
+                        <h3>Event Fuels Georgia's Engine of Public Defense</h3>
+                        <p class="card-excerpt">The GPDC Foundation's annual event brought together legal professionals for networking and fundraising.</p>
+                        <span class="card-link">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="articles/gpdc-installs-new-leaders.html" class="news-card" data-category="local-offices">
+                    <div class="card-image">
+                        <span class="card-category">Local Offices</span>
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/6817d544297131b05455d3b3_1Q8A9303-2048x1365.jpg" alt="Installation Ceremony">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-date">March 17, 2025</div>
+                        <h3>Georgia Public Defender Council Installs New Leaders</h3>
+                        <p class="card-excerpt">Multiple new Circuit Public Defenders were installed across Georgia's judicial circuits.</p>
+                        <span class="card-link">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="articles/customer-service-initiative.html" class="news-card" data-category="divisions">
+                    <div class="card-image">
+                        <span class="card-category">Divisions</span>
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/66e891aa2febf78fe64b3da0_1Q8A3235_2.jpg" alt="Customer Service Initiative">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-date">March 5, 2025</div>
+                        <h3>Groundbreaking Customer Service Initiative Launch</h3>
+                        <p class="card-excerpt">New program focuses on improving client communication and family engagement across all circuits.</p>
+                        <span class="card-link">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="articles/leadership-academy-2024.html" class="news-card" data-category="training">
+                    <div class="card-image">
+                        <span class="card-category">Training</span>
+                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/6787f196c0dfd7063d06fa8f_1Q8A6310.png" alt="Leadership Academy">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-date">September 18, 2024</div>
+                        <h3>Aspiring GPDC Leaders Begin a Year of Study</h3>
+                        <p class="card-excerpt">The Leadership Academy welcomes its newest class of emerging public defense leaders for intensive training.</p>
+                        <span class="card-link">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Newsletter CTA -->
+            <div class="newsletter-cta">
+                <div class="newsletter-text">
+                    <h3>Stay Updated</h3>
+                    <p>Get the latest news and updates delivered to your inbox.</p>
+                </div>
+                <form class="newsletter-form" onsubmit="return false;">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer (loaded dynamically) -->
+    <div id="site-footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const featuredArticle = document.querySelector('.featured-article');
+            const newsCards = document.querySelectorAll('.news-card');
+
+            // Category filter
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const filter = tab.dataset.filter;
+
+                    // Featured article only shows on "All"
+                    if (filter === 'all') {
+                        featuredArticle.style.display = 'grid';
+                    } else {
+                        featuredArticle.style.display = 'none';
+                    }
+
+                    // Filter news cards with animation
+                    newsCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'flex';
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(10px)';
+                            setTimeout(() => {
+                                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 50);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

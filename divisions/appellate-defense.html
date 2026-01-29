@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appellate Defense | Georgia Public Defender Council</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Modern Division Page Styles */
+        .division-hero {
+            position: relative;
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
+            overflow: hidden;
+        }
+
+        .division-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-subtle) 0%, transparent 100%);
+            opacity: 0.5;
+        }
+
+        .division-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .division-hero-content {
+            max-width: 600px;
+        }
+
+        .division-hero-content .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .division-hero-content .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .division-hero-content .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .division-hero-content .breadcrumb svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .division-hero-content .label {
+            margin-bottom: 0.75rem;
+        }
+
+        .division-hero-content h1 {
+            font-size: 3rem;
+            color: var(--text-dark);
+            margin-bottom: 1.25rem;
+            line-height: 1.1;
+        }
+
+        .division-hero-content .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .division-hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Leader Profile Card */
+        .leader-profile-card {
+            background: var(--bg-white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(20px);
+        }
+
+        .leader-profile-image {
+            width: 100%;
+            height: 320px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .leader-profile-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        }
+
+        .leader-profile-info {
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .leader-profile-info::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .leader-profile-info h3 {
+            font-size: 1.375rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .leader-profile-info .leader-title {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .leader-profile-contact {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .leader-profile-contact a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-medium);
+            transition: all 0.3s ease;
+        }
+
+        .leader-profile-contact a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .leader-profile-contact svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* About Section */
+        .division-about {
+            padding: 5rem 0;
+            background: var(--bg-white);
+        }
+
+        .division-about-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .division-about-inner .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .division-about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .division-about-text h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .division-about-text p {
+            font-size: 1rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Services Grid */
+        .division-services {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .services-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card-modern {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.4s var(--ease-out);
+            border: 1px solid transparent;
+        }
+
+        .service-card-modern:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-subtle);
+        }
+
+        .service-card-modern .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-subtle) 0%, rgba(184, 92, 56, 0.15) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-card-modern .service-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--primary);
+        }
+
+        .service-card-modern h3 {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card-modern p {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .division-contact {
+            padding: 5rem 0;
+            background: var(--bg-white);
+        }
+
+        .contact-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-card-modern {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card-modern:hover {
+            background: var(--primary-subtle);
+        }
+
+        .contact-card-modern .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-card-modern .contact-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--primary);
+        }
+
+        .contact-card-modern h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card-modern p {
+            font-size: 1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .contact-card-modern a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card-modern a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .division-hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .division-hero-content {
+                max-width: 100%;
+            }
+
+            .division-hero-content .breadcrumb {
+                justify-content: center;
+            }
+
+            .division-hero-content h1 {
+                font-size: 2.25rem;
+            }
+
+            .division-hero-actions {
+                justify-content: center;
+            }
+
+            .leader-profile-card {
+                max-width: 360px;
+                margin: 0 auto;
+                transform: none;
+            }
+
+            .division-about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid-modern {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid-modern {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- Header (loaded dynamically) -->
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="division-hero">
+        <div class="division-hero-inner">
+            <div class="division-hero-content fade-in">
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                    <a href="../divisions.html">Divisions</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                    <span>Appellate Defense</span>
+                </div>
+                <p class="label">STATEWIDE DIVISION</p>
+                <h1>Appellate Defense</h1>
+                <p class="hero-description">Providing skilled appellate representation for indigent clients before the Supreme Court and Court of Appeals of Georgia, ensuring every voice is heard at the highest levels of our justice system.</p>
+                <div class="division-hero-actions">
+                    <a href="#services" class="btn btn-primary">
+                        <span>Our Services</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <span>Contact Division</span>
+                    </a>
+                </div>
+            </div>
+            <div class="leader-profile-card fade-in fade-in-delay-1">
+                <div class="leader-profile-image">
+                    <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg" alt="William Hewitt">
+                </div>
+                <div class="leader-profile-info">
+                    <h3>William Hewitt</h3>
+                    <p class="leader-title">Division Director</p>
+                    <div class="leader-profile-contact">
+                        <a href="tel:4048673036" title="Call">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:help@gapubdef.org" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <path d="M22 6l-10 7L2 6"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="division-about" id="about">
+        <div class="division-about-inner">
+            <div class="section-header centered fade-in">
+                <p class="label">ABOUT THE DIVISION</p>
+                <h2 class="section-title">Defending Rights Through Appeals</h2>
+            </div>
+            <div class="division-about-content fade-in">
+                <div class="division-about-text">
+                    <h3>Our Mission</h3>
+                    <p>The Appellate Defense Division is dedicated to providing exceptional legal representation to indigent clients in their appeals before Georgia's highest courts. We ensure that constitutional rights are protected and that every client receives vigorous advocacy throughout the appellate process.</p>
+                </div>
+                <div class="division-about-text">
+                    <h3>Our Expertise</h3>
+                    <p>Our team of experienced appellate attorneys specializes in complex legal analysis, persuasive brief writing, and compelling oral advocacy. We handle appeals arising from criminal convictions across all 49 judicial circuits, bringing deep expertise to every case we handle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="division-services" id="services">
+        <div class="container">
+            <div class="section-header centered fade-in">
+                <p class="label">OUR SERVICES</p>
+                <h2 class="section-title">What We Provide</h2>
+                <p class="section-subtitle">Comprehensive appellate defense services ensuring justice at every level.</p>
+            </div>
+
+            <div class="services-grid-modern">
+                <div class="service-card-modern fade-in fade-in-delay-1">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h3>Direct Client Representation</h3>
+                    <p>Dedicated representation for indigent clients throughout the appellate process, ensuring every client receives vigorous advocacy before Georgia's highest courts.</p>
+                </div>
+
+                <div class="service-card-modern fade-in fade-in-delay-2">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Legal Practice & Advocacy</h3>
+                    <p>Comprehensive legal work across all levels of the justice system to secure fair outcomes, including thorough case analysis and strategic appellate arguments.</p>
+                </div>
+
+                <div class="service-card-modern fade-in fade-in-delay-3">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+                        </svg>
+                    </div>
+                    <h3>Legal Education & Support</h3>
+                    <p>Strengthening indigent defense statewide by supporting the broader public defense community through training, resources, and collaboration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="division-contact" id="contact">
+        <div class="container">
+            <div class="section-header centered fade-in">
+                <p class="label">GET IN TOUCH</p>
+                <h2 class="section-title">Contact the Division</h2>
+            </div>
+
+            <div class="contact-grid-modern fade-in">
+                <div class="contact-card-modern">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                        </svg>
+                    </div>
+                    <h4>Phone</h4>
+                    <p><a href="tel:4048673036">(404) 867-3036</a></p>
+                </div>
+
+                <div class="contact-card-modern">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <path d="M22 6l-10 7L2 6"/>
+                        </svg>
+                    </div>
+                    <h4>Email</h4>
+                    <p><a href="mailto:help@gapubdef.org">help@gapubdef.org</a></p>
+                </div>
+
+                <div class="contact-card-modern">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <h4>Location</h4>
+                    <p>270 Washington St SW<br>Suite 5198, Atlanta, GA 30334</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card fade-in">
+                <h2>Need Legal Assistance?</h2>
+                <p>Find your local public defender office for immediate help with your case.</p>
+                <div class="cta-actions">
+                    <a href="../find-defender.html" class="btn btn-primary">
+                        <span>Find My Public Defender</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="../divisions.html" class="btn btn-outline">
+                        <span>View All Divisions</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (loaded dynamically) -->
+    <div id="site-footer"></div>
+
+    <script src="../js/components.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

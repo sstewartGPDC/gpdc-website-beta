@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Georgia Public Defender Council</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- Header (loaded dynamically) -->
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/66cb5572796c0ab0a8255dae_pexels-august-de-richelieu-4427626.jpg" alt="Legal professionals in discussion">
+        </div>
+        <div class="hero-content">
+            <p class="label hero-label">HOME</p>
+            <h1 class="hero-title">Defending Rights<br><em>Empowering Clients</em></h1>
+            <div class="hero-actions">
+                <a href="about.html" class="btn btn-primary">
+                    <span>Learn About Our Services</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="find-defender.html" class="btn btn-outline" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: white;">
+                    <span>Find My Public Defender</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Newsroom Section -->
+    <section class="newsroom">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="label">INSIGHTS FROM THE FRONTLINES OF PUBLIC DEFENSE</p>
+                <h2 class="section-title">Newsroom</h2>
+            </div>
+
+            <div class="section-actions fade-in">
+                <a href="newsroom.html" class="btn btn-primary">
+                    <span>Go to News</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <a href="articles/leadership-academy-graduates-2025.html" class="featured-article fade-in">
+                <div class="featured-image">
+                    <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200c524675d5f75d8021d_Leadership%20Academy%20Graduation-10%20Large.jpeg" alt="Leadership Academy Graduates at Georgia State Capitol">
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <span class="label featured-category">FEATURED ARTICLE</span>
+                    </div>
+                    <h3 class="featured-title">A Tribute to Purpose-Driven Leadership: GPDC Celebrates 2025 Leadership Academy Graduates</h3>
+                    <div class="featured-meta">
+                        <span class="featured-category">Events</span>
+                        <span class="featured-date">June 4, 2025</span>
+                    </div>
+                    <p class="featured-excerpt">The Georgia Public Defender Council recognized graduates of the GPDC Leadership Academy during a ceremony at the Georgia State Capitol.</p>
+                    <span class="link-arrow">
+                        Read Article
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Support CTA -->
+    <div class="support-cta fade-in">
+        <div class="support-cta-bg">
+            <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67e19c378ea9d881704ef7cc_67c9e88671b7f6e28f196e65_pexels-jep-gambardella-7689684.jpg" alt="Customer support representative">
+        </div>
+        <div class="support-cta-content">
+            <p class="label">CUSTOMER SUPPORT</p>
+            <h2 class="support-cta-title">Need Assistance?</h2>
+            <p class="support-cta-text">If you have any questions or concerns, our legal support team is here to help. Contact us to learn more about our services, appellate procedures, or how we can assist with your case.</p>
+            <a href="contact.html" class="btn btn-light">
+                <span>Contact Support</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Events Section -->
+    <section class="events">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="label">PROFESSIONAL DEVELOPMENT & TRAINING</p>
+                <h2 class="section-title">Upcoming Events</h2>
+            </div>
+
+            <div class="section-actions fade-in">
+                <a href="divisions/training.html" class="btn btn-primary">
+                    <span>View Full Calendar</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="home-events-layout fade-in" id="homeEventsLayout">
+                <!-- Events will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .home-events-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Featured Event Card */
+        .home-event-featured {
+            background: var(--bg-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s var(--ease-out);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .home-event-featured:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .home-event-featured-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .home-event-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .home-event-featured:hover .home-event-featured-image img {
+            transform: scale(1.05);
+        }
+
+        .home-event-featured-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.4rem 0.875rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--primary);
+            color: white;
+        }
+
+        .home-event-featured-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .home-event-featured-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .home-event-featured-date svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .home-event-featured-content h3 {
+            font-size: 1.375rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .home-event-featured-location {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .home-event-featured-location svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .home-event-featured-desc {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .home-event-featured-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .home-event-featured-link svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .home-event-featured:hover .home-event-featured-link svg {
+            transform: translateX(4px);
+        }
+
+        /* Side Events List */
+        .home-events-side {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+        }
+
+        .home-events-side-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .home-event-mini {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            display: grid;
+            grid-template-columns: 54px 1fr;
+            gap: 1rem;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .home-event-mini:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .home-event-mini-date {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 8px;
+            padding: 0.5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .home-event-mini-date .month {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            opacity: 0.9;
+        }
+
+        .home-event-mini-date .day {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .home-event-mini-info h4 {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+            line-height: 1.3;
+        }
+
+        .home-event-mini-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .home-event-mini-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .home-event-mini-meta svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .home-event-mini-badge {
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .home-event-mini-badge.in-person {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .home-event-mini-badge.online {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .home-event-mini-badge.hybrid {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        @media (max-width: 900px) {
+            .home-events-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .home-event-featured-image {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .home-event-mini {
+                grid-template-columns: 48px 1fr;
+                padding: 0.875rem 1rem;
+            }
+
+            .home-event-mini-date .day {
+                font-size: 1.1rem;
+            }
+
+            .home-event-mini-info h4 {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Home page events
+        const homeEvents = [
+            {
+                title: "Be Well Wednesday: Mindfulness for Lawyers",
+                date: new Date(2026, 1, 5),
+                location: "Online",
+                type: "online",
+                description: "Join us for a drop-in wellness session focused on mindfulness practices designed specifically for public defenders managing high-stress caseloads.",
+                image: "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/66e891aa2febf78fe64b3da0_1Q8A3235_2.jpg",
+                url: "divisions/training.html"
+            },
+            {
+                title: "PSLF Webinar: Repayment Strategies",
+                date: new Date(2026, 1, 12),
+                location: "Online",
+                type: "online",
+                description: "Learn about Public Service Loan Forgiveness repayment strategies and the limited waiver opportunity.",
+                image: null,
+                url: "divisions/training.html"
+            },
+            {
+                title: "Juvenile Defense Training",
+                date: new Date(2026, 1, 28),
+                location: "Online",
+                type: "online",
+                description: "Specialized training for attorneys handling juvenile cases.",
+                image: null,
+                url: "divisions/training.html"
+            },
+            {
+                title: "Leadership Academy - Spring Cohort",
+                date: new Date(2026, 2, 15),
+                location: "Atlanta, GA",
+                type: "in-person",
+                description: "Intensive leadership development program for Assistant and Circuit Public Defenders.",
+                image: "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200c524675d5f75d8021d_Leadership%20Academy%20Graduation-10%20Large.jpeg",
+                url: "divisions/training.html"
+            },
+            {
+                title: "Mental Health Defense Seminar",
+                date: new Date(2026, 2, 22),
+                location: "Atlanta, GA / Online",
+                type: "hybrid",
+                description: "Understanding mental health issues in criminal defense cases.",
+                image: null,
+                url: "divisions/training.html"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('homeEventsLayout');
+            if (!container) return;
+
+            const now = new Date();
+            const upcomingEvents = homeEvents
+                .filter(e => e.date >= now)
+                .sort((a, b) => a.date - b.date);
+
+            if (upcomingEvents.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 1/-1;">No upcoming events. Check back soon!</p>';
+                return;
+            }
+
+            const featured = upcomingEvents[0];
+            const sideEvents = upcomingEvents.slice(1, 4);
+
+            const featuredDate = featured.date.toLocaleDateString('en-US', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            });
+
+            const featuredHtml = `
+                <a href="${featured.url}" class="home-event-featured">
+                    <div class="home-event-featured-image">
+                        <img src="${featured.image || 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/66e891aa2febf78fe64b3da0_1Q8A3235_2.jpg'}" alt="${featured.title}">
+                        <span class="home-event-featured-badge">Next Event</span>
+                    </div>
+                    <div class="home-event-featured-content">
+                        <div class="home-event-featured-date">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                <path d="M16 2v4M8 2v4M3 10h18"/>
+                            </svg>
+                            ${featuredDate}
+                        </div>
+                        <h3>${featured.title}</h3>
+                        <div class="home-event-featured-location">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            ${featured.location}
+                        </div>
+                        <p class="home-event-featured-desc">${featured.description}</p>
+                        <span class="home-event-featured-link">
+                            Learn More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            `;
+
+            const sideHtml = `
+                <div class="home-events-side">
+                    <div class="home-events-side-header">More Upcoming</div>
+                    ${sideEvents.map(event => {
+                        const monthStr = event.date.toLocaleDateString('en-US', { month: 'short' });
+                        const dayStr = event.date.getDate();
+                        const typeLabel = event.type.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+                        return `
+                            <a href="${event.url}" class="home-event-mini">
+                                <div class="home-event-mini-date">
+                                    <div class="month">${monthStr}</div>
+                                    <div class="day">${dayStr}</div>
+                                </div>
+                                <div class="home-event-mini-info">
+                                    <h4>${event.title}</h4>
+                                    <div class="home-event-mini-meta">
+                                        <span>
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                                <circle cx="12" cy="10" r="3"/>
+                                            </svg>
+                                            ${event.location}
+                                        </span>
+                                        <span class="home-event-mini-badge ${event.type}">${typeLabel}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+
+            container.innerHTML = featuredHtml + sideHtml;
+        });
+    </script>
+
+    <!-- Footer (loaded dynamically) -->
+    <div id="site-footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
