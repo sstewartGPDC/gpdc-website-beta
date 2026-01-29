@@ -365,6 +365,140 @@ function initSmoothScroll() {
     });
 }
 
+// ==================== SCROLL PROGRESS BAR ====================
+function initScrollProgress() {
+    // Create progress bar element
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    progressBar.innerHTML = '<div class="scroll-progress-bar"></div>';
+    document.body.appendChild(progressBar);
+
+    const progressFill = progressBar.querySelector('.scroll-progress-bar');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressFill.style.width = scrollPercent + '%';
+    });
+}
+
+// ==================== BACK TO TOP BUTTON ====================
+function initBackToTop() {
+    // Create back to top button
+    const backToTop = document.createElement('button');
+    backToTop.className = 'back-to-top';
+    backToTop.setAttribute('aria-label', 'Back to top');
+    backToTop.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    `;
+    document.body.appendChild(backToTop);
+
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+
+    // Scroll to top on click
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ==================== ANIMATED STATISTICS ====================
+function initAnimatedStats() {
+    const stats = document.querySelectorAll('.stat-number');
+    if (stats.length === 0) return;
+
+    const animateValue = (element, start, end, duration) => {
+        const startTime = performance.now();
+        const suffix = element.textContent.replace(/[0-9,]/g, ''); // Get any suffix like + or K
+
+        const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const current = Math.floor(start + (end - start) * easeOutQuart);
+
+            element.textContent = current.toLocaleString() + suffix;
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            }
+        };
+
+        requestAnimationFrame(animate);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                entry.target.classList.add('animated');
+                const text = entry.target.textContent;
+                const numericValue = parseInt(text.replace(/[^0-9]/g, ''));
+                if (!isNaN(numericValue)) {
+                    animateValue(entry.target, 0, numericValue, 2000);
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+
+    stats.forEach(stat => observer.observe(stat));
+}
+
+// ==================== DARK MODE ====================
+function initDarkMode() {
+    // Check for saved preference or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // Create dark mode toggle button
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.className = 'dark-mode-toggle';
+    darkModeToggle.setAttribute('aria-label', 'Toggle dark mode');
+    darkModeToggle.innerHTML = `
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+    `;
+    document.body.appendChild(darkModeToggle);
+
+    // Toggle dark mode on click
+    darkModeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+    });
+}
+
 // ==================== INITIALIZE ALL ====================
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
@@ -372,6 +506,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initButtonRipples();
     initPageTransitions();
     initSmoothScroll();
+    initScrollProgress();
+    initBackToTop();
+    initAnimatedStats();
+    initDarkMode();
 
     // Initialize search after header component loads (since search is in header)
     document.addEventListener('componentLoaded', (e) => {
