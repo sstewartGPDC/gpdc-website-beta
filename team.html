@@ -1201,7 +1201,7 @@
             contactRecipient.value = personId;
 
             if (isCallRequest) {
-                messageLabel.textContent = 'Please include your phone number and preferred callback time';
+                messageLabel.textContent = 'Please include your phone number and preferred callback time. Our central office number is (404) 795-2440.';
                 submitBtnText.textContent = 'Request Callback';
                 contactType.value = 'callback';
             } else {
@@ -1223,11 +1223,32 @@
 
         function submitContactForm(event) {
             event.preventDefault();
-            const form = event.target;
-            const formData = new FormData(form);
 
-            // For now, show a success message (backend integration would go here)
-            alert('Thank you! Your message has been sent to ' + document.getElementById('modalName').textContent + '. They will respond within 2-3 business days.');
+            const recipientName = document.getElementById('modalName').textContent;
+            const recipientTitle = document.getElementById('modalTitle').textContent;
+            const senderName = document.getElementById('contactName').value;
+            const senderEmail = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+            const contactType = document.getElementById('contactType').value;
+
+            // Build subject line with executive name
+            let subject;
+            if (contactType === 'callback') {
+                subject = `Callback Request for ${recipientName} - ${recipientTitle}`;
+            } else {
+                subject = `Message for ${recipientName} - ${recipientTitle}`;
+            }
+
+            // Build email body
+            const body = `From: ${senderName}
+Email: ${senderEmail}
+
+${message}`;
+
+            // Open mailto link
+            const mailtoLink = `mailto:help@gapubdef.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+
             closeContactModal();
         }
 
