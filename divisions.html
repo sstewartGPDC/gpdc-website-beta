@@ -192,31 +192,11 @@
             margin-bottom: 1.5rem;
         }
 
-        .featured-division-stats {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .featured-stat {
-            text-align: left;
-        }
-
-        .featured-stat .number {
-            font-size: 2rem;
-            font-weight: 800;
-            font-family: 'Manrope', sans-serif;
-            color: var(--primary);
-            line-height: 1;
-        }
-
         .featured-stat .label {
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--text-light);
-            margin-top: 0.25rem;
         }
 
         .featured-division-btn {
@@ -248,28 +228,30 @@
             transform: translateX(4px);
         }
 
-        .featured-division-map {
-            position: relative;
+        .featured-division-stats-panel {
             background: linear-gradient(145deg, var(--primary) 0%, var(--primary-dark) 100%);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 2.5rem;
-            overflow: hidden;
+            gap: 1.5rem;
         }
 
-        .featured-division-map img {
-            position: relative;
-            width: 180px;
-            height: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.35;
-            transition: transform 0.5s ease, opacity 0.3s ease;
+        .featured-division-stats-panel .featured-stat {
+            text-align: center;
         }
 
-        .featured-division:hover .featured-division-map img {
-            transform: scale(1.05);
-            opacity: 0.45;
+        .featured-division-stats-panel .featured-stat .number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+        }
+
+        .featured-division-stats-panel .featured-stat .label {
+            color: rgba(255,255,255,0.8);
+            margin-top: 0.25rem;
         }
 
         /* Responsive */
@@ -283,21 +265,13 @@
                 text-align: center;
             }
 
-            .featured-division-stats {
-                justify-content: center;
-            }
-
             .featured-division-btn {
                 margin: 0 auto;
             }
 
-            .featured-division-map {
-                order: -1;
-                padding: 2rem;
-            }
-
-            .featured-division-map img {
-                max-width: 160px;
+            .featured-division-stats-panel {
+                flex-direction: row;
+                padding: 1.5rem 2rem;
             }
         }
 
@@ -314,8 +288,8 @@
                 font-size: 1.5rem;
             }
 
-            .featured-stat .number {
-                font-size: 1.75rem;
+            .featured-division-stats-panel .featured-stat .number {
+                font-size: 2rem;
             }
         }
     </style>
@@ -337,20 +311,6 @@
                     <p class="label">STATEWIDE NETWORK</p>
                     <h2>Local Public Defense</h2>
                     <p>The backbone of Georgia's public defense system. Our network of local offices serves as the frontline of justice, providing dedicated legal representation to those who cannot afford an attorney.</p>
-                    <div class="featured-division-stats">
-                        <div class="featured-stat">
-                            <div class="number">45</div>
-                            <div class="label">Offices</div>
-                        </div>
-                        <div class="featured-stat">
-                            <div class="number">49</div>
-                            <div class="label">Circuits</div>
-                        </div>
-                        <div class="featured-stat">
-                            <div class="number">159</div>
-                            <div class="label">Counties</div>
-                        </div>
-                    </div>
                     <div class="featured-division-btn">
                         <span>Find Your Public Defender</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -358,8 +318,19 @@
                         </svg>
                     </div>
                 </div>
-                <div class="featured-division-map">
-                    <img src="https://dl2.myminifactory.com/object-assets/67483bdb608163.87968062/images/720X720-Georgia1.jpg" alt="Georgia State Map">
+                <div class="featured-division-stats-panel">
+                    <div class="featured-stat">
+                        <div class="number">45</div>
+                        <div class="label">Offices</div>
+                    </div>
+                    <div class="featured-stat">
+                        <div class="number">49</div>
+                        <div class="label">Circuits</div>
+                    </div>
+                    <div class="featured-stat">
+                        <div class="number">159</div>
+                        <div class="label">Counties</div>
+                    </div>
                 </div>
             </a>
         </div>
