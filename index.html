@@ -86,23 +86,236 @@
         </div>
     </section>
 
-    <!-- Support CTA -->
-    <div class="support-cta fade-in">
-        <div class="support-cta-bg">
-            <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67e19c378ea9d881704ef7cc_67c9e88671b7f6e28f196e65_pexels-jep-gambardella-7689684.jpg" alt="Customer support representative">
+    <!-- Support Section -->
+    <section class="support-section">
+        <div class="container">
+            <div class="support-header fade-in">
+                <p class="label">GET IN TOUCH</p>
+                <h2 class="section-title">How Can We Help?</h2>
+                <p class="support-subtitle">Our team is here to assist attorneys, staff, and the public with questions about public defense services in Georgia.</p>
+            </div>
+
+            <div class="support-grid fade-in">
+                <a href="tel:4047952440" class="support-card support-card-phone">
+                    <div class="support-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                        </svg>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p class="support-card-detail">(404) 795-2440</p>
+                    <p class="support-card-desc">Mon-Fri, 8:30 AM - 5:00 PM</p>
+                </a>
+
+                <a href="mailto:help@gapubdef.org" class="support-card support-card-email">
+                    <div class="support-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="M22 6l-10 7L2 6"/>
+                        </svg>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p class="support-card-detail">help@gapubdef.org</p>
+                    <p class="support-card-desc">We respond within 24 hours</p>
+                </a>
+
+                <a href="fypd.html" class="support-card support-card-location">
+                    <div class="support-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>Find Your Office</h3>
+                    <p class="support-card-detail">45 Circuit Offices</p>
+                    <p class="support-card-desc">Locate your local public defender</p>
+                </a>
+
+                <a href="faq.html" class="support-card support-card-faq">
+                    <div class="support-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <h3>FAQs</h3>
+                    <p class="support-card-detail">Common Questions</p>
+                    <p class="support-card-desc">Find quick answers</p>
+                </a>
+            </div>
         </div>
-        <div class="support-cta-content">
-            <p class="label">CUSTOMER SUPPORT</p>
-            <h2 class="support-cta-title">Need Assistance?</h2>
-            <p class="support-cta-text">If you have any questions or concerns, our legal support team is here to help. Contact us to learn more about our services, appellate procedures, or how we can assist with your case.</p>
-            <a href="contact.html" class="btn btn-light">
-                <span>Contact Support</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
-        </div>
-    </div>
+    </section>
+
+    <style>
+        .support-section {
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        }
+
+        .support-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .support-subtitle {
+            color: var(--text-medium);
+            font-size: 1.0625rem;
+            line-height: 1.6;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .support-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 1.75rem 1.25rem;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .support-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .support-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .support-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .support-card:hover .support-card-icon {
+            transform: scale(1.1);
+        }
+
+        .support-card-icon svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .support-card-phone .support-card-icon {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            color: #16a34a;
+        }
+
+        .support-card-email .support-card-icon {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #2563eb;
+        }
+
+        .support-card-location .support-card-icon {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #d97706;
+        }
+
+        .support-card-faq .support-card-icon {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            color: #9333ea;
+        }
+
+        .support-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.375rem;
+        }
+
+        .support-card-detail {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .support-card-desc {
+            font-size: 0.8125rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 900px) {
+            .support-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .support-section {
+                padding: 3rem 1.25rem;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .support-card {
+                display: flex;
+                align-items: center;
+                text-align: left;
+                padding: 1.25rem;
+                gap: 1rem;
+            }
+
+            .support-card-icon {
+                margin: 0;
+                flex-shrink: 0;
+                width: 48px;
+                height: 48px;
+            }
+
+            .support-card-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .support-card h3 {
+                margin-bottom: 0.125rem;
+            }
+
+            .support-card-detail {
+                font-size: 0.875rem;
+            }
+
+            .support-card-desc {
+                display: none;
+            }
+        }
+    </style>
 
     <!-- Events Section -->
     <section class="events">
