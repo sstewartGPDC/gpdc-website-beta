@@ -26,36 +26,6 @@ const GPDC_EVENTS = [
     },
     {
         id: 3,
-        title: "Be Well Wednesday: Mindfulness for Lawyers",
-        date: new Date(2026, 1, 5),
-        location: "Online",
-        type: "online",
-        description: "Drop-in wellness session addressing mindfulness practices for public defenders managing high-stress caseloads.",
-        image: null,
-        registerUrl: "https://gapubdef.org/events/be-well-wednesday"
-    },
-    {
-        id: 4,
-        title: "PSLF Webinar: Repayment Strategies",
-        date: new Date(2026, 1, 12),
-        location: "Online",
-        type: "online",
-        description: "Learn about Public Service Loan Forgiveness repayment strategies and the limited waiver opportunity.",
-        image: null,
-        registerUrl: "https://gapubdef.org/events/pslf-webinar"
-    },
-    {
-        id: 5,
-        title: "Juvenile Defense Training",
-        date: new Date(2026, 1, 28),
-        location: "Online",
-        type: "online",
-        description: "Specialized training for attorneys handling juvenile cases.",
-        image: null,
-        registerUrl: "https://gapubdef.org/events/juvenile-defense-training"
-    },
-    {
-        id: 6,
         title: "Leadership Academy - Spring Cohort",
         date: new Date(2026, 2, 15),
         location: "Atlanta, GA",
@@ -65,7 +35,7 @@ const GPDC_EVENTS = [
         registerUrl: "https://gapubdef.org/events/leadership-academy-spring-2026"
     },
     {
-        id: 7,
+        id: 4,
         title: "Mental Health Defense Seminar",
         date: new Date(2026, 2, 22),
         location: "Atlanta, GA / Online",
@@ -75,7 +45,7 @@ const GPDC_EVENTS = [
         registerUrl: "https://gapubdef.org/events/mental-health-defense"
     },
     {
-        id: 8,
+        id: 5,
         title: "Nxt Up Program Kickoff",
         date: new Date(2026, 3, 8),
         location: "Atlanta, GA",
@@ -85,7 +55,7 @@ const GPDC_EVENTS = [
         registerUrl: "https://gapubdef.org/events/nxt-up-2026"
     },
     {
-        id: 9,
+        id: 6,
         title: "Trial Advocacy Workshop",
         date: new Date(2026, 4, 18),
         endDate: new Date(2026, 4, 20),
@@ -96,7 +66,7 @@ const GPDC_EVENTS = [
         registerUrl: "https://gapubdef.org/events/trial-advocacy-workshop"
     },
     {
-        id: 10,
+        id: 7,
         title: "Ethics in Public Defense",
         date: new Date(2026, 5, 10),
         location: "On-Demand",
@@ -106,7 +76,7 @@ const GPDC_EVENTS = [
         registerUrl: "https://gapubdef.org/events/ethics-on-demand"
     },
     {
-        id: 11,
+        id: 8,
         title: "Public Defense Week 2026",
         date: new Date(2026, 6, 20),
         endDate: new Date(2026, 6, 25),
@@ -117,7 +87,7 @@ const GPDC_EVENTS = [
         registerUrl: "https://gapubdef.org/events/public-defense-week-2026"
     },
     {
-        id: 12,
+        id: 9,
         title: "Capital Defense Symposium",
         date: new Date(2026, 8, 15),
         endDate: new Date(2026, 8, 17),
