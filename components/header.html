@@ -41,13 +41,29 @@
                         </svg>
                         Our Team
                     </a>
-                    <a href="{{BASE}}divisions.html" class="dropdown-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="2"/>
-                            <path d="M3 9h18M9 21V9"/>
-                        </svg>
-                        Divisions and Services
-                    </a>
+                    <div class="dropdown-item has-submenu">
+                        <a href="{{BASE}}divisions.html" class="dropdown-item-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18M9 21V9"/>
+                            </svg>
+                            Divisions and Services
+                            <svg class="submenu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </a>
+                        <div class="submenu">
+                            <a href="{{BASE}}divisions/training.html" class="submenu-item">Professional Development & Training</a>
+                            <a href="{{BASE}}divisions/appellate-defense.html" class="submenu-item">Appellate Defense</a>
+                            <a href="{{BASE}}divisions/capital-defense.html" class="submenu-item">Capital Defense</a>
+                            <a href="{{BASE}}divisions/mental-health-defense.html" class="submenu-item">Mental Health Defense</a>
+                            <a href="{{BASE}}divisions/youth-defense.html" class="submenu-item">Youth Advocacy</a>
+                            <a href="{{BASE}}divisions/social-services.html" class="submenu-item">Social Services</a>
+                            <a href="{{BASE}}divisions/customer-support.html" class="submenu-item">Customer Support</a>
+                            <a href="{{BASE}}divisions/administration.html" class="submenu-item">Administration</a>
+                            <a href="{{BASE}}divisions/local-public-defense.html" class="submenu-item">Local Public Defense</a>
+                        </div>
+                    </div>
                     <a href="{{BASE}}foundation.html" class="dropdown-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 2L2 7l10 5 10-5-10-5z"/>
