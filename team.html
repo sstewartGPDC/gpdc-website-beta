@@ -248,59 +248,6 @@
             line-height: 1.4;
         }
 
-        /* Council Grid - Enhanced */
-        .council-grid-new {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .council-card-new {
-            background: var(--bg-white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s var(--ease-out);
-            border: 1px solid var(--border-light);
-        }
-
-        .council-card-new:hover {
-            border-color: var(--primary);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        .council-card-new .council-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--primary-subtle);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-        }
-
-        .council-card-new .council-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--primary);
-        }
-
-        .council-card-new h4 {
-            font-size: 1rem;
-            color: var(--text-dark);
-            margin-bottom: 0.25rem;
-        }
-
-        .council-card-new p {
-            font-size: 0.8125rem;
-            color: var(--primary);
-            font-weight: 500;
-        }
-
         /* Circuit CTA */
         .circuit-cta {
             max-width: 1100px;
@@ -375,10 +322,6 @@
                 height: 200px;
             }
 
-            .council-grid-new {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .circuit-cta {
                 padding: 2rem 1.5rem;
             }
@@ -389,11 +332,6 @@
                 grid-template-columns: 1fr;
                 max-width: 320px;
                 margin: 0 auto;
-            }
-
-            .council-grid-new {
-                grid-template-columns: 1fr;
-                max-width: 280px;
             }
         }
 
@@ -1118,92 +1056,45 @@
                 <p class="section-explainer">The Georgia Public Defender Council is the governing body responsible for policy oversight and ensuring the effective delivery of indigent defense services statewide. Members are appointed by the Governor, Lieutenant Governor, and Speaker of the House.</p>
             </div>
 
-            <div class="council-grid-new fade-in">
-                <div class="council-card-new">
-                    <div class="council-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
+            <div class="cpd-grid fade-in">
+                <div class="cpd-card">
                     <h4>Chris Cohilas</h4>
-                    <p>Chairman</p>
+                    <p class="cpd-circuit">Chairman</p>
                 </div>
 
-                <div class="council-card-new">
-                    <div class="council-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
+                <div class="cpd-card">
                     <h4>Judge Murphy Miller</h4>
-                    <p>Council Member</p>
+                    <p class="cpd-circuit">Council Member</p>
                 </div>
 
-                <div class="council-card-new">
-                    <div class="council-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+                <div class="cpd-card">
                     <h4>E. Lee Morris</h4>
-                    <p>Council Member</p>
+                    <p class="cpd-circuit">Council Member</p>
                 </div>
 
-                <div class="council-card-new">
-                    <div class="council-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+                <div class="cpd-card">
                     <h4>Lamar Paris</h4>
-                    <p>Council Member</p>
+                    <p class="cpd-circuit">Council Member</p>
                 </div>
 
-                <div class="council-card-new">
-                    <div class="council-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+                <div class="cpd-card">
                     <h4>Carlos Rodriguez</h4>
-                    <p>Council Member</p>
+                    <p class="cpd-circuit">Council Member</p>
                 </div>
 
-                <div class="council-card-new">
-                    <div class="council-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+                <div class="cpd-card">
                     <h4>Donna Seagraves</h4>
-                    <p>Council Member</p>
+                    <p class="cpd-circuit">Council Member</p>
                 </div>
 
-                <div class="council-card-new">
-                    <div class="council-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+                <div class="cpd-card">
                     <h4>Edward D. Tolley</h4>
-                    <p>Council Member</p>
+                    <p class="cpd-circuit">Council Member</p>
                 </div>
 
-                <div class="council-card-new">
-                    <div class="council-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+                <div class="cpd-card">
                     <h4>Johnny E. C. Vines</h4>
-                    <p>Council Member</p>
+                    <p class="cpd-circuit">Council Member</p>
                 </div>
             </div>
         </div>
