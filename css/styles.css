@@ -222,6 +222,25 @@ h1, h2, h3, h4 {
     box-shadow: var(--shadow-btn-hover);
 }
 
+/* Mobile beta tooltip positioning */
+@media (max-width: 768px) {
+    .beta-tooltip {
+        left: 0;
+        transform: translateX(0) translateY(-8px);
+        width: 240px;
+    }
+
+    .beta-tooltip::before {
+        left: 20px;
+        transform: none;
+    }
+
+    .beta-badge-wrapper:hover .beta-tooltip,
+    .beta-badge-wrapper:focus-within .beta-tooltip {
+        transform: translateX(0) translateY(0);
+    }
+}
+
 .nav-links {
     display: flex;
     align-items: center;
@@ -1449,7 +1468,7 @@ section {
     overflow-y: auto;
 }
 
-.mobile-nav.open {
+.mobile-nav.active {
     transform: translateX(0);
 }
 
