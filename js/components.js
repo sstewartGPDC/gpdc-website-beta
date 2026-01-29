@@ -10,97 +10,97 @@
     // Position: 'center top' shows top of image, 'center center' centers, 'center bottom' shows bottom
     // Each hero can have its own position value for individual adjustment
     const heroes = {
-        // Main pages
+        // Main pages - Using Unsplash for reliable public access
         'home': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/6822865ea01745d8498a0e91_pexels-august-de-richelieu-4427430.jpg',
+            image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80',
             position: 'center center'
         },
         'about': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/68228662548ff71e50f7b446_pexels-pavel-danilyuk-8152740.jpg',
+            image: 'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1600&q=80',
             label: 'ABOUT US',
             title: 'Who We Are',
             subtitle: 'Providing high-quality legal defense for individuals accused of crimes who cannot afford representation.',
             position: 'center center'
         },
         'team': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/6822865ea01745d8498a0e91_pexels-august-de-richelieu-4427430.jpg',
+            image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80',
             label: 'ABOUT US',
             title: 'Our Team',
             subtitle: 'Meet the dedicated professionals working to ensure justice for all Georgians.',
             position: 'center center'
         },
         'divisions': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/68228662548ff71e50f7b446_pexels-pavel-danilyuk-8152740.jpg',
+            image: 'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1600&q=80',
             label: 'ABOUT US',
             title: 'Divisions and Services',
             subtitle: 'Specialized divisions working together to provide comprehensive legal defense across Georgia.',
             position: 'center center'
         },
         'foundation': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/68228662548ff71e50f7b446_pexels-pavel-danilyuk-8152740.jpg',
+            image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80',
             label: 'ABOUT US',
             title: 'Our Foundation',
             subtitle: 'The history, mission, and impact of public defense in Georgia.',
             position: 'center center'
         },
         'clients': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67e19c378ea9d881704ef7cc_67c9e88671b7f6e28f196e65_pexels-jep-gambardella-7689684.jpg',
+            image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'Clients and Families',
             subtitle: 'Resources and information for those we serve and their loved ones.',
             position: 'center center'
         },
         'find-defender': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67e19c378ea9d881704ef7cc_67c9e88671b7f6e28f196e65_pexels-jep-gambardella-7689684.jpg',
+            image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'Find My Public Defender',
             subtitle: 'Locate the public defender office serving your county.',
             position: 'center center'
         },
         'apply': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67e19c378ea9d881704ef7cc_67c9e88671b7f6e28f196e65_pexels-jep-gambardella-7689684.jpg',
+            image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'Applying For Legal Representation',
             subtitle: 'Learn how to request a public defender if you cannot afford an attorney.',
             position: 'center center'
         },
         'legal-process': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/68228662548ff71e50f7b446_pexels-pavel-danilyuk-8152740.jpg',
+            image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'The Legal Process',
             subtitle: 'Understanding the steps in a criminal case in Georgia.',
             position: 'center center'
         },
         'faq': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67e19c378ea9d881704ef7cc_67c9e88671b7f6e28f196e65_pexels-jep-gambardella-7689684.jpg',
+            image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80',
             label: 'CLIENTS & FAMILIES',
             title: 'FAQs and Resources',
             subtitle: 'Answers to common questions about public defense in Georgia.',
             position: 'center center'
         },
         'careers': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/6822865ea01745d8498a0e91_pexels-august-de-richelieu-4427430.jpg',
+            image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80',
             label: 'CAREERS',
             title: 'Join Our Team',
             subtitle: 'Build a meaningful career defending the constitutional rights of Georgians.',
             position: 'center center'
         },
         'positions': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/6822865ea01745d8498a0e91_pexels-august-de-richelieu-4427430.jpg',
+            image: 'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1600&q=80',
             label: 'CAREERS',
             title: 'Available Positions',
             subtitle: 'Current job openings across Georgia\'s public defender offices.',
             position: 'center center'
         },
         'newsroom': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/6822865ea01745d8498a0e91_pexels-august-de-richelieu-4427430.jpg',
+            image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80',
             label: 'NEWSROOM',
             title: 'News & Updates',
             subtitle: 'The latest news and announcements from GPDC.',
             position: 'center center'
         },
         'contact': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/68228662548ff71e50f7b446_pexels-pavel-danilyuk-8152740.jpg',
+            image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&q=80',
             label: 'CONTACT',
             title: 'Contact Us',
             subtitle: 'Get in touch with the Georgia Public Defender Council.',
@@ -108,17 +108,17 @@
         },
         // Division pages
         'division-default': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/68228662548ff71e50f7b446_pexels-pavel-danilyuk-8152740.jpg',
+            image: 'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1600&q=80',
             position: 'center center'
         },
         // Circuit/Local office pages
         'circuit-default': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/68228662548ff71e50f7b446_pexels-pavel-danilyuk-8152740.jpg',
+            image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80',
             position: 'center center'
         },
         // Article pages
         'article-default': {
-            image: 'https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/6822865ea01745d8498a0e91_pexels-august-de-richelieu-4427430.jpg',
+            image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80',
             position: 'center center'
         }
     };
