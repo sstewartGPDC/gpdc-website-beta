@@ -329,24 +329,88 @@ function initPageTransitions() {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
             if (href === window.location.pathname || href.startsWith('http')) return;
-            
+
             e.preventDefault();
             pageTransition.classList.add('active');
-            
+
             setTimeout(() => {
                 window.location.href = href;
-            }, 500);
+            }, 400);
         });
     });
 
+    // Page load animation
     window.addEventListener('load', () => {
+        // Remove transition overlay
         if (pageTransition.classList.contains('active')) {
             setTimeout(() => {
                 pageTransition.classList.remove('active');
                 pageTransition.classList.add('exit');
             }, 100);
         }
+
+        // Add page content animation class
+        document.body.classList.add('page-loaded');
+
+        // Staggered section animations
+        const sections = document.querySelectorAll('section:not(.hero):not(.pd-hero)');
+        sections.forEach((section, index) => {
+            section.classList.add('section-animate');
+            setTimeout(() => {
+                section.classList.add('visible');
+            }, 150 + (index * 100));
+        });
     });
+}
+
+// ==================== PARALLAX HERO EFFECT ====================
+function initParallax() {
+    const heroElements = document.querySelectorAll('.hero, .pd-hero, [data-parallax]');
+    if (heroElements.length === 0) return;
+
+    // Add parallax class to hero elements
+    heroElements.forEach(hero => {
+        hero.classList.add('parallax-hero');
+    });
+
+    let ticking = false;
+
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+
+        heroElements.forEach(hero => {
+            const heroRect = hero.getBoundingClientRect();
+            const heroTop = heroRect.top + scrolled;
+            const heroHeight = heroRect.height;
+
+            // Only apply parallax when hero is in view
+            if (scrolled < heroTop + heroHeight) {
+                const parallaxSpeed = 0.4;
+                const yPos = (scrolled - heroTop) * parallaxSpeed;
+
+                // Apply to background images or pseudo-elements
+                const bgElement = hero.querySelector('.hero-bg, .parallax-bg');
+                if (bgElement) {
+                    bgElement.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                } else {
+                    // Apply subtle transform to content
+                    hero.style.backgroundPositionY = `${yPos * 0.5}px`;
+                }
+            }
+        });
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    });
+
+    // Initial call
+    updateParallax();
 }
 
 // ==================== SMOOTH SCROLL ====================
@@ -467,30 +531,6 @@ function initDarkMode() {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
 
-    // Create dark mode toggle button
-    const darkModeToggle = document.createElement('button');
-    darkModeToggle.className = 'dark-mode-toggle';
-    darkModeToggle.setAttribute('aria-label', 'Toggle dark mode');
-    darkModeToggle.innerHTML = `
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"/>
-            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-        </svg>
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-        </svg>
-    `;
-    document.body.appendChild(darkModeToggle);
-
-    // Toggle dark mode on click
-    darkModeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-
     // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
@@ -555,6 +595,11 @@ function initAnnouncementBanner() {
 
 // ==================== BREADCRUMB NAVIGATION ====================
 function initBreadcrumbs() {
+    // Skip if page already has breadcrumbs (e.g., division pages with inline breadcrumbs)
+    if (document.querySelector('.breadcrumb') || document.querySelector('.breadcrumbs')) {
+        return;
+    }
+
     // Define page hierarchy
     const pageHierarchy = {
         'index.html': { title: 'Home', parent: null },
@@ -702,6 +747,596 @@ function initStickySectionNav() {
     });
 }
 
+// ==================== COMMAND PALETTE ====================
+function initCommandPalette() {
+    // Define navigation items for command palette
+    const commandItems = [
+        { title: 'Home', subtitle: 'Go to homepage', url: 'index.html', icon: 'home', category: 'Navigation' },
+        { title: 'About Us', subtitle: 'Learn about GPDC', url: 'about.html', icon: 'info', category: 'Navigation' },
+        { title: 'Our Team', subtitle: 'Meet our leadership', url: 'team.html', icon: 'users', category: 'Navigation' },
+        { title: 'Divisions & Services', subtitle: 'Explore our divisions', url: 'divisions.html', icon: 'grid', category: 'Navigation' },
+        { title: 'Clients & Families', subtitle: 'Resources for clients', url: 'clients.html', icon: 'users', category: 'Navigation' },
+        { title: 'Find My Public Defender', subtitle: 'Search by county or circuit', url: 'find-defender.html', icon: 'search', category: 'Navigation' },
+        { title: 'Careers', subtitle: 'Join our team', url: 'careers.html', icon: 'briefcase', category: 'Navigation' },
+        { title: 'Available Positions', subtitle: 'View job openings', url: 'positions.html', icon: 'clipboard', category: 'Navigation' },
+        { title: 'Newsroom', subtitle: 'Latest news and updates', url: 'newsroom.html', icon: 'newspaper', category: 'Navigation' },
+        { title: 'Contact Us', subtitle: 'Get in touch', url: 'contact.html', icon: 'mail', category: 'Navigation' },
+        { title: 'Professional Development', subtitle: 'Training and events', url: 'divisions/training.html', icon: 'book', category: 'Divisions' },
+        { title: 'Capital Defense', subtitle: 'Capital case services', url: 'divisions/capital-defense.html', icon: 'shield', category: 'Divisions' },
+        { title: 'Appellate Defense', subtitle: 'Appeals services', url: 'divisions/appellate-defense.html', icon: 'scale', category: 'Divisions' },
+        { title: 'Mental Health Defense', subtitle: 'Mental health services', url: 'divisions/mental-health-defense.html', icon: 'heart', category: 'Divisions' },
+        { title: 'Youth Advocacy', subtitle: 'Juvenile defense', url: 'divisions/youth-defense.html', icon: 'users', category: 'Divisions' },
+        { title: 'Toggle Dark Mode', subtitle: 'Switch theme', action: 'toggleDarkMode', icon: 'moon', category: 'Actions' },
+    ];
+
+    const icons = {
+        home: '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+        info: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>',
+        users: '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>',
+        grid: '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>',
+        search: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+        briefcase: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>',
+        clipboard: '<path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/>',
+        newspaper: '<path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M18 18h-8M18 10h-8"/>',
+        mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+        book: '<path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>',
+        shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+        scale: '<path d="M16 16l3-8 3 8c-.9 1.8-2.5 3-4.5 3s-3.6-1.2-4.5-3zm-10 0l3-8 3 8c-.9 1.8-2.5 3-4.5 3s-3.6-1.2-4.5-3zM12 3v18M3 7h18"/>',
+        heart: '<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>',
+        moon: '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>'
+    };
+
+    // Create command palette HTML
+    const overlay = document.createElement('div');
+    overlay.className = 'command-palette-overlay';
+    overlay.innerHTML = `
+        <div class="command-palette">
+            <div class="command-palette-input-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" class="command-palette-input" placeholder="Search pages, actions..." autofocus>
+                <span class="command-palette-hint">ESC</span>
+            </div>
+            <div class="command-palette-results"></div>
+            <div class="command-palette-footer">
+                <span><kbd>↑</kbd><kbd>↓</kbd> to navigate</span>
+                <span><kbd>↵</kbd> to select</span>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const input = overlay.querySelector('.command-palette-input');
+    const results = overlay.querySelector('.command-palette-results');
+    let highlightedIndex = -1;
+    let filteredItems = [];
+
+    // Determine base path
+    const path = window.location.pathname;
+    const basePath = path.includes('/divisions/') ? '../' :
+                     path.includes('/local-offices/') ? '../' : '';
+
+    function renderResults(items) {
+        filteredItems = items;
+        highlightedIndex = items.length > 0 ? 0 : -1;
+
+        if (items.length === 0) {
+            results.innerHTML = '<div class="command-palette-empty">No results found</div>';
+            return;
+        }
+
+        // Group by category
+        const grouped = items.reduce((acc, item) => {
+            if (!acc[item.category]) acc[item.category] = [];
+            acc[item.category].push(item);
+            return acc;
+        }, {});
+
+        results.innerHTML = Object.entries(grouped).map(([category, categoryItems]) => `
+            <div class="command-palette-group">
+                <div class="command-palette-group-title">${category}</div>
+                ${categoryItems.map((item, idx) => {
+                    const globalIdx = items.indexOf(item);
+                    return `
+                        <div class="command-palette-item ${globalIdx === 0 ? 'highlighted' : ''}" data-index="${globalIdx}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                ${icons[item.icon] || icons.home}
+                            </svg>
+                            <div class="command-palette-item-text">
+                                <div class="command-palette-item-title">${item.title}</div>
+                                <div class="command-palette-item-subtitle">${item.subtitle}</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `).join('');
+
+        // Add click handlers
+        results.querySelectorAll('.command-palette-item').forEach(el => {
+            el.addEventListener('click', () => selectItem(parseInt(el.dataset.index)));
+        });
+    }
+
+    function updateHighlight() {
+        results.querySelectorAll('.command-palette-item').forEach((el, idx) => {
+            el.classList.toggle('highlighted', parseInt(el.dataset.index) === highlightedIndex);
+        });
+        const highlighted = results.querySelector('.command-palette-item.highlighted');
+        if (highlighted) highlighted.scrollIntoView({ block: 'nearest' });
+    }
+
+    function selectItem(index) {
+        const item = filteredItems[index];
+        if (!item) return;
+
+        if (item.action === 'toggleDarkMode') {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        } else if (item.url) {
+            window.location.href = basePath + item.url;
+        }
+        closeCommandPalette();
+    }
+
+    function openCommandPalette() {
+        overlay.classList.add('active');
+        input.value = '';
+        input.focus();
+        renderResults(commandItems);
+    }
+
+    function closeCommandPalette() {
+        overlay.classList.remove('active');
+    }
+
+    // Event listeners
+    input.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const filtered = commandItems.filter(item =>
+            item.title.toLowerCase().includes(query) ||
+            item.subtitle.toLowerCase().includes(query) ||
+            item.category.toLowerCase().includes(query)
+        );
+        renderResults(filtered);
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            highlightedIndex = Math.min(highlightedIndex + 1, filteredItems.length - 1);
+            updateHighlight();
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            highlightedIndex = Math.max(highlightedIndex - 1, 0);
+            updateHighlight();
+        } else if (e.key === 'Enter' && highlightedIndex >= 0) {
+            e.preventDefault();
+            selectItem(highlightedIndex);
+        } else if (e.key === 'Escape') {
+            closeCommandPalette();
+        }
+    });
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeCommandPalette();
+    });
+
+    // Keyboard shortcut (Cmd/Ctrl + K)
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            if (overlay.classList.contains('active')) {
+                closeCommandPalette();
+            } else {
+                openCommandPalette();
+            }
+        }
+    });
+}
+
+// ==================== COPY TO CLIPBOARD ====================
+function initCopyToClipboard() {
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = 'copy-toast';
+    toast.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Copied to clipboard!
+    `;
+    document.body.appendChild(toast);
+
+    function showToast() {
+        toast.classList.add('visible');
+        setTimeout(() => toast.classList.remove('visible'), 2000);
+    }
+
+    // Find phone numbers and addresses and add copy buttons
+    document.querySelectorAll('[data-copyable], .contact-phone, .contact-address, .circuit-phone, .circuit-address').forEach(el => {
+        if (el.querySelector('.copy-btn')) return; // Already has button
+
+        const wrapper = document.createElement('span');
+        wrapper.style.display = 'inline-flex';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.gap = '0.5rem';
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.setAttribute('aria-label', 'Copy to clipboard');
+        btn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+            </svg>
+        `;
+
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const text = el.textContent.trim();
+
+            try {
+                await navigator.clipboard.writeText(text);
+                btn.classList.add('copied');
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                `;
+                showToast();
+
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = `
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2"/>
+                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                        </svg>
+                    `;
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy:', err);
+            }
+        });
+
+        el.parentNode.insertBefore(wrapper, el);
+        wrapper.appendChild(el);
+        wrapper.appendChild(btn);
+    });
+}
+
+// ==================== 3D CARD TILT EFFECT ====================
+function initCardTilt() {
+    const cards = document.querySelectorAll('.event-card, .news-card, .team-card, .division-card, .position-card');
+
+    cards.forEach(card => {
+        // Add shine element
+        const shine = document.createElement('div');
+        shine.className = 'tilt-shine';
+        card.appendChild(shine);
+        card.classList.add('tilt-card');
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Subtle tilt effect - reduced intensity
+            const rotateX = (y - centerY) / 50;
+            const rotateY = (centerX - x) / 50;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+
+            // Update shine position
+            const percentX = (x / rect.width) * 100;
+            const percentY = (y / rect.height) * 100;
+            shine.style.setProperty('--mouse-x', percentX + '%');
+            shine.style.setProperty('--mouse-y', percentY + '%');
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+    });
+}
+
+// ==================== QUICK ACTIONS WIDGET ====================
+function initQuickActions() {
+    const widget = document.createElement('div');
+    widget.className = 'quick-actions-widget';
+    widget.innerHTML = `
+        <div class="quick-actions-menu">
+            <div class="quick-actions-header">Quick Actions</div>
+            <a href="find-defender.html" class="quick-actions-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <div class="quick-actions-item-text">
+                    <div class="quick-actions-item-label">Find Defender</div>
+                    <div class="quick-actions-item-value">Search by county</div>
+                </div>
+            </a>
+            <a href="tel:404-657-9604" class="quick-actions-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+                <div class="quick-actions-item-text">
+                    <div class="quick-actions-item-label">Call Us</div>
+                    <div class="quick-actions-item-value">404-657-9604</div>
+                </div>
+            </a>
+            <a href="mailto:info@gapubdef.org" class="quick-actions-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <div class="quick-actions-item-text">
+                    <div class="quick-actions-item-label">Email Us</div>
+                    <div class="quick-actions-item-value">info@gapubdef.org</div>
+                </div>
+            </a>
+            <div class="quick-actions-divider"></div>
+            <div class="quick-actions-item" id="openTutorial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/>
+                </svg>
+                <div class="quick-actions-item-text">
+                    <div class="quick-actions-item-label">Site Guide</div>
+                    <div class="quick-actions-item-value">How to use this site</div>
+                </div>
+            </div>
+            <div class="quick-actions-item theme-toggle" id="widgetThemeToggle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+                <div class="quick-actions-item-text">
+                    <div class="quick-actions-item-label">Dark Mode</div>
+                    <div class="quick-actions-item-value">Toggle theme</div>
+                </div>
+                <div class="theme-toggle-switch"></div>
+            </div>
+        </div>
+        <button class="quick-actions-toggle" aria-label="Quick actions">
+            <svg class="icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+            <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+    `;
+    document.body.appendChild(widget);
+
+    const toggle = widget.querySelector('.quick-actions-toggle');
+    toggle.addEventListener('click', () => {
+        widget.classList.toggle('open');
+    });
+
+    // Theme toggle functionality
+    const themeToggle = widget.querySelector('#widgetThemeToggle');
+    themeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // Open tutorial
+    const tutorialBtn = widget.querySelector('#openTutorial');
+    tutorialBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        widget.classList.remove('open');
+        showTutorial();
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!widget.contains(e.target)) {
+            widget.classList.remove('open');
+        }
+    });
+}
+
+// ==================== SITE TUTORIAL ====================
+function initTutorial() {
+    // Check if this is first visit
+    if (!localStorage.getItem('gpdc-tutorial-seen')) {
+        // Show tutorial after a brief delay
+        setTimeout(() => {
+            showTutorial();
+        }, 1500);
+    }
+}
+
+function showTutorial() {
+    const steps = [
+        {
+            title: 'Welcome to GPDC',
+            content: 'The Georgia Public Defender Council website helps you find legal resources, connect with public defenders, and learn about our services.',
+            icon: 'home'
+        },
+        {
+            title: 'Find Your Public Defender',
+            content: 'Use the search bar in the navigation or visit "Find My Public Defender" to locate your local office by county or circuit.',
+            icon: 'search'
+        },
+        {
+            title: 'Quick Navigation',
+            content: 'Press <kbd>Ctrl</kbd>+<kbd>K</kbd> (or <kbd>⌘</kbd>+<kbd>K</kbd> on Mac) to open the command palette for instant navigation to any page.',
+            icon: 'command'
+        },
+        {
+            title: 'Quick Actions',
+            content: 'Click the grid button in the bottom-right corner anytime to access quick actions like calling us, toggling dark mode, or reopening this guide.',
+            icon: 'grid'
+        },
+        {
+            title: 'You\'re All Set!',
+            content: 'Explore our divisions, career opportunities, and newsroom. If you need help, our contact information is always available.',
+            icon: 'check'
+        }
+    ];
+
+    const icons = {
+        home: '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+        search: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+        command: '<path d="M18 3a3 3 0 00-3 3v12a3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3H6a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3V6a3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3h12a3 3 0 003-3 3 3 0 00-3-3z"/>',
+        grid: '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>',
+        check: '<path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'
+    };
+
+    let currentStep = 0;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'tutorial-overlay';
+    overlay.innerHTML = `
+        <div class="tutorial-modal">
+            <div class="tutorial-progress">
+                ${steps.map((_, i) => `<div class="tutorial-progress-dot ${i === 0 ? 'active' : ''}"></div>`).join('')}
+            </div>
+            <div class="tutorial-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    ${icons[steps[0].icon]}
+                </svg>
+            </div>
+            <h3 class="tutorial-title">${steps[0].title}</h3>
+            <p class="tutorial-content">${steps[0].content}</p>
+            <div class="tutorial-actions">
+                <button class="tutorial-skip">Skip Tour</button>
+                <button class="tutorial-next">Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    // Animate in
+    requestAnimationFrame(() => {
+        overlay.classList.add('active');
+    });
+
+    const modal = overlay.querySelector('.tutorial-modal');
+    const iconEl = overlay.querySelector('.tutorial-icon svg');
+    const titleEl = overlay.querySelector('.tutorial-title');
+    const contentEl = overlay.querySelector('.tutorial-content');
+    const dots = overlay.querySelectorAll('.tutorial-progress-dot');
+    const nextBtn = overlay.querySelector('.tutorial-next');
+    const skipBtn = overlay.querySelector('.tutorial-skip');
+
+    function updateStep(step) {
+        currentStep = step;
+        const data = steps[step];
+
+        // Update content with animation
+        modal.classList.add('transitioning');
+        setTimeout(() => {
+            iconEl.innerHTML = icons[data.icon];
+            titleEl.textContent = data.title;
+            contentEl.innerHTML = data.content;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i <= step));
+
+            if (step === steps.length - 1) {
+                nextBtn.innerHTML = 'Get Started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+                skipBtn.style.display = 'none';
+            }
+
+            modal.classList.remove('transitioning');
+        }, 150);
+    }
+
+    function closeTutorial() {
+        localStorage.setItem('gpdc-tutorial-seen', 'true');
+        overlay.classList.remove('active');
+        setTimeout(() => overlay.remove(), 300);
+    }
+
+    nextBtn.addEventListener('click', () => {
+        if (currentStep < steps.length - 1) {
+            updateStep(currentStep + 1);
+        } else {
+            closeTutorial();
+        }
+    });
+
+    skipBtn.addEventListener('click', closeTutorial);
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeTutorial();
+    });
+}
+
+// ==================== READING TIME ESTIMATE ====================
+function initReadingTime() {
+    // Find article content areas
+    const articles = document.querySelectorAll('.news-article-content, .article-content, [data-reading-time]');
+
+    articles.forEach(article => {
+        const text = article.textContent;
+        const wordCount = text.trim().split(/\s+/).length;
+        const readingTime = Math.ceil(wordCount / 200); // 200 words per minute
+
+        // Find or create meta area
+        let metaArea = article.parentElement.querySelector('.article-meta, .news-article-meta');
+        if (!metaArea) {
+            metaArea = document.createElement('div');
+            metaArea.className = 'article-meta';
+            article.parentElement.insertBefore(metaArea, article);
+        }
+
+        // Add reading time badge
+        if (!metaArea.querySelector('.reading-time')) {
+            const badge = document.createElement('span');
+            badge.className = 'reading-time';
+            badge.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                ${readingTime} min read
+            `;
+            metaArea.appendChild(badge);
+        }
+    });
+
+    // Add to news cards (handles both .card-excerpt and .news-card-excerpt)
+    document.querySelectorAll('.news-card').forEach(card => {
+        const excerpt = card.querySelector('.card-excerpt, .news-card-excerpt');
+        if (!excerpt) return;
+
+        // Estimate based on typical article length (excerpt is usually ~10% of article)
+        const excerptWords = excerpt.textContent.trim().split(/\s+/).length;
+        const estimatedWords = excerptWords * 10;
+        const readingTime = Math.max(2, Math.ceil(estimatedWords / 200));
+
+        // Find the date element or card content area
+        const dateEl = card.querySelector('.card-date, .news-card-date');
+        if (dateEl && !dateEl.parentElement.querySelector('.reading-time')) {
+            const badge = document.createElement('span');
+            badge.className = 'reading-time';
+            badge.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                ${readingTime} min
+            `;
+            // Insert after date element
+            dateEl.insertAdjacentElement('afterend', badge);
+        }
+    });
+}
+
 // ==================== INITIALIZE ALL ====================
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
@@ -716,6 +1351,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnnouncementBanner();
     initBreadcrumbs();
     initStickySectionNav();
+    initParallax();
+    initCommandPalette();
+    initCopyToClipboard();
+    initCardTilt();
+    initQuickActions();
+    initTutorial();
+    initReadingTime();
 
     // Initialize search after header component loads (since search is in header)
     document.addEventListener('componentLoaded', (e) => {
