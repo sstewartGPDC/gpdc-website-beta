@@ -10,7 +10,7 @@ const GPDC_EVENTS = [
         location: "Emory University School of Law",
         type: "in-person",
         description: "Collaborative training with Emory University on rapid screening techniques and identifying red flags during client interviews.",
-        image: "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200c524675d5f75d8021d_Leadership%20Academy%20Graduation-10%20Large.jpeg",
+        image: "https://images.unsplash.com/photo-1516382799247-87df95d790b7?q=80&w=2348&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         registerUrl: "#"
     },
     {
@@ -21,7 +21,7 @@ const GPDC_EVENTS = [
         location: "Evergreen, Stone Mountain",
         type: "in-person",
         description: "Biannual meeting bringing together Circuit Public Defenders from across Georgia for updates, training, and collaboration.",
-        image: "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/66e891aa2febf78fe64b3da0_1Q8A3235_2.jpg",
+        image: "https://images.unsplash.com/photo-1764471444363-e6dc0f9773bc?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         registerUrl: "#"
     },
     {
