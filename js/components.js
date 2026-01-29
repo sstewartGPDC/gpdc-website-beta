@@ -100,7 +100,7 @@
             position: 'center center'
         },
         'contact': {
-            image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&q=80',
+            image: 'https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?q=80&w=1310&auto=format&fit=crop',
             label: 'CONTACT',
             title: 'Contact Us',
             subtitle: 'Get in touch with the Georgia Public Defender Council.',
