@@ -98,22 +98,73 @@ function initScrollAnimations() {
     });
 }
 
+// Opt-Out Circuits - Counties that manage their own public defense
+const optOutCircuits = [
+    { circuit: "Blue Ridge Circuit", counties: ["Cherokee"], note: "Cherokee County operates its own public defender office independently." },
+    { circuit: "Cobb Circuit", counties: ["Cobb"], note: "Cobb County operates its own public defender office independently." },
+    { circuit: "Douglas Circuit", counties: ["Douglas"], note: "Douglas County operates its own public defender office independently." },
+    { circuit: "Bell-Forsyth Circuit", counties: ["Forsyth"], note: "Forsyth County operates its own public defender office independently." },
+    { circuit: "Gwinnett Circuit", counties: ["Gwinnett"], note: "Gwinnett County operates its own public defender office independently." },
+    { circuit: "Houston Circuit", counties: ["Houston"], note: "Houston County operates its own public defender office independently." },
+    { circuit: "Stone Mountain Circuit", counties: ["DeKalb"], note: "Note: DeKalb County is served by the state system through the Dekalb Circuit." }
+];
+
 // ==================== CIRCUIT SEARCH ====================
 function initCircuitSearch() {
     const searchInput = document.getElementById('defenderSearch');
     const searchResults = document.getElementById('searchResults');
     const searchResultsList = document.getElementById('searchResultsList');
-    
+
     if (!searchInput || !searchResults || !searchResultsList) return;
 
     let highlightedIndex = -1;
     let filteredResults = [];
 
-    function renderResults(results) {
+    function checkOptOut(query) {
+        // Check if query matches an opt-out county
+        for (const circuit of optOutCircuits) {
+            for (const county of circuit.counties) {
+                if (county.toLowerCase().includes(query) || query.includes(county.toLowerCase())) {
+                    // Skip DeKalb since it's actually in the state system
+                    if (county === "DeKalb") continue;
+                    return circuit;
+                }
+            }
+            if (circuit.circuit.toLowerCase().includes(query)) {
+                if (circuit.counties.includes("DeKalb")) continue;
+                return circuit;
+            }
+        }
+        return null;
+    }
+
+    function renderResults(results, optOutMatch = null) {
         filteredResults = results;
         highlightedIndex = -1;
-        
-        if (results.length === 0) {
+
+        let html = '';
+
+        // Show opt-out message if applicable
+        if (optOutMatch) {
+            html += `
+                <div class="search-opt-out-notice">
+                    <div class="opt-out-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                    </div>
+                    <div class="opt-out-content">
+                        <div class="opt-out-title">${optOutMatch.counties.join(', ')} ${optOutMatch.counties.length > 1 ? 'Counties' : 'County'}</div>
+                        <div class="opt-out-message">${optOutMatch.note}</div>
+                        <div class="opt-out-help">Contact your local county courthouse for public defender information.</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        if (results.length === 0 && !optOutMatch) {
             searchResultsList.innerHTML = '<div class="search-no-results">No circuits found matching your search</div>';
             return;
         }
@@ -122,12 +173,14 @@ function initCircuitSearch() {
         const isInSubfolder = window.location.pathname.includes('/local-offices/') || window.location.pathname.includes('/local%20offices/');
         const basePath = isInSubfolder ? '' : 'local-offices/';
 
-        searchResultsList.innerHTML = results.map((item, index) => `
+        html += results.map((item, index) => `
             <a href="${basePath}${item.slug}.html" class="search-result-item" data-index="${index}">
                 <div class="search-result-circuit">${item.circuit}</div>
                 <div class="search-result-counties">${item.counties.join(', ')} ${item.counties.length > 1 ? 'Counties' : 'County'}</div>
             </a>
         `).join('');
+
+        searchResultsList.innerHTML = html;
     }
 
     function highlightResult(index) {
@@ -135,7 +188,7 @@ function initCircuitSearch() {
         items.forEach((item, i) => {
             item.classList.toggle('highlighted', i === index);
         });
-        
+
         if (index >= 0 && items[index]) {
             items[index].scrollIntoView({ block: 'nearest' });
         }
@@ -143,11 +196,14 @@ function initCircuitSearch() {
 
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
-        
+
         if (query.length === 0) {
             searchResults.classList.remove('active');
             return;
         }
+
+        // Check for opt-out circuits first
+        const optOutMatch = checkOptOut(query);
 
         const results = circuitData.filter(item => {
             const circuitMatch = item.circuit.toLowerCase().includes(query);
@@ -155,7 +211,7 @@ function initCircuitSearch() {
             return circuitMatch || countyMatch;
         });
 
-        renderResults(results);
+        renderResults(results, optOutMatch);
         searchResults.classList.add('active');
     });
 
@@ -1063,23 +1119,23 @@ function initQuickActions() {
                     <div class="quick-actions-item-value">Search by county</div>
                 </div>
             </a>
-            <a href="tel:404-657-9604" class="quick-actions-item">
+            <a href="tel:404-795-2440" class="quick-actions-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
                 </svg>
                 <div class="quick-actions-item-text">
                     <div class="quick-actions-item-label">Call Us</div>
-                    <div class="quick-actions-item-value">404-657-9604</div>
+                    <div class="quick-actions-item-value">(404) 795-2440</div>
                 </div>
             </a>
-            <a href="mailto:info@gapubdef.org" class="quick-actions-item">
+            <a href="mailto:help@gapubdef.org" class="quick-actions-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                     <polyline points="22,6 12,13 2,6"/>
                 </svg>
                 <div class="quick-actions-item-text">
                     <div class="quick-actions-item-label">Email Us</div>
-                    <div class="quick-actions-item-value">info@gapubdef.org</div>
+                    <div class="quick-actions-item-value">help@gapubdef.org</div>
                 </div>
             </a>
             <div class="quick-actions-divider"></div>
@@ -1319,21 +1375,46 @@ function initReadingTime() {
         const estimatedWords = excerptWords * 10;
         const readingTime = Math.max(2, Math.ceil(estimatedWords / 200));
 
-        // Find the date element or card content area
+        // Find the date element
         const dateEl = card.querySelector('.card-date, .news-card-date');
-        if (dateEl && !dateEl.parentElement.querySelector('.reading-time')) {
+        if (dateEl && !dateEl.querySelector('.reading-time')) {
+            // Append reading time inside the date element for inline display
             const badge = document.createElement('span');
             badge.className = 'reading-time';
-            badge.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                ${readingTime} min
-            `;
-            // Insert after date element
-            dateEl.insertAdjacentElement('afterend', badge);
+            badge.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${readingTime} min`;
+            dateEl.appendChild(badge);
         }
+    });
+
+    // Add to featured article
+    document.querySelectorAll('.featured-article').forEach(article => {
+        const excerpt = article.querySelector('.featured-excerpt');
+        if (!excerpt) return;
+
+        const excerptWords = excerpt.textContent.trim().split(/\s+/).length;
+        const estimatedWords = excerptWords * 10;
+        const readingTime = Math.max(3, Math.ceil(estimatedWords / 200));
+
+        const dateEl = article.querySelector('.featured-date');
+        if (dateEl && !dateEl.querySelector('.reading-time')) {
+            const badge = document.createElement('span');
+            badge.className = 'reading-time';
+            badge.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${readingTime} min`;
+            dateEl.appendChild(badge);
+        }
+    });
+}
+
+// ==================== NEWSLETTER TOGGLE ====================
+function initNewsletter() {
+    const toggle = document.getElementById('newsletterToggle');
+    const section = toggle?.closest('.newsletter-section');
+
+    if (!toggle || !section) return;
+
+    toggle.addEventListener('click', () => {
+        const isExpanded = section.classList.toggle('expanded');
+        toggle.setAttribute('aria-expanded', isExpanded);
     });
 }
 
@@ -1365,12 +1446,18 @@ document.addEventListener('DOMContentLoaded', () => {
             initCircuitSearch();
             initTypewriter();
         }
+        if (e.detail && e.detail.component === 'components/footer.html') {
+            initNewsletter();
+        }
     });
 
     // Fallback: also try initializing if elements already exist
     if (document.getElementById('defenderSearch')) {
         initCircuitSearch();
         initTypewriter();
+    }
+    if (document.getElementById('newsletterToggle')) {
+        initNewsletter();
     }
 });
 

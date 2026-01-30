@@ -247,7 +247,8 @@
         .positions-content {
             max-height: calc(100vh - 180px);
             overflow-y: auto;
-            padding-right: 0.5rem;
+            padding: 1rem;
+            margin: -1rem;
         }
 
         .positions-content::-webkit-scrollbar {
@@ -273,6 +274,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.25rem;
+            padding-bottom: 1rem;
         }
 
         /* Position Cards - News Card Style */
@@ -967,7 +969,7 @@
 
                 // Show/hide no results message
                 noPositions.style.display = visibleCount === 0 ? 'flex' : 'none';
-                document.getElementById('positionsGrid').style.display = visibleCount === 0 ? 'none' : 'flex';
+                document.getElementById('positionsGrid').style.display = visibleCount === 0 ? 'none' : 'grid';
             }
 
             // Tab filter buttons

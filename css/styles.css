@@ -723,6 +723,88 @@ h1, h2, h3, h4 {
     border-bottom: 1px solid var(--border-light);
 }
 
+/* Opt-Out Circuit Notice */
+.search-opt-out-notice {
+    display: flex;
+    gap: 0.875rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #fef3e2 0%, #fef9f3 100%);
+    border-left: 3px solid #e6a23c;
+}
+
+.opt-out-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #e6a23c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.opt-out-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: white;
+}
+
+.opt-out-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.opt-out-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #8a6914;
+    margin-bottom: 0.25rem;
+}
+
+.opt-out-message {
+    font-size: 0.8125rem;
+    color: var(--text-medium);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.opt-out-help {
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+.opt-out-help a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.opt-out-help a:hover {
+    text-decoration: underline;
+}
+
+/* Dark mode opt-out notice */
+[data-theme="dark"] .search-opt-out-notice {
+    background: linear-gradient(135deg, #3d3520 0%, #2d2a24 100%);
+    border-left-color: #c99a2e;
+}
+
+[data-theme="dark"] .opt-out-icon {
+    background: #c99a2e;
+}
+
+[data-theme="dark"] .opt-out-title {
+    color: #f0d78c;
+}
+
+[data-theme="dark"] .opt-out-message {
+    color: #bbb;
+}
+
+[data-theme="dark"] .opt-out-help {
+    color: #999;
+}
+
 /* ==================== MOBILE NAV TOGGLE ==================== */
 .nav-toggle {
     display: none;
@@ -1349,6 +1431,17 @@ section {
 }
 
 /* ==================== FOOTER ==================== */
+#site-footer {
+    width: 100%;
+    max-width: none;
+}
+
+.newsletter-section,
+.footer {
+    width: 100%;
+    max-width: none;
+}
+
 .footer {
     background: var(--bg-white);
     padding: 2.5rem 1.5rem 1.25rem;
@@ -1359,8 +1452,8 @@ section {
     max-width: 1140px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 2rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-light);
 }
@@ -3997,13 +4090,61 @@ body.has-announcement .breadcrumbs {
 /* ==================== NEWSLETTER SIGNUP ==================== */
 .newsletter-section {
     background: var(--primary);
-    padding: 3rem 1.5rem;
-    text-align: center;
+}
+
+.newsletter-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.newsletter-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.newsletter-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.newsletter-chevron {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--ease-out);
+}
+
+.newsletter-section.expanded .newsletter-chevron {
+    transform: rotate(180deg);
 }
 
 .newsletter-content {
     max-width: 500px;
     margin: 0 auto;
+    text-align: center;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 1.5rem;
+    transition: max-height 0.4s var(--ease-out), opacity 0.3s ease, padding 0.4s var(--ease-out);
+}
+
+.newsletter-section.expanded .newsletter-content {
+    max-height: 300px;
+    opacity: 1;
+    padding: 0 1.5rem 2rem;
 }
 
 .newsletter-content h3 {
@@ -5020,31 +5161,20 @@ body.has-announcement .breadcrumbs {
 .reading-time {
     display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
+    gap: 0.25rem;
     font-size: 0.6875rem;
     color: var(--text-light);
-    padding: 0.2rem 0.5rem;
     background: var(--bg-light);
+    padding: 0.2rem 0.5rem;
     border-radius: 20px;
     margin-left: 0.5rem;
     vertical-align: middle;
 }
 
 .reading-time svg {
-    width: 12px;
-    height: 12px;
-}
-
-/* Reading time in card content */
-.card-content .reading-time,
-.news-card-content .reading-time {
-    margin-left: 0;
-    margin-top: 0.5rem;
-    display: inline-flex;
-}
-
-.card-date + .reading-time {
-    margin-left: 0.75rem;
+    width: 11px;
+    height: 11px;
+    opacity: 0.7;
 }
 
 .article-meta {

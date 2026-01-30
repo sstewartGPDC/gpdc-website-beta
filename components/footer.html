@@ -1,6 +1,16 @@
 <!-- Newsletter Section -->
 <section class="newsletter-section">
-    <div class="newsletter-content">
+    <button class="newsletter-toggle" id="newsletterToggle" aria-expanded="false">
+        <svg class="newsletter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <span>Subscribe to Our Newsletter</span>
+        <svg class="newsletter-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+        </svg>
+    </button>
+    <div class="newsletter-content" id="newsletterContent">
         <h3>Stay Informed</h3>
         <p>Get the latest news, training opportunities, and updates from GPDC delivered to your inbox.</p>
         <form class="newsletter-form" id="newsletterForm">
