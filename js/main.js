@@ -941,8 +941,9 @@ function initCommandPalette() {
     function openCommandPalette() {
         overlay.classList.add('active');
         input.value = '';
-        input.focus();
         renderResults(commandItems);
+        // Focus after a brief delay to ensure overlay is visible
+        setTimeout(() => input.focus(), 50);
     }
 
     function closeCommandPalette() {
@@ -960,7 +961,26 @@ function initCommandPalette() {
         renderResults(filtered);
     });
 
-    input.addEventListener('keydown', (e) => {
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeCommandPalette();
+    });
+
+    // Handle all keyboard events at document level when palette is active
+    document.addEventListener('keydown', (e) => {
+        // Cmd/Ctrl + K to toggle
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            if (overlay.classList.contains('active')) {
+                closeCommandPalette();
+            } else {
+                openCommandPalette();
+            }
+            return;
+        }
+
+        // Only handle other keys when palette is active
+        if (!overlay.classList.contains('active')) return;
+
         if (e.key === 'ArrowDown') {
             e.preventDefault();
             highlightedIndex = Math.min(highlightedIndex + 1, filteredItems.length - 1);
@@ -973,23 +993,8 @@ function initCommandPalette() {
             e.preventDefault();
             selectItem(highlightedIndex);
         } else if (e.key === 'Escape') {
-            closeCommandPalette();
-        }
-    });
-
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeCommandPalette();
-    });
-
-    // Keyboard shortcut (Cmd/Ctrl + K)
-    document.addEventListener('keydown', (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
             e.preventDefault();
-            if (overlay.classList.contains('active')) {
-                closeCommandPalette();
-            } else {
-                openCommandPalette();
-            }
+            closeCommandPalette();
         }
     });
 }
