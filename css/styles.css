@@ -4660,6 +4660,27 @@ body.has-announcement .breadcrumbs {
     border-radius: 4px;
 }
 
+.command-palette-shortcut {
+    font-family: inherit;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    min-width: 1.5rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.command-palette-item:hover .command-palette-shortcut,
+.command-palette-item.highlighted .command-palette-shortcut {
+    background: var(--bg-white);
+    border-color: var(--primary-light);
+    color: var(--primary);
+}
+
 .command-palette-empty {
     text-align: center;
     padding: 2rem;

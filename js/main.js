@@ -856,8 +856,9 @@ function initCommandPalette() {
             </div>
             <div class="command-palette-results"></div>
             <div class="command-palette-footer">
-                <span><kbd>↑</kbd><kbd>↓</kbd> to navigate</span>
-                <span><kbd>↵</kbd> to select</span>
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>1</kbd>-<kbd>9</kbd> jump</span>
+                <span><kbd>↵</kbd> select</span>
             </div>
         </div>
     `;
@@ -894,6 +895,8 @@ function initCommandPalette() {
                 <div class="command-palette-group-title">${category}</div>
                 ${categoryItems.map((item, idx) => {
                     const globalIdx = items.indexOf(item);
+                    // Show shortcut number (1-9, then 0 for 10)
+                    const shortcutNum = globalIdx < 9 ? globalIdx + 1 : (globalIdx === 9 ? 0 : null);
                     return `
                         <div class="command-palette-item ${globalIdx === 0 ? 'highlighted' : ''}" data-index="${globalIdx}">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -903,6 +906,7 @@ function initCommandPalette() {
                                 <div class="command-palette-item-title">${item.title}</div>
                                 <div class="command-palette-item-subtitle">${item.subtitle}</div>
                             </div>
+                            ${shortcutNum !== null ? `<kbd class="command-palette-shortcut">${shortcutNum}</kbd>` : ''}
                         </div>
                     `;
                 }).join('')}
@@ -995,6 +999,15 @@ function initCommandPalette() {
         } else if (e.key === 'Escape') {
             e.preventDefault();
             closeCommandPalette();
+        } else if (/^[0-9]$/.test(e.key) && !input.value) {
+            // Number shortcuts only work when search is empty
+            const num = parseInt(e.key);
+            // 1-9 maps to index 0-8, 0 maps to index 9
+            const targetIndex = num === 0 ? 9 : num - 1;
+            if (targetIndex < filteredItems.length) {
+                e.preventDefault();
+                selectItem(targetIndex);
+            }
         }
     });
 }
