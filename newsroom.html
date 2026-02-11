@@ -11,143 +11,10 @@
     <style>
         /* Newsroom Page Styles */
 
-        /* Achievements Ticker - Subtle */
-        .ticker-bar {
-            background: var(--primary);
-            display: flex;
-            align-items: stretch;
-        }
-
-        .ticker-label {
-            background: var(--primary-dark);
-            padding: 10px 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: white;
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        .ticker-label::after {
-            content: '';
-            position: absolute;
-            right: -12px;
-            top: 0;
-            bottom: 0;
-            width: 12px;
-            background: linear-gradient(90deg, var(--primary-dark) 0%, transparent 100%);
-            z-index: 1;
-        }
-
-        .ticker-wrapper {
-            flex: 1;
-            overflow: hidden;
-        }
-
-        .ticker-track {
-            display: flex;
-            animation: tickerScroll 40s linear infinite;
-        }
-
-        .ticker-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes tickerScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .ticker-items {
-            display: flex;
-            flex-shrink: 0;
-        }
-
-        .ticker-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 28px;
-            color: white;
-            font-size: 0.8125rem;
-            font-weight: 500;
-            white-space: nowrap;
-            border-right: 1px solid rgba(255,255,255,0.15);
-        }
-
-        .ticker-item strong {
-            font-weight: 700;
-        }
-
-        /* Category Tabs */
-        .category-section {
-            background: var(--bg-white);
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border-light);
-            position: sticky;
-            top: 60px;
-            z-index: 100;
-        }
-
-        .category-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .category-tab {
-            padding: 10px 20px;
-            border: none;
-            background: var(--bg-light);
-            font-family: 'Manrope', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-medium);
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .category-tab:hover {
-            background: var(--primary-subtle);
-            color: var(--primary);
-        }
-
-        .category-tab.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .tab-count {
-            background: rgba(0,0,0,0.1);
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.75rem;
-            margin-left: 4px;
-        }
-
-        .category-tab.active .tab-count {
-            background: rgba(255,255,255,0.2);
-        }
-
         /* Main Content */
         .newsroom-main {
             background: var(--bg-light);
             padding: 40px 24px 60px;
-        }
-
-        .newsroom-container {
-            max-width: 1140px;
-            margin: 0 auto;
         }
 
         /* Featured Article */
@@ -199,6 +66,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            z-index: 2;
         }
 
         .featured-content {
@@ -279,30 +147,35 @@
         .news-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 48px;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
         }
 
         .news-card {
+            display: flex;
+            flex-direction: column;
             background: var(--bg-white);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-light);
             text-decoration: none;
             color: inherit;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            transition: all 0.3s var(--ease-out);
         }
 
         .news-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .news-card.hidden {
+            display: none;
         }
 
         .card-image {
             position: relative;
-            height: 180px;
+            aspect-ratio: 3 / 2;
             overflow: hidden;
         }
 
@@ -310,53 +183,57 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
-            transition: transform 0.5s ease;
+            object-position: center center;
+            display: block;
+            transition: transform 0.5s var(--ease-out);
         }
 
         .news-card:hover .card-image img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .card-category {
             position: absolute;
-            top: 12px;
-            left: 12px;
+            top: 10px;
+            left: 10px;
             background: white;
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 4px;
-            font-size: 0.6875rem;
+            font-size: 0.625rem;
             font-weight: 700;
             text-transform: uppercase;
             color: var(--primary);
+            z-index: 2;
         }
 
         .card-content {
-            padding: 20px;
-            flex: 1;
+            padding: 1rem 1.25rem 1.25rem;
             display: flex;
             flex-direction: column;
+            flex: 1;
         }
 
         .card-date {
             font-size: 0.75rem;
-            color: var(--text-medium);
-            margin-bottom: 8px;
+            color: var(--text-light);
+            margin-bottom: 0.375rem;
         }
 
         .card-content h3 {
-            font-size: 1rem;
-            line-height: 1.45;
+            font-size: 0.9375rem;
+            line-height: 1.4;
             color: var(--text-dark);
-            margin-bottom: 10px;
-            flex: 1;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .card-excerpt {
             font-size: 0.8125rem;
             color: var(--text-medium);
-            line-height: 1.6;
-            margin-bottom: 16px;
+            line-height: 1.55;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -367,9 +244,11 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: var(--primary);
-            font-weight: 600;
+            margin-top: auto;
+            padding-top: 0.75rem;
             font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--primary);
         }
 
         .card-link svg {
@@ -382,101 +261,40 @@
             transform: translateX(4px);
         }
 
-        /* Newsletter CTA */
-        .newsletter-cta {
-            background: linear-gradient(135deg, var(--text-dark) 0%, #2d2d44 100%);
-            border-radius: 16px;
-            padding: 48px;
-            display: flex;
+        /* Load More */
+        .load-more-wrap {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .load-more-btn {
+            display: inline-flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            margin-bottom: 48px;
-        }
-
-        .newsletter-text h3 {
-            font-size: 1.5rem;
-            color: white;
-            margin-bottom: 8px;
-        }
-
-        .newsletter-text p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9375rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            background: white;
-            border-radius: 10px;
-            padding: 4px;
-            min-width: 380px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            border: none;
-            padding: 14px 16px;
-            font-size: 0.9375rem;
-            font-family: 'Manrope', sans-serif;
-            outline: none;
-            background: transparent;
-            min-width: 200px;
-        }
-
-        .newsletter-form button {
-            background: var(--primary);
-            border: none;
-            padding: 14px 24px;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .newsletter-form button:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .page-btn {
-            width: 40px;
-            height: 40px;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background: var(--bg-light);
             border: 1px solid var(--border-light);
-            background: var(--bg-white);
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            font-size: 0.875rem;
             font-weight: 600;
-            color: var(--text-medium);
+            font-family: inherit;
+            color: var(--text-dark);
+            cursor: pointer;
             transition: all 0.2s ease;
         }
 
-        .page-btn:hover {
+        .load-more-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
         }
 
-        .page-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
+        .load-more-btn svg {
+            width: 16px;
+            height: 16px;
         }
 
-        .page-btn svg {
-            width: 18px;
-            height: 18px;
+        .load-more-btn.hidden {
+            display: none;
         }
 
         /* Responsive */
@@ -492,34 +310,9 @@
             .featured-content {
                 padding: 32px;
             }
-
-            .news-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .newsletter-cta {
-                flex-direction: column;
-                text-align: center;
-                padding: 36px;
-            }
-
-            .newsletter-form {
-                min-width: auto;
-                width: 100%;
-                max-width: 400px;
-            }
         }
 
         @media (max-width: 768px) {
-            .category-tabs {
-                gap: 6px;
-            }
-
-            .category-tab {
-                padding: 8px 14px;
-                font-size: 0.8125rem;
-            }
-
             .newsroom-main {
                 padding: 32px 20px 48px;
             }
@@ -529,34 +322,14 @@
             }
 
             .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .news-grid {
                 grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .newsletter-cta {
-                padding: 28px 24px;
-            }
-
-            .newsletter-text h3 {
-                font-size: 1.25rem;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .newsletter-form button {
-                border-radius: 8px;
-            }
-
-            .ticker-item {
-                padding: 8px 20px;
-                font-size: 0.75rem;
-            }
-
-            .ticker-label {
-                padding: 8px 14px;
-                font-size: 0.6875rem;
             }
         }
     </style>
@@ -570,53 +343,99 @@
     <!-- Hero Section (loaded from components.js) -->
     <section class="page-hero page-hero-sm" id="page-hero" data-hero="newsroom"></section>
 
-    <!-- Milestones Ticker -->
-    <div class="ticker-bar">
-        <div class="ticker-label">Milestones since 2020</div>
-        <div class="ticker-wrapper">
-            <div class="ticker-track">
-                <div class="ticker-items">
-                    <div class="ticker-item">Record-breaking <strong>$108.3 million</strong> budget secured for fiscal year 2024</div>
-                    <div class="ticker-item"><strong>HB 1391</strong> established pay parity between circuit public defenders and district attorneys statewide</div>
-                    <div class="ticker-item"><strong>14 new regional offices</strong> opened — the largest expansion in GPDC history</div>
-                    <div class="ticker-item">Per-case attorney payments increased <strong>60%</strong> since 2020</div>
-                    <div class="ticker-item">The Ladders Program achieved a <strong>90% graduation rate</strong> in reducing recidivism</div>
-                    <div class="ticker-item"><strong>GPDC University</strong> launched as an online training platform for public defenders</div>
-                    <div class="ticker-item"><strong>Youth Advocacy Division</strong> established to serve juvenile clients statewide</div>
-                </div>
-                <div class="ticker-items">
-                    <div class="ticker-item">Record-breaking <strong>$108.3 million</strong> budget secured for fiscal year 2024</div>
-                    <div class="ticker-item"><strong>HB 1391</strong> established pay parity between circuit public defenders and district attorneys statewide</div>
-                    <div class="ticker-item"><strong>14 new regional offices</strong> opened — the largest expansion in GPDC history</div>
-                    <div class="ticker-item">Per-case attorney payments increased <strong>60%</strong> since 2020</div>
-                    <div class="ticker-item">The Ladders Program achieved a <strong>90% graduation rate</strong> in reducing recidivism</div>
-                    <div class="ticker-item"><strong>GPDC University</strong> launched as an online training platform for public defenders</div>
-                    <div class="ticker-item"><strong>Youth Advocacy Division</strong> established to serve juvenile clients statewide</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Category Tabs -->
-    <section class="category-section">
-        <div class="category-tabs">
-            <button class="category-tab active" data-filter="all">All News <span class="tab-count">15</span></button>
-            <button class="category-tab" data-filter="events">Events <span class="tab-count">5</span></button>
-            <button class="category-tab" data-filter="local-offices">Local Offices <span class="tab-count">4</span></button>
-            <button class="category-tab" data-filter="training">Training <span class="tab-count">5</span></button>
-            <button class="category-tab" data-filter="divisions">Divisions <span class="tab-count">1</span></button>
-        </div>
-    </section>
+    <div class="page-filters">
+        <button class="filter-btn active" data-filter="all">All News <span class="tab-count">15</span></button>
+        <button class="filter-btn" data-filter="events">Events <span class="tab-count">5</span></button>
+        <button class="filter-btn" data-filter="local-offices">Local Offices <span class="tab-count">4</span></button>
+        <button class="filter-btn" data-filter="training">Training <span class="tab-count">5</span></button>
+        <button class="filter-btn" data-filter="divisions">Divisions <span class="tab-count">1</span></button>
+    </div>
 
     <!-- Main Content -->
     <section class="newsroom-main">
-        <div class="newsroom-container">
+        <div class="newsroom-layout">
+
+            <!-- Milestones Sidebar -->
+            <aside class="milestones-sidebar">
+                <div class="milestones-panel">
+                    <h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20V10M18 20V4M6 20v-4"/>
+                        </svg>
+                        Key Milestones
+                    </h3>
+
+                    <div class="milestone-item">
+                        <div class="milestone-header">
+                            <span class="milestone-stat"><small>2020</small>Pandemic Stability</span>
+                            <svg class="milestone-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                        <div class="milestone-detail">
+                            <p>Zero furloughs. Zero hiring freezes. New leadership steered GPDC through COVID-19 court shutdowns while protecting every staff position.</p>
+                        </div>
+                    </div>
+
+                    <div class="milestone-item">
+                        <div class="milestone-header">
+                            <span class="milestone-stat"><small>2021</small>Federal Investment</span>
+                            <svg class="milestone-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                        <div class="milestone-detail">
+                            <p>Secured ARPA funding to clear pandemic case backlogs and expand capacity statewide.</p>
+                        </div>
+                    </div>
+
+                    <div class="milestone-item">
+                        <div class="milestone-header">
+                            <span class="milestone-stat"><small>2022</small>Pay Equity</span>
+                            <svg class="milestone-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                        <div class="milestone-detail">
+                            <p>HB 1391 established compensation parity between Circuit Public Defenders and District Attorneys — a first in Georgia history.</p>
+                        </div>
+                    </div>
+
+                    <div class="milestone-item">
+                        <div class="milestone-header">
+                            <span class="milestone-stat"><small>2023–24</small>Leadership Pipeline</span>
+                            <svg class="milestone-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                        <div class="milestone-detail">
+                            <p>Launched annual conferences, the Certified Public Defender Manager Program, and partnerships with UGA Law and the Carl Vinson Institute.</p>
+                        </div>
+                    </div>
+
+                    <div class="milestone-item">
+                        <div class="milestone-header">
+                            <span class="milestone-stat"><small>2025</small>Expansion & Reform</span>
+                            <svg class="milestone-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                        <div class="milestone-detail">
+                            <p>New regional offices opened, largest-ever all-agency conference held, and a proposed APD-ADA common pay scale advanced for legislative review.</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- News Content -->
+            <div class="newsroom-content">
 
             <!-- Featured Article -->
             <a href="articles/prescott-augusta-circuit.html" class="featured-article" data-category="local-offices">
                 <div class="featured-image">
                     <span class="featured-badge">Featured</span>
-                    <img src="https://gapubdef.org/wp-content/uploads/Prescott-Lee-1024x683.jpg" alt="Lee Prescott, Augusta Circuit Public Defender">
+                    <img src="https://gapubdef.org/wp-content/uploads/Prescott-Lee-scaled.jpg" alt="Lee Prescott, Augusta Circuit Public Defender">
                 </div>
                 <div class="featured-content">
                     <div class="featured-meta">
@@ -662,7 +481,7 @@
                 <a href="articles/dekalb-to-kenya-training.html" class="news-card" data-category="training">
                     <div class="card-image">
                         <span class="card-category">Training</span>
-                        <img src="https://gapubdef.org/wp-content/uploads/Faculty-1024x768.jpeg" alt="DeKalb defenders training in Kenya">
+                        <img src="https://gapubdef.org/wp-content/uploads/Faculty.jpeg" alt="DeKalb defenders training in Kenya">
                     </div>
                     <div class="card-content">
                         <div class="card-date">August 20, 2025</div>
@@ -680,7 +499,7 @@
                 <a href="articles/leadership-academy-continuation-2025.html" class="news-card" data-category="training">
                     <div class="card-image">
                         <span class="card-category">Training</span>
-                        <img src="https://gapubdef.org/wp-content/uploads/Leadership-Academy-Graduation-12-1-1024x683.jpg" alt="Leadership Academy Graduates">
+                        <img src="https://gapubdef.org/wp-content/uploads/Leadership-Academy-Graduation-12-1-scaled.jpg" alt="Leadership Academy Graduates">
                     </div>
                     <div class="card-content">
                         <div class="card-date">August 11, 2025</div>
@@ -716,7 +535,7 @@
                 <a href="articles/fletcher-award-public-defense.html" class="news-card" data-category="events">
                     <div class="card-image">
                         <span class="card-category">Events</span>
-                        <img src="https://gapubdef.org/wp-content/uploads/IMG_4978-scaled.jpeg" alt="Justice Fletcher Award Ceremony">
+                        <img src="https://gapubdef.org/wp-content/uploads/Justice-Fletcher-Award-Summer-Conf-2025-2-1-scaled.jpg" alt="Justice Fletcher Award Ceremony">
                     </div>
                     <div class="card-content">
                         <div class="card-date">July 24, 2025</div>
@@ -734,7 +553,7 @@
                 <a href="articles/leadership-academy-graduates-2025.html" class="news-card" data-category="events">
                     <div class="card-image">
                         <span class="card-category">Events</span>
-                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200c524675d5f75d8021d_Leadership%20Academy%20Graduation-10%20Large.jpeg" alt="Leadership Academy Graduation">
+                        <img src="https://gapubdef.org/wp-content/uploads/Leadership-Academy-Graduation-8-scaled.jpeg" alt="Leadership Academy Graduation">
                     </div>
                     <div class="card-content">
                         <div class="card-date">June 4, 2025</div>
@@ -749,10 +568,10 @@
                     </div>
                 </a>
 
-                <a href="articles/cpm-commencement-keynote.html" class="news-card" data-category="training">
+                <a href="articles/cpm-commencement-keynote.html" class="news-card hidden" data-category="training">
                     <div class="card-image">
                         <span class="card-category">Training</span>
-                        <img src="https://gapubdef.org/wp-content/uploads/1Q8A0031-1024x683.jpg" alt="CPM Commencement Keynote">
+                        <img src="https://gapubdef.org/wp-content/uploads/1Q8A0031-scaled.jpg" alt="CPM Commencement Keynote">
                     </div>
                     <div class="card-content">
                         <div class="card-date">May 22, 2025</div>
@@ -767,10 +586,10 @@
                     </div>
                 </a>
 
-                <a href="articles/youth-defense-conference-2025.html" class="news-card" data-category="events">
+                <a href="articles/youth-defense-conference-2025.html" class="news-card hidden" data-category="events">
                     <div class="card-image">
                         <span class="card-category">Events</span>
-                        <img src="https://gapubdef.org/wp-content/uploads/1Q8A9747-1024x683.jpg" alt="Youth Defense Conference">
+                        <img src="https://gapubdef.org/wp-content/uploads/1Q8A9747-scaled.jpg" alt="Youth Defense Conference">
                     </div>
                     <div class="card-content">
                         <div class="card-date">May 19, 2025</div>
@@ -785,10 +604,10 @@
                     </div>
                 </a>
 
-                <a href="articles/cpd-training-brunswick-2025.html" class="news-card" data-category="training">
+                <a href="articles/cpd-training-brunswick-2025.html" class="news-card hidden" data-category="training">
                     <div class="card-image">
                         <span class="card-category">Training</span>
-                        <img src="https://gapubdef.org/wp-content/uploads/IMG_4978-scaled.jpeg" alt="Brunswick Training">
+                        <img src="https://gapubdef.org/wp-content/uploads/1Q8A9736-scaled.jpg" alt="CPD Training in Brunswick">
                     </div>
                     <div class="card-content">
                         <div class="card-date">May 15, 2025</div>
@@ -803,7 +622,7 @@
                     </div>
                 </a>
 
-                <a href="articles/syrop-sworn-in-paulding-circuit.html" class="news-card" data-category="local-offices">
+                <a href="articles/syrop-sworn-in-paulding-circuit.html" class="news-card hidden" data-category="local-offices">
                     <div class="card-image">
                         <span class="card-category">Local Offices</span>
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/6817d4509735081b444bfe07_1Q8A9538-2048x1365.jpg" alt="Syrop Sworn In">
@@ -821,10 +640,10 @@
                     </div>
                 </a>
 
-                <a href="articles/golf-tournament-public-defense.html" class="news-card" data-category="events">
+                <a href="articles/golf-tournament-public-defense.html" class="news-card hidden" data-category="events">
                     <div class="card-image">
                         <span class="card-category">Events</span>
-                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67d9eeebe731ac5a59774191_1Q8A9207.jpg" alt="Golf Tournament">
+                        <img src="https://gapubdef.org/wp-content/uploads/1Q8A9303-scaled.jpg" alt="GPDC Foundation Golf Tournament">
                     </div>
                     <div class="card-content">
                         <div class="card-date">April 8, 2025</div>
@@ -839,10 +658,10 @@
                     </div>
                 </a>
 
-                <a href="articles/gpdc-installs-new-leaders.html" class="news-card" data-category="local-offices">
+                <a href="articles/gpdc-installs-new-leaders.html" class="news-card hidden" data-category="local-offices">
                     <div class="card-image">
                         <span class="card-category">Local Offices</span>
-                        <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/6817d544297131b05455d3b3_1Q8A9303-2048x1365.jpg" alt="Installation Ceremony">
+                        <img src="https://gapubdef.org/wp-content/uploads/1Q8A9207-scaled.jpg" alt="New Circuit Public Defenders Installation">
                     </div>
                     <div class="card-content">
                         <div class="card-date">March 17, 2025</div>
@@ -857,7 +676,7 @@
                     </div>
                 </a>
 
-                <a href="articles/customer-service-initiative.html" class="news-card" data-category="divisions">
+                <a href="articles/customer-service-initiative.html" class="news-card hidden" data-category="divisions">
                     <div class="card-image">
                         <span class="card-category">Divisions</span>
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/66e891aa2febf78fe64b3da0_1Q8A3235_2.jpg" alt="Customer Service Initiative">
@@ -875,7 +694,7 @@
                     </div>
                 </a>
 
-                <a href="articles/leadership-academy-2024.html" class="news-card" data-category="training">
+                <a href="articles/leadership-academy-2024.html" class="news-card hidden" data-category="training">
                     <div class="card-image">
                         <span class="card-category">Training</span>
                         <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/6787f196c0dfd7063d06fa8f_1Q8A6310.png" alt="Leadership Academy">
@@ -894,35 +713,17 @@
                 </a>
             </div>
 
-            <!-- Newsletter CTA -->
-            <div class="newsletter-cta">
-                <div class="newsletter-text">
-                    <h3>Stay Updated</h3>
-                    <p>Get the latest news and updates delivered to your inbox.</p>
-                </div>
-                <form class="newsletter-form" onsubmit="return false;">
-                    <input type="email" placeholder="Enter your email">
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-
-            <!-- Pagination -->
-            <div class="pagination">
-                <button class="page-btn" disabled>
+            <!-- Load More -->
+            <div class="load-more-wrap">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    Load More Articles
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 18l-6-6 6-6"/>
-                    </svg>
-                </button>
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <button class="page-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 18l6-6-6-6"/>
+                        <path d="M6 9l6 6 6-6"/>
                     </svg>
                 </button>
             </div>
 
+            </div>
         </div>
     </section>
 
@@ -933,40 +734,76 @@
     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const categoryTabs = document.querySelectorAll('.category-tab');
+            const BATCH = 6;
+            const filterBtns = document.querySelectorAll('.page-filters .filter-btn');
             const featuredArticle = document.querySelector('.featured-article');
-            const newsCards = document.querySelectorAll('.news-card');
+            const allCards = Array.from(document.querySelectorAll('.news-card'));
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            let visibleCount = BATCH;
+            let activeFilter = 'all';
 
-            // Category filter
-            categoryTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    categoryTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
+            function applyVisibility() {
+                const matching = activeFilter === 'all'
+                    ? allCards
+                    : allCards.filter(c => c.dataset.category === activeFilter);
 
-                    const filter = tab.dataset.filter;
+                // Featured article: only show on "all"
+                featuredArticle.style.display = activeFilter === 'all' ? 'grid' : 'none';
 
-                    // Featured article only shows on "All"
-                    if (filter === 'all') {
-                        featuredArticle.style.display = 'grid';
-                    } else {
-                        featuredArticle.style.display = 'none';
+                allCards.forEach(card => {
+                    const matches = activeFilter === 'all' || card.dataset.category === activeFilter;
+                    if (!matches) {
+                        card.classList.add('hidden');
+                        return;
                     }
+                    const idx = matching.indexOf(card);
+                    if (activeFilter === 'all' && idx >= visibleCount) {
+                        card.classList.add('hidden');
+                    } else {
+                        card.classList.remove('hidden');
+                        // Fade-in animation
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(10px)';
+                        setTimeout(() => {
+                            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    }
+                });
 
-                    // Filter news cards with animation
-                    newsCards.forEach(card => {
-                        if (filter === 'all' || card.dataset.category === filter) {
-                            card.style.display = 'flex';
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(10px)';
-                            setTimeout(() => {
-                                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            }, 50);
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
+                // Show/hide Load More button
+                if (activeFilter === 'all') {
+                    loadMoreBtn.classList.toggle('hidden', visibleCount >= allCards.length);
+                } else {
+                    loadMoreBtn.classList.add('hidden');
+                }
+            }
+
+            // Filter buttons
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeFilter = btn.dataset.filter;
+                    visibleCount = BATCH;
+                    applyVisibility();
+                });
+            });
+
+            // Load More
+            loadMoreBtn.addEventListener('click', () => {
+                visibleCount += BATCH;
+                applyVisibility();
+            });
+
+            // Initial state
+            applyVisibility();
+
+            // Milestones accordion
+            document.querySelectorAll('.milestone-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    header.parentElement.classList.toggle('open');
                 });
             });
         });

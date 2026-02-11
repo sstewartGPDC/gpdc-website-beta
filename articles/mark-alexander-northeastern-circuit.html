@@ -13,22 +13,25 @@
     <div class="page-transition" id="pageTransition"></div>
     <div id="site-header"></div>
 
-    <section class="article-header">
+    <section class="article-header reveal">
         <div class="article-header-inner">
             <div class="article-meta">
                 <span class="article-category">Local Offices</span>
+                <span class="article-meta-divider"></span>
                 <span class="article-date">September 16, 2025</span>
             </div>
             <h1>Mark Alexander Appointed Circuit Public Defender for Northeastern Judicial Circuit</h1>
+            <hr class="article-header-rule">
         </div>
     </section>
 
-    <div class="article-featured-image">
+    <div class="article-featured-image reveal">
         <img src="https://gapubdef.org/wp-content/uploads/Alexander_Mark_Photo.jpg" alt="Mark Alexander, Circuit Public Defender for Northeastern Judicial Circuit">
     </div>
 
     <!-- Article Content -->
-    <article class="article-content">
+    <div class="article-layout">
+    <article class="article-content reveal">
         <div class="article-body">
             <p>Mark Alexander has been named the new Circuit Public Defender for the Northeastern Judicial Circuit, bringing more than three decades of courtroom experience to a role that carries significant responsibility for indigent defense in the region. Alexander succeeds Brad Morris, who served in the position for over twenty years and oversaw the handling of more than 67,000 cases during his tenure.</p>
 
@@ -42,9 +45,71 @@
         </div>
     </article>
 
+        <!-- Article Sidebar -->
+        <aside class="article-sidebar reveal">
+            <div class="article-sidebar-panel">
+                <div class="sidebar-section">
+                    <div class="sidebar-label">Published</div>
+                    <div class="sidebar-value">September 16, 2025</div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-label">Category</div>
+                    <div class="sidebar-value">Local Offices</div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-label">Reading Time</div>
+                    <div class="sidebar-value">2 min read</div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-label">Share</div>
+                    <div class="sidebar-share">
+                        <button class="sidebar-share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank')">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        </button>
+                        <button class="sidebar-share-btn" onclick="window.open('https://www.linkedin.com/shareArticle?url='+encodeURIComponent(location.href),'_blank')">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z"/></svg>
+                        </button>
+                        <button class="sidebar-share-btn" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href),'_blank')">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <div class="sidebar-label">Related</div>
+                    <ul class="sidebar-related">
+                        <li><a href="prescott-augusta-circuit.html">Prescott to Lead Augusta Public Defender Office</a></li>
+                        <li><a href="syrop-sworn-in-paulding-circuit.html">Veteran Cobb Defense Attorney Syrop Sworn in as Paulding ...</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Article Footer -->
+    <div class="article-page-footer reveal">
+        <a href="../newsroom.html" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Newsroom
+        </a>
+    </div>
+
     <div id="site-footer"></div>
 
     <script src="../js/components.js"></script>
     <script src="../js/main.js"></script>
+
+    <script>
+        // Scroll-triggered reveal
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => revealObserver.observe(el));
+    </script>
 </body>
 </html>

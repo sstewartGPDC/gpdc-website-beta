@@ -25,43 +25,6 @@
             margin: 0 auto;
         }
 
-        /* Team Navigation Tabs */
-        .team-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem 1.5rem;
-            background: var(--bg-white);
-            border-bottom: 1px solid var(--border-light);
-            position: sticky;
-            top: 60px;
-            z-index: 100;
-            flex-wrap: wrap;
-        }
-
-        .team-tab {
-            padding: 0.625rem 1.25rem;
-            border: none;
-            background: transparent;
-            font-family: 'Manrope', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-medium);
-            cursor: pointer;
-            border-radius: 50px;
-            transition: all 0.3s var(--ease-out);
-        }
-
-        .team-tab:hover {
-            background: var(--bg-light);
-            color: var(--text-dark);
-        }
-
-        .team-tab.active {
-            background: var(--primary);
-            color: white;
-        }
-
         /* Featured Executive */
         .featured-executive {
             padding: 3rem 1.5rem;
@@ -301,16 +264,6 @@
 
             .featured-credentials {
                 justify-content: center;
-            }
-
-            .team-tabs {
-                gap: 0.375rem;
-                padding: 0.75rem 1rem;
-            }
-
-            .team-tab {
-                padding: 0.5rem 1rem;
-                font-size: 0.8125rem;
             }
 
             .team-grid-new {
@@ -920,10 +873,10 @@
 
     <!-- Team Navigation Tabs -->
     <div class="team-tabs">
-        <button class="team-tab active" data-section="executives">Executives</button>
-        <button class="team-tab" data-section="directors">Division Directors</button>
-        <button class="team-tab" data-section="cpds">Circuit Public Defenders</button>
-        <button class="team-tab" data-section="council">Council Members</button>
+        <button class="filter-btn active" data-section="executives">Executives</button>
+        <button class="filter-btn" data-section="directors">Division Directors</button>
+        <button class="filter-btn" data-section="cpds">Circuit Public Defenders</button>
+        <button class="filter-btn" data-section="council">Council Members</button>
     </div>
 
     <!-- Featured Executive Director -->
@@ -1587,10 +1540,10 @@ ${message}`;
         document.addEventListener('DOMContentLoaded', populateCPDs);
 
         // Team tabs functionality
-        document.querySelectorAll('.team-tab').forEach(tab => {
+        document.querySelectorAll('.team-tabs .filter-btn').forEach(tab => {
             tab.addEventListener('click', function() {
                 // Update active tab
-                document.querySelectorAll('.team-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.team-tabs .filter-btn').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
 
                 const section = this.dataset.section;

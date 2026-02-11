@@ -223,9 +223,18 @@
         // Apply hero position (for pages with inline hero)
         applyHeroPosition();
 
-        // Load header and footer
+        // Inject Connect With Us section before footer (if footer placeholder exists)
+        const footerEl = document.getElementById('site-footer');
+        if (footerEl && !document.getElementById('site-connect')) {
+            const connectEl = document.createElement('div');
+            connectEl.id = 'site-connect';
+            footerEl.parentNode.insertBefore(connectEl, footerEl);
+        }
+
+        // Load header, connect section, and footer
         Promise.all([
             loadComponent('site-header', 'components/header.html', basePath),
+            loadComponent('site-connect', 'components/connect.html', basePath),
             loadComponent('site-footer', 'components/footer.html', basePath)
         ]).then(() => {
             // Re-initialize navigation functionality after components load

@@ -487,23 +487,6 @@ function initSmoothScroll() {
     });
 }
 
-// ==================== SCROLL PROGRESS BAR ====================
-function initScrollProgress() {
-    // Create progress bar element
-    const progressBar = document.createElement('div');
-    progressBar.className = 'scroll-progress';
-    progressBar.innerHTML = '<div class="scroll-progress-bar"></div>';
-    document.body.appendChild(progressBar);
-
-    const progressFill = progressBar.querySelector('.scroll-progress-bar');
-
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        progressFill.style.width = scrollPercent + '%';
-    });
-}
 
 // ==================== BACK TO TOP BUTTON ====================
 function initBackToTop() {
@@ -1354,6 +1337,9 @@ function showTutorial() {
 
 // ==================== READING TIME ESTIMATE ====================
 function initReadingTime() {
+    // Skip on article pages that have their own sidebar with reading time
+    if (document.querySelector('.article-layout')) return;
+
     // Find article content areas
     const articles = document.querySelectorAll('.news-article-content, .article-content, [data-reading-time]');
 
@@ -1425,19 +1411,6 @@ function initReadingTime() {
     });
 }
 
-// ==================== NEWSLETTER TOGGLE ====================
-function initNewsletter() {
-    const toggle = document.getElementById('newsletterToggle');
-    const section = toggle?.closest('.newsletter-section');
-
-    if (!toggle || !section) return;
-
-    toggle.addEventListener('click', () => {
-        const isExpanded = section.classList.toggle('expanded');
-        toggle.setAttribute('aria-expanded', isExpanded);
-    });
-}
-
 // ==================== INITIALIZE ALL ====================
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
@@ -1445,7 +1418,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initButtonRipples();
     initPageTransitions();
     initSmoothScroll();
-    initScrollProgress();
+
     initBackToTop();
     initAnimatedStats();
     initDarkMode();
@@ -1466,18 +1439,12 @@ document.addEventListener('DOMContentLoaded', () => {
             initCircuitSearch();
             initTypewriter();
         }
-        if (e.detail && e.detail.component === 'components/footer.html') {
-            initNewsletter();
-        }
     });
 
     // Fallback: also try initializing if elements already exist
     if (document.getElementById('defenderSearch')) {
         initCircuitSearch();
         initTypewriter();
-    }
-    if (document.getElementById('newsletterToggle')) {
-        initNewsletter();
     }
 });
 
