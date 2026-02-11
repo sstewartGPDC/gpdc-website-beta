@@ -12,7 +12,7 @@
         /* Modern Division Page Styles */
         .division-hero {
             position: relative;
-            padding: 8rem 0 5rem;
+            padding: 7rem 0 4rem;
             background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
             overflow: hidden;
         }
@@ -39,24 +39,18 @@
         }
 
         .division-hero-inner {
-            max-width: 1100px;
+            max-width: 720px;
             margin: 0 auto;
             padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: 1fr 340px;
-            gap: 3rem;
-            align-items: center;
+            text-align: center;
             position: relative;
             z-index: 1;
-        }
-
-        .division-hero-content {
-            max-width: 600px;
         }
 
         .division-hero-content .breadcrumb {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             font-size: 0.8125rem;
             color: var(--text-light);
@@ -100,69 +94,7 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-        }
-
-        /* Co-Manager Profile Cards */
-        .leaders-duo {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .leader-mini-card {
-            background: var(--bg-white);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        .leader-mini-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-2px);
-        }
-
-        .leader-mini-image {
-            width: 110px;
-            height: 130px;
-            flex-shrink: 0;
-            overflow: hidden;
-        }
-
-        .leader-mini-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-        }
-
-        .leader-mini-info {
-            padding: 1rem 1.25rem 1rem 0;
-            flex: 1;
-        }
-
-        .leader-mini-info h3 {
-            font-size: 1.0625rem;
-            color: var(--text-dark);
-            margin-bottom: 0.125rem;
-            line-height: 1.3;
-        }
-
-        .leader-mini-info .leader-title {
-            font-size: 0.8125rem;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 0.125rem;
-        }
-
-        .leader-mini-info .leader-program {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            font-weight: 500;
+            justify-content: center;
         }
 
         /* About Section */
@@ -260,19 +192,55 @@
         /* (Contact section removed — handled by global Connect component) */
 
 /* ============================================
-   Section 1: Department Introduction
+   Managers Bar
    ============================================ */
 
-.dept-intro { padding: 5rem 0; background: var(--bg-light); }
-.dept-intro-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-.dept-intro-header { text-align: center; margin-bottom: 3rem; }
-.dept-intro-header h2 { font-size: 2.5rem; color: var(--text-dark); margin-bottom: 1rem; line-height: 1.15; }
-.dept-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.dept-intro-card { background: var(--bg-white); border-radius: 20px; padding: 2rem; }
-.dept-intro-icon { width: 48px; height: 48px; background: var(--primary-subtle); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
-.dept-intro-icon svg { width: 24px; height: 24px; color: var(--primary); }
-.dept-intro-card h3 { font-size: 1.125rem; color: var(--text-dark); margin-bottom: 0.75rem; }
-.dept-intro-card p { font-size: 0.875rem; color: var(--text-medium); line-height: 1.7; }
+.managers-bar { background: var(--bg-white); padding: 3rem 0; border-bottom: 1px solid var(--border-light); }
+.managers-bar-inner { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.manager-card { display: flex; gap: 1.5rem; align-items: center; background: var(--bg-white); border-radius: 24px; padding: 1.25rem 1.5rem; box-shadow: var(--shadow-lg); transition: all 0.4s var(--ease-out); overflow: hidden; }
+.manager-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+.manager-photo { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 3px solid var(--bg-light); }
+.manager-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.manager-info h3 { font-size: 1.125rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.25rem; }
+.manager-info .manager-role { font-size: 0.8125rem; color: var(--primary); font-weight: 600; margin: 0 0 0.125rem; }
+.manager-info .manager-program { font-size: 0.75rem; color: var(--text-light); font-weight: 500; margin: 0 0 0.75rem; }
+.manager-contact-icons { display: flex; gap: 0.5rem; }
+.manager-contact-icons a { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-light); display: flex; align-items: center; justify-content: center; color: var(--text-medium); transition: all 0.3s ease; text-decoration: none; }
+.manager-contact-icons a:hover { background: var(--primary); color: white; }
+.manager-contact-icons svg { width: 16px; height: 16px; }
+
+/* ============================================
+   Section 1: What We Do — Visual Impact Section
+   ============================================ */
+
+.what-we-do { padding: 0; background: var(--bg-white); overflow: hidden; }
+
+/* Top Row: Photo + Text Split */
+.wwd-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
+.wwd-hero-image { position: relative; overflow: hidden; }
+.wwd-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+.wwd-hero-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, var(--bg-white) 100%); }
+.wwd-hero-text { display: flex; flex-direction: column; justify-content: center; padding: 4rem 3.5rem 4rem 2.5rem; max-width: 560px; }
+.wwd-hero-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary); margin-bottom: 1rem; }
+.wwd-hero-label::before { content: ''; width: 32px; height: 2px; background: var(--primary); }
+.wwd-hero-text h2 { font-size: 2.5rem; color: var(--text-dark); line-height: 1.15; margin-bottom: 1.25rem; }
+.wwd-hero-text p { font-size: 1.0625rem; color: var(--text-medium); line-height: 1.8; margin: 0; }
+
+/* Service Areas — Bold Feature Section */
+.wwd-services { padding: 4.5rem 0; background: var(--bg-light); border-top: 1px solid var(--border-light); }
+.wwd-services-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+.wwd-services-header { text-align: center; margin-bottom: 2.5rem; }
+.wwd-services-label { display: inline-flex; align-items: center; gap: 0.625rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary); margin-bottom: 0.625rem; }
+.wwd-services-label::before, .wwd-services-label::after { content: ''; width: 24px; height: 2px; background: var(--primary-subtle); }
+.wwd-services-header h3 { font-size: 1.75rem; color: var(--text-dark); margin: 0; }
+.wwd-services-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+.wwd-service-item { display: flex; flex-direction: column; align-items: center; gap: 0.875rem; text-align: center; padding: 2rem 1.25rem; border-radius: 20px; background: var(--bg-white); transition: all 0.3s ease; border: 1px solid var(--border-light); }
+.wwd-service-item:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--primary-subtle); }
+.wwd-service-icon { width: 64px; height: 64px; border-radius: 18px; background: var(--primary-subtle); display: flex; align-items: center; justify-content: center; color: var(--primary); transition: all 0.3s ease; }
+.wwd-service-item:hover .wwd-service-icon { background: var(--primary); color: white; }
+.wwd-service-icon svg { width: 28px; height: 28px; }
+.wwd-service-name { font-size: 0.9375rem; font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+.wwd-service-desc { font-size: 0.8125rem; color: var(--text-medium); line-height: 1.5; }
 
 
 /* ============================================
@@ -284,12 +252,6 @@
 .program-basics-top { text-align: center; margin-bottom: 2.5rem; }
 .program-basics-top h2 { font-size: 2.25rem; color: var(--text-dark); margin-bottom: 0.75rem; }
 .program-basics-top p:not(.label) { font-size: 1.0625rem; color: var(--text-medium); max-width: 640px; margin: 0 auto; }
-.program-basics-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.5rem; margin-bottom: 2.5rem; }
-.program-basics-stat { text-align: center; background: var(--bg-white); border-radius: 20px; padding: 1.75rem 1.25rem; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.program-basics-stat:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-.program-basics-stat::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: var(--primary); border-radius: 0 0 4px 4px; }
-.program-basics-stat-value { font-family: 'Ubuntu', sans-serif; font-size: 2.75rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 0.5rem; display: block; }
-.program-basics-stat-label { font-size: 0.7rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.1em; }
 .program-basics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
 /* Quiz CTA — visible terracotta pill */
@@ -339,6 +301,20 @@
 .ladders-card .program-basics-cta:hover { background: #5A8F7B; color: #fff; }
 .program-basics-cta svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
 .program-basics-cta:hover svg { transform: translateX(3px); }
+
+/* Crisis Resources Banner */
+.crisis-banner { background: var(--bg-white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 2.5rem 0; }
+.crisis-banner-inner { max-width: 1200px; margin: 0 auto; padding: 1.75rem 2rem; background: var(--bg-light); border-radius: 16px; border-left: 4px solid #c0392b; display: flex; align-items: center; gap: 2rem; }
+.crisis-banner-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(192, 57, 43, 0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #c0392b; }
+.crisis-banner-icon svg { width: 24px; height: 24px; }
+.crisis-banner-content { flex: 1; min-width: 0; }
+.crisis-banner-content h3 { font-size: 1.125rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.25rem; }
+.crisis-banner-content p { font-size: 0.875rem; color: var(--text-medium); margin: 0; }
+.crisis-banner-links { display: flex; gap: 1rem; flex-shrink: 0; }
+.crisis-banner-link { display: flex; flex-direction: column; background: var(--bg-white); border-radius: 12px; padding: 0.875rem 1.25rem; border: 1px solid var(--border-light); text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; min-width: 160px; }
+.crisis-banner-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.crisis-banner-number { font-weight: 700; color: #c0392b; font-size: 1rem; line-height: 1.3; }
+.crisis-banner-name { font-size: 0.6875rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-top: 0.125rem; }
 
 
 /* ============================================
@@ -573,18 +549,13 @@
 }
 
 /* CSS experience contact/CTA section */
-.css-exp-contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 3rem;
-    align-items: center;
-}
-
 .css-exp-contact-cta {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
 }
 
 .css-exp-contact-cta h3 {
@@ -603,12 +574,6 @@
     margin-bottom: 2rem;
     font-size: 1.125rem;
     line-height: 1.7;
-}
-
-.css-exp-contact-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
 }
 
 
@@ -1080,60 +1045,7 @@
             opacity: 0.5;
         }
 
-        /* Crisis Card */
-        .css-crisis-card {
-            background: rgba(220, 38, 38, 0.1);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid rgba(220, 38, 38, 0.2);
-        }
-
-        .css-crisis-card h4 {
-            color: #ef4444;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .css-crisis-card h4 svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .css-crisis-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .css-crisis-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--css-bg-card);
-            border-radius: 10px;
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .css-crisis-link:hover {
-            transform: translateX(4px);
-        }
-
-        .css-crisis-link .crisis-number {
-            color: var(--css-text);
-            font-weight: 700;
-            font-size: 0.9375rem;
-        }
-
-        .css-crisis-link .crisis-name {
-            color: var(--css-text-secondary);
-            font-size: 0.8125rem;
-        }
+        /* Crisis Card — removed, now on main page */
 
         /* Scroll Reveal Animation */
         .css-reveal {
@@ -2279,6 +2191,13 @@
             transform: translateY(0);
         }
 
+        /* ── Graduate Testimonial ── */
+        .ld-testimonial { padding: 3rem 0; text-align: center; }
+        .ld-testimonial-card { max-width: 640px; margin: 0 auto; padding: 2.5rem; background: rgba(255,255,255,0.04); border-radius: 20px; border: 1px solid rgba(255,255,255,0.06); }
+        .ld-testimonial-card blockquote { font-size: 1.1875rem; font-style: italic; color: rgba(255,255,255,0.85); line-height: 1.7; margin: 0; }
+        .ld-testimonial-card cite { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-top: 1.5rem; font-style: normal; font-size: 0.875rem; color: var(--ld-green); font-weight: 600; }
+        .ld-cite-line { width: 24px; height: 2px; background: var(--ld-green); flex-shrink: 0; }
+
         /* ── Apply CTA ── */
         .ld-apply {
             padding: 4rem 0 3rem;
@@ -2383,16 +2302,6 @@
             .division-hero-content .breadcrumb { justify-content: center; }
             .division-hero-content h1 { font-size: 2.25rem; }
             .division-hero-actions { justify-content: center; }
-            .leaders-duo {
-                flex-direction: row;
-                gap: 1rem;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            .leader-mini-card { flex-direction: column; text-align: center; }
-            .leader-mini-image { width: 100%; height: 140px; }
-            .leader-mini-info { padding: 0.75rem 1rem 1rem; }
-
             /* About / Services */
             .division-about-content { grid-template-columns: 1fr; }
             .services-grid-modern { grid-template-columns: 1fr; }
@@ -2433,14 +2342,24 @@
             .ld-quiz-options { grid-template-columns: 1fr 1fr; }
             .ld-apply h3 { font-size: 2.5rem; }
 
-            /* Department Intro */
-            .dept-intro-grid { grid-template-columns: 1fr; }
-            .dept-intro-header h2 { font-size: 2rem; }
+            /* Managers Bar */
+            .managers-bar-inner { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+            /* What We Do */
+            .wwd-hero { grid-template-columns: 1fr; min-height: auto; }
+            .wwd-hero-image { height: 320px; }
+            .wwd-hero-image::after { background: linear-gradient(to bottom, transparent 60%, var(--bg-white) 100%); }
+            .wwd-hero-text { padding: 2.5rem 1.5rem; max-width: 100%; text-align: center; }
+            .wwd-hero-text h2 { font-size: 2rem; }
+            .wwd-services-grid { grid-template-columns: repeat(3, 1fr); }
 
             /* Program Basics */
-            .program-basics-stats { grid-template-columns: repeat(2, 1fr); }
             .program-basics-grid { grid-template-columns: 1fr; max-width: 540px; margin-left: auto; margin-right: auto; }
             .program-basics-top h2 { font-size: 1.875rem; }
+
+            /* Crisis Banner */
+            .crisis-banner-inner { flex-direction: column; text-align: center; gap: 1.25rem; }
+            .crisis-banner-links { margin-left: 0; justify-content: center; }
 
             /* Unified Overlay */
             .unified-overlay.open { padding-left: 48px; }
@@ -2449,7 +2368,6 @@
             /* CSS Experience */
             .css-exp-hero h2 { font-size: 2.75rem; }
             .css-exp-hero { min-height: 50vh; }
-            .css-exp-contact-grid { grid-template-columns: 1fr; }
             .css-exp-contact-cta h3 { font-size: 2rem; }
         }
 
@@ -2518,24 +2436,33 @@
             .css-exp-hero h2 { font-size: 2rem; }
             .css-exp-hero-sub { font-size: 1rem; }
             .css-exp-section { padding: 0 1.25rem 3rem; }
-            .css-exp-contact-grid { grid-template-columns: 1fr; gap: 2rem; }
             .css-exp-contact-cta h3 { font-size: 1.75rem; }
 
-            /* Department Intro mobile */
-            .dept-intro { padding: 3rem 0; }
-            .dept-intro-header h2 { font-size: 1.75rem; }
-            .dept-intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+            /* What We Do mobile */
+            .wwd-hero-image { height: 240px; }
+            .wwd-hero-text { padding: 2rem 1.25rem; }
+            .wwd-hero-text h2 { font-size: 1.75rem; }
+            .wwd-hero-text p { font-size: 0.9375rem; }
+            .wwd-services { padding: 3rem 0; }
+            .wwd-services-header h3 { font-size: 1.375rem; }
+            .wwd-services-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .wwd-service-item { padding: 1.25rem 1rem; }
+            .wwd-service-icon { width: 52px; height: 52px; }
+            .wwd-service-icon svg { width: 24px; height: 24px; }
 
             /* Program Basics mobile */
             .program-basics { padding: 3rem 0; }
-            .program-basics-stats { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-            .program-basics-stat { padding: 1.25rem 1rem; border-radius: 16px; }
-            .program-basics-stat-value { font-size: 2rem; }
             .program-basics-card { padding: 1.75rem; }
             .program-basics-card h3 { font-size: 1.125rem; }
             .program-basics-card-icon { width: 48px; height: 48px; }
             .program-basics-card-icon svg { width: 22px; height: 22px; }
             .program-basics-facts { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+            /* Crisis Banner mobile */
+            .crisis-banner { padding: 1.5rem 0; }
+            .crisis-banner-inner { padding: 1.5rem 1.25rem; gap: 1rem; }
+            .crisis-banner-links { flex-direction: column; width: 100%; }
+            .crisis-banner-link { min-width: 0; flex-direction: row; align-items: center; gap: 0.75rem; }
         }
     </style>
 </head>
@@ -2562,7 +2489,7 @@
                 </div>
                 <p class="label">STATEWIDE DIVISION</p>
                 <h1>Social Services</h1>
-                <p class="hero-description">Providing personalized, strengths-based support that helps clients achieve stability and long-term success through holistic, client-centered services.</p>
+                <p class="hero-description">Free, confidential, strengths-based support for justice-impacted individuals and families across Georgia. Because everyone deserves a second chance.</p>
                 <div class="division-hero-actions">
                     <a href="#department-intro" class="btn btn-primary">
                         <span>Our Services</span>
@@ -2575,61 +2502,157 @@
                     </a>
                 </div>
             </div>
-            <div class="leaders-duo fade-in fade-in-delay-1">
-                <div class="leader-mini-card">
-                    <div class="leader-mini-image">
-                        <img src="https://gapubdef.org/wp-content/uploads/Tia_Headshot24.jpg" alt="Catia De Los Santos">
-                    </div>
-                    <div class="leader-mini-info">
-                        <h3>Catia De Los Santos</h3>
-                        <p class="leader-title">Co-Manager</p>
-                        <p class="leader-program">Client Support Services</p>
+        </div>
+    </section>
+
+
+    <!-- Crisis Resources Banner -->
+    <section class="crisis-banner fade-in">
+        <div class="crisis-banner-inner">
+            <div class="crisis-banner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="crisis-banner-content">
+                <h3>Need Immediate Support?</h3>
+                <p>Free, confidential crisis resources available 24/7.</p>
+            </div>
+            <div class="crisis-banner-links">
+                <a href="tel:8007154225" class="crisis-banner-link">
+                    <span class="crisis-banner-number">(800) 715-4225</span>
+                    <span class="crisis-banner-name">Georgia Crisis Line</span>
+                </a>
+                <a href="tel:988" class="crisis-banner-link">
+                    <span class="crisis-banner-number">988</span>
+                    <span class="crisis-banner-name">Suicide &amp; Crisis Lifeline</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Managers Bar -->
+    <section class="managers-bar fade-in">
+        <div class="managers-bar-inner">
+            <div class="manager-card">
+                <div class="manager-photo">
+                    <img src="https://gapubdef.org/wp-content/uploads/Tia_Headshot24.jpg" alt="Catia De Los Santos">
+                </div>
+                <div class="manager-info">
+                    <h3>Catia De Los Santos</h3>
+                    <p class="manager-role">Manager</p>
+                    <p class="manager-program">Client Support Services</p>
+                    <div class="manager-contact-icons">
+                        <a href="tel:4047952440" title="Call">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:catia.delossantos@gapubdef.org" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <path d="M22 6l-10 7L2 6"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
-                <div class="leader-mini-card">
-                    <div class="leader-mini-image">
-                        <img src="https://gapubdef.org/wp-content/uploads/Kenya_Headshot24.jpg" alt="Kenya Holmes">
-                    </div>
-                    <div class="leader-mini-info">
-                        <h3>Kenya Holmes</h3>
-                        <p class="leader-title">Co-Manager</p>
-                        <p class="leader-program">Ladders Program</p>
+            </div>
+            <div class="manager-card">
+                <div class="manager-photo">
+                    <img src="https://gapubdef.org/wp-content/uploads/Kenya_Headshot24.jpg" alt="Kenya Holmes">
+                </div>
+                <div class="manager-info">
+                    <h3>Kenya Holmes</h3>
+                    <p class="manager-role">Manager</p>
+                    <p class="manager-program">Ladders Youth Program</p>
+                    <div class="manager-contact-icons">
+                        <a href="tel:4047952440" title="Call">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:kenya.holmes@gapubdef.org" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <path d="M22 6l-10 7L2 6"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
     <!-- ═══════════════════════════════════════════════════════
-         DEPARTMENT INTRODUCTION — Light Clean Section
+         WHAT WE DO — Visual Impact Section
          ═══════════════════════════════════════════════════════ -->
-    <section class="dept-intro" id="department-intro">
-        <div class="dept-intro-inner">
-            <div class="dept-intro-header fade-in">
-                <p class="label">About the Division</p>
-                <h2>Empowering Clients Toward Stability and Success</h2>
+    <section class="what-we-do" id="department-intro">
+        <!-- Photo + Mission Text -->
+        <div class="wwd-hero fade-in">
+            <div class="wwd-hero-image">
+                <img src="https://images.squarespace-cdn.com/content/v1/622611c7dc61a90de4b8b58d/1762529794538-EP8BXYWDFXPFMV7GFG82/unsplash-image-W3Jl3jREpDY.jpg" alt="Social worker meeting with client">
             </div>
-            <div class="dept-intro-grid">
-                <div class="dept-intro-card fade-in">
-                    <div class="dept-intro-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12l3 3 5-5"/></svg></div>
-                    <h3>Our Mission</h3>
-                    <p>We believe every person has inherent strengths that can be built upon for lasting change. By addressing housing, mental health, substance use, employment, and education needs, we help clients achieve stability that reduces recidivism and improves outcomes for families and communities.</p>
+            <div class="wwd-hero-text">
+                <span class="wwd-hero-label">About the Division</span>
+                <h2>Building Stability, Restoring Lives</h2>
+                <p>We provide free, confidential, strengths-based support to justice-impacted individuals and families across all 49 judicial circuits in Georgia. Our social workers partner with Public Defenders to address the root causes that drive justice involvement — and build a path toward lasting change.</p>
+            </div>
+        </div>
+
+        <!-- Service Areas -->
+        <div class="wwd-services fade-in">
+            <div class="wwd-services-inner">
+                <div class="wwd-services-header">
+                    <span class="wwd-services-label">Areas of Support</span>
+                    <h3>How We Help</h3>
                 </div>
-                <div class="dept-intro-card fade-in fade-in-delay-1">
-                    <div class="dept-intro-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
-                    <h3>Statewide Reach</h3>
-                    <p>Our team serves clients in every judicial circuit in Georgia, providing services both in-person and virtually. Whether in metropolitan Atlanta or rural South Georgia, our social workers are accessible to every eligible client referred by a Public Defender.</p>
+                <div class="wwd-services-grid">
+                <div class="wwd-service-item">
+                    <div class="wwd-service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                    <span class="wwd-service-name">Housing</span>
+                    <span class="wwd-service-desc">Stability & placement</span>
                 </div>
-                <div class="dept-intro-card fade-in fade-in-delay-2">
-                    <div class="dept-intro-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-                    <h3>Leadership</h3>
-                    <p>Under the co-management of Catia De Los Santos (Client Support Services) and Kenya Holmes (Ladders Youth Program), the division has expanded its reach with decades of combined social work expertise.</p>
+                <div class="wwd-service-item">
+                    <div class="wwd-service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                        </svg>
+                    </div>
+                    <span class="wwd-service-name">Mental Health</span>
+                    <span class="wwd-service-desc">Counseling & support</span>
                 </div>
-                <div class="dept-intro-card fade-in fade-in-delay-3">
-                    <div class="dept-intro-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-                    <h3>Funding &amp; Independence</h3>
-                    <p>All programs are provided at no cost to clients. The division is funded through state appropriations to the Georgia Public Defender Council and supported by the Georgia Public Defender Foundation.</p>
+                <div class="wwd-service-item">
+                    <div class="wwd-service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </div>
+                    <span class="wwd-service-name">Substance Use</span>
+                    <span class="wwd-service-desc">Recovery resources</span>
+                </div>
+                <div class="wwd-service-item">
+                    <div class="wwd-service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                        </svg>
+                    </div>
+                    <span class="wwd-service-name">Employment</span>
+                    <span class="wwd-service-desc">Jobs & career prep</span>
+                </div>
+                <div class="wwd-service-item">
+                    <div class="wwd-service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+                        </svg>
+                    </div>
+                    <span class="wwd-service-name">Education</span>
+                    <span class="wwd-service-desc">GED & learning</span>
+                </div>
                 </div>
             </div>
         </div>
@@ -2644,24 +2667,6 @@
                 <p class="label">Our Programs</p>
                 <h2>Two Programs, One Mission</h2>
                 <p>Explore the program that best fits your situation, or take the quiz for a personalized recommendation.</p>
-                <div class="program-basics-stats">
-                    <div class="program-basics-stat">
-                        <span class="program-basics-stat-value stat-number">2</span>
-                        <span class="program-basics-stat-label">Programs</span>
-                    </div>
-                    <div class="program-basics-stat">
-                        <span class="program-basics-stat-value stat-number">49</span>
-                        <span class="program-basics-stat-label">Circuits</span>
-                    </div>
-                    <div class="program-basics-stat">
-                        <span class="program-basics-stat-value stat-number">100%</span>
-                        <span class="program-basics-stat-label">Free</span>
-                    </div>
-                    <div class="program-basics-stat">
-                        <span class="program-basics-stat-value stat-number">16+</span>
-                        <span class="program-basics-stat-label">Years Eligible</span>
-                    </div>
-                </div>
             </div>
             <!-- Quiz Lightbox -->
             <div class="quiz-lightbox" id="quizLightbox">
@@ -2855,10 +2860,6 @@
             </div>
         </div>
     </section>
-
-
-
-
 
     <!-- UNIFIED EXPERIENCE OVERLAY -->
     <section class="unified-overlay" id="unifiedOverlay">
@@ -3083,37 +3084,12 @@
                 </div>
             </div>
 
-            <!-- Contact/Refer CTA + Sidebar content (MOVED) -->
+            <!-- Contact/Refer CTA -->
             <div class="css-exp-section css-reveal" id="css-contact">
                 <div class="css-exp-section-label">Get Connected</div>
-                <div class="css-exp-contact-grid">
-                    <div class="css-exp-contact-cta">
-                        <h3>Ready to Get <span>Started</span>?</h3>
-                        <p>Talk to your Public Defender about a referral to Client Support Services. All services are free and confidential.</p>
-                    </div>
-                    <div class="css-exp-contact-sidebar">
-                        <!-- Crisis Resources -->
-                        <div class="css-crisis-card css-reveal">
-                            <h4>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                Crisis Resources
-                            </h4>
-                            <div class="css-crisis-links">
-                                <a href="tel:8007154225" class="css-crisis-link">
-                                    <div>
-                                        <div class="crisis-number">(800) 715-4225</div>
-                                        <div class="crisis-name">Georgia Crisis Line — 24/7</div>
-                                    </div>
-                                </a>
-                                <a href="tel:988" class="css-crisis-link">
-                                    <div>
-                                        <div class="crisis-number">988</div>
-                                        <div class="crisis-name">Suicide &amp; Crisis Lifeline — 24/7</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="css-exp-contact-cta">
+                    <h3>Ready to Get <span>Started</span>?</h3>
+                    <p>Talk to your Public Defender about a referral to Client Support Services. All services are free and confidential.</p>
                 </div>
             </div>
         </div>
@@ -3404,6 +3380,19 @@
                 </div>
             </div>
 
+            <!-- Graduate Testimonial -->
+            <div class="ld-inner ld-testimonial ld-reveal" id="ld-testimonial">
+                <div class="ld-testimonial-card">
+                    <blockquote>
+                        "The Ladders Program didn't just give me an opportunity — it gave me a second chance to believe in myself again. I want people to know that change is possible when someone believes in you."
+                    </blockquote>
+                    <cite>
+                        <span class="ld-cite-line"></span>
+                        <span>Joshua Miller, Ladders Program Graduate</span>
+                    </cite>
+                </div>
+            </div>
+
             <!-- Apply CTA -->
             <div class="ld-inner ld-apply ld-reveal ld-reveal-scale" id="ld-apply">
                 <h3>Ready to <span>Level Up</span>?</h3>
@@ -3477,6 +3466,7 @@ document.addEventListener('DOMContentLoaded', function() {
             { id: 'ld-quiz', label: 'Career Quiz' },
             { id: 'ld-journey', label: 'Your Journey' },
             { id: 'ld-gallery', label: 'Gallery' },
+            { id: 'ld-testimonial', label: 'Story' },
             { id: 'ld-apply', label: 'Apply' }
         ]
     };
