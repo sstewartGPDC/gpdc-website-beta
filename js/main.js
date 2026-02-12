@@ -1,4 +1,24 @@
-// ==================== GPDC SHARED JAVASCRIPT ==================== 
+// ==================== GPDC SHARED JAVASCRIPT ====================
+
+// ==================== UTILITIES ====================
+// Throttle function — limits how often a function fires (default: ~60fps)
+function throttle(fn, delay = 16) {
+    let lastCall = 0;
+    let rafId = null;
+    return function(...args) {
+        const now = performance.now();
+        if (now - lastCall >= delay) {
+            lastCall = now;
+            fn.apply(this, args);
+        } else if (!rafId) {
+            rafId = requestAnimationFrame(() => {
+                lastCall = performance.now();
+                rafId = null;
+                fn.apply(this, args);
+            });
+        }
+    };
+}
 
 // Circuit Data - All Georgia Judicial Circuits
 // Updated: February 5, 2026 — phone, address, fax, and additional offices synced from gapubdef.org
@@ -57,15 +77,15 @@ function initNavigation() {
     const navToggle = document.getElementById('navToggle');
     const mobileNav = document.getElementById('mobileNav');
 
-    // Scroll effect
+    // Scroll effect (throttled)
     if (nav) {
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', throttle(() => {
             if (window.pageYOffset > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
-        });
+        }));
     }
 
     // Mobile nav toggle
@@ -324,10 +344,10 @@ function initTypewriter() {
         }
     }
     
+    const cachedSearchResults = document.getElementById('searchResults');
     searchInput.addEventListener('focus', () => {
         if (searchInput.value.length > 0) {
-            const searchResults = document.getElementById('searchResults');
-            if (searchResults) searchResults.classList.add('active');
+            if (cachedSearchResults) cachedSearchResults.classList.add('active');
             return;
         }
         
@@ -501,14 +521,14 @@ function initBackToTop() {
     `;
     document.body.appendChild(backToTop);
 
-    // Show/hide based on scroll position
-    window.addEventListener('scroll', () => {
+    // Show/hide based on scroll position (throttled)
+    window.addEventListener('scroll', throttle(() => {
         if (window.pageYOffset > 300) {
             backToTop.classList.add('visible');
         } else {
             backToTop.classList.remove('visible');
         }
-    });
+    }));
 
     // Scroll to top on click
     backToTop.addEventListener('click', () => {
@@ -745,6 +765,7 @@ function initStickySectionNav() {
     // Show/hide based on scroll
     const firstSection = sections[0];
     const lastSection = sections[sections.length - 1];
+    const navLinks = stickyNav.querySelectorAll('.sticky-section-nav-link');
 
     const updateVisibility = () => {
         const scrollY = window.pageYOffset;
@@ -757,20 +778,19 @@ function initStickySectionNav() {
             stickyNav.classList.remove('visible');
         }
 
-        // Update active link
-        const links = stickyNav.querySelectorAll('.sticky-section-nav-link');
+        // Update active link (using cached navLinks)
         let activeIndex = 0;
         sections.forEach((section, i) => {
             if (scrollY >= section.offsetTop - 150) {
                 activeIndex = i;
             }
         });
-        links.forEach((link, i) => {
+        navLinks.forEach((link, i) => {
             link.classList.toggle('active', i === activeIndex);
         });
     };
 
-    window.addEventListener('scroll', updateVisibility);
+    window.addEventListener('scroll', throttle(updateVisibility));
     updateVisibility();
 
     // Smooth scroll on click

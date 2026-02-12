@@ -257,19 +257,22 @@
             });
         }
 
-        // Scroll behavior for nav
+        // Scroll behavior for nav (throttled via rAF)
         if (nav) {
-            let lastScroll = 0;
+            let scrollTicking = false;
             window.addEventListener('scroll', function() {
-                const currentScroll = window.pageYOffset;
-
-                if (currentScroll > 100) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
+                if (!scrollTicking) {
+                    requestAnimationFrame(function() {
+                        const currentScroll = window.pageYOffset;
+                        if (currentScroll > 100) {
+                            nav.classList.add('scrolled');
+                        } else {
+                            nav.classList.remove('scrolled');
+                        }
+                        scrollTicking = false;
+                    });
+                    scrollTicking = true;
                 }
-
-                lastScroll = currentScroll;
             });
         }
 
