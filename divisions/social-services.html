@@ -434,7 +434,7 @@
     --css-accent: #B85C38;
     --css-accent-glow: rgba(184, 92, 56, 0.3);
     --css-text: #f0ece8;
-    --css-text-secondary: rgba(240, 236, 232, 0.75);
+    --css-text-secondary: rgba(240, 236, 232, 0.88);
     --css-border: rgba(240, 236, 232, 0.08);
 }
 
@@ -639,58 +639,52 @@
         .css-stats-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: -2rem;
-            position: relative;
-            z-index: 2;
-            margin-bottom: 3rem;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem;
         }
 
         .css-stat-card {
-            background: var(--css-bg-elevated);
-            border-radius: 16px;
-            padding: 1.5rem;
             text-align: center;
-            border: 1px solid var(--css-border);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
+            padding: 2rem 1rem;
+            position: relative;
+            background: none;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .css-stat-card:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 20%; height: 60%;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, var(--css-border), transparent);
         }
 
         .css-stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 32px var(--css-accent-glow);
+            transform: none;
+            box-shadow: none;
         }
 
-        .css-stat-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(184, 92, 56, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 0.75rem;
-        }
-
-        .css-stat-icon svg {
-            width: 22px;
-            height: 22px;
-            color: var(--css-accent);
-        }
+        .css-stat-icon { display: none; }
 
         .css-stat-number {
-            font-size: 2rem;
+            display: block;
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--css-accent);
-            line-height: 1.2;
-            margin-bottom: 0.25rem;
+            line-height: 1;
+            margin-bottom: 0.375rem;
+            font-variant-numeric: tabular-nums;
         }
 
         .css-stat-label {
-            font-size: 0.75rem;
+            font-size: 0.8125rem;
             color: var(--css-text-secondary);
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
         }
 
         /* Content Layout */
@@ -850,16 +844,16 @@
 
         .css-scroll-timeline {
             position: relative;
-            padding-left: 3rem;
+            padding-left: 3.5rem;
         }
 
         .css-scroll-timeline-track {
             position: absolute;
-            left: 18px;
+            left: 22px;
             top: 0;
             bottom: 0;
-            width: 3px;
-            background: var(--css-border);
+            width: 2px;
+            background: rgba(184, 92, 56, 0.15);
             border-radius: 2px;
         }
 
@@ -869,17 +863,17 @@
             left: 0;
             width: 100%;
             height: 0%;
-            background: linear-gradient(180deg, var(--primary), var(--primary-light));
+            background: linear-gradient(180deg, var(--css-accent), rgba(184, 92, 56, 0.4));
             border-radius: 2px;
             transition: height 0.6s ease;
         }
 
         .css-scroll-timeline-step {
             position: relative;
-            padding-bottom: 2rem;
-            padding-left: 1.5rem;
-            opacity: 0.4;
-            transform: translateX(-8px);
+            padding-bottom: 1.25rem;
+            padding-left: 1.75rem;
+            opacity: 0.35;
+            transform: translateX(-6px);
             transition: all 0.5s ease;
             cursor: pointer;
         }
@@ -889,18 +883,38 @@
             transform: translateX(0);
         }
 
+        .css-scroll-timeline-step.active > h4,
+        .css-scroll-timeline-step.active > p {
+            background: var(--css-bg-elevated);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            border: 1px solid var(--css-border);
+            margin-left: -0.5rem;
+        }
+        .css-scroll-timeline-step.active > h4 {
+            padding-bottom: 0.25rem;
+            border-bottom: none;
+            border-radius: 14px 14px 0 0;
+            margin-bottom: 0;
+        }
+        .css-scroll-timeline-step.active > p {
+            padding-top: 0;
+            border-top: none;
+            border-radius: 0 0 14px 14px;
+        }
+
         .css-scroll-timeline-step:last-child {
             padding-bottom: 0;
         }
 
         .css-timeline-marker {
             position: absolute;
-            left: -3rem;
+            left: -3.5rem;
             top: 2px;
-            width: 36px;
-            height: 36px;
-            background: var(--css-bg-elevated);
-            border: 2px solid var(--css-border);
+            width: 44px;
+            height: 44px;
+            background: var(--css-bg-card);
+            border: 2px solid rgba(184, 92, 56, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -910,15 +924,15 @@
         }
 
         .css-scroll-timeline-step.active .css-timeline-marker {
-            border-color: var(--primary);
-            background: var(--primary);
-            box-shadow: 0 0 20px var(--css-accent-glow);
+            border-color: var(--css-accent);
+            background: var(--css-accent);
+            box-shadow: 0 0 24px var(--css-accent-glow), 0 0 48px rgba(184, 92, 56, 0.15);
         }
 
         .css-timeline-marker span {
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             font-weight: 700;
-            color: var(--css-text-secondary);
+            color: rgba(184, 92, 56, 0.4);
         }
 
         .css-scroll-timeline-step.active .css-timeline-marker span {
@@ -926,16 +940,16 @@
         }
 
         .css-scroll-timeline-step h4 {
-            font-size: 1.0625rem;
+            font-size: 1.125rem;
             color: var(--css-text);
-            margin-bottom: 0.25rem;
-            font-weight: 600;
+            margin-bottom: 0.375rem;
+            font-weight: 700;
         }
 
         .css-scroll-timeline-step > p {
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             color: var(--css-text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 0;
         }
 
@@ -954,6 +968,7 @@
             font-size: 0.8125rem;
             font-style: italic;
             color: var(--css-text-secondary);
+            padding: 0 1rem;
         }
 
         /* Sidebar — Dark Adapted */
@@ -1469,8 +1484,8 @@
             --ld-green-dim: rgba(0, 230, 118, 0.12);
             --ld-green-glow: rgba(0, 230, 118, 0.35);
             --ld-text: #ffffff;
-            --ld-text-secondary: rgba(255,255,255,0.7);
-            --ld-text-muted: rgba(255,255,255,0.4);
+            --ld-text-secondary: rgba(255,255,255,0.85);
+            --ld-text-muted: rgba(255,255,255,0.55);
             --ld-border: rgba(255,255,255,0.08);
         }
 
@@ -3107,7 +3122,7 @@
                     Youth Development Program
                 </div>
                 <h2>Build Your <span>Future</span></h2>
-                <p class="ld-hero-sub">A 12-month career development program for justice-impacted youth ages 16-24. Free. Virtual. Statewide. Powered by the Georgia Public Defender Foundation.</p>
+                <p class="ld-hero-sub">A 12-month career development program for justice-impacted youth ages 16-24. Free. Virtual. Statewide. Powered by the Georgia Public Defense Foundation.</p>
                 <a href="https://www.gapdf.org/ladders" target="_blank" rel="noopener" class="ld-hero-cta">
                     Apply Now
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -3358,24 +3373,24 @@
                 <h3>Program in Action</h3>
                 <div class="ld-gallery-grid">
                     <div class="ld-gallery-item">
-                        <img src="https://images.squarespace-cdn.com/content/v1/622611c7dc61a90de4b8b58d/801f1935-98e4-4363-8c62-78d31532e228/1Q8A0222.jpg" alt="Ladders Program participants">
-                        <span class="ld-gallery-caption">Program participants</span>
+                        <img src="../images/ladders/ladders-graduation-class.jpg" alt="Ladders Program graduating class in caps and gowns">
+                        <span class="ld-gallery-caption">Graduation day</span>
                     </div>
                     <div class="ld-gallery-item">
-                        <img src="https://images.squarespace-cdn.com/content/v1/622611c7dc61a90de4b8b58d/1762530564441-SF58GJ3TL22FO39NN1V3/unsplash-image-x-ghf9LjrVg.jpg" alt="Workforce development training">
-                        <span class="ld-gallery-caption">Workforce training</span>
+                        <img src="../images/ladders/ladders-graduate-certificate.jpg" alt="Ladders graduate receiving certificate with program staff">
+                        <span class="ld-gallery-caption">Certificate ceremony</span>
                     </div>
                     <div class="ld-gallery-item">
-                        <img src="https://images.squarespace-cdn.com/content/v1/622611c7dc61a90de4b8b58d/1762530187008-CYJJSW5IY9AU4726KXOV/unsplash-image-2JIvboGLeho.jpg" alt="Education and GED prep">
-                        <span class="ld-gallery-caption">Education pathways</span>
+                        <img src="../images/ladders/ladders-mentorship.jpg" alt="Mentor helping youth with professional attire">
+                        <span class="ld-gallery-caption">Professional development</span>
                     </div>
                     <div class="ld-gallery-item">
-                        <img src="https://images.squarespace-cdn.com/content/v1/622611c7dc61a90de4b8b58d/1762530518093-YGTGFDNKU61J6452FT8G/unsplash-image-HocFQHhGjDE.jpg" alt="Mentorship and guidance">
-                        <span class="ld-gallery-caption">Mentorship</span>
+                        <img src="../images/ladders/ladders-community-service.jpg" alt="Ladders participants volunteering at Atlanta Community Food Bank">
+                        <span class="ld-gallery-caption">Community service</span>
                     </div>
                     <div class="ld-gallery-item">
-                        <img src="https://images.squarespace-cdn.com/content/v1/622611c7dc61a90de4b8b58d/1762530254998-7HOJKYDA0LU30TN2TLHH/unsplash-image-0k2mMcdTOYU.jpg" alt="Life skills workshops">
-                        <span class="ld-gallery-caption">Life skills workshops</span>
+                        <img src="../images/ladders/ladders-classroom.jpg" alt="Ladders classroom workshop and career training session">
+                        <span class="ld-gallery-caption">Career training</span>
                     </div>
                 </div>
             </div>
