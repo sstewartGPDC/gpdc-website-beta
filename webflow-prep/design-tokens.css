@@ -1,0 +1,182 @@
+/* ==================== GPDC WEBFLOW DESIGN TOKENS ====================
+ * Copy these into Webflow's custom code section (Project Settings > Custom Code)
+ * or use them as reference when setting up Webflow's design system.
+ * ================================================================== */
+
+:root {
+    /* Brand Colors */
+    --primary: #B85C38;
+    --primary-dark: #9A4A2C;
+    --primary-light: #D4775A;
+    --primary-subtle: rgba(184, 92, 56, 0.08);
+
+    /* Text Colors */
+    --text-dark: #1a1a1a;
+    --text-medium: #4a4a4a;
+    --text-light: #6b6b6b;
+
+    /* Background Colors */
+    --bg-light: #f5f3f0;
+    --bg-white: #ffffff;
+
+    /* Border */
+    --border-light: #e5e2dd;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 24px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.1);
+    --shadow-btn: 0 2px 8px rgba(184, 92, 56, 0.25);
+    --shadow-btn-hover: 0 6px 20px rgba(184, 92, 56, 0.35);
+
+    /* Easings */
+    --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-out-back: cubic-bezier(0.34, 1.4, 0.64, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+/* Dark Mode Override */
+[data-theme="dark"] {
+    --primary: #D4775A;
+    --primary-dark: #B85C38;
+    --primary-light: #E8967D;
+    --primary-subtle: rgba(212, 119, 90, 0.15);
+    --text-dark: #f0f0f0;
+    --text-medium: #b0b0b0;
+    --text-light: #888888;
+    --bg-light: #1a1a1a;
+    --bg-white: #242424;
+    --border-light: #333333;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 24px rgba(0,0,0,0.4);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.5);
+}
+
+/* ==================== TYPOGRAPHY ====================
+ * Fonts: Manrope (body), Ubuntu (headings)
+ * Both available via Google Fonts — add to Webflow Project Settings
+ *
+ * Google Fonts URL:
+ * https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap
+ * ================================================================== */
+
+body {
+    font-family: 'Manrope', -apple-system, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background: var(--bg-light);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* ==================== SPACING SCALE ====================
+ * Reference for Webflow spacing values
+ * 0.25rem = 4px
+ * 0.5rem  = 8px
+ * 0.75rem = 12px
+ * 1rem    = 16px
+ * 1.25rem = 20px
+ * 1.5rem  = 24px
+ * 2rem    = 32px
+ * 3rem    = 48px
+ * 4rem    = 64px
+ * 5rem    = 80px
+ * 8rem    = 128px
+ * ================================================================== */
+
+/* ==================== BORDER RADIUS SCALE ====================
+ * 4px   - Subtle (inputs, tags)
+ * 8px   - Small (buttons, badges)
+ * 12px  - Medium (cards)
+ * 16px  - Large (panels, contact cards)
+ * 20px  - Extra large (service cards)
+ * 24px  - Hero cards (leader profile)
+ * 50%   - Circle (icons, avatars)
+ * ================================================================== */
+
+/* ==================== BUTTON STYLES ====================
+ * Apply as Webflow combo classes
+ * ================================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow-btn);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    box-shadow: var(--shadow-btn-hover);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-dark);
+    border: 2px solid var(--border-light);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-subtle);
+}
+
+/* ==================== LABEL/TAG STYLE ==================== */
+
+.label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+/* ==================== SECTION HEADER ==================== */
+
+.section-header {
+    margin-bottom: 3rem;
+}
+
+.section-header.centered {
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-top: 0.5rem;
+}
+
+/* ==================== BREAKPOINTS ====================
+ * Webflow default breakpoints to use:
+ * Desktop:  992px+
+ * Tablet:   768px - 991px
+ * Mobile L: 480px - 767px
+ * Mobile S: < 480px
+ *
+ * Custom breakpoints used in current site:
+ * 900px - Content layout shifts (article grids, division grids)
+ * 640px - Small mobile for specialized sections
+ * ================================================================== */
