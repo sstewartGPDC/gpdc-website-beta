@@ -10,94 +10,88 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* Positions section spacing */
-        .positions-section {
-            padding-top: 2rem;
-        }
+        /* ==================== POSITIONS PAGE ==================== */
 
-        /* Positions Layout */
-        .positions-layout {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 2rem;
-            align-items: start;
-        }
-
-        /* Sidebar Styles */
-        .positions-sidebar {
+        .positions-toolbar {
             background: var(--bg-white);
-            border-radius: 16px;
-            padding: 1.5rem;
-            position: sticky;
-            top: 140px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border: 1px solid var(--border-light);
-            max-height: calc(100vh - 180px);
-            overflow-y: auto;
-        }
-
-        .filter-group {
-            padding-bottom: 1.25rem;
-            margin-bottom: 1.25rem;
             border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+            padding: 0.75rem 1.5rem;
         }
 
-        .filter-group:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .filter-group-header {
+        .positions-toolbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.875rem;
+            flex-direction: column;
+            gap: 0.75rem;
         }
 
-        .filter-title {
+        /* Row 1: Type filter pills */
+        .positions-type-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .type-pill {
+            padding: 0.5rem 1.125rem;
+            font-family: 'Manrope', sans-serif;
             font-size: 0.8125rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .filter-group-header .filter-title {
-            margin-bottom: 0;
-        }
-
-        .filter-group > .filter-title {
-            margin-bottom: 0.875rem;
-        }
-
-        .clear-link,
-        .reset-link {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 0.75rem;
             font-weight: 600;
+            color: var(--text-medium);
+            background: transparent;
+            border: 1.5px solid var(--border-light);
+            border-radius: 50px;
             cursor: pointer;
-            text-decoration: none;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            transition: all 0.2s;
+            transition: all 0.25s var(--ease-out);
+            -webkit-tap-highlight-color: transparent;
+            white-space: nowrap;
         }
 
-        .clear-link:hover,
-        .reset-link:hover {
+        .type-pill:hover {
+            border-color: var(--primary-light);
+            color: var(--primary);
             background: var(--primary-subtle);
-            color: var(--primary-dark);
         }
 
-        /* Search Input */
-        .search-input-wrapper {
+        .type-pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .type-pill .pill-count {
+            display: inline-block;
+            background: rgba(0,0,0,0.08);
+            padding: 1px 7px;
+            border-radius: 10px;
+            font-size: 0.6875rem;
+            margin-left: 4px;
+        }
+
+        .type-pill.active .pill-count {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* Row 2: Search + Location dropdown */
+        .positions-search-row {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .positions-search-wrapper {
             position: relative;
+            flex: 1;
+            max-width: 400px;
         }
 
-        .search-input-wrapper svg {
+        .positions-search-wrapper svg {
             position: absolute;
             left: 0.875rem;
             top: 50%;
@@ -108,286 +102,252 @@
             pointer-events: none;
         }
 
-        .filter-search {
+        .positions-search {
             width: 100%;
-            padding: 0.75rem 0.875rem 0.75rem 2.5rem;
+            padding: 0.625rem 0.875rem 0.625rem 2.5rem;
             font-family: 'Manrope', sans-serif;
             font-size: 0.875rem;
-            border: 1px solid var(--border-light);
-            border-radius: 10px;
+            border: 1.5px solid var(--border-light);
+            border-radius: 50px;
             background: var(--bg-light);
             color: var(--text-dark);
-            transition: all 0.2s;
+            transition: all 0.25s var(--ease-out);
         }
 
-        .filter-search:focus {
+        .positions-search:focus {
             outline: none;
             border-color: var(--primary);
             background: var(--bg-white);
             box-shadow: 0 0 0 3px var(--primary-subtle);
         }
 
-        .filter-search::placeholder {
+        .positions-search::placeholder {
             color: var(--text-light);
         }
 
-        /* Results Count */
-        .filter-results {
+        .positions-location-select {
+            padding: 0.625rem 2rem 0.625rem 0.875rem;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1.5px solid var(--border-light);
+            border-radius: 50px;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.25s var(--ease-out);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            min-width: 160px;
+        }
+
+        .positions-location-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-subtle);
+        }
+
+        /* Results bar */
+        .positions-results-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.875rem 1rem;
-            margin-bottom: 1.25rem;
-            background: var(--bg-light);
-            border-radius: 10px;
+            padding: 0 0.25rem;
         }
 
-        .filter-results p {
+        .positions-results-bar p {
             font-size: 0.8125rem;
-            color: var(--text-medium);
+            color: var(--text-light);
             margin: 0;
         }
 
-        .results-number {
+        .positions-results-bar .results-number {
             font-weight: 700;
             color: var(--primary);
         }
 
-        /* Filter Options */
-        .filter-options {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .filter-options-scroll {
-            max-height: 160px;
-            overflow-y: auto;
-            padding-right: 0.5rem;
-            margin-right: -0.5rem;
-        }
-
-        .filter-options-scroll::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .filter-options-scroll::-webkit-scrollbar-track {
-            background: var(--bg-light);
-            border-radius: 4px;
-        }
-
-        .filter-options-scroll::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 4px;
-        }
-
-        /* Custom Checkbox */
-        .filter-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-            font-size: 0.8125rem;
-            color: var(--text-dark);
+        .reset-filters-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
             cursor: pointer;
-            user-select: none;
-            padding: 0.5rem 0.625rem;
-            border-radius: 6px;
-            transition: background 0.2s;
-        }
-
-        .filter-checkbox:hover {
-            background: var(--bg-light);
-        }
-
-        .filter-checkbox input {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .checkmark {
-            width: 18px;
-            height: 18px;
-            border: 2px solid var(--border-light);
+            padding: 0.25rem 0.5rem;
             border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             transition: all 0.2s;
-            flex-shrink: 0;
-            background: var(--bg-white);
+            display: none;
         }
 
-        .checkmark::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 2px;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.2s;
+        .reset-filters-btn.visible {
+            display: inline-block;
         }
 
-        .filter-checkbox input:checked + .checkmark {
-            border-color: var(--primary);
+        .reset-filters-btn:hover {
             background: var(--primary-subtle);
         }
 
-        .filter-checkbox input:checked + .checkmark::after {
-            opacity: 1;
-            transform: scale(1);
+        /* ==================== POSITIONS GRID ==================== */
+
+        .positions-section {
+            padding: 2rem 1.5rem 4rem;
         }
 
-        .filter-checkbox:hover .checkmark {
-            border-color: var(--primary-light);
-        }
-
-        /* Positions Content */
-        .positions-content {
-            max-height: calc(100vh - 180px);
-            overflow-y: auto;
-            padding: 1rem;
-            margin: -1rem;
-        }
-
-        .positions-content::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .positions-content::-webkit-scrollbar-track {
-            background: var(--bg-light);
-            border-radius: 6px;
-        }
-
-        .positions-content::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 6px;
-        }
-
-        .positions-content::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
-
-        /* Positions Grid - News Card Style */
         .positions-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
-            padding-bottom: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* Position Cards - News Card Style */
+        /* ==================== POSITION CARD ==================== */
+
         .position-card {
             background: var(--bg-white);
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
             display: flex;
             flex-direction: column;
-            padding: 0;
         }
 
         .position-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
         }
 
         .position-card-header {
-            background: linear-gradient(135deg, var(--bg-light) 0%, var(--primary-subtle) 100%);
-            padding: 1.25rem 1.25rem 1rem;
-            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1.25rem 1.25rem 0;
         }
 
         .position-type-badge {
             display: inline-block;
-            background: white;
-            padding: 0.25rem 0.625rem;
-            border-radius: 4px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
             font-size: 0.6875rem;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.03em;
+            background: var(--primary-subtle);
             color: var(--primary);
-            letter-spacing: 0.02em;
         }
 
+        .position-type-badge.attorney { background: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+        .position-type-badge.non-attorney { background: rgba(33, 150, 243, 0.1); color: #1565c0; }
+        .position-type-badge.contractor { background: rgba(255, 152, 0, 0.1); color: #e65100; }
+        .position-type-badge.internship { background: rgba(156, 39, 176, 0.1); color: #7b1fa2; }
+
         .position-new-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
             background: var(--primary);
             color: white;
-            padding: 0.25rem 0.5rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-size: 0.625rem;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
         }
 
         .position-card-content {
-            padding: 1.25rem;
+            padding: 1rem 1.25rem 1.25rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .position-card .position-posted {
-            font-size: 0.75rem;
-            color: var(--text-medium);
+        .position-title {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.35;
+            margin-bottom: 0.375rem;
+        }
+
+        .position-location {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            font-size: 0.8125rem;
+            color: var(--primary);
+            font-weight: 500;
             margin-bottom: 0.5rem;
         }
 
-        .position-card .position-title {
-            font-size: 1rem;
-            line-height: 1.4;
-            color: var(--text-dark);
-            margin-bottom: 0.375rem;
-            font-weight: 700;
+        .position-location svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
         }
 
-        .position-card .position-location {
-            font-size: 0.8125rem;
-            color: var(--primary);
-            font-weight: 600;
+        .position-posted {
+            font-size: 0.75rem;
+            color: var(--text-light);
             margin-bottom: 0.75rem;
         }
 
-        .position-card .position-description {
+        .position-description {
             font-size: 0.8125rem;
             color: var(--text-medium);
             line-height: 1.6;
-            margin-bottom: 1rem;
             flex: 1;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            margin-bottom: 1.25rem;
         }
 
-        .position-card .apply-link {
-            display: inline-flex;
+        .position-card-footer {
+            padding: 0 1.25rem 1.25rem;
+        }
+
+        .apply-btn {
+            display: flex;
             align-items: center;
-            gap: 0.375rem;
-            color: var(--primary);
-            font-weight: 600;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.75rem 1.25rem;
+            font-family: 'Manrope', sans-serif;
             font-size: 0.8125rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border: none;
+            border-radius: 10px;
             text-decoration: none;
-            margin-top: auto;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+            box-shadow: 0 2px 8px rgba(184, 92, 56, 0.2);
         }
 
-        .position-card .apply-link svg {
+        .apply-btn:hover {
+            box-shadow: 0 4px 16px rgba(184, 92, 56, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .apply-btn svg {
             width: 14px;
             height: 14px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s var(--ease-spring);
         }
 
-        .position-card:hover .apply-link svg {
-            transform: translateX(4px);
+        .apply-btn:hover svg {
+            transform: translateX(3px);
         }
 
-        /* No Positions - Enhanced */
+        /* No Positions */
         .no-positions {
             display: flex;
             flex-direction: column;
@@ -395,133 +355,94 @@
             justify-content: center;
             text-align: center;
             padding: 4rem 2rem;
-            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+            background: var(--bg-white);
             border-radius: 16px;
             border: 1px solid var(--border-light);
+            max-width: 500px;
+            margin: 2rem auto;
         }
 
         .no-positions svg {
-            width: 56px;
-            height: 56px;
+            width: 48px;
+            height: 48px;
             color: var(--primary-light);
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             opacity: 0.5;
         }
 
         .no-positions h3 {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 0.5rem;
         }
 
         .no-positions p {
-            font-size: 0.9375rem;
+            font-size: 0.875rem;
             color: var(--text-medium);
-            max-width: 360px;
             line-height: 1.6;
             margin-bottom: 1.25rem;
         }
 
-        .no-positions .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s;
-        }
+        /* ==================== RESPONSIVE ==================== */
 
-        .no-positions .btn svg {
-            width: 16px;
-            height: 16px;
-            margin-bottom: 0;
-            opacity: 1;
-        }
-
-        .no-positions .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Mobile Sidebar Toggle */
-        .sidebar-toggle {
-            display: none;
-            width: 100%;
-            padding: 0.875rem 1rem;
-            background: var(--bg-white);
-            border: 1px solid var(--border-light);
-            border-radius: 10px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            cursor: pointer;
-            margin-bottom: 1rem;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            transition: all 0.2s;
-        }
-
-        .sidebar-toggle:hover {
-            border-color: var(--primary-light);
-        }
-
-        .sidebar-toggle svg {
-            width: 18px;
-            height: 18px;
-            color: var(--primary);
-            transition: transform 0.3s;
-        }
-
-        .sidebar-toggle.active svg {
-            transform: rotate(180deg);
-        }
-
-        /* Responsive */
         @media (max-width: 1024px) {
             .positions-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 900px) {
-            .positions-layout {
-                grid-template-columns: 1fr;
+        @media (max-width: 768px) {
+            .positions-toolbar {
+                padding: 0.75rem 1rem;
             }
 
-            .positions-sidebar {
-                position: relative;
-                top: 0;
-                display: none;
-                max-height: none;
+            .positions-search-row {
+                flex-direction: column;
             }
 
-            .positions-sidebar.active {
-                display: block;
-                margin-bottom: 1.5rem;
+            .positions-search-wrapper {
+                max-width: 100%;
             }
 
-            .positions-content {
-                max-height: none;
-                overflow-y: visible;
-                padding-right: 0;
+            .positions-location-select {
+                width: 100%;
             }
 
-            .sidebar-toggle {
+            .type-pill {
+                padding: 0.5rem 0.875rem;
+                font-size: 0.8125rem;
+                min-height: 44px;
                 display: flex;
+                align-items: center;
+            }
+
+            .positions-section {
+                padding: 1.5rem 1rem 3rem;
             }
 
             .positions-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .position-card:hover {
+                transform: none;
+            }
+
+            .apply-btn {
+                min-height: 48px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .positions-type-filters {
+                gap: 0.375rem;
+            }
+
+            .type-pill {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.75rem;
             }
         }
     </style>
@@ -536,355 +457,237 @@
     <!-- Hero Section (loaded from components.js) -->
     <section class="page-hero page-hero-sm" id="page-hero" data-hero="positions"></section>
 
-    <!-- Filter Tabs -->
-    <div class="positions-filters">
-        <button class="filter-btn active" data-filter="all">All Positions</button>
-        <button class="filter-btn" data-filter="attorney">Attorneys</button>
-        <button class="filter-btn" data-filter="non-attorney">Non-Attorneys</button>
-        <button class="filter-btn" data-filter="contractor">Contractors</button>
-        <button class="filter-btn" data-filter="internship">Internships</button>
+    <!-- Positions Toolbar -->
+    <div class="positions-toolbar">
+        <div class="positions-toolbar-inner">
+            <!-- Type Filter Pills -->
+            <div class="positions-type-filters" id="typeFilters">
+                <button class="type-pill active" data-filter="all">All Positions <span class="pill-count" id="countAll">8</span></button>
+                <button class="type-pill" data-filter="attorney">Attorneys <span class="pill-count" id="countAttorney">0</span></button>
+                <button class="type-pill" data-filter="non-attorney">Non-Attorneys <span class="pill-count" id="countNonAttorney">0</span></button>
+                <button class="type-pill" data-filter="contractor">Contractors <span class="pill-count" id="countContractor">0</span></button>
+                <button class="type-pill" data-filter="internship">Internships <span class="pill-count" id="countInternship">0</span></button>
+            </div>
+
+            <!-- Search + Location -->
+            <div class="positions-search-row">
+                <div class="positions-search-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    <input type="text" id="positionSearch" placeholder="Search positions..." class="positions-search">
+                </div>
+                <select class="positions-location-select" id="locationFilter">
+                    <option value="all">All Locations</option>
+                    <option value="fulton">Fulton County</option>
+                    <option value="cobb">Cobb County</option>
+                    <option value="dekalb">DeKalb County</option>
+                    <option value="gwinnett">Gwinnett County</option>
+                    <option value="statewide">Statewide / Remote</option>
+                </select>
+            </div>
+
+            <!-- Results Bar -->
+            <div class="positions-results-bar">
+                <p>Showing <span class="results-number" id="resultsCount">8</span> positions</p>
+                <button class="reset-filters-btn" id="resetFilters">Reset Filters</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Positions Section with Sidebar -->
+    <!-- Positions Grid -->
     <section class="positions-section">
-        <div class="container">
-            <div class="positions-layout">
-                <!-- Filter Sidebar -->
-                <aside class="positions-sidebar">
-                    <!-- Search -->
-                    <div class="filter-group">
-                        <h3 class="filter-title">Search</h3>
-                        <div class="search-input-wrapper">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="11" cy="11" r="8"/>
-                                <path d="M21 21l-4.35-4.35"/>
-                            </svg>
-                            <input type="text" id="positionSearch" placeholder="Search by position" class="filter-search">
-                        </div>
+        <div class="positions-grid" id="positionsGrid">
+
+            <div class="position-card fade-in" data-type="attorney" data-county="fulton">
+                <div class="position-card-header">
+                    <span class="position-type-badge attorney">Attorney</span>
+                    <span class="position-new-badge">New</span>
+                </div>
+                <div class="position-card-content">
+                    <h3 class="position-title">Assistant Public Defender</h3>
+                    <div class="position-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Atlanta Circuit - Fulton County
                     </div>
-
-                    <!-- Results Count -->
-                    <div class="filter-results">
-                        <p>Showing <span id="resultsCount" class="results-number">8</span> results of <span id="totalCount">8</span> items.</p>
-                        <button class="reset-link" id="resetAll">Reset All</button>
-                    </div>
-
-                    <!-- By Position Type -->
-                    <div class="filter-group">
-                        <div class="filter-group-header">
-                            <h3 class="filter-title">By Position Type</h3>
-                            <button class="clear-link" data-clear="type">Clear</button>
-                        </div>
-                        <div class="filter-options">
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="type" value="attorney">
-                                <span class="checkmark"></span>
-                                Attorneys
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="type" value="non-attorney">
-                                <span class="checkmark"></span>
-                                Non-Attorneys
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="type" value="contractor">
-                                <span class="checkmark"></span>
-                                Independent Contractors
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="type" value="internship">
-                                <span class="checkmark"></span>
-                                Internships
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- By Department/Division -->
-                    <div class="filter-group">
-                        <div class="filter-group-header">
-                            <h3 class="filter-title">By Department/Division</h3>
-                            <button class="clear-link" data-clear="division">Clear</button>
-                        </div>
-                        <div class="filter-options">
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="division" value="administration">
-                                <span class="checkmark"></span>
-                                Administration & Executive
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="division" value="appeals">
-                                <span class="checkmark"></span>
-                                Appellate Defense
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="division" value="capital">
-                                <span class="checkmark"></span>
-                                Capital Defense
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="division" value="support">
-                                <span class="checkmark"></span>
-                                Customer Support & Compliance
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="division" value="local">
-                                <span class="checkmark"></span>
-                                Local Public Defense
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="division" value="mental-health">
-                                <span class="checkmark"></span>
-                                Mental Health Defense
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="division" value="training">
-                                <span class="checkmark"></span>
-                                Professional Development & Training
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="division" value="social-services">
-                                <span class="checkmark"></span>
-                                Social Services
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="division" value="youth">
-                                <span class="checkmark"></span>
-                                Youth Defense
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- By County -->
-                    <div class="filter-group">
-                        <div class="filter-group-header">
-                            <h3 class="filter-title">By County</h3>
-                            <button class="clear-link" data-clear="county">Clear</button>
-                        </div>
-                        <div class="filter-options filter-options-scroll">
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="bibb">
-                                <span class="checkmark"></span>
-                                Bibb
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="chatham">
-                                <span class="checkmark"></span>
-                                Chatham
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="clarke">
-                                <span class="checkmark"></span>
-                                Clarke
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="cobb">
-                                <span class="checkmark"></span>
-                                Cobb
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="dekalb">
-                                <span class="checkmark"></span>
-                                DeKalb
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="fulton">
-                                <span class="checkmark"></span>
-                                Fulton
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="gwinnett">
-                                <span class="checkmark"></span>
-                                Gwinnett
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="muscogee">
-                                <span class="checkmark"></span>
-                                Muscogee
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="richmond">
-                                <span class="checkmark"></span>
-                                Richmond
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="checkbox" name="county" value="statewide">
-                                <span class="checkmark"></span>
-                                Statewide / Remote
-                            </label>
-                        </div>
-                    </div>
-                </aside>
-
-                <!-- Positions Content -->
-                <div class="positions-content">
-                    <!-- Positions Grid -->
-                    <div class="positions-grid" id="positionsGrid">
-                        <div class="position-card fade-in" data-type="attorney" data-division="local" data-county="fulton">
-                            <div class="position-card-header">
-                                <span class="position-type-badge">Attorney</span>
-                                <span class="position-new-badge">New</span>
-                            </div>
-                            <div class="position-card-content">
-                                <div class="position-posted">Posted January 15, 2026</div>
-                                <h3 class="position-title">Assistant Public Defender</h3>
-                                <p class="position-location">Atlanta Circuit - Fulton County</p>
-                                <p class="position-description">Represent indigent clients in criminal proceedings, including felony and misdemeanor cases. Requires Georgia Bar admission.</p>
-                                <a href="contact.html" class="apply-link">
-                                    Apply Now
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="position-card fade-in" data-type="attorney" data-division="local" data-county="cobb">
-                            <div class="position-card-header">
-                                <span class="position-type-badge">Attorney</span>
-                            </div>
-                            <div class="position-card-content">
-                                <div class="position-posted">Posted January 10, 2026</div>
-                                <h3 class="position-title">Senior Trial Attorney</h3>
-                                <p class="position-location">Cobb Circuit - Marietta</p>
-                                <p class="position-description">Handle complex felony cases and mentor junior attorneys. Minimum 5 years criminal defense experience required.</p>
-                                <a href="contact.html" class="apply-link">
-                                    Apply Now
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="position-card fade-in" data-type="attorney" data-division="youth" data-county="dekalb">
-                            <div class="position-card-header">
-                                <span class="position-type-badge">Attorney</span>
-                                <span class="position-new-badge">New</span>
-                            </div>
-                            <div class="position-card-content">
-                                <div class="position-posted">Posted January 20, 2026</div>
-                                <h3 class="position-title">Juvenile Defense Attorney</h3>
-                                <p class="position-location">DeKalb Circuit - Decatur</p>
-                                <p class="position-description">Specialize in juvenile defense matters. Experience with juvenile court proceedings preferred.</p>
-                                <a href="contact.html" class="apply-link">
-                                    Apply Now
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="position-card fade-in" data-type="non-attorney" data-division="local" data-county="gwinnett">
-                            <div class="position-card-header">
-                                <span class="position-type-badge">Non-Attorney</span>
-                            </div>
-                            <div class="position-card-content">
-                                <div class="position-posted">Posted January 8, 2026</div>
-                                <h3 class="position-title">Investigator</h3>
-                                <p class="position-location">Gwinnett Circuit - Lawrenceville</p>
-                                <p class="position-description">Conduct investigations, interview witnesses, and gather evidence for criminal defense cases. Prior law enforcement or investigative experience required.</p>
-                                <a href="contact.html" class="apply-link">
-                                    Apply Now
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="position-card fade-in" data-type="non-attorney" data-division="social-services" data-county="fulton">
-                            <div class="position-card-header">
-                                <span class="position-type-badge">Non-Attorney</span>
-                                <span class="position-new-badge">New</span>
-                            </div>
-                            <div class="position-card-content">
-                                <div class="position-posted">Posted January 18, 2026</div>
-                                <h3 class="position-title">Social Worker</h3>
-                                <p class="position-location">Central Office - Atlanta</p>
-                                <p class="position-description">Provide social work services to clients and families. MSW required, LCSW preferred. Experience with criminal justice populations a plus.</p>
-                                <a href="contact.html" class="apply-link">
-                                    Apply Now
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="position-card fade-in" data-type="non-attorney" data-division="administration" data-county="statewide">
-                            <div class="position-card-header">
-                                <span class="position-type-badge">Non-Attorney</span>
-                            </div>
-                            <div class="position-card-content">
-                                <div class="position-posted">Posted January 5, 2026</div>
-                                <h3 class="position-title">Legal Administrative Assistant</h3>
-                                <p class="position-location">Multiple Locations</p>
-                                <p class="position-description">Provide administrative support to attorneys, manage case files, and coordinate court schedules. Legal office experience preferred.</p>
-                                <a href="contact.html" class="apply-link">
-                                    Apply Now
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="position-card fade-in" data-type="contractor" data-division="appeals" data-county="statewide">
-                            <div class="position-card-header">
-                                <span class="position-type-badge">Contractor</span>
-                            </div>
-                            <div class="position-card-content">
-                                <div class="position-posted">Posted January 12, 2026</div>
-                                <h3 class="position-title">Contract Attorney - Appellate</h3>
-                                <p class="position-location">Remote / Statewide</p>
-                                <p class="position-description">Handle appellate cases on a contract basis. Georgia Bar admission and appellate experience required.</p>
-                                <a href="contact.html" class="apply-link">
-                                    Apply Now
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="position-card fade-in" data-type="internship" data-division="local" data-county="statewide">
-                            <div class="position-card-header">
-                                <span class="position-type-badge">Internship</span>
-                                <span class="position-new-badge">New</span>
-                            </div>
-                            <div class="position-card-content">
-                                <div class="position-posted">Posted January 22, 2026</div>
-                                <h3 class="position-title">Summer Law Intern</h3>
-                                <p class="position-location">Various Circuits</p>
-                                <p class="position-description">Gain hands-on experience in public defense. Open to 1L and 2L law students. Stipend available for qualifying applicants.</p>
-                                <a href="contact.html" class="apply-link">
-                                    Apply Now
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- No Results Message -->
-                    <div class="no-positions" id="noPositions" style="display: none;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"/>
-                            <path d="M21 21l-4.35-4.35"/>
-                        </svg>
-                        <h3>No positions found</h3>
-                        <p>There are currently no openings matching your filters. Try adjusting your search criteria or contact us to express your interest.</p>
-                        <a href="contact.html" class="btn">
-                            <span>Contact HR</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                    </div>
+                    <div class="position-posted">Posted January 15, 2026</div>
+                    <p class="position-description">Represent indigent clients in criminal proceedings, including felony and misdemeanor cases. Requires Georgia Bar admission.</p>
+                </div>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
                 </div>
             </div>
+
+            <div class="position-card fade-in" data-type="attorney" data-county="cobb">
+                <div class="position-card-header">
+                    <span class="position-type-badge attorney">Attorney</span>
+                </div>
+                <div class="position-card-content">
+                    <h3 class="position-title">Senior Trial Attorney</h3>
+                    <div class="position-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Cobb Circuit - Marietta
+                    </div>
+                    <div class="position-posted">Posted January 10, 2026</div>
+                    <p class="position-description">Handle complex felony cases and mentor junior attorneys. Minimum 5 years criminal defense experience required.</p>
+                </div>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="position-card fade-in" data-type="attorney" data-county="dekalb">
+                <div class="position-card-header">
+                    <span class="position-type-badge attorney">Attorney</span>
+                    <span class="position-new-badge">New</span>
+                </div>
+                <div class="position-card-content">
+                    <h3 class="position-title">Juvenile Defense Attorney</h3>
+                    <div class="position-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        DeKalb Circuit - Decatur
+                    </div>
+                    <div class="position-posted">Posted January 20, 2026</div>
+                    <p class="position-description">Specialize in juvenile defense matters. Experience with juvenile court proceedings preferred.</p>
+                </div>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="position-card fade-in" data-type="non-attorney" data-county="gwinnett">
+                <div class="position-card-header">
+                    <span class="position-type-badge non-attorney">Non-Attorney</span>
+                </div>
+                <div class="position-card-content">
+                    <h3 class="position-title">Investigator</h3>
+                    <div class="position-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Gwinnett Circuit - Lawrenceville
+                    </div>
+                    <div class="position-posted">Posted January 8, 2026</div>
+                    <p class="position-description">Conduct investigations, interview witnesses, and gather evidence for criminal defense cases. Prior law enforcement or investigative experience required.</p>
+                </div>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="position-card fade-in" data-type="non-attorney" data-county="fulton">
+                <div class="position-card-header">
+                    <span class="position-type-badge non-attorney">Non-Attorney</span>
+                    <span class="position-new-badge">New</span>
+                </div>
+                <div class="position-card-content">
+                    <h3 class="position-title">Social Worker</h3>
+                    <div class="position-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Central Office - Atlanta
+                    </div>
+                    <div class="position-posted">Posted January 18, 2026</div>
+                    <p class="position-description">Provide social work services to clients and families. MSW required, LCSW preferred. Experience with criminal justice populations a plus.</p>
+                </div>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="position-card fade-in" data-type="non-attorney" data-county="statewide">
+                <div class="position-card-header">
+                    <span class="position-type-badge non-attorney">Non-Attorney</span>
+                </div>
+                <div class="position-card-content">
+                    <h3 class="position-title">Legal Administrative Assistant</h3>
+                    <div class="position-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Multiple Locations
+                    </div>
+                    <div class="position-posted">Posted January 5, 2026</div>
+                    <p class="position-description">Provide administrative support to attorneys, manage case files, and coordinate court schedules. Legal office experience preferred.</p>
+                </div>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="position-card fade-in" data-type="contractor" data-county="statewide">
+                <div class="position-card-header">
+                    <span class="position-type-badge contractor">Contractor</span>
+                </div>
+                <div class="position-card-content">
+                    <h3 class="position-title">Contract Attorney - Appellate</h3>
+                    <div class="position-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Remote / Statewide
+                    </div>
+                    <div class="position-posted">Posted January 12, 2026</div>
+                    <p class="position-description">Handle appellate cases on a contract basis. Georgia Bar admission and appellate experience required.</p>
+                </div>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="position-card fade-in" data-type="internship" data-county="statewide">
+                <div class="position-card-header">
+                    <span class="position-type-badge internship">Internship</span>
+                    <span class="position-new-badge">New</span>
+                </div>
+                <div class="position-card-content">
+                    <h3 class="position-title">Summer Law Intern</h3>
+                    <div class="position-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Various Circuits
+                    </div>
+                    <div class="position-posted">Posted January 22, 2026</div>
+                    <p class="position-description">Gain hands-on experience in public defense. Open to 1L and 2L law students. Stipend available for qualifying applicants.</p>
+                </div>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-positions" id="noPositions" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <h3>No positions found</h3>
+            <p>No openings match your current filters. Try adjusting your search or contact us to express interest.</p>
+            <a href="contact.html" class="btn btn-primary">
+                <span>Contact HR</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
         </div>
     </section>
 
@@ -910,55 +713,71 @@
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
     <script>
-        // Positions filter functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
+            const typePills = document.querySelectorAll('.type-pill');
             const positionCards = document.querySelectorAll('.position-card');
-            const noPositions = document.getElementById('noPositions');
             const searchInput = document.getElementById('positionSearch');
+            const locationSelect = document.getElementById('locationFilter');
             const resultsCount = document.getElementById('resultsCount');
-            const totalCount = document.getElementById('totalCount');
-            const resetAllBtn = document.getElementById('resetAll');
-            const clearBtns = document.querySelectorAll('.clear-link');
-            const typeCheckboxes = document.querySelectorAll('input[name="type"]');
-            const divisionCheckboxes = document.querySelectorAll('input[name="division"]');
-            const countyCheckboxes = document.querySelectorAll('input[name="county"]');
+            const noPositions = document.getElementById('noPositions');
+            const positionsGrid = document.getElementById('positionsGrid');
+            const resetBtn = document.getElementById('resetFilters');
 
-            // Set total count
-            totalCount.textContent = positionCards.length;
+            // Hide expired positions on load
+            positionCards.forEach(card => {
+                if (card.dataset.expired === 'true') {
+                    card.style.display = 'none';
+                    card.dataset.hidden = 'true';
+                }
+            });
+
+            // Count positions by type and update pill counts
+            function updateCounts() {
+                const allCards = document.querySelectorAll('.position-card:not([data-hidden="true"])');
+                const counts = { all: 0, attorney: 0, 'non-attorney': 0, contractor: 0, internship: 0 };
+
+                allCards.forEach(card => {
+                    counts.all++;
+                    const type = card.dataset.type;
+                    if (counts[type] !== undefined) counts[type]++;
+                });
+
+                document.getElementById('countAll').textContent = counts.all;
+                document.getElementById('countAttorney').textContent = counts.attorney;
+                document.getElementById('countNonAttorney').textContent = counts['non-attorney'];
+                document.getElementById('countContractor').textContent = counts.contractor;
+                document.getElementById('countInternship').textContent = counts.internship;
+            }
+
+            updateCounts();
 
             // Main filter function
             function filterPositions() {
-                const searchTerm = searchInput.value.toLowerCase();
-                const activeTab = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-
-                // Get checked values
-                const checkedTypes = Array.from(typeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
-                const checkedDivisions = Array.from(divisionCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
-                const checkedCounties = Array.from(countyCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
-
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const activeType = document.querySelector('.type-pill.active')?.dataset.filter || 'all';
+                const selectedLocation = locationSelect.value;
                 let visibleCount = 0;
+                const hasFilters = searchTerm || activeType !== 'all' || selectedLocation !== 'all';
 
                 positionCards.forEach(card => {
+                    // Skip expired
+                    if (card.dataset.hidden === 'true') return;
+
                     const cardType = card.dataset.type;
-                    const cardDivision = card.dataset.division;
                     const cardCounty = card.dataset.county;
                     const cardTitle = card.querySelector('.position-title').textContent.toLowerCase();
-                    const cardDescription = card.querySelector('.position-description').textContent.toLowerCase();
-                    const cardLocation = card.querySelector('.position-location').textContent.toLowerCase();
+                    const cardDesc = card.querySelector('.position-description').textContent.toLowerCase();
+                    const cardLoc = card.querySelector('.position-location').textContent.toLowerCase();
 
-                    // Check all filter conditions
                     const matchesSearch = !searchTerm ||
                         cardTitle.includes(searchTerm) ||
-                        cardDescription.includes(searchTerm) ||
-                        cardLocation.includes(searchTerm);
+                        cardDesc.includes(searchTerm) ||
+                        cardLoc.includes(searchTerm);
 
-                    const matchesTab = activeTab === 'all' || cardType === activeTab;
-                    const matchesType = checkedTypes.length === 0 || checkedTypes.includes(cardType);
-                    const matchesDivision = checkedDivisions.length === 0 || checkedDivisions.includes(cardDivision);
-                    const matchesCounty = checkedCounties.length === 0 || checkedCounties.includes(cardCounty);
+                    const matchesType = activeType === 'all' || cardType === activeType;
+                    const matchesLocation = selectedLocation === 'all' || cardCounty === selectedLocation;
 
-                    if (matchesSearch && matchesTab && matchesType && matchesDivision && matchesCounty) {
+                    if (matchesSearch && matchesType && matchesLocation) {
                         card.style.display = 'flex';
                         visibleCount++;
                     } else {
@@ -966,28 +785,19 @@
                     }
                 });
 
-                // Update results count
                 resultsCount.textContent = visibleCount;
-
-                // Show/hide no results message
                 noPositions.style.display = visibleCount === 0 ? 'flex' : 'none';
-                document.getElementById('positionsGrid').style.display = visibleCount === 0 ? 'none' : 'grid';
+                positionsGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
+
+                // Show/hide reset button
+                resetBtn.classList.toggle('visible', hasFilters);
             }
 
-            // Tab filter buttons
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    // Sync tab with type checkboxes
-                    const tabFilter = btn.dataset.filter;
-                    if (tabFilter !== 'all') {
-                        typeCheckboxes.forEach(cb => {
-                            cb.checked = cb.value === tabFilter;
-                        });
-                    }
-
+            // Type pill click handlers
+            typePills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    typePills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
                     filterPositions();
                 });
             });
@@ -995,69 +805,20 @@
             // Search input
             searchInput.addEventListener('input', filterPositions);
 
-            // Checkbox filters
-            [...typeCheckboxes, ...divisionCheckboxes, ...countyCheckboxes].forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    // Sync type checkboxes with tabs
-                    if (this.name === 'type') {
-                        const checkedTypes = Array.from(typeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
-                        filterBtns.forEach(btn => btn.classList.remove('active'));
+            // Location select
+            locationSelect.addEventListener('change', filterPositions);
 
-                        if (checkedTypes.length === 0) {
-                            document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
-                        } else if (checkedTypes.length === 1) {
-                            const matchingBtn = document.querySelector(`.filter-btn[data-filter="${checkedTypes[0]}"]`);
-                            if (matchingBtn) matchingBtn.classList.add('active');
-                        }
-                    }
-                    filterPositions();
-                });
-            });
-
-            // Clear buttons
-            clearBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const clearType = btn.dataset.clear;
-                    const checkboxes = document.querySelectorAll(`input[name="${clearType}"]`);
-                    checkboxes.forEach(cb => cb.checked = false);
-
-                    if (clearType === 'type') {
-                        filterBtns.forEach(b => b.classList.remove('active'));
-                        document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
-                    }
-
-                    filterPositions();
-                });
-            });
-
-            // Reset all
-            resetAllBtn.addEventListener('click', () => {
+            // Reset filters
+            resetBtn.addEventListener('click', () => {
                 searchInput.value = '';
-                [...typeCheckboxes, ...divisionCheckboxes, ...countyCheckboxes].forEach(cb => cb.checked = false);
-                filterBtns.forEach(b => b.classList.remove('active'));
-                document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+                locationSelect.value = 'all';
+                typePills.forEach(p => p.classList.remove('active'));
+                document.querySelector('.type-pill[data-filter="all"]').classList.add('active');
                 filterPositions();
             });
 
-            // Mobile sidebar toggle
-            const sidebar = document.querySelector('.positions-sidebar');
-            const positionsContent = document.querySelector('.positions-content');
-
-            // Create toggle button
-            const toggleBtn = document.createElement('button');
-            toggleBtn.className = 'sidebar-toggle';
-            toggleBtn.innerHTML = `
-                <span>Filter Positions</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6 9l6 6 6-6"/>
-                </svg>
-            `;
-            positionsContent.parentElement.insertBefore(toggleBtn, sidebar);
-
-            toggleBtn.addEventListener('click', () => {
-                toggleBtn.classList.toggle('active');
-                sidebar.classList.toggle('active');
-            });
+            // Initial filter
+            filterPositions();
         });
     </script>
 </body>
