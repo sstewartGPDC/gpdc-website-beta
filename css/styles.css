@@ -2086,58 +2086,6 @@ section {
     line-height: 1.6;
 }
 
-/* ==================== INDEPENDENCE SECTION ==================== */
-.independence-section {
-    padding: 4rem 1.5rem;
-    background: var(--bg-white);
-}
-
-.independence-card {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    padding: 3rem;
-    border-radius: 16px;
-    color: white;
-}
-
-.independence-content {
-    flex: 1;
-}
-
-.independence-content .label {
-    color: rgba(255,255,255,0.8);
-}
-
-.independence-content .section-title {
-    color: white;
-    margin-bottom: 1rem;
-}
-
-.independence-content p {
-    opacity: 0.9;
-    line-height: 1.7;
-    margin-bottom: 0.75rem;
-}
-
-.independence-icon {
-    width: 120px;
-    height: 120px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.independence-icon svg {
-    width: 50px;
-    height: 50px;
-    color: white;
-}
-
 /* ==================== FACTS SECTION ==================== */
 .facts-section {
     padding: 4rem 1.5rem;
@@ -3363,21 +3311,6 @@ section {
 
     .facts-grid {
         grid-template-columns: repeat(3, 1fr);
-    }
-
-    .independence-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .independence-icon {
-        width: 80px;
-        height: 80px;
-    }
-
-    .independence-icon svg {
-        width: 36px;
-        height: 36px;
     }
 
     .team-grid {

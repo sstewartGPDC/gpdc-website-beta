@@ -431,6 +431,16 @@ function toggleFullscreen() {
 
 function initializeMapInteractions(svg) {
     const counties = svg.querySelectorAll('.county');
+    let currentHoveredCounty = null;
+
+    // Safety: clear all hover states when mouse leaves the entire map
+    svg.addEventListener('mouseleave', function() {
+        if (currentHoveredCounty) {
+            currentHoveredCounty.classList.remove('hovered');
+            currentHoveredCounty = null;
+        }
+        hideTooltip();
+    });
 
     counties.forEach(county => {
         const fipsCode = county.id;
@@ -449,17 +459,26 @@ function initializeMapInteractions(svg) {
         }
 
         // Individual county hover - just highlight this county
-        county.addEventListener('mouseenter', function() {
-            // Bring county to front for proper border rendering
-            county.parentNode.appendChild(county);
+        county.addEventListener('mouseenter', function(e) {
+            // Clear any previously hovered county first
+            if (currentHoveredCounty && currentHoveredCounty !== county) {
+                currentHoveredCounty.classList.remove('hovered');
+            }
+
             if (!county.classList.contains('opt-out')) {
                 county.classList.add('hovered');
+                currentHoveredCounty = county;
             }
             showTooltip(county, countyName, svg);
         });
 
-        county.addEventListener('mouseleave', function() {
+        county.addEventListener('mouseleave', function(e) {
+            // Only remove hover if we're actually leaving this county
+            // (not just because of DOM re-ordering)
             county.classList.remove('hovered');
+            if (currentHoveredCounty === county) {
+                currentHoveredCounty = null;
+            }
             hideTooltip();
         });
 
