@@ -1,6 +1,8 @@
 ---
 title: "Social Worker"
 date: 2026-01-20
+expires: 2026-07-20
+expired: false
 location: "Stone Mountain Circuit - DeKalb County"
 type: "non-attorney"
 division: "social-services"

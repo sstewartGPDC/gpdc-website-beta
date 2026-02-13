@@ -190,12 +190,13 @@ var EventPreview = createClass({
   }
 });
 
-// ——— POSITION PREVIEW ———
+// ——— JOB POSTING PREVIEW ———
 var PositionPreview = createClass({
   render: function () {
     var entry = this.props.entry;
     var title = entry.getIn(['data', 'title']) || 'Untitled Position';
     var date = entry.getIn(['data', 'date']);
+    var expires = entry.getIn(['data', 'expires']);
     var location = entry.getIn(['data', 'location']) || '';
     var type = entry.getIn(['data', 'type']) || 'attorney';
     var division = entry.getIn(['data', 'division']) || '';
@@ -212,20 +213,49 @@ var PositionPreview = createClass({
       'training': 'Training', 'mental-health': 'Mental Health', 'conflict': 'Conflict'
     };
 
-    return h('div', { className: 'preview-wrapper' },
+    // Check if expired
+    var isExpired = false;
+    if (expires) {
+      var expDate = new Date(expires);
+      isExpired = expDate < new Date();
+    }
+
+    return h('div', { className: 'preview-wrapper', style: { padding: '1.5rem' } },
+
+      // Expiration warning banner
+      isExpired && h('div', { style: {
+        background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '8px',
+        padding: '0.75rem 1rem', marginBottom: '1rem', fontSize: '0.875rem', color: '#dc2626',
+        display: 'flex', alignItems: 'center', gap: '0.5rem'
+      } },
+        h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: '2', style: { width: 16, height: 16, flexShrink: 0 } },
+          h('circle', { cx: '12', cy: '12', r: '10' }),
+          h('line', { x1: '12', y1: '8', x2: '12', y2: '12' }),
+          h('line', { x1: '12', y1: '16', x2: '12.01', y2: '16' })
+        ),
+        'This posting expired on ' + formatDate(expires) + '. It will be hidden from the live site.'
+      ),
+
       // Position Card (as it appears in listing)
-      h('div', { className: 'position-card', style: { maxWidth: '480px', marginBottom: '2rem' } },
+      h('div', { className: 'position-card', style: {
+        maxWidth: '480px', marginBottom: '2rem',
+        opacity: isExpired ? 0.6 : 1
+      } },
         h('div', { className: 'position-header' },
           h('span', { className: 'position-type' }, typeLabels[type] || type),
-          isNew && h('span', { className: 'position-new' }, 'New')
+          isNew && !isExpired && h('span', { className: 'position-new' }, 'New'),
+          isExpired && h('span', { style: {
+            fontSize: '0.625rem', fontWeight: 700, textTransform: 'uppercase',
+            color: 'white', background: '#ef4444', padding: '0.2rem 0.4rem',
+            borderRadius: '4px', display: 'inline-block'
+          } }, 'Expired')
         ),
         h('h3', { className: 'position-title' }, title),
         h('p', { className: 'position-location' }, location),
         h('p', { className: 'position-description' }, description),
         h('div', { className: 'position-footer' },
           h('span', { className: 'position-posted' }, 'Posted ' + formatDate(date)),
-          h('span', {
-            className: 'btn btn-primary btn-sm',
+          !isExpired && h('span', {
             style: {
               display: 'inline-block',
               padding: '0.5rem 1rem',
@@ -235,7 +265,7 @@ var PositionPreview = createClass({
               fontSize: '0.75rem',
               fontWeight: 600
             }
-          }, 'Apply Now →')
+          }, 'Apply Now \u2192')
         )
       ),
 
@@ -247,6 +277,15 @@ var PositionPreview = createClass({
           h('div', { className: 'preview-meta-item' },
             h('div', { className: 'sidebar-label' }, 'Posted'),
             h('div', { className: 'sidebar-value' }, formatDate(date))
+          ),
+          h('div', { className: 'preview-meta-item' },
+            h('div', { className: 'sidebar-label' }, 'Expires'),
+            expires
+              ? h('div', { className: 'sidebar-value', style: { color: isExpired ? '#dc2626' : 'inherit' } },
+                  formatDate(expires),
+                  isExpired && h('span', { style: { fontSize: '0.6875rem', color: '#dc2626', marginLeft: '0.375rem' } }, '(Expired)')
+                )
+              : h('div', { className: 'sidebar-value', style: { color: '#6b6b6b', fontStyle: 'italic' } }, 'No expiration')
           ),
           h('div', { className: 'preview-meta-item' },
             h('div', { className: 'sidebar-label' }, 'Location'),
@@ -266,9 +305,15 @@ var PositionPreview = createClass({
           ),
           h('div', { className: 'preview-meta-item' },
             h('div', { className: 'sidebar-label' }, 'Status'),
-            isNew
-              ? h('span', { className: 'position-new' }, 'New')
-              : h('span', { style: { fontSize: '0.75rem', color: '#6b6b6b' } }, 'Active')
+            isExpired
+              ? h('span', { style: {
+                  fontSize: '0.625rem', fontWeight: 700, textTransform: 'uppercase',
+                  color: 'white', background: '#ef4444', padding: '0.2rem 0.4rem',
+                  borderRadius: '4px', display: 'inline-block'
+                } }, 'Expired')
+              : isNew
+                ? h('span', { className: 'position-new' }, 'New')
+                : h('span', { style: { fontSize: '0.75rem', color: '#6b6b6b' } }, 'Active')
           )
         ),
 

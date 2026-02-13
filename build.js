@@ -334,4 +334,49 @@ if (fs.existsSync(indexPath)) {
   }
 }
 
+// ——————————————————————————————
+// 4. Auto-expire job postings
+// ——————————————————————————————
+
+const positionsDir = path.join(__dirname, '_positions');
+if (fs.existsSync(positionsDir)) {
+  const posFiles = fs.readdirSync(positionsDir).filter(f => f.endsWith('.md'));
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  let expiredCount = 0;
+
+  posFiles.forEach(file => {
+    const filePath = path.join(positionsDir, file);
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const { data, body } = parseFrontmatter(content);
+
+    // Check if position has an expiration date and if it's passed
+    if (data.expires && data.expires <= today && data.expired !== true) {
+      // Update the frontmatter to mark as expired
+      const newContent = content.replace(
+        /^expired\s*:\s*false$/m,
+        'expired: true'
+      );
+
+      // If "expired" field doesn't exist yet, add it after "expires"
+      if (newContent === content && !content.match(/^expired\s*:/m)) {
+        const updated = content.replace(
+          /^(expires\s*:.*)$/m,
+          '$1\nexpired: true'
+        );
+        fs.writeFileSync(filePath, updated);
+      } else {
+        fs.writeFileSync(filePath, newContent);
+      }
+      expiredCount++;
+      console.log(`  ⏰ ${file} marked as expired (was due ${data.expires})`);
+    }
+  });
+
+  if (expiredCount > 0) {
+    console.log(`  ✓ ${expiredCount} position(s) auto-expired`);
+  } else {
+    console.log(`  ✓ ${posFiles.length} positions checked, none expired`);
+  }
+}
+
 console.log(`\nBuild complete! ${articles.length} articles processed.`);

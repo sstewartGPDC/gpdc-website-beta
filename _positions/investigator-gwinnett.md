@@ -1,6 +1,8 @@
 ---
 title: "Investigator"
 date: 2026-01-08
+expires: 2026-04-08
+expired: false
 location: "Gwinnett Circuit - Lawrenceville"
 type: "non-attorney"
 division: "local"

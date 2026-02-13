@@ -1,6 +1,8 @@
 ---
 title: "Assistant Public Defender"
 date: 2026-01-15
+expires: 2026-06-15
+expired: false
 location: "Atlanta Circuit - Fulton County"
 type: "attorney"
 division: "local"

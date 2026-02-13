@@ -205,10 +205,10 @@ collections:
         required: false
         hint: "Full event details (optional)"
 
-  # ==================== POSITIONS ====================
+  # ==================== JOB POSTINGS ====================
   - name: "positions"
-    label: "Positions"
-    label_singular: "Position"
+    label: "Job Postings"
+    label_singular: "Job Posting"
     folder: "_positions"
     create: true
     slug: "{{slug}}"
@@ -230,14 +230,22 @@ collections:
       - label: "Internship"
         field: "type"
         pattern: "internship"
-      - label: "New Positions"
+      - label: "New Postings"
         field: "is_new"
+        pattern: true
+      - label: "Active"
+        field: "expired"
+        pattern: false
+      - label: "Expired"
+        field: "expired"
         pattern: true
     view_groups:
       - label: "Type"
         field: "type"
       - label: "Division"
         field: "division"
+      - label: "Status"
+        field: "expired"
     fields:
       - label: "Job Title"
         name: "title"
@@ -249,6 +257,18 @@ collections:
         widget: "datetime"
         format: "YYYY-MM-DD"
         hint: "Date the position was posted"
+
+      - label: "Expiration Date"
+        name: "expires"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        required: false
+        hint: "Position will automatically show as expired after this date (leave blank for no expiration)"
+
+      - label: "Expired"
+        name: "expired"
+        widget: "hidden"
+        default: false
 
       - label: "Location"
         name: "location"
