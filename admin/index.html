@@ -5,13 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>GPDC Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <!-- Preview pane styles (mirrors live site) -->
+
   <style>
-    /* Inject Google Fonts into CMS preview iframe */
-    [data-frame="preview"] {
-      font-family: 'Manrope', sans-serif;
+    /* ——— GPDC Admin Theme ——— */
+
+    /* Use site fonts in admin UI */
+    body, [class*="css-"] {
+      font-family: 'Manrope', -apple-system, sans-serif !important;
     }
+
+    /* ——— Collection List: Card-style entries ——— */
+
+    /* Each entry in the collection list */
+    [class*="ListCardTop"] {
+      border-left: 3px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    [class*="ListCardTop"]:hover {
+      border-left-color: #B85C38;
+    }
+
+    /* Summary text styling — parse the · separators */
+    [class*="ListCardTop"] h2 span,
+    [class*="ListCard"] summary {
+      font-size: 14px;
+    }
+
+    /* ——— Custom summary rendering via JS below ——— */
   </style>
 </head>
 <body>
@@ -25,5 +50,231 @@
 
   <!-- Custom preview templates -->
   <script src="/admin/preview.js"></script>
+
+  <!-- ——— Style the collection list entries with date badges ——— -->
+  <script>
+    // After CMS loads, enhance the list view with styled date badges
+    // Decap renders summary as plain text — we intercept and restyle
+    (function() {
+      var STYLES = document.createElement('style');
+      STYLES.textContent = `
+        /* ——— Enhanced Collection List Cards ——— */
+
+        /* Card wrapper */
+        div[class*="ObjectControl"] li,
+        div[class*="ListCard"] {
+          font-family: 'Manrope', sans-serif;
+        }
+
+        /* Title line — make the · separators into styled badges */
+        a[class*="ListCard"] > div:first-child {
+          position: relative;
+        }
+
+        /* ——— Summary line custom rendering ——— */
+
+        /* The GPDC styled summary line */
+        .gpdc-summary {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+          padding: 2px 0;
+        }
+
+        .gpdc-summary-title {
+          font-weight: 600;
+          color: #1a1a1a;
+          font-size: 14px;
+          line-height: 1.35;
+          flex: 1;
+          min-width: 200px;
+        }
+
+        .gpdc-summary-badges {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          flex-shrink: 0;
+          flex-wrap: wrap;
+        }
+
+        .gpdc-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 11px;
+          font-weight: 600;
+          padding: 3px 8px;
+          border-radius: 4px;
+          white-space: nowrap;
+          letter-spacing: 0.02em;
+        }
+
+        .gpdc-badge-date {
+          background: #f5f3f0;
+          color: #4a4a4a;
+          font-variant-numeric: tabular-nums;
+        }
+
+        .gpdc-badge-date svg {
+          width: 12px;
+          height: 12px;
+          opacity: 0.6;
+        }
+
+        .gpdc-badge-category {
+          background: rgba(184, 92, 56, 0.08);
+          color: #B85C38;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-size: 10px;
+        }
+
+        .gpdc-badge-type {
+          background: rgba(184, 92, 56, 0.08);
+          color: #B85C38;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-size: 10px;
+        }
+
+        .gpdc-badge-type[data-type="in-person"] { background: rgba(34,197,94,0.1); color: #16a34a; }
+        .gpdc-badge-type[data-type="virtual"] { background: rgba(59,130,246,0.1); color: #2563eb; }
+        .gpdc-badge-type[data-type="hybrid"] { background: rgba(168,85,247,0.1); color: #9333ea; }
+        .gpdc-badge-type[data-type="on-demand"] { background: rgba(245,158,11,0.1); color: #d97706; }
+
+        .gpdc-badge-type[data-type="attorney"] { background: rgba(37,99,235,0.1); color: #2563eb; }
+        .gpdc-badge-type[data-type="non-attorney"] { background: rgba(34,197,94,0.1); color: #16a34a; }
+        .gpdc-badge-type[data-type="contractor"] { background: rgba(245,158,11,0.1); color: #d97706; }
+        .gpdc-badge-type[data-type="internship"] { background: rgba(168,85,247,0.1); color: #9333ea; }
+
+        .gpdc-badge-location {
+          background: #f5f3f0;
+          color: #6b6b6b;
+          font-size: 10px;
+        }
+
+        .gpdc-badge-location svg {
+          width: 11px;
+          height: 11px;
+          opacity: 0.5;
+        }
+
+        .gpdc-badge-new {
+          background: #22c55e;
+          color: white;
+          font-size: 9px;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+        }
+
+        .gpdc-badge-featured {
+          background: linear-gradient(135deg, #fbbf24, #f59e0b);
+          color: #1a1a1a;
+          font-size: 9px;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+        }
+      `;
+      document.head.appendChild(STYLES);
+
+      // Calendar icon SVG
+      var calendarSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+      var pinSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+
+      function formatDateNice(dateStr) {
+        if (!dateStr) return '';
+        var d = new Date(dateStr);
+        if (isNaN(d.getTime())) return dateStr;
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+      }
+
+      // Enhance summary text nodes with styled badges
+      function enhanceSummaries() {
+        // Find all summary text elements in the list
+        var cards = document.querySelectorAll('a[href*="/collections/"] > div');
+
+        cards.forEach(function(card) {
+          // Skip already enhanced
+          if (card.querySelector('.gpdc-summary')) return;
+
+          var h2 = card.querySelector('h2');
+          if (!h2) return;
+
+          var text = h2.textContent || '';
+          if (!text.includes('·')) return;
+
+          var parts = text.split('·').map(function(s) { return s.trim(); });
+          if (parts.length < 2) return;
+
+          var title = parts[0];
+          var badges = parts.slice(1);
+
+          // Determine collection type from URL
+          var link = card.closest('a');
+          var href = link ? link.getAttribute('href') : '';
+          var isArticle = href.includes('/articles/');
+          var isEvent = href.includes('/events/');
+          var isPosition = href.includes('/positions/');
+
+          // Build enhanced HTML
+          var html = '<div class="gpdc-summary">';
+          html += '<span class="gpdc-summary-title">' + title + '</span>';
+          html += '<span class="gpdc-summary-badges">';
+
+          badges.forEach(function(badge, i) {
+            badge = badge.trim();
+            // Detect dates (contains year pattern)
+            if (/\d{4}/.test(badge)) {
+              html += '<span class="gpdc-badge gpdc-badge-date">' + calendarSvg + formatDateNice(badge) + '</span>';
+            }
+            // First non-date badge = category or type
+            else if (i === 0 || (isArticle && i === 0)) {
+              // Check for special types
+              var lower = badge.toLowerCase();
+              if (['in-person','virtual','hybrid','on-demand','attorney','non-attorney','contractor','internship'].indexOf(lower) >= 0) {
+                html += '<span class="gpdc-badge gpdc-badge-type" data-type="' + lower + '">' + badge + '</span>';
+              } else {
+                html += '<span class="gpdc-badge gpdc-badge-category">' + badge + '</span>';
+              }
+            }
+            // Location-like badges (contains Circuit, County, or -)
+            else if (badge.includes('Circuit') || badge.includes('County') || (badge.includes('-') && badge.includes(' '))) {
+              html += '<span class="gpdc-badge gpdc-badge-location">' + pinSvg + badge + '</span>';
+            }
+            // Other type badges
+            else {
+              var lower2 = badge.toLowerCase();
+              if (['in-person','virtual','hybrid','on-demand','attorney','non-attorney','contractor','internship'].indexOf(lower2) >= 0) {
+                html += '<span class="gpdc-badge gpdc-badge-type" data-type="' + lower2 + '">' + badge + '</span>';
+              } else {
+                html += '<span class="gpdc-badge gpdc-badge-category">' + badge + '</span>';
+              }
+            }
+          });
+
+          html += '</span></div>';
+          h2.innerHTML = html;
+        });
+      }
+
+      // Run periodically to catch dynamic loads
+      setInterval(enhanceSummaries, 800);
+
+      // Also observe DOM changes
+      var observer = new MutationObserver(function() {
+        setTimeout(enhanceSummaries, 100);
+      });
+
+      // Wait for CMS to mount, then observe
+      setTimeout(function() {
+        var root = document.getElementById('nc-root') || document.body;
+        observer.observe(root, { childList: true, subtree: true });
+        enhanceSummaries();
+      }, 2000);
+    })();
+  </script>
 </body>
 </html>
