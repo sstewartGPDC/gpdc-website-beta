@@ -585,19 +585,27 @@
             margin: 0 auto;
         }
 
-        /* Horizontal A-Z Bar — full width, joins tab bar when sticky */
+        /* Compact A-Z pill bar with rounded ends */
         .cpd-az-bar {
             display: flex;
             justify-content: center;
-            gap: 0.125rem;
-            padding: 0.5rem 2rem;
+            padding: 0.5rem 0;
             margin-bottom: 1.5rem;
             position: sticky;
             top: 131px;
             z-index: 90;
             background: var(--bg-white);
-            border-bottom: 1px solid var(--border-light);
             transition: box-shadow 0.2s ease;
+        }
+
+        .cpd-az-bar-inner {
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 999px;
+            padding: 0.25rem 0.375rem;
         }
 
         /* When A-Z bar is stuck, hide the tabs' bottom border so they merge */
@@ -610,17 +618,17 @@
         }
 
         .cpd-az-letter {
-            width: 32px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Manrope', sans-serif;
-            font-size: 0.6875rem;
+            font-size: 0.65rem;
             font-weight: 700;
             color: var(--text-light);
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 50%;
             transition: all 0.2s ease;
             border: none;
             background: none;
@@ -630,18 +638,20 @@
 
         .cpd-az-letter:hover {
             color: var(--primary);
-            background: rgba(184, 92, 56, 0.08);
+            background: rgba(184, 92, 56, 0.1);
         }
 
         .cpd-az-letter.active {
             color: white;
             background: var(--primary);
+            box-shadow: 0 1px 4px rgba(184, 92, 56, 0.3);
         }
 
         .cpd-az-letter.disabled {
             color: var(--border-light);
             cursor: default;
             pointer-events: none;
+            opacity: 0.5;
         }
 
         /* Letter Group */
@@ -795,13 +805,12 @@
         /* Tablet — shrink A-Z letters before they overflow */
         @media (max-width: 960px) {
             .cpd-az-letter {
-                width: 28px;
-                height: 28px;
-                font-size: 0.625rem;
+                width: 26px;
+                height: 26px;
+                font-size: 0.6rem;
             }
-            .cpd-az-bar {
-                gap: 0;
-                padding: 0.5rem 1rem;
+            .cpd-az-bar-inner {
+                padding: 0.1875rem 0.25rem;
             }
         }
 
@@ -815,23 +824,24 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             .cpd-az-bar {
-                gap: 0.125rem;
                 padding: 0.5rem 0.75rem;
+            }
+            .cpd-az-bar-inner {
                 overflow-x: auto;
-                justify-content: flex-start;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
+                max-width: 100%;
+                border-radius: 999px;
             }
-            .cpd-az-bar::-webkit-scrollbar {
+            .cpd-az-bar-inner::-webkit-scrollbar {
                 display: none;
             }
             .cpd-az-letter {
-                min-width: 26px;
-                width: 26px;
-                height: 28px;
+                min-width: 24px;
+                width: 24px;
+                height: 26px;
                 flex-shrink: 0;
-                border-radius: 50%;
-                font-size: 0.625rem;
+                font-size: 0.6rem;
             }
             .team-section-header {
                 margin-bottom: 1.5rem;
@@ -856,9 +866,10 @@
                 padding: 0.875rem 1rem;
             }
             .cpd-az-letter {
-                min-width: 24px;
-                width: 24px;
-                height: 26px;
+                min-width: 22px;
+                width: 22px;
+                height: 24px;
+                font-size: 0.55rem;
             }
         }
     </style>
@@ -1506,12 +1517,13 @@ ${message}`;
                 </div>
             `).join('');
 
-            // Build A-Z bar
+            // Build A-Z bar with inner pill wrapper
             const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-            azBar.innerHTML = allLetters.map(letter => {
+            const buttonsHtml = allLetters.map(letter => {
                 const hasEntries = usedLetters.includes(letter);
                 return `<button class="cpd-az-letter${hasEntries ? '' : ' disabled'}" data-letter="${letter}" ${hasEntries ? `onclick="scrollToLetter('${letter}')"` : ''}>${letter}</button>`;
             }).join('');
+            azBar.innerHTML = `<div class="cpd-az-bar-inner">${buttonsHtml}</div>`;
 
             // Intersection observer for active letter highlight
             const observer = new IntersectionObserver((entries) => {
