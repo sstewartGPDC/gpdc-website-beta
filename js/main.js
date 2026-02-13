@@ -1393,7 +1393,9 @@ function initReadingTime() {
     });
 
     // Add to news cards (handles both .card-excerpt and .news-card-excerpt)
+    // Skip if card already has a static .card-read-time in footer
     document.querySelectorAll('.news-card').forEach(card => {
+        if (card.querySelector('.card-read-time')) return; // static read time exists
         const excerpt = card.querySelector('.card-excerpt, .news-card-excerpt');
         if (!excerpt) return;
 
@@ -1414,7 +1416,9 @@ function initReadingTime() {
     });
 
     // Add to featured article
+    // Skip if featured article already has a static .featured-read-time
     document.querySelectorAll('.featured-article').forEach(article => {
+        if (article.querySelector('.featured-read-time')) return; // static read time exists
         const excerpt = article.querySelector('.featured-excerpt');
         if (!excerpt) return;
 

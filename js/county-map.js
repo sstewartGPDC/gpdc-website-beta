@@ -781,6 +781,16 @@ function initMobileSearch() {
     var mobileSearch = document.getElementById('mobileMapSearch');
     if (!mobileSearch) return;
 
+    // On focus, scroll the search hero into view so results appear above the keyboard
+    mobileSearch.addEventListener('focus', function() {
+        setTimeout(function() {
+            var hero = document.querySelector('.fypd-mobile-search-hero');
+            if (hero) {
+                hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 300); // Wait for keyboard to appear and CSS transition to collapse
+    });
+
     mobileSearch.addEventListener('input', function(e) {
         var query = e.target.value.toLowerCase().trim();
 

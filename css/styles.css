@@ -867,6 +867,7 @@ h1, h2, h3, h4 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
     transform: scale(1.05);
     animation: heroZoom 20s var(--ease-out) infinite alternate;
 }
@@ -897,6 +898,7 @@ h1, h2, h3, h4 {
     transform: translateY(20px);
     animation: fadeSlideUp 0.8s var(--ease-out) 0.2s forwards;
 }
+
 
 .hero-title {
     font-size: clamp(2.75rem, 6vw, 4.5rem);
@@ -1885,6 +1887,7 @@ body.nav-open {
     .hero-actions .btn {
         width: 100%;
     }
+
 
     .circuit-hero-content {
         padding: 6rem 1.25rem 3rem;
@@ -4011,41 +4014,74 @@ body.nav-open {
 /* Mobile Search Hero */
 .fypd-mobile-search-hero {
     text-align: center;
-    padding: 1.5rem;
-    background: var(--bg-white);
-    border-radius: 12px;
-    margin-bottom: 1rem;
+    padding: 1.25rem 0;
+    background: transparent;
+    border-radius: 0;
+    margin-bottom: 0.5rem;
+    transition: padding 0.3s ease;
 }
 
 .fypd-mobile-icon {
-    width: 56px;
-    height: 56px;
+    width: 44px;
+    height: 44px;
     background: var(--primary-subtle);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem;
+    margin: 0 auto 0.75rem;
+    transition: all 0.3s ease;
 }
 
 .fypd-mobile-icon svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     color: var(--primary);
 }
 
 .fypd-mobile-search-hero h3 {
     font-family: 'Ubuntu', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 600;
     color: var(--text-dark);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
+    transition: all 0.3s ease;
 }
 
 .fypd-mobile-search-hero p {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     color: var(--text-medium);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+/* When search is focused, collapse decorative elements to maximize space for results above keyboard */
+.fypd-mobile-search-hero:focus-within {
+    padding: 0.75rem 0;
+}
+
+.fypd-mobile-search-hero:focus-within .fypd-mobile-icon {
+    width: 0;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.fypd-mobile-search-hero:focus-within h3 {
+    font-size: 0;
+    margin: 0;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.fypd-mobile-search-hero:focus-within p {
+    font-size: 0;
+    margin: 0;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
 }
 
 .fypd-mobile-search-wrapper {
@@ -4094,8 +4130,12 @@ body.nav-open {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding: 0.5rem 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg-white);
 }
 
 .fypd-alpha-bar::-webkit-scrollbar {
@@ -4130,14 +4170,14 @@ body.nav-open {
 .fypd-circuits-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.625rem;
 }
 
 .fypd-circuit-card {
     background: var(--bg-white);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
     border: 1px solid var(--border-light);
     transition: all 0.2s ease;
 }
@@ -4146,7 +4186,7 @@ body.nav-open {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 1rem 0;
+    padding: 0.625rem 0.875rem 0;
 }
 
 .fypd-circuit-badge {
@@ -4162,7 +4202,7 @@ body.nav-open {
 }
 
 .fypd-circuit-card-content {
-    padding: 0.75rem 1rem 1rem;
+    padding: 0.5rem 0.875rem 0.625rem;
 }
 
 .fypd-circuit-name {
@@ -4198,7 +4238,7 @@ body.nav-open {
 }
 
 .fypd-circuit-card-footer {
-    padding: 0 1rem 1rem;
+    padding: 0 0.875rem 0.75rem;
 }
 
 .fypd-view-btn {
@@ -4207,7 +4247,7 @@ body.nav-open {
     justify-content: center;
     gap: 0.5rem;
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.55rem 0.875rem;
     font-family: 'Manrope', sans-serif;
     font-size: 0.8125rem;
     font-weight: 700;
@@ -4287,19 +4327,28 @@ body.nav-open {
     }
 
     .map-header {
-        text-align: center;
-    }
-
-    .map-header p {
-        margin-top: 0.5rem;
+        display: none;
     }
 
     .map-container {
-        padding: 1.25rem;
+        padding: 0;
+        background: transparent;
+        border-radius: 0;
+    }
+
+    /* Force visible on mobile — the fade-in observer can't trigger on
+       very tall containers because 10% never fits in the viewport */
+    .map-container.fade-in {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
     }
 
     .map-section {
-        padding: 2.5rem 1rem;
+        padding: 2rem 1.75rem;
+    }
+
+    .fypd-mobile-view {
+        padding: 0 0.5rem;
     }
 }
 
@@ -4444,6 +4493,7 @@ body.nav-open {
 [data-theme="dark"] .hero-bg::after {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.5) 100%);
 }
+
 
 [data-theme="dark"] .search-input {
     background: #333;
@@ -4664,13 +4714,11 @@ body.has-announcement .breadcrumbs {
 
 /* Uses existing .section-header, .label, .section-title from global styles */
 
-/* Card Grid — 3 columns, newsletter spans bottom 2 */
+/* Card Grid — 4 columns top row, newsletter full-width bottom */
 .connect-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
-    max-width: 900px;
-    margin: 0 auto;
 }
 
 .connect-card {
@@ -4680,28 +4728,30 @@ body.has-announcement .breadcrumbs {
     text-align: center;
     gap: 0.5rem;
     background: var(--bg-light);
-    border-radius: 12px;
-    padding: 1.75rem 1.25rem;
+    border-radius: 14px;
+    padding: 2rem 1.25rem;
     text-decoration: none;
     color: inherit;
     transition: all 0.4s var(--ease-out);
+    border: 1px solid transparent;
 }
 
 .connect-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border-color: var(--border-light);
 }
 
 .connect-card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
     background: var(--primary-subtle);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
     transition: all 0.3s var(--ease-out);
 }
 
@@ -4710,8 +4760,8 @@ body.has-announcement .breadcrumbs {
 }
 
 .connect-card-icon svg {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     color: var(--primary);
     transition: color 0.3s var(--ease-out);
 }
@@ -4738,22 +4788,32 @@ body.has-announcement .breadcrumbs {
     line-height: 1.5;
 }
 
-/* Newsletter Card — spans 2 columns, icon + content side by side */
+/* Newsletter Card — full width row within grid */
 .connect-newsletter-card {
-    grid-column: span 2;
+    grid-column: 1 / -1;
     flex-direction: row;
     text-align: left;
-    align-items: flex-start;
-    gap: 1.25rem;
-    padding: 1.75rem;
-    background: var(--primary-subtle);
+    align-items: center;
+    gap: 2rem;
+    padding: 1.75rem 2.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius: 14px;
+    border: none;
+}
+
+.connect-newsletter-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(184, 92, 56, 0.25);
+    border-color: transparent;
 }
 
 .connect-newsletter-card .connect-card-icon {
-    background: var(--primary);
+    background: rgba(255, 255, 255, 0.2);
     flex-shrink: 0;
     margin-bottom: 0;
-    margin-top: 0.125rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
 }
 
 .connect-newsletter-card .connect-card-icon svg {
@@ -4761,7 +4821,7 @@ body.has-announcement .breadcrumbs {
 }
 
 .connect-newsletter-card:hover .connect-card-icon {
-    background: var(--primary-dark);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .connect-newsletter-body {
@@ -4770,89 +4830,98 @@ body.has-announcement .breadcrumbs {
 }
 
 .connect-newsletter-body h3 {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 0.375rem;
+    color: white;
+    margin-bottom: 0.15rem;
 }
 
 .connect-newsletter-body .connect-card-desc {
-    margin-bottom: 0.875rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .connect-newsletter-form {
     display: flex;
     gap: 0.5rem;
     width: 100%;
-    max-width: 400px;
+    max-width: 480px;
 }
 
 .connect-newsletter-form input {
     flex: 1;
-    padding: 0.625rem 0.875rem;
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
     font-size: 0.8125rem;
     font-family: inherit;
-    background: var(--bg-white);
-    color: var(--text-dark);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
     min-width: 0;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
 }
 
 .connect-newsletter-form input:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--primary-subtle);
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
 .connect-newsletter-form input::placeholder {
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.55);
 }
 
 .connect-newsletter-form button {
-    padding: 0.625rem 1.25rem;
-    background: var(--primary);
-    color: white;
+    padding: 0.7rem 1.5rem;
+    background: white;
+    color: var(--primary);
     border: none;
-    border-radius: 8px;
+    border-radius: 50px;
     font-size: 0.8125rem;
     font-weight: 700;
     font-family: inherit;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s var(--ease-out);
     white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .connect-newsletter-form button:hover {
-    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Connect Section Responsive */
-@media (max-width: 768px) {
-    .connect-section {
-        padding: 2.5rem 1.25rem;
-    }
-
+@media (max-width: 900px) {
     .connect-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .connect-newsletter-card {
-        grid-column: span 2;
+        grid-column: 1 / -1;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+    .connect-section {
+        padding: 2.5rem 1.25rem;
+    }
+
     .connect-grid {
         grid-template-columns: 1fr;
         gap: 0.75rem;
     }
 
     .connect-newsletter-card {
-        grid-column: span 1;
         flex-direction: column;
         text-align: center;
         align-items: center;
+        padding: 1.5rem 1.25rem;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        gap: 1rem;
     }
 
     .connect-newsletter-form {
