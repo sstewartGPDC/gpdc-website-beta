@@ -1714,6 +1714,85 @@ section {
     justify-content: center;
 }
 
+/* Mobile Nav Collapsible Groups */
+.mobile-nav-group {
+    border-bottom: 1px solid var(--border-light);
+}
+
+.mobile-nav-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    font-family: 'Manrope', -apple-system, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    padding: 0.875rem 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.3s var(--ease-out);
+}
+
+.mobile-nav-group-header:hover,
+.mobile-nav-group-header:active {
+    color: var(--primary);
+}
+
+.mobile-nav-chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--ease-out);
+    color: var(--text-light);
+}
+
+.mobile-nav-group.expanded .mobile-nav-chevron {
+    transform: rotate(180deg);
+    color: var(--primary);
+}
+
+.mobile-nav-sublinks {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s var(--ease-out), opacity 0.3s var(--ease-out);
+    opacity: 0;
+}
+
+.mobile-nav-group.expanded .mobile-nav-sublinks {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.mobile-nav-sublink {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--text-medium);
+    text-decoration: none;
+    padding: 0.75rem 0 0.75rem 1.25rem;
+    border-left: 2px solid var(--border-light);
+    margin-left: 0.25rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-sublink:hover,
+.mobile-nav-sublink:active {
+    color: var(--primary);
+    border-left-color: var(--primary);
+    padding-left: 1.5rem;
+}
+
+.mobile-nav-sublink:last-child {
+    margin-bottom: 0.5rem;
+}
+
 /* ==================== PAGE TRANSITIONS ==================== */
 .page-transition {
     position: fixed;
@@ -1829,6 +1908,37 @@ section {
     .footer-bottom {
         flex-direction: column;
         text-align: center;
+    }
+
+    /* Mobile touch-friendly improvements */
+    .btn {
+        min-height: 44px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .quick-link-card {
+        min-height: 48px;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .cta-contact-item {
+        min-height: 44px;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Prevent hover states from sticking on touch */
+    @media (hover: none) {
+        .btn:hover {
+            transform: none;
+        }
+        .position-card:hover {
+            transform: none;
+        }
+        .quick-link-card:hover {
+            transform: none;
+        }
     }
 }
 
@@ -2816,8 +2926,10 @@ section {
     }
 
     .filter-btn {
-        padding: 0.5rem 0.875rem;
+        padding: 0.625rem 1rem;
         font-size: 0.8125rem;
+        min-height: 44px;
+        -webkit-tap-highlight-color: transparent;
     }
 }
 
@@ -3445,6 +3557,19 @@ section {
     color: var(--text-medium);
 }
 
+.map-header-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .map-header-desktop {
+        display: none;
+    }
+    .map-header-mobile {
+        display: block;
+    }
+}
+
 .map-layout {
     display: grid;
     grid-template-columns: 1fr 400px;
@@ -3898,6 +4023,41 @@ section {
 
     .map-header p {
         margin-top: 0.5rem;
+    }
+
+    .map-info-panel {
+        max-height: none;
+    }
+
+    .map-search-input {
+        font-size: 1rem;
+        padding: 0.875rem 1rem 0.875rem 2.75rem;
+        min-height: 48px;
+    }
+
+    .map-circuits-list {
+        max-height: none;
+    }
+
+    .circuit-list-item {
+        min-height: 48px;
+        padding: 0.75rem 1rem;
+    }
+
+    .map-info-placeholder {
+        padding: 1.5rem 1rem;
+    }
+
+    .map-info-placeholder p {
+        font-size: 0.9375rem;
+    }
+
+    .map-container {
+        padding: 1.25rem;
+    }
+
+    .map-section {
+        padding: 2.5rem 1rem;
     }
 }
 

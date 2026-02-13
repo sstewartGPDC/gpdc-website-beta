@@ -277,12 +277,34 @@
         }
 
         // Close mobile nav when clicking a link
-        const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-nav-actions a');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-nav-sublink, .mobile-nav-actions a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (navToggle) navToggle.classList.remove('active');
                 if (mobileNav) mobileNav.classList.remove('active');
                 document.body.classList.remove('nav-open');
+            });
+        });
+
+        // Mobile nav collapsible groups
+        const groupHeaders = document.querySelectorAll('.mobile-nav-group-header');
+        groupHeaders.forEach(header => {
+            header.addEventListener('click', function(e) {
+                e.preventDefault();
+                const group = this.closest('.mobile-nav-group');
+                const isExpanded = group.classList.contains('expanded');
+
+                // Close all other groups
+                document.querySelectorAll('.mobile-nav-group.expanded').forEach(g => {
+                    if (g !== group) {
+                        g.classList.remove('expanded');
+                        g.querySelector('.mobile-nav-group-header').setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Toggle current group
+                group.classList.toggle('expanded');
+                this.setAttribute('aria-expanded', !isExpanded);
             });
         });
     }
