@@ -10,13 +10,6 @@
   to = "/admin/index.html"
   status = 200
 
-# Clean URLs — serve .html pages without extension
-[[redirects]]
-  from = "/:page"
-  to = "/:page.html"
-  status = 200
-  conditions = {Role = ["*"]}
-  force = false
 
 # ==================== HEADERS ====================
 
