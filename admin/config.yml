@@ -14,17 +14,11 @@ collections:
   # ==================== ARTICLES ====================
   - name: "articles"
     label: "Articles"
-    folder: "articles"
+    folder: "_articles"
     create: true
     slug: "{{slug}}"
-    extension: "html"
-    format: "frontmatter"
+    extension: "md"
     fields:
-      - label: "Layout"
-        name: "layout"
-        widget: "hidden"
-        default: "article"
-
       - label: "Title"
         name: "title"
         widget: "string"
@@ -154,3 +148,140 @@ collections:
         widget: "markdown"
         required: false
         hint: "Full event details (optional)"
+
+  # ==================== POSITIONS ====================
+  - name: "positions"
+    label: "Positions"
+    folder: "_positions"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - label: "Job Title"
+        name: "title"
+        widget: "string"
+        hint: "e.g. Assistant Public Defender"
+
+      - label: "Posted Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        hint: "Date the position was posted"
+
+      - label: "Location"
+        name: "location"
+        widget: "string"
+        hint: "e.g. Atlanta Circuit - Fulton County"
+
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options:
+          - label: "Attorney"
+            value: "attorney"
+          - label: "Non-Attorney"
+            value: "non-attorney"
+          - label: "Contractor"
+            value: "contractor"
+          - label: "Internship"
+            value: "internship"
+
+      - label: "Division"
+        name: "division"
+        widget: "select"
+        options:
+          - label: "Local Offices"
+            value: "local"
+          - label: "Youth Division"
+            value: "youth"
+          - label: "Social Services"
+            value: "social-services"
+          - label: "Administration"
+            value: "administration"
+          - label: "Appeals"
+            value: "appeals"
+          - label: "Capital Defense"
+            value: "capital"
+          - label: "Training"
+            value: "training"
+          - label: "Mental Health"
+            value: "mental-health"
+          - label: "Conflict"
+            value: "conflict"
+
+      - label: "County"
+        name: "county"
+        widget: "string"
+        hint: "e.g. fulton, cobb, statewide"
+
+      - label: "New Position"
+        name: "is_new"
+        widget: "boolean"
+        default: true
+        hint: "Show 'New' badge on listing"
+
+      - label: "Short Description"
+        name: "description"
+        widget: "text"
+        hint: "Brief job description for the card"
+
+      - label: "Apply URL"
+        name: "apply_url"
+        widget: "string"
+        required: false
+        hint: "Link to application page"
+
+      - label: "Full Details"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: "Full job description, requirements, benefits, etc."
+
+  # ==================== ANNOUNCEMENT BANNER ====================
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "announcement"
+        label: "Announcement Banner"
+        file: "_data/announcement.json"
+        fields:
+          - label: "Enabled"
+            name: "enabled"
+            widget: "boolean"
+            default: true
+            hint: "Show/hide the announcement banner"
+
+          - label: "ID"
+            name: "id"
+            widget: "string"
+            hint: "Unique ID (changing this resets dismissed state for all users)"
+
+          - label: "Icon"
+            name: "icon"
+            widget: "select"
+            options:
+              - label: "Calendar"
+                value: "calendar"
+              - label: "Megaphone"
+                value: "megaphone"
+              - label: "Alert"
+                value: "alert"
+              - label: "Info"
+                value: "info"
+
+          - label: "Text"
+            name: "text"
+            widget: "string"
+            hint: "Banner message text"
+
+          - label: "Link Text"
+            name: "linkText"
+            widget: "string"
+            required: false
+            hint: "e.g. Learn More, Register Now"
+
+          - label: "Link URL"
+            name: "linkUrl"
+            widget: "string"
+            required: false
+            hint: "URL the link points to"
