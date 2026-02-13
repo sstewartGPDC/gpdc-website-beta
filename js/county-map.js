@@ -255,6 +255,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Try to load the SVG map
     loadMap();
+
+    // Initialize mobile experience
+    renderMobileCircuits(circuitData);
+    initMobileAlphaBar();
+    initMobileSearch();
 });
 
 function loadMap() {
@@ -688,4 +693,113 @@ function handleSearch(e) {
             if (svg) selectCircuit(svg, filtered[0].slug);
         }
     }
+}
+
+// ==================== MOBILE EXPERIENCE ====================
+
+function renderMobileCircuits(circuits) {
+    var grid = document.getElementById('mobileCircuitsGrid');
+    var countEl = document.getElementById('mobileResultsCount');
+    if (!grid) return;
+
+    if (countEl) {
+        countEl.innerHTML = 'Showing <span>' + circuits.length + '</span> circuit' + (circuits.length !== 1 ? 's' : '');
+    }
+
+    if (circuits.length === 0) {
+        grid.innerHTML = '<div class="fypd-no-results">'
+            + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'
+            + '<circle cx="11" cy="11" r="8"/>'
+            + '<path d="M21 21l-4.35-4.35"/>'
+            + '</svg>'
+            + '<p>No circuits found</p>'
+            + '<p class="fypd-no-results-hint">Try a different search term or filter</p>'
+            + '</div>';
+        return;
+    }
+
+    grid.innerHTML = circuits.map(function(circuit) {
+        var countyCount = circuit.counties.length;
+        var countyLabel = countyCount + ' ' + (countyCount === 1 ? 'County' : 'Counties');
+        return '<div class="fypd-circuit-card" data-slug="' + circuit.slug + '">'
+            + '<div class="fypd-circuit-card-header">'
+            + '<span class="fypd-circuit-badge">' + countyLabel + '</span>'
+            + '</div>'
+            + '<div class="fypd-circuit-card-content">'
+            + '<h4 class="fypd-circuit-name">' + circuit.circuit + '</h4>'
+            + '<div class="fypd-circuit-location">'
+            + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>'
+            + circuit.counties.join(', ')
+            + '</div>'
+            + '<p class="fypd-circuit-defender">Circuit PD: ' + circuit.defender + '</p>'
+            + '</div>'
+            + '<div class="fypd-circuit-card-footer">'
+            + '<a href="local-offices/' + circuit.slug + '.html" class="fypd-view-btn">'
+            + 'View Office Details'
+            + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+            + '</a>'
+            + '</div>'
+            + '</div>';
+    }).join('');
+}
+
+function initMobileAlphaBar() {
+    var bar = document.getElementById('alphaBar');
+    if (!bar) return;
+
+    var letters = ['All', 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W'];
+
+    bar.innerHTML = letters.map(function(letter) {
+        var dataLetter = letter === 'All' ? 'all' : letter;
+        return '<button class="fypd-alpha-btn' + (letter === 'All' ? ' active' : '') + '" data-letter="' + dataLetter + '">' + letter + '</button>';
+    }).join('');
+
+    bar.addEventListener('click', function(e) {
+        var btn = e.target.closest('.fypd-alpha-btn');
+        if (!btn) return;
+
+        bar.querySelectorAll('.fypd-alpha-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        // Clear the mobile search input when using alpha filter
+        var mobileSearch = document.getElementById('mobileMapSearch');
+        if (mobileSearch) mobileSearch.value = '';
+
+        var letter = btn.dataset.letter;
+        if (letter === 'all') {
+            renderMobileCircuits(circuitData);
+        } else {
+            var filtered = circuitData.filter(function(c) {
+                return c.circuit.charAt(0).toUpperCase() === letter;
+            });
+            renderMobileCircuits(filtered);
+        }
+    });
+}
+
+function initMobileSearch() {
+    var mobileSearch = document.getElementById('mobileMapSearch');
+    if (!mobileSearch) return;
+
+    mobileSearch.addEventListener('input', function(e) {
+        var query = e.target.value.toLowerCase().trim();
+
+        // Reset alpha bar to "All"
+        document.querySelectorAll('.fypd-alpha-btn').forEach(function(b) { b.classList.remove('active'); });
+        var allBtn = document.querySelector('.fypd-alpha-btn[data-letter="all"]');
+        if (allBtn) allBtn.classList.add('active');
+
+        if (!query) {
+            renderMobileCircuits(circuitData);
+            return;
+        }
+
+        var filtered = circuitData.filter(function(circuit) {
+            return circuit.circuit.toLowerCase().includes(query) ||
+                   circuit.counties.some(function(c) { return c.toLowerCase().includes(query); }) ||
+                   circuit.defender.toLowerCase().includes(query);
+        });
+
+        renderMobileCircuits(filtered);
+    });
 }

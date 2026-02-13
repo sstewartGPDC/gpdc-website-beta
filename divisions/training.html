@@ -389,7 +389,7 @@
             gap: 0.5rem;
             flex-wrap: wrap;
             margin-bottom: 1.5rem;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
         .pd-filter-btn {
@@ -434,16 +434,28 @@
             background: rgba(255,255,255,0.25);
         }
 
-        /* Full-width Calendar Widget */
+        /* Side-by-side layout */
+        .calendar-events-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        /* Events list column (left side) */
+        .events-list-column {
+            min-width: 0;
+        }
+
+        /* Calendar Widget (right side, sticky) */
         .calendar-widget {
             background: var(--bg-white);
             border-radius: 16px;
-            padding: 1.25rem 1.5rem;
+            padding: 1rem 1.125rem;
             box-shadow: var(--shadow-sm);
-            margin-bottom: 1.5rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+            position: sticky;
+            top: 80px;
+            max-width: 340px;
         }
 
         .calendar-nav {
@@ -454,7 +466,7 @@
         }
 
         .calendar-nav h3 {
-            font-size: 1.0625rem;
+            font-size: 0.9375rem;
             color: var(--text-dark);
         }
 
@@ -508,18 +520,18 @@
         }
 
         .calendar-day {
-            aspect-ratio: 1.25;
+            aspect-ratio: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 0.8125rem;
+            font-size: 0.75rem;
             color: var(--text-medium);
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
-            gap: 2px;
+            gap: 1px;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -610,18 +622,12 @@
         .legend-dot.dot-hybrid { background: #FF9800; }
         .legend-dot.dot-on-demand { background: #9C27B0; }
 
-        /* Events Grid */
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.875rem;
-        }
-
+        /* Events Grid Header */
         .events-grid-header {
-            grid-column: 1 / -1;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 1rem;
         }
 
         .events-grid-header h3 {
@@ -635,165 +641,185 @@
             font-weight: 500;
         }
 
+        /* Events Grid - single column list */
+        .events-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Event Card - position card style */
         .event-card {
             background: var(--bg-white);
-            border-radius: 14px;
-            padding: 1rem;
-            display: grid;
-            grid-template-columns: 58px 1fr;
-            gap: 0.75rem;
-            align-items: start;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .event-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
         }
 
-        .event-date-box {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 10px;
-            padding: 0.5rem 0.375rem;
-            text-align: center;
-            color: white;
-        }
-
-        .event-date-box .month {
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            opacity: 0.9;
-        }
-
-        .event-date-box .day {
-            font-size: 1.25rem;
-            font-weight: 700;
-            line-height: 1;
-            margin: 0.125rem 0;
-        }
-
-        .event-date-box .year {
-            font-size: 0.5625rem;
-            opacity: 0.8;
-        }
-
-        .event-details h4 {
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            margin-bottom: 0.3rem;
-            line-height: 1.3;
-        }
-
-        .event-meta {
+        /* Card Header */
+        .event-card-header {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            color: var(--text-light);
-            margin-bottom: 0.375rem;
-        }
-
-        .event-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .event-meta svg {
-            width: 13px;
-            height: 13px;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1rem 1.25rem 0;
         }
 
         .event-type-badge {
             display: inline-block;
-            padding: 0.2rem 0.5rem;
-            border-radius: 50px;
-            font-size: 0.625rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.6875rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.03em;
             white-space: nowrap;
-            margin-bottom: 0.4rem;
         }
 
         .event-type-badge.in-person {
-            background: #e8f5e9;
+            background: rgba(76, 175, 80, 0.1);
             color: #2e7d32;
         }
 
         .event-type-badge.online {
-            background: #e3f2fd;
+            background: rgba(33, 150, 243, 0.1);
             color: #1565c0;
         }
 
         .event-type-badge.hybrid {
-            background: #fff3e0;
-            color: #ef6c00;
+            background: rgba(255, 152, 0, 0.1);
+            color: #e65100;
         }
 
         .event-type-badge.on-demand {
-            background: #f3e5f5;
+            background: rgba(156, 39, 176, 0.1);
             color: #7b1fa2;
         }
 
-        .event-card-actions {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.25rem;
+        .event-date-label {
+            font-size: 0.8125rem;
+            color: var(--text-light);
+            font-weight: 500;
+            flex-shrink: 0;
         }
 
-        .event-card-actions .btn-sm {
-            padding: 0.3rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
+        /* Card Content */
+        .event-card-content {
+            padding: 1rem 1.25rem 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-title {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.0625rem;
             font-weight: 600;
-            font-family: 'Manrope', sans-serif;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-decoration: none;
-            display: inline-flex;
+            color: var(--text-dark);
+            line-height: 1.35;
+            margin-bottom: 0.375rem;
+        }
+
+        .event-location {
+            display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.375rem;
+            font-size: 0.8125rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-location svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .event-description {
+            font-size: 0.8125rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        /* Card Footer */
+        .event-card-footer {
+            padding: 0 1.25rem 1.25rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .event-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex: 1;
+            padding: 0.75rem 1.25rem;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1.5px solid var(--border-light);
             min-height: 44px;
             -webkit-tap-highlight-color: transparent;
-            border: none;
         }
 
-        .event-card-actions .btn-sm.btn-register-sm {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            box-shadow: var(--shadow-btn);
+        .event-btn svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s ease;
         }
 
-        .event-card-actions .btn-sm.btn-register-sm:hover {
-            box-shadow: var(--shadow-btn-hover);
-            transform: translateY(-1px);
+        .event-btn-register {
+            background: var(--bg-light);
+            color: var(--primary);
         }
 
-        .event-card-actions .btn-sm.btn-details-sm {
+        .event-btn-register:hover {
+            background: var(--primary-subtle);
+            border-color: var(--primary-light);
+        }
+
+        .event-btn-register:hover svg {
+            transform: translateX(3px);
+        }
+
+        .event-btn-details {
             background: var(--bg-light);
             color: var(--text-medium);
-            border: 1.5px solid var(--border-light);
         }
 
-        .event-card-actions .btn-sm.btn-details-sm:hover {
+        .event-btn-details:hover {
             border-color: var(--primary);
             color: var(--primary);
             background: var(--primary-subtle);
         }
 
         .no-events-message {
-            grid-column: 1 / -1;
             text-align: center;
             padding: 3rem 1.5rem;
             color: var(--text-light);
             background: var(--bg-white);
-            border-radius: 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
         }
 
         .no-events-message p {
@@ -1107,8 +1133,15 @@
                 padding-top: 0;
             }
 
-            .events-grid {
+            /* Stack to single column: calendar on top, events below */
+            .calendar-events-layout {
                 grid-template-columns: 1fr;
+            }
+
+            .calendar-widget {
+                position: static;
+                max-width: 100%;
+                order: -1;
             }
 
             .pd-programs-grid {
@@ -1178,12 +1211,9 @@
                 padding: 2rem 0 2.5rem;
             }
 
+            /* Hide calendar on mobile */
             .calendar-widget {
                 display: none;
-            }
-
-            .events-grid {
-                grid-template-columns: 1fr;
             }
 
             .event-modal {
@@ -1224,38 +1254,8 @@
                 text-align: center;
             }
 
-            .event-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 0.875rem;
-            }
-
-            .event-date-box {
-                justify-self: center;
-                padding: 0.5rem 1.25rem;
-                display: flex;
-                gap: 0.5rem;
-                align-items: center;
-            }
-
-            .event-date-box .month,
-            .event-date-box .day,
-            .event-date-box .year {
-                display: inline;
-                font-size: 0.8125rem;
-                margin: 0;
-            }
-
-            .event-date-box .day {
-                font-size: 0.9375rem;
-            }
-
-            .event-meta {
-                justify-content: center;
-            }
-
-            .event-card-actions {
-                justify-content: center;
+            .event-card-footer {
+                flex-direction: column;
             }
 
             .event-modal-actions {
@@ -1405,56 +1405,64 @@
                 <p class="section-subtitle">Register for training sessions, conferences, and professional development opportunities.</p>
             </div>
 
-            <!-- Filter Tabs -->
+            <!-- Filter Tabs (full width) -->
             <div class="pd-calendar-filters fade-in" id="eventFilters">
                 <!-- Filter buttons generated by JavaScript -->
             </div>
 
-            <!-- Full-width Calendar -->
-            <div class="calendar-widget fade-in">
-                <div class="calendar-nav">
-                    <div class="calendar-nav-btns">
-                        <button class="calendar-nav-btn" id="prevMonth" aria-label="Previous month">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M15 18l-6-6 6-6"/>
-                            </svg>
-                        </button>
+            <!-- Side-by-side layout -->
+            <div class="calendar-events-layout">
+                <!-- Events (left) -->
+                <div class="events-list-column">
+                    <div class="events-grid-header" id="eventsGridHeader">
+                        <!-- Header populated by JavaScript -->
                     </div>
-                    <h3 id="calendarMonth">February 2026</h3>
-                    <div class="calendar-nav-btns">
-                        <button class="calendar-nav-btn" id="nextMonth" aria-label="Next month">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 18l6-6-6-6"/>
-                            </svg>
-                        </button>
+                    <div class="events-grid" id="eventsGrid">
+                        <!-- Events generated by JavaScript -->
                     </div>
                 </div>
-                <div class="calendar-grid" id="calendarGrid">
-                    <!-- Calendar days generated by JavaScript -->
-                </div>
-                <div class="calendar-legend">
-                    <div class="calendar-legend-item">
-                        <span class="legend-dot dot-in-person"></span>
-                        In-Person
-                    </div>
-                    <div class="calendar-legend-item">
-                        <span class="legend-dot dot-online"></span>
-                        Online
-                    </div>
-                    <div class="calendar-legend-item">
-                        <span class="legend-dot dot-hybrid"></span>
-                        Hybrid
-                    </div>
-                    <div class="calendar-legend-item">
-                        <span class="legend-dot dot-on-demand"></span>
-                        On-Demand
-                    </div>
-                </div>
-            </div>
 
-            <!-- Events Grid -->
-            <div class="events-grid" id="eventsGrid">
-                <!-- Events generated by JavaScript -->
+                <!-- Calendar (right, sticky) -->
+                <div class="calendar-widget fade-in">
+                    <div class="calendar-nav">
+                        <div class="calendar-nav-btns">
+                            <button class="calendar-nav-btn" id="prevMonth" aria-label="Previous month">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M15 18l-6-6 6-6"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <h3 id="calendarMonth">February 2026</h3>
+                        <div class="calendar-nav-btns">
+                            <button class="calendar-nav-btn" id="nextMonth" aria-label="Next month">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Calendar days generated by JavaScript -->
+                    </div>
+                    <div class="calendar-legend">
+                        <div class="calendar-legend-item">
+                            <span class="legend-dot dot-in-person"></span>
+                            In-Person
+                        </div>
+                        <div class="calendar-legend-item">
+                            <span class="legend-dot dot-online"></span>
+                            Online
+                        </div>
+                        <div class="calendar-legend-item">
+                            <span class="legend-dot dot-hybrid"></span>
+                            Hybrid
+                        </div>
+                        <div class="calendar-legend-item">
+                            <span class="legend-dot dot-on-demand"></span>
+                            On-Demand
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1864,6 +1872,7 @@
         // ==================== EVENTS GRID ====================
         function renderEvents() {
             var container = document.getElementById('eventsGrid');
+            var headerContainer = document.getElementById('eventsGridHeader');
             var filteredEvents = trainingEvents.slice();
 
             if (currentFilter !== 'all') {
@@ -1893,22 +1902,19 @@
                 ? 'Events on ' + selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
                 : 'Upcoming Events';
 
+            // Update header (outside events grid)
+            headerContainer.innerHTML = '<h3>' + headerTitle + '</h3>'
+                + '<span class="events-count">' + filteredEvents.length + ' event' + (filteredEvents.length !== 1 ? 's' : '') + '</span>';
+
             if (filteredEvents.length === 0) {
-                container.innerHTML = '<div class="events-grid-header">'
-                    + '<h3>' + headerTitle + '</h3>'
-                    + '<span class="events-count">0 events</span>'
-                    + '</div>'
-                    + '<div class="no-events-message">'
+                container.innerHTML = '<div class="no-events-message">'
                     + '<p>No events found' + (selectedDate ? ' on this date' : '') + '.</p>'
                     + (selectedDate ? '<button onclick="clearDateSelection()">View All Events</button>' : '')
                     + '</div>';
                 return;
             }
 
-            var html = '<div class="events-grid-header">'
-                + '<h3>' + headerTitle + '</h3>'
-                + '<span class="events-count">' + filteredEvents.length + ' event' + (filteredEvents.length !== 1 ? 's' : '') + '</span>'
-                + '</div>';
+            var html = '';
 
             filteredEvents.forEach(function(event) {
                 var date = new Date(event.date);
@@ -1922,28 +1928,31 @@
 
                 var registerLabel = event.type === 'on-demand' ? 'Start Course' : 'Register';
                 var registerBtn = event.registerUrl
-                    ? '<a href="' + event.registerUrl + '" target="_blank" rel="noopener" class="btn-sm btn-register-sm">' + registerLabel + '</a>'
+                    ? '<a href="' + event.registerUrl + '" target="_blank" rel="noopener" class="event-btn event-btn-register">'
+                        + registerLabel
+                        + ' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>'
+                        + '</a>'
                     : '';
 
                 html += '<div class="event-card">'
-                    + '<div class="event-date-box">'
-                    + '<div class="month">' + monthStr + '</div>'
-                    + '<div class="day">' + dayStr + '</div>'
-                    + '<div class="year">' + yearStr + '</div>'
-                    + '</div>'
-                    + '<div class="event-details">'
+                    + '<div class="event-card-header">'
                     + '<span class="event-type-badge ' + typeClass + '">' + typeLabel + '</span>'
-                    + '<h4>' + event.title + '</h4>'
-                    + '<div class="event-meta">'
-                    + '<span>'
+                    + '<span class="event-date-label">' + monthStr + ' ' + dayStr + ', ' + yearStr + '</span>'
+                    + '</div>'
+                    + '<div class="event-card-content">'
+                    + '<h4 class="event-title">' + event.title + '</h4>'
+                    + '<div class="event-location">'
                     + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>'
                     + event.location
-                    + '</span>'
                     + '</div>'
-                    + '<div class="event-card-actions">'
+                    + '<p class="event-description">' + event.description + '</p>'
+                    + '</div>'
+                    + '<div class="event-card-footer">'
                     + registerBtn
-                    + '<button class="btn-sm btn-details-sm" onclick="openEventModal(' + event.id + ')">Details</button>'
-                    + '</div>'
+                    + '<button class="event-btn event-btn-details" onclick="openEventModal(' + event.id + ')">'
+                    + 'Details'
+                    + ' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+                    + '</button>'
                     + '</div>'
                     + '</div>';
             });
