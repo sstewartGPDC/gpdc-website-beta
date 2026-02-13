@@ -17,6 +17,7 @@
     <meta property="og:image" content="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/66e9df4a3e925a89e1be2971_BlackGold%20-%20SYMBOL%20MARK.png">
     <meta property="og:site_name" content="Georgia Public Defender Council">
     <link rel="canonical" href="https://gapubdef.org/">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
     <!-- Page Transition Overlay -->
@@ -479,6 +480,17 @@
 
             container.innerHTML = featuredHtml + sideHtml;
         });
+    </script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
     </script>
 </body>
 </html>

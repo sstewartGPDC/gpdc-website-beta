@@ -1,0 +1,156 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded images go
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Logo in the admin panel
+site_url: https://gpdc-website.netlify.app
+logo_url: https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/66e9df4a3e925a89e1be2971_BlackGold%20-%20SYMBOL%20MARK.png
+
+collections:
+  # ==================== ARTICLES ====================
+  - name: "articles"
+    label: "Articles"
+    folder: "articles"
+    create: true
+    slug: "{{slug}}"
+    extension: "html"
+    format: "frontmatter"
+    fields:
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "article"
+
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Article headline"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        hint: "Short description for SEO and preview cards"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "News"
+          - "Local Offices"
+          - "Training"
+          - "Leadership"
+          - "Events"
+          - "Policy"
+          - "Community"
+        hint: "Article category"
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        hint: "Publication date"
+
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Show as featured article on homepage"
+
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+        hint: "Main article image"
+
+      - label: "Image Alt Text"
+        name: "image_alt"
+        widget: "string"
+        required: false
+        hint: "Describe the image for accessibility"
+
+      - label: "Excerpt"
+        name: "excerpt"
+        widget: "text"
+        hint: "Short summary shown on cards and previews"
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "Full article content"
+
+  # ==================== EVENTS ====================
+  - name: "events"
+    label: "Events"
+    folder: "_events"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Event name"
+
+      - label: "Start Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        hint: "Event start date"
+
+      - label: "End Date"
+        name: "end_date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        required: false
+        hint: "Event end date (leave blank for single-day events)"
+
+      - label: "Time"
+        name: "time"
+        widget: "string"
+        required: false
+        hint: "e.g. 1:00 PM - 5:00 PM"
+
+      - label: "Location"
+        name: "location"
+        widget: "string"
+        hint: "e.g. Atlanta, GA"
+
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options:
+          - label: "In Person"
+            value: "in-person"
+          - label: "Virtual"
+            value: "virtual"
+          - label: "Hybrid"
+            value: "hybrid"
+          - label: "On Demand"
+            value: "on-demand"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        hint: "Short event description"
+
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+        hint: "Event image"
+
+      - label: "Registration URL"
+        name: "register_url"
+        widget: "string"
+        required: false
+        hint: "Link to registration page"
+
+      - label: "Details"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: "Full event details (optional)"

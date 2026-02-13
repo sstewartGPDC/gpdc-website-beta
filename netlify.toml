@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+
+# Redirect /admin to the admin panel
+[[redirects]]
+  from = "/admin/"
+  to = "/admin/index.html"
+  status = 200
