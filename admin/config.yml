@@ -8,8 +8,8 @@ public_folder: "/images/uploads"
 
 # Site URL for "View Live" links
 # Will become beta.gapubdef.org once custom domain is configured
-site_url: https://gpdc-website.netlify.app
-display_url: https://gpdc-website.netlify.app
+site_url: https://gpdc.netlify.app
+display_url: https://gpdc.netlify.app
 logo_url: https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/66e9df4a3e925a89e1be2971_BlackGold%20-%20SYMBOL%20MARK.png
 
 collections:
