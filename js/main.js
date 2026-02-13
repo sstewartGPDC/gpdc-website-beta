@@ -541,20 +541,21 @@ function initBackToTop() {
 
 // ==================== ANIMATED STATISTICS ====================
 function initAnimatedStats() {
-    const stats = document.querySelectorAll('.stat-number');
+    // Target all stat number elements across the site
+    const stats = document.querySelectorAll('.stat-number, .fact-number, .pd-stat .number, .featured-stat .number, .count-up');
     if (stats.length === 0) return;
 
     const animateValue = (element, start, end, duration) => {
         const startTime = performance.now();
-        const suffix = element.textContent.replace(/[0-9,]/g, ''); // Get any suffix like + or K
+        const suffix = element.textContent.replace(/[0-9,]/g, '').trim(); // Get any suffix like +, %, K
 
         const animate = (currentTime) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
 
-            // Easing function for smooth animation
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const current = Math.floor(start + (end - start) * easeOutQuart);
+            // easeOutExpo — fast start, smooth deceleration
+            const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            const current = Math.floor(start + (end - start) * eased);
 
             element.textContent = current.toLocaleString() + suffix;
 
@@ -568,16 +569,16 @@ function initAnimatedStats() {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                entry.target.classList.add('animated');
-                const text = entry.target.textContent;
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                const text = entry.target.textContent.trim();
                 const numericValue = parseInt(text.replace(/[^0-9]/g, ''));
-                if (!isNaN(numericValue)) {
+                if (!isNaN(numericValue) && numericValue > 0) {
                     animateValue(entry.target, 0, numericValue, 2000);
                 }
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.3 });
 
     stats.forEach(stat => observer.observe(stat));
 }
