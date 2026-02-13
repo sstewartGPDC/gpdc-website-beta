@@ -24,11 +24,7 @@ collections:
     description: "Newsroom articles displayed on the site"
     preview_path: "articles/{{slug}}.html"
     summary: "{{title}}  ·  {{category}}  ·  {{date}}"
-    sortable_fields:
-      fields: ["title", "date", "category"]
-      default:
-        field: "date"
-        direction: "Descending"
+    sortable_fields: ["title", "date", "category"]
     view_filters:
       - label: "Featured"
         field: "featured"
@@ -123,11 +119,7 @@ collections:
     description: "Upcoming and past events"
     preview_path: "newsroom.html"
     summary: "{{title}}  ·  {{type}}  ·  {{date}}"
-    sortable_fields:
-      fields: ["title", "date", "type"]
-      default:
-        field: "date"
-        direction: "Descending"
+    sortable_fields: ["title", "date", "type"]
     view_filters:
       - label: "In Person"
         field: "type"
@@ -224,11 +216,7 @@ collections:
     description: "Job openings and career opportunities"
     preview_path: "positions.html"
     summary: "{{title}}  ·  {{type}}  ·  {{location}}  ·  {{date}}"
-    sortable_fields:
-      fields: ["title", "date", "type", "division"]
-      default:
-        field: "date"
-        direction: "Descending"
+    sortable_fields: ["title", "date", "type", "division"]
     view_filters:
       - label: "Attorney"
         field: "type"
