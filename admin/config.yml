@@ -23,7 +23,7 @@ collections:
     extension: "md"
     description: "Newsroom articles displayed on the site"
     preview_path: "articles/{{slug}}.html"
-    summary: "{{title}}  ·  {{category}}  ·  {{date}}"
+    summary: "{{title}}  ·  {{category}}  ·  {{date}}  ·  img:{{image}}"
     sortable_fields: ["title", "date", "category"]
     view_filters:
       - label: "Featured"

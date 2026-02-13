@@ -98,6 +98,28 @@
     .gpdc-type[data-v="contractor"]   { background: rgba(245,158,11,0.12); color: #d97706; }
     .gpdc-type[data-v="internship"]   { background: rgba(168,85,247,0.12); color: #9333ea; }
 
+    /* Image thumbnail */
+    .gpdc-thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #f0ede9;
+    }
+
+    .gpdc-entry-with-img {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .gpdc-entry-with-img .gpdc-entry {
+      flex: 1;
+      min-width: 0;
+    }
+
     /* List card hover accent */
     [class*="ListCard-card"] {
       border-left: 3px solid transparent !important;
@@ -160,13 +182,36 @@
         var parts = raw.split('·').map(function(s) { return s.trim(); }).filter(Boolean);
         if (parts.length < 2) return;
 
-        var title = parts[0];
-        var meta = parts.slice(1);
+        // Extract image URL if present (format: img:URL)
+        var imgUrl = null;
+        var filteredParts = parts.filter(function(p) {
+          if (p.startsWith('img:')) {
+            imgUrl = p.substring(4).trim();
+            return false;
+          }
+          return true;
+        });
+
+        var title = filteredParts[0];
+        var meta = filteredParts.slice(1);
 
         // Save the TitleIcons div if it exists
         var iconsDiv = h2.querySelector('div');
 
-        // Build new content
+        // Build new content — outer wrapper with optional image
+        var outer = document.createElement('div');
+        outer.className = imgUrl ? 'gpdc-entry-with-img' : '';
+
+        if (imgUrl && imgUrl !== '' && !imgUrl.includes('undefined')) {
+          var img = document.createElement('img');
+          img.className = 'gpdc-thumb';
+          img.src = imgUrl;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.onerror = function() { this.style.display = 'none'; };
+          outer.appendChild(img);
+        }
+
         var wrap = document.createElement('div');
         wrap.className = 'gpdc-entry';
 
@@ -206,10 +251,11 @@
         });
 
         wrap.appendChild(badgesEl);
+        outer.appendChild(wrap);
 
         // Clear h2 and insert new content
         h2.textContent = '';
-        h2.appendChild(wrap);
+        h2.appendChild(outer);
 
         // Re-add the TitleIcons div if it existed
         if (iconsDiv) h2.appendChild(iconsDiv);

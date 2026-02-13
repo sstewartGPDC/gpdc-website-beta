@@ -13,8 +13,6 @@
 </head>
 <body>
     <div class="page-transition" id="pageTransition"></div>
-
-    <!-- Header (loaded dynamically) -->
     <div id="site-header"></div>
 
     <section class="article-header reveal">
@@ -43,22 +41,14 @@
 
             <p>Tracy Arner, Interim Associate Director at the Carl Vinson Institute of Government, reinforced the importance of continuous professional development, noting that participants have strengthened their professional voices and influence across Georgia.</p>
 
-            <blockquote>"I am very proud of this group of dedicated public defenders who have committed to growing their skills."<br>— Executive Director Omotayo Alli</blockquote>
+<blockquote>"I am very proud of this group of dedicated public defenders who have committed to growing their skills."</blockquote>
+            <blockquote>-- Executive Director Omotayo Alli</blockquote>
 
             <p>Developed in partnership with The University of Georgia's Carl Vinson Institute of Government, the Leadership Academy cultivates purpose-driven leaders throughout Georgia's public defense system. Over twelve months, participants engage in 28 days of leadership training emphasizing collaborative learning and project-based initiatives to enhance public defense practices.</p>
 
             <p>Graduates presented capstone projects addressing statewide rehabilitation databases, attorney mentoring models, and gardening programs for detained youth. Several participants reflected on their experiences, with Assistant Public Defender Aisha Broderick noting that she discovered "leadership is not about titles" but rather supporting others.</p>
 
             <p>Circuit Public Defender Ricardo Samper reported becoming an advocate for the program among colleagues, while Ashley McLaughlin shared that the experience improved him "both personally and professionally."</p>
-        </div>
-
-        <!-- Photo Gallery -->
-        <div class="article-gallery">
-            <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200e26ac306ae4484e9be_1Q8A0425-1024x683.jpeg" alt="Leadership Academy Ceremony">
-            <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200e26ac306ae4484e9aa_Leadership-Academy-Graduation-13-1024x683.jpeg" alt="Graduates">
-            <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200e26ac306ae4484e9b7_1Q8A0717-1024x683.jpeg" alt="Award Presentation">
-            <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200e26ac306ae4484e9c6_1Q8A0452-1024x683.jpeg" alt="Group Photo">
-            <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200e26ac306ae4484e9c3_1Q8A1093-1024x683.jpeg" alt="Capitol Ceremony">
         </div>
     </article>
 
@@ -75,7 +65,7 @@
                 </div>
                 <div class="sidebar-section">
                     <div class="sidebar-label">Reading Time</div>
-                    <div class="sidebar-value">3 min read</div>
+                    <div class="sidebar-value">1 min read</div>
                 </div>
                 <div class="sidebar-section">
                     <div class="sidebar-label">Share</div>
@@ -94,8 +84,8 @@
                 <div class="sidebar-section">
                     <div class="sidebar-label">Related</div>
                     <ul class="sidebar-related">
-                        <li><a href="summer-conference-2025.html">GPDC Hosts Annual Summer Conference in Savannah</a></li>
-                        <li><a href="fletcher-award-public-defense.html">Sam Fletcher Receives Georgia Public Defense Award</a></li>
+                        <li><a href="summer-conference-2025.html">Vision, Innovation, and Leadership Showcased at Georgia Publ...</a></li>
+                        <li><a href="fletcher-award-public-defense.html">Georgia Public Defender Council Honors Chief Justice Norman ...</a></li>
                     </ul>
                 </div>
             </div>
@@ -112,92 +102,21 @@
 
     <div id="site-footer"></div>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose">&times;</button>
-            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 18l-6-6 6-6"/>
-                </svg>
-            </button>
-            <img loading="lazy" src="" alt="" id="lightboxImg">
-            <button class="lightbox-nav lightbox-next" id="lightboxNext">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
-            </button>
-        </div>
-    </div>
-
     <script src="../js/components.js"></script>
     <script src="../js/main.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Scroll-triggered reveal
-            const revealEls = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-            revealEls.forEach(el => revealObserver.observe(el));
-
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const lightboxClose = document.getElementById('lightboxClose');
-            const lightboxPrev = document.getElementById('lightboxPrev');
-            const lightboxNext = document.getElementById('lightboxNext');
-            const galleryImages = document.querySelectorAll('.article-gallery img');
-
-            let currentIndex = 0;
-            const images = Array.from(galleryImages).map(img => img.src);
-
-            // Open lightbox
-            galleryImages.forEach((img, index) => {
-                img.addEventListener('click', () => {
-                    currentIndex = index;
-                    lightboxImg.src = images[currentIndex];
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
+        // Scroll-triggered reveal
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
             });
-
-            // Close lightbox
-            lightboxClose.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) closeLightbox();
-            });
-
-            function closeLightbox() {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            // Navigation
-            lightboxPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                lightboxImg.src = images[currentIndex];
-            });
-
-            lightboxNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                currentIndex = (currentIndex + 1) % images.length;
-                lightboxImg.src = images[currentIndex];
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (!lightbox.classList.contains('active')) return;
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') lightboxPrev.click();
-                if (e.key === 'ArrowRight') lightboxNext.click();
-            });
-        });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>
