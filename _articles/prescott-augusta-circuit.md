@@ -1,19 +1,21 @@
 ---
-title: "Prescott to Lead Augusta Public Defender Office"
-description: "Prescott appointed to lead the Augusta Circuit Public Defender office, bringing new leadership to one of Georgia's busiest judicial circuits."
-category: "Local Offices"
+title: Prescott to Lead Augusta Public Defender Office
+description: Prescott appointed to lead the Augusta Circuit Public Defender
+  office, bringing new leadership to one of Georgia's busiest judicial circuits.
+category: Local Offices
 date: 2026-01-05
 featured: false
-image: "https://gapubdef.org/wp-content/uploads/Prescott-Lee-1024x683.jpg"
-image_alt: "Lee Prescott, new Circuit Public Defender for Augusta Circuit"
-excerpt: "The Georgia Public Defender Council has appointed Lee Prescott as the new Circuit Public Defender for the Augusta Judicial Circuit, which encompasses Richmond and Burke counties."
+image: https://gapubdef.org/wp-content/uploads/Prescott-Lee-1024x683.jpg
+image_alt: Lee Prescott, new Circuit Public Defender for Augusta Circuit
+excerpt: The Georgia Public Defender Council has appointed Lee Prescott as the
+  new Circuit Public Defender for the Augusta Judicial Circuit, which
+  encompasses Richmond and Burke counties.
 ---
-
 The Georgia Public Defender Council has appointed Lee Prescott as the new Circuit Public Defender for the Augusta Judicial Circuit, which encompasses Richmond and Burke counties. Prescott brings more than two decades of legal experience to the role, having been licensed to practice law since 2003 and earning his Juris Doctor from St. Thomas University School of Law.
 
 Prescott's connection to the Augusta office runs deep. He joined the GPDC Augusta office in 2005, where he spent years representing indigent clients and developing a thorough understanding of the community's legal needs. His tenure there provided him with firsthand knowledge of the challenges facing public defenders in the region and the populations they serve.
 
-> Executive Director Samuel Alli praised Prescott's appointment, highlighting his deep roots in the Augusta community and his longstanding commitment to public defense work in the area.
+> Executive Director Omotayo Alli praised Prescott's appointment, highlighting his deep roots in the Augusta community and his longstanding commitment to public defense work in the area.
 
 Most recently, Prescott served as Chief Assistant Public Defender for the Columbia Judicial Circuit, a position he held beginning in 2021. In that capacity, he managed day-to-day operations, supervised staff attorneys, and handled a significant caseload of serious felony matters. His leadership and organizational abilities in Columbia Circuit helped prepare him for the broader responsibilities of running his own office.
 
