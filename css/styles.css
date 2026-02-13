@@ -1666,6 +1666,13 @@ section {
 .fade-in-delay-3 { transition-delay: 0.3s; }
 
 /* ==================== MOBILE NAVIGATION ==================== */
+body.nav-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
 .mobile-nav {
     display: none;
     position: fixed;
@@ -1767,7 +1774,8 @@ section {
 }
 
 .mobile-nav-sublink {
-    display: block;
+    display: flex;
+    align-items: center;
     font-size: 0.9375rem;
     font-weight: 400;
     color: var(--text-medium);
@@ -1776,8 +1784,6 @@ section {
     border-left: 2px solid var(--border-light);
     margin-left: 0.25rem;
     min-height: 48px;
-    display: flex;
-    align-items: center;
     transition: all 0.2s var(--ease-out);
     -webkit-tap-highlight-color: transparent;
 }

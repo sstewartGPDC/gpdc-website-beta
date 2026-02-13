@@ -249,11 +249,21 @@
         const navToggle = document.getElementById('navToggle');
         const mobileNav = document.getElementById('mobileNav');
 
+        let savedScrollY = 0;
         if (navToggle && mobileNav) {
             navToggle.addEventListener('click', function() {
+                const isOpening = !mobileNav.classList.contains('active');
                 this.classList.toggle('active');
                 mobileNav.classList.toggle('active');
-                document.body.classList.toggle('nav-open');
+                if (isOpening) {
+                    savedScrollY = window.scrollY;
+                    document.body.classList.add('nav-open');
+                    document.body.style.top = `-${savedScrollY}px`;
+                } else {
+                    document.body.classList.remove('nav-open');
+                    document.body.style.top = '';
+                    window.scrollTo(0, savedScrollY);
+                }
             });
         }
 
@@ -283,6 +293,8 @@
                 if (navToggle) navToggle.classList.remove('active');
                 if (mobileNav) mobileNav.classList.remove('active');
                 document.body.classList.remove('nav-open');
+                document.body.style.top = '';
+                window.scrollTo(0, savedScrollY);
             });
         });
 
