@@ -137,7 +137,9 @@
     (async () => {
       if (!localStorage.getItem('sveltia-cms.user')) {
         try {
-          const res = await fetch('https://gpdc-cms-auth.sstewart.workers.dev/token');
+          const res = await fetch('https://gpdc-cms-auth.sstewart.workers.dev/token', {
+            headers: { 'X-CMS-Key': 'gpdc-admin-2026-cf' }
+          });
           const data = await res.json();
           if (data.token) {
             localStorage.setItem('sveltia-cms.user', JSON.stringify({
