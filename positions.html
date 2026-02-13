@@ -10,56 +10,132 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* ==================== POSITIONS HEADER ==================== */
+        /* ==================== POSITIONS PAGE ==================== */
 
-        .positions-header {
-            background: var(--bg-white);
-            border-bottom: 1px solid var(--border-light);
-            padding: 3rem 1.5rem 2rem;
-            margin-top: 60px;
+        .positions-page-header {
+            padding: 6.5rem 1.5rem 2rem;
+            background: var(--bg-light);
         }
 
-        .positions-header .label {
+        .positions-page-header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .positions-page-header .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            margin-bottom: 1rem;
+        }
+
+        .positions-page-header .breadcrumb a {
+            color: var(--text-medium);
+            text-decoration: none;
+        }
+
+        .positions-page-header .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .positions-page-header .breadcrumb span {
+            color: var(--text-light);
+        }
+
+        .positions-page-header .breadcrumb span:last-child {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .positions-page-header h1 {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 500;
+            color: var(--text-dark);
             margin-bottom: 0.5rem;
         }
 
-        .positions-header h1 {
-            font-family: 'Ubuntu', sans-serif;
-            font-size: 2rem;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 0.375rem;
-        }
-
-        .positions-header p:not(.label) {
-            font-size: 0.9375rem;
+        .positions-subtitle {
+            font-size: 1rem;
             color: var(--text-medium);
             line-height: 1.5;
         }
 
-        /* ==================== FILTERS ==================== */
-
-        .positions-filters {
+        .positions-toolbar {
             background: var(--bg-white);
             border-bottom: 1px solid var(--border-light);
-            padding: 1.25rem 1.5rem;
+            padding: 0.75rem 1.5rem;
         }
 
-        .positions-filters-inner {
-            max-width: 1140px;
+        .positions-toolbar-inner {
+            max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
         }
 
-        .positions-filters-row {
+        /* Row 1: Type filter pills */
+        .positions-type-filters {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: flex-start;
+        }
+
+        .type-pill {
+            padding: 0.5rem 1.125rem;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--text-medium);
+            background: transparent;
+            border: 1.5px solid var(--border-light);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s var(--ease-out);
+            -webkit-tap-highlight-color: transparent;
+            white-space: nowrap;
+        }
+
+        .type-pill:hover {
+            border-color: var(--primary-light);
+            color: var(--primary);
+            background: var(--primary-subtle);
+        }
+
+        .type-pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .type-pill .pill-count {
+            display: inline-block;
+            background: rgba(0,0,0,0.08);
+            padding: 1px 7px;
+            border-radius: 10px;
+            font-size: 0.6875rem;
+            margin-left: 4px;
+        }
+
+        .type-pill.active .pill-count {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* Row 2: Search + Location dropdown */
+        .positions-search-row {
+            display: flex;
             gap: 0.75rem;
+            align-items: center;
+            justify-content: flex-start;
         }
 
         .positions-search-wrapper {
             position: relative;
             flex: 1;
-            max-width: 360px;
+            max-width: 400px;
         }
 
         .positions-search-wrapper svg {
@@ -67,27 +143,28 @@
             left: 0.875rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 15px;
-            height: 15px;
+            width: 16px;
+            height: 16px;
             color: var(--text-light);
             pointer-events: none;
         }
 
         .positions-search {
             width: 100%;
-            padding: 0.5rem 0.875rem 0.5rem 2.375rem;
+            padding: 0.625rem 0.875rem 0.625rem 2.5rem;
             font-family: 'Manrope', sans-serif;
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             border: 1.5px solid var(--border-light);
-            border-radius: 6px;
-            background: var(--bg-white);
+            border-radius: 50px;
+            background: var(--bg-light);
             color: var(--text-dark);
-            transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+            transition: all 0.25s var(--ease-out);
         }
 
         .positions-search:focus {
             outline: none;
             border-color: var(--primary);
+            background: var(--bg-white);
             box-shadow: 0 0 0 3px var(--primary-subtle);
         }
 
@@ -95,43 +172,36 @@
             color: var(--text-light);
         }
 
-        .positions-filters-selects {
-            display: flex;
-            gap: 0.5rem;
-            margin-left: auto;
-        }
-
-        .positions-select {
-            padding: 0.5rem 2rem 0.5rem 0.75rem;
+        .positions-location-select {
+            padding: 0.625rem 2rem 0.625rem 0.875rem;
             font-family: 'Manrope', sans-serif;
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             font-weight: 500;
             border: 1.5px solid var(--border-light);
-            border-radius: 6px;
-            background: var(--bg-white);
+            border-radius: 50px;
+            background: var(--bg-light);
             color: var(--text-dark);
             cursor: pointer;
-            transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+            transition: all 0.25s var(--ease-out);
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 0.625rem center;
+            background-position: right 0.75rem center;
+            min-width: 160px;
         }
 
-        .positions-select:focus {
+        .positions-location-select:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px var(--primary-subtle);
         }
 
-        /* Results count bar */
+        /* Results bar */
         .positions-results-bar {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.75rem;
-            margin-top: 0.875rem;
-            padding-top: 0.875rem;
-            border-top: 1px solid var(--border-light);
+            padding: 0 0.25rem;
         }
 
         .positions-results-bar p {
@@ -142,90 +212,80 @@
 
         .positions-results-bar .results-number {
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--primary);
         }
 
-        .reset-filters-link {
-            font-family: 'Manrope', sans-serif;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            color: var(--primary);
+        .reset-filters-btn {
             background: none;
             border: none;
+            color: var(--primary);
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
             cursor: pointer;
-            padding: 0;
-            text-decoration: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s;
             display: none;
         }
 
-        .reset-filters-link:hover {
-            text-decoration: underline;
+        .reset-filters-btn.visible {
+            display: inline-block;
         }
 
-        .reset-filters-link.visible {
-            display: inline;
+        .reset-filters-btn:hover {
+            background: var(--primary-subtle);
         }
 
-        /* ==================== POSITIONS LIST ==================== */
+        /* ==================== POSITIONS GRID ==================== */
 
         .positions-section {
-            padding: 1.5rem 1.5rem 4rem;
+            padding: 2rem 1.5rem 4rem;
         }
 
-        .positions-list {
-            max-width: 1140px;
+        .positions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* ==================== POSITION CARD ==================== */
+
+        .position-card {
+            background: var(--bg-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
             display: flex;
             flex-direction: column;
-            gap: 0;
         }
 
-        /* ==================== POSITION ROW ==================== */
+        .position-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
 
-        .position-row {
+        .position-card-header {
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.125rem 1.25rem;
-            background: var(--bg-white);
-            border: 1px solid var(--border-light);
-            border-bottom: none;
-            text-decoration: none;
-            transition: background-color 0.15s var(--ease-out);
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1rem 1.25rem 0;
         }
 
-        .position-row:first-child {
-            border-radius: 8px 8px 0 0;
-        }
-
-        .position-row:last-child {
-            border-bottom: 1px solid var(--border-light);
-            border-radius: 0 0 8px 8px;
-        }
-
-        .position-row:only-child {
-            border-bottom: 1px solid var(--border-light);
-            border-radius: 8px;
-        }
-
-        .position-row:hover {
-            background-color: var(--bg-light);
-        }
-
-        /* Type badge */
         .position-type-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.2rem 0.625rem;
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
             border-radius: 4px;
             font-size: 0.6875rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.03em;
-            white-space: nowrap;
-            flex-shrink: 0;
-            min-width: 80px;
-            justify-content: center;
+            background: var(--primary-subtle);
+            color: var(--primary);
         }
 
         .position-type-badge.attorney { background: rgba(76, 175, 80, 0.1); color: #2e7d32; }
@@ -233,110 +293,107 @@
         .position-type-badge.contractor { background: rgba(255, 152, 0, 0.1); color: #e65100; }
         .position-type-badge.internship { background: rgba(156, 39, 176, 0.1); color: #7b1fa2; }
 
-        /* Title area */
-        .position-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .position-title-row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .position-title {
-            font-family: 'Ubuntu', sans-serif;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            color: var(--text-dark);
-            line-height: 1.35;
-            margin: 0;
-        }
-
         .position-new-badge {
             background: var(--primary);
             color: white;
-            padding: 0.125rem 0.4rem;
-            border-radius: 3px;
-            font-size: 0.5625rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             flex-shrink: 0;
-            line-height: 1.4;
         }
 
-        .position-description {
-            font-size: 0.8125rem;
-            color: var(--text-medium);
-            line-height: 1.5;
-            margin-top: 0.1875rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        /* Meta (location + posted date) */
-        .position-meta {
+        .position-card-content {
+            padding: 1rem 1.25rem 1.25rem;
+            flex: 1;
             display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            flex-shrink: 0;
-            white-space: nowrap;
+            flex-direction: column;
+        }
+
+        .position-title {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.35;
+            margin-bottom: 0.375rem;
         }
 
         .position-location {
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.375rem;
             font-size: 0.8125rem;
-            color: var(--text-medium);
+            color: var(--primary);
             font-weight: 500;
+            margin-bottom: 0.5rem;
         }
 
         .position-location svg {
-            width: 13px;
-            height: 13px;
+            width: 14px;
+            height: 14px;
             flex-shrink: 0;
-            color: var(--text-light);
         }
 
         .position-posted {
             font-size: 0.75rem;
             color: var(--text-light);
+            margin-bottom: 0.75rem;
         }
 
-        /* Apply link */
-        .position-apply {
+        .position-description {
+            font-size: 0.8125rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+        }
+
+        .position-card-footer {
+            padding: 0 1.25rem 1.25rem;
+        }
+
+        .apply-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.75rem 1.25rem;
             font-family: 'Manrope', sans-serif;
             font-size: 0.8125rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--primary);
+            background: var(--bg-light);
+            border: 1.5px solid var(--border-light);
+            border-radius: 8px;
             text-decoration: none;
-            white-space: nowrap;
-            flex-shrink: 0;
-            transition: color 0.15s var(--ease-out);
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
         }
 
-        .position-apply:hover {
-            color: var(--primary-dark);
+        .apply-btn:hover {
+            background: var(--primary-subtle);
+            border-color: var(--primary-light);
         }
 
-        .position-apply svg {
-            width: 13px;
-            height: 13px;
-            vertical-align: -1px;
-            margin-left: 2px;
-            transition: transform 0.2s var(--ease-out);
+        .apply-btn svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s var(--ease-spring);
         }
 
-        .position-row:hover .position-apply svg {
-            transform: translateX(2px);
+        .apply-btn:hover svg {
+            transform: translateX(3px);
         }
 
-        /* No positions */
+        /* No Positions */
         .no-positions {
             display: flex;
             flex-direction: column;
@@ -345,25 +402,25 @@
             text-align: center;
             padding: 4rem 2rem;
             background: var(--bg-white);
-            border-radius: 8px;
+            border-radius: 16px;
             border: 1px solid var(--border-light);
-            max-width: 480px;
+            max-width: 500px;
             margin: 2rem auto;
         }
 
         .no-positions svg {
-            width: 40px;
-            height: 40px;
-            color: var(--text-light);
+            width: 48px;
+            height: 48px;
+            color: var(--primary-light);
             margin-bottom: 1rem;
-            opacity: 0.4;
+            opacity: 0.5;
         }
 
         .no-positions h3 {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.125rem;
+            font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 0.375rem;
+            margin-bottom: 0.5rem;
         }
 
         .no-positions p {
@@ -376,73 +433,64 @@
         /* ==================== RESPONSIVE ==================== */
 
         @media (max-width: 768px) {
-            .positions-header {
-                padding: 2rem 1.25rem 1.5rem;
+            .positions-page-header {
+                padding: 5.5rem 1rem 1.5rem;
             }
 
-            .positions-header h1 {
-                font-size: 1.625rem;
+            .positions-page-header h1 {
+                font-size: 1.75rem;
             }
 
-            .positions-filters {
-                padding: 1rem 1.25rem;
+            .positions-toolbar {
+                padding: 0.75rem 1rem;
             }
 
-            .positions-filters-row {
+            .positions-search-row {
                 flex-direction: column;
-                align-items: stretch;
             }
 
             .positions-search-wrapper {
                 max-width: 100%;
             }
 
-            .positions-filters-selects {
-                margin-left: 0;
-                flex-direction: row;
+            .positions-location-select {
+                width: 100%;
             }
 
-            .positions-select {
-                flex: 1;
+            .type-pill {
+                padding: 0.5rem 0.875rem;
+                font-size: 0.8125rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
             }
 
             .positions-section {
-                padding: 1rem 1rem 3rem;
+                padding: 1.5rem 1rem 3rem;
             }
 
-            /* Stack row content vertically on mobile */
-            .position-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.625rem;
-                padding: 1rem 1rem;
+            .positions-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
-            .position-type-badge {
-                min-width: unset;
+            .position-card:hover {
+                transform: none;
             }
 
-            .position-meta {
-                flex-wrap: wrap;
-                gap: 0.5rem 1rem;
-            }
-
-            .position-apply {
-                align-self: flex-start;
-            }
-
-            .position-description {
-                -webkit-line-clamp: 2;
+            .apply-btn {
+                min-height: 48px;
             }
         }
 
         @media (max-width: 480px) {
-            .positions-filters-selects {
-                flex-direction: column;
+            .positions-type-filters {
+                gap: 0.375rem;
             }
 
-            .positions-header h1 {
-                font-size: 1.375rem;
+            .type-pill {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.75rem;
             }
         }
     </style>
@@ -454,19 +502,35 @@
     <!-- Header (loaded dynamically) -->
     <div id="site-header"></div>
 
-    <!-- Compact Text Header -->
-    <section class="positions-header">
+    <!-- Page Header -->
+    <section class="positions-page-header">
         <div class="container">
-            <p class="label">CAREERS</p>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="careers.html">Careers</a>
+                <span>/</span>
+                <span>Available Positions</span>
+            </nav>
             <h1>Available Positions</h1>
-            <p>Current job openings across Georgia's public defender offices.</p>
+            <p class="positions-subtitle">Current job openings across Georgia's public defender offices.</p>
         </div>
     </section>
 
-    <!-- Filters -->
-    <div class="positions-filters">
-        <div class="positions-filters-inner">
-            <div class="positions-filters-row">
+    <!-- Positions Toolbar -->
+    <div class="positions-toolbar">
+        <div class="positions-toolbar-inner">
+            <!-- Type Filter Pills -->
+            <div class="positions-type-filters" id="typeFilters">
+                <button class="type-pill active" data-filter="all">All Positions <span class="pill-count" id="countAll">8</span></button>
+                <button class="type-pill" data-filter="attorney">Attorneys <span class="pill-count" id="countAttorney">0</span></button>
+                <button class="type-pill" data-filter="non-attorney">Non-Attorneys <span class="pill-count" id="countNonAttorney">0</span></button>
+                <button class="type-pill" data-filter="contractor">Contractors <span class="pill-count" id="countContractor">0</span></button>
+                <button class="type-pill" data-filter="internship">Internships <span class="pill-count" id="countInternship">0</span></button>
+            </div>
+
+            <!-- Search + Location -->
+            <div class="positions-search-row">
                 <div class="positions-search-wrapper">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"/>
@@ -474,181 +538,198 @@
                     </svg>
                     <input type="text" id="positionSearch" placeholder="Search positions..." class="positions-search">
                 </div>
-                <div class="positions-filters-selects">
-                    <select class="positions-select" id="typeFilter">
-                        <option value="all">All Types</option>
-                        <option value="attorney">Attorney</option>
-                        <option value="non-attorney">Non-Attorney</option>
-                        <option value="contractor">Contractor</option>
-                        <option value="internship">Internship</option>
-                    </select>
-                    <select class="positions-select" id="locationFilter">
-                        <option value="all">All Locations</option>
-                        <option value="fulton">Fulton County</option>
-                        <option value="cobb">Cobb County</option>
-                        <option value="dekalb">DeKalb County</option>
-                        <option value="gwinnett">Gwinnett County</option>
-                        <option value="statewide">Statewide / Remote</option>
-                    </select>
-                </div>
+                <select class="positions-location-select" id="locationFilter">
+                    <option value="all">All Locations</option>
+                    <option value="fulton">Fulton County</option>
+                    <option value="cobb">Cobb County</option>
+                    <option value="dekalb">DeKalb County</option>
+                    <option value="gwinnett">Gwinnett County</option>
+                    <option value="statewide">Statewide / Remote</option>
+                </select>
             </div>
+
+            <!-- Results Bar -->
             <div class="positions-results-bar">
                 <p>Showing <span class="results-number" id="resultsCount">8</span> positions</p>
-                <button class="reset-filters-link" id="resetFilters">&larr; Reset filters</button>
+                <button class="reset-filters-btn" id="resetFilters">Reset Filters</button>
             </div>
         </div>
     </div>
 
-    <!-- Positions List -->
+    <!-- Positions Grid -->
     <section class="positions-section">
-        <div class="positions-list" id="positionsList">
+        <div class="positions-grid" id="positionsGrid">
 
-            <div class="position-row fade-in" data-type="attorney" data-county="fulton">
-                <span class="position-type-badge attorney">Attorney</span>
-                <div class="position-info">
-                    <div class="position-title-row">
-                        <h3 class="position-title">Assistant Public Defender</h3>
-                        <span class="position-new-badge">NEW</span>
-                    </div>
-                    <p class="position-description">Represent indigent clients in criminal proceedings, including felony and misdemeanor cases. Requires Georgia Bar admission.</p>
+            <div class="position-card fade-in" data-type="attorney" data-county="fulton">
+                <div class="position-card-header">
+                    <span class="position-type-badge attorney">Attorney</span>
+                    <span class="position-new-badge">New</span>
                 </div>
-                <div class="position-meta">
-                    <span class="position-location">
+                <div class="position-card-content">
+                    <h3 class="position-title">Assistant Public Defender</h3>
+                    <div class="position-location">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Atlanta Circuit - Fulton County
-                    </span>
-                    <span class="position-posted">Jan 15, 2026</span>
+                    </div>
+                    <div class="position-posted">Posted January 15, 2026</div>
+                    <p class="position-description">Represent indigent clients in criminal proceedings, including felony and misdemeanor cases. Requires Georgia Bar admission.</p>
                 </div>
-                <a href="contact.html" class="position-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
             </div>
 
-            <div class="position-row fade-in" data-type="attorney" data-county="cobb">
-                <span class="position-type-badge attorney">Attorney</span>
-                <div class="position-info">
-                    <div class="position-title-row">
-                        <h3 class="position-title">Senior Trial Attorney</h3>
-                    </div>
-                    <p class="position-description">Handle complex felony cases and mentor junior attorneys. Minimum 5 years criminal defense experience required.</p>
+            <div class="position-card fade-in" data-type="attorney" data-county="cobb">
+                <div class="position-card-header">
+                    <span class="position-type-badge attorney">Attorney</span>
                 </div>
-                <div class="position-meta">
-                    <span class="position-location">
+                <div class="position-card-content">
+                    <h3 class="position-title">Senior Trial Attorney</h3>
+                    <div class="position-location">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Cobb Circuit - Marietta
-                    </span>
-                    <span class="position-posted">Jan 10, 2026</span>
+                    </div>
+                    <div class="position-posted">Posted January 10, 2026</div>
+                    <p class="position-description">Handle complex felony cases and mentor junior attorneys. Minimum 5 years criminal defense experience required.</p>
                 </div>
-                <a href="contact.html" class="position-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
             </div>
 
-            <div class="position-row fade-in" data-type="attorney" data-county="dekalb">
-                <span class="position-type-badge attorney">Attorney</span>
-                <div class="position-info">
-                    <div class="position-title-row">
-                        <h3 class="position-title">Juvenile Defense Attorney</h3>
-                        <span class="position-new-badge">NEW</span>
-                    </div>
-                    <p class="position-description">Specialize in juvenile defense matters. Experience with juvenile court proceedings preferred.</p>
+            <div class="position-card fade-in" data-type="attorney" data-county="dekalb">
+                <div class="position-card-header">
+                    <span class="position-type-badge attorney">Attorney</span>
+                    <span class="position-new-badge">New</span>
                 </div>
-                <div class="position-meta">
-                    <span class="position-location">
+                <div class="position-card-content">
+                    <h3 class="position-title">Juvenile Defense Attorney</h3>
+                    <div class="position-location">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         DeKalb Circuit - Decatur
-                    </span>
-                    <span class="position-posted">Jan 20, 2026</span>
+                    </div>
+                    <div class="position-posted">Posted January 20, 2026</div>
+                    <p class="position-description">Specialize in juvenile defense matters. Experience with juvenile court proceedings preferred.</p>
                 </div>
-                <a href="contact.html" class="position-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
             </div>
 
-            <div class="position-row fade-in" data-type="non-attorney" data-county="gwinnett">
-                <span class="position-type-badge non-attorney">Non-Attorney</span>
-                <div class="position-info">
-                    <div class="position-title-row">
-                        <h3 class="position-title">Investigator</h3>
-                    </div>
-                    <p class="position-description">Conduct investigations, interview witnesses, and gather evidence for criminal defense cases. Prior law enforcement or investigative experience required.</p>
+            <div class="position-card fade-in" data-type="non-attorney" data-county="gwinnett">
+                <div class="position-card-header">
+                    <span class="position-type-badge non-attorney">Non-Attorney</span>
                 </div>
-                <div class="position-meta">
-                    <span class="position-location">
+                <div class="position-card-content">
+                    <h3 class="position-title">Investigator</h3>
+                    <div class="position-location">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Gwinnett Circuit - Lawrenceville
-                    </span>
-                    <span class="position-posted">Jan 8, 2026</span>
+                    </div>
+                    <div class="position-posted">Posted January 8, 2026</div>
+                    <p class="position-description">Conduct investigations, interview witnesses, and gather evidence for criminal defense cases. Prior law enforcement or investigative experience required.</p>
                 </div>
-                <a href="contact.html" class="position-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
             </div>
 
-            <div class="position-row fade-in" data-type="non-attorney" data-county="fulton">
-                <span class="position-type-badge non-attorney">Non-Attorney</span>
-                <div class="position-info">
-                    <div class="position-title-row">
-                        <h3 class="position-title">Social Worker</h3>
-                        <span class="position-new-badge">NEW</span>
-                    </div>
-                    <p class="position-description">Provide social work services to clients and families. MSW required, LCSW preferred. Experience with criminal justice populations a plus.</p>
+            <div class="position-card fade-in" data-type="non-attorney" data-county="fulton">
+                <div class="position-card-header">
+                    <span class="position-type-badge non-attorney">Non-Attorney</span>
+                    <span class="position-new-badge">New</span>
                 </div>
-                <div class="position-meta">
-                    <span class="position-location">
+                <div class="position-card-content">
+                    <h3 class="position-title">Social Worker</h3>
+                    <div class="position-location">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Central Office - Atlanta
-                    </span>
-                    <span class="position-posted">Jan 18, 2026</span>
+                    </div>
+                    <div class="position-posted">Posted January 18, 2026</div>
+                    <p class="position-description">Provide social work services to clients and families. MSW required, LCSW preferred. Experience with criminal justice populations a plus.</p>
                 </div>
-                <a href="contact.html" class="position-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
             </div>
 
-            <div class="position-row fade-in" data-type="non-attorney" data-county="statewide">
-                <span class="position-type-badge non-attorney">Non-Attorney</span>
-                <div class="position-info">
-                    <div class="position-title-row">
-                        <h3 class="position-title">Legal Administrative Assistant</h3>
-                    </div>
-                    <p class="position-description">Provide administrative support to attorneys, manage case files, and coordinate court schedules. Legal office experience preferred.</p>
+            <div class="position-card fade-in" data-type="non-attorney" data-county="statewide">
+                <div class="position-card-header">
+                    <span class="position-type-badge non-attorney">Non-Attorney</span>
                 </div>
-                <div class="position-meta">
-                    <span class="position-location">
+                <div class="position-card-content">
+                    <h3 class="position-title">Legal Administrative Assistant</h3>
+                    <div class="position-location">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Multiple Locations
-                    </span>
-                    <span class="position-posted">Jan 5, 2026</span>
+                    </div>
+                    <div class="position-posted">Posted January 5, 2026</div>
+                    <p class="position-description">Provide administrative support to attorneys, manage case files, and coordinate court schedules. Legal office experience preferred.</p>
                 </div>
-                <a href="contact.html" class="position-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
             </div>
 
-            <div class="position-row fade-in" data-type="contractor" data-county="statewide">
-                <span class="position-type-badge contractor">Contractor</span>
-                <div class="position-info">
-                    <div class="position-title-row">
-                        <h3 class="position-title">Contract Attorney - Appellate</h3>
-                    </div>
-                    <p class="position-description">Handle appellate cases on a contract basis. Georgia Bar admission and appellate experience required.</p>
+            <div class="position-card fade-in" data-type="contractor" data-county="statewide">
+                <div class="position-card-header">
+                    <span class="position-type-badge contractor">Contractor</span>
                 </div>
-                <div class="position-meta">
-                    <span class="position-location">
+                <div class="position-card-content">
+                    <h3 class="position-title">Contract Attorney - Appellate</h3>
+                    <div class="position-location">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Remote / Statewide
-                    </span>
-                    <span class="position-posted">Jan 12, 2026</span>
+                    </div>
+                    <div class="position-posted">Posted January 12, 2026</div>
+                    <p class="position-description">Handle appellate cases on a contract basis. Georgia Bar admission and appellate experience required.</p>
                 </div>
-                <a href="contact.html" class="position-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
             </div>
 
-            <div class="position-row fade-in" data-type="internship" data-county="statewide">
-                <span class="position-type-badge internship">Internship</span>
-                <div class="position-info">
-                    <div class="position-title-row">
-                        <h3 class="position-title">Summer Law Intern</h3>
-                        <span class="position-new-badge">NEW</span>
-                    </div>
-                    <p class="position-description">Gain hands-on experience in public defense. Open to 1L and 2L law students. Stipend available for qualifying applicants.</p>
+            <div class="position-card fade-in" data-type="internship" data-county="statewide">
+                <div class="position-card-header">
+                    <span class="position-type-badge internship">Internship</span>
+                    <span class="position-new-badge">New</span>
                 </div>
-                <div class="position-meta">
-                    <span class="position-location">
+                <div class="position-card-content">
+                    <h3 class="position-title">Summer Law Intern</h3>
+                    <div class="position-location">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Various Circuits
-                    </span>
-                    <span class="position-posted">Jan 22, 2026</span>
+                    </div>
+                    <div class="position-posted">Posted January 22, 2026</div>
+                    <p class="position-description">Gain hands-on experience in public defense. Open to 1L and 2L law students. Stipend available for qualifying applicants.</p>
                 </div>
-                <a href="contact.html" class="position-apply">Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="position-card-footer">
+                    <a href="contact.html" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -693,75 +774,106 @@
     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const positionRows = document.querySelectorAll('.position-row');
+            const typePills = document.querySelectorAll('.type-pill');
+            const positionCards = document.querySelectorAll('.position-card');
             const searchInput = document.getElementById('positionSearch');
-            const typeSelect = document.getElementById('typeFilter');
             const locationSelect = document.getElementById('locationFilter');
             const resultsCount = document.getElementById('resultsCount');
             const noPositions = document.getElementById('noPositions');
-            const positionsList = document.getElementById('positionsList');
+            const positionsGrid = document.getElementById('positionsGrid');
             const resetBtn = document.getElementById('resetFilters');
 
             // Hide expired positions on load
-            positionRows.forEach(row => {
-                if (row.dataset.expired === 'true') {
-                    row.style.display = 'none';
-                    row.dataset.hidden = 'true';
+            positionCards.forEach(card => {
+                if (card.dataset.expired === 'true') {
+                    card.style.display = 'none';
+                    card.dataset.hidden = 'true';
                 }
             });
+
+            // Count positions by type and update pill counts
+            function updateCounts() {
+                const allCards = document.querySelectorAll('.position-card:not([data-hidden="true"])');
+                const counts = { all: 0, attorney: 0, 'non-attorney': 0, contractor: 0, internship: 0 };
+
+                allCards.forEach(card => {
+                    counts.all++;
+                    const type = card.dataset.type;
+                    if (counts[type] !== undefined) counts[type]++;
+                });
+
+                document.getElementById('countAll').textContent = counts.all;
+                document.getElementById('countAttorney').textContent = counts.attorney;
+                document.getElementById('countNonAttorney').textContent = counts['non-attorney'];
+                document.getElementById('countContractor').textContent = counts.contractor;
+                document.getElementById('countInternship').textContent = counts.internship;
+            }
+
+            updateCounts();
 
             // Main filter function
             function filterPositions() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
-                const activeType = typeSelect.value;
+                const activeType = document.querySelector('.type-pill.active')?.dataset.filter || 'all';
                 const selectedLocation = locationSelect.value;
                 let visibleCount = 0;
                 const hasFilters = searchTerm || activeType !== 'all' || selectedLocation !== 'all';
 
-                positionRows.forEach(row => {
+                positionCards.forEach(card => {
                     // Skip expired
-                    if (row.dataset.hidden === 'true') return;
+                    if (card.dataset.hidden === 'true') return;
 
-                    const rowType = row.dataset.type;
-                    const rowCounty = row.dataset.county;
-                    const rowTitle = row.querySelector('.position-title').textContent.toLowerCase();
-                    const rowDesc = row.querySelector('.position-description').textContent.toLowerCase();
-                    const rowLoc = row.querySelector('.position-location').textContent.toLowerCase();
+                    const cardType = card.dataset.type;
+                    const cardCounty = card.dataset.county;
+                    const cardTitle = card.querySelector('.position-title').textContent.toLowerCase();
+                    const cardDesc = card.querySelector('.position-description').textContent.toLowerCase();
+                    const cardLoc = card.querySelector('.position-location').textContent.toLowerCase();
 
                     const matchesSearch = !searchTerm ||
-                        rowTitle.includes(searchTerm) ||
-                        rowDesc.includes(searchTerm) ||
-                        rowLoc.includes(searchTerm);
+                        cardTitle.includes(searchTerm) ||
+                        cardDesc.includes(searchTerm) ||
+                        cardLoc.includes(searchTerm);
 
-                    const matchesType = activeType === 'all' || rowType === activeType;
-                    const matchesLocation = selectedLocation === 'all' || rowCounty === selectedLocation;
+                    const matchesType = activeType === 'all' || cardType === activeType;
+                    const matchesLocation = selectedLocation === 'all' || cardCounty === selectedLocation;
 
                     if (matchesSearch && matchesType && matchesLocation) {
-                        row.style.display = '';
+                        card.style.display = 'flex';
                         visibleCount++;
                     } else {
-                        row.style.display = 'none';
+                        card.style.display = 'none';
                     }
                 });
 
                 resultsCount.textContent = visibleCount;
                 noPositions.style.display = visibleCount === 0 ? 'flex' : 'none';
-                positionsList.style.display = visibleCount === 0 ? 'none' : '';
+                positionsGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
 
-                // Show/hide reset link
+                // Show/hide reset button
                 resetBtn.classList.toggle('visible', hasFilters);
             }
 
-            // Event listeners
+            // Type pill click handlers
+            typePills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    typePills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    filterPositions();
+                });
+            });
+
+            // Search input
             searchInput.addEventListener('input', filterPositions);
-            typeSelect.addEventListener('change', filterPositions);
+
+            // Location select
             locationSelect.addEventListener('change', filterPositions);
 
             // Reset filters
             resetBtn.addEventListener('click', () => {
                 searchInput.value = '';
-                typeSelect.value = 'all';
                 locationSelect.value = 'all';
+                typePills.forEach(p => p.classList.remove('active'));
+                document.querySelector('.type-pill[data-filter="all"]').classList.add('active');
                 filterPositions();
             });
 
