@@ -6,8 +6,24 @@
   <meta name="robots" content="noindex" />
   <title>GPDC Admin</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Preview pane styles (mirrors live site) -->
+  <style>
+    /* Inject Google Fonts into CMS preview iframe */
+    [data-frame="preview"] {
+      font-family: 'Manrope', sans-serif;
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- Register preview styles (Google Fonts + site CSS) -->
+  <script>
+    CMS.registerPreviewStyle('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
+    CMS.registerPreviewStyle('/admin/preview.css');
+  </script>
+
+  <!-- Custom preview templates -->
+  <script src="/admin/preview.js"></script>
 </body>
 </html>

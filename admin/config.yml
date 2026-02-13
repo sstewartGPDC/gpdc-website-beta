@@ -6,18 +6,53 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# Logo in the admin panel
-site_url: https://gpdc-website.netlify.app
+# Site URL for "View Live" links
+site_url: https://sstewartgpdc.github.io/gpdc-website-beta
+display_url: https://sstewartgpdc.github.io/gpdc-website-beta
 logo_url: https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/66e9df4a3e925a89e1be2971_BlackGold%20-%20SYMBOL%20MARK.png
 
 collections:
   # ==================== ARTICLES ====================
   - name: "articles"
     label: "Articles"
+    label_singular: "Article"
     folder: "_articles"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    description: "Newsroom articles displayed on the site"
+    preview_path: "articles/{{slug}}.html"
+    summary: "{{title}}  ·  {{category}}  ·  {{date}}"
+    sortable_fields:
+      fields: ["title", "date", "category"]
+      default:
+        field: "date"
+        direction: "Descending"
+    view_filters:
+      - label: "Featured"
+        field: "featured"
+        pattern: true
+      - label: "News"
+        field: "category"
+        pattern: "News"
+      - label: "Local Offices"
+        field: "category"
+        pattern: "Local Offices"
+      - label: "Training"
+        field: "category"
+        pattern: "Training"
+      - label: "Events"
+        field: "category"
+        pattern: "Events"
+      - label: "Leadership"
+        field: "category"
+        pattern: "Leadership"
+    view_groups:
+      - label: "Category"
+        field: "category"
+      - label: "Year"
+        field: "date"
+        pattern: '\d{4}'
     fields:
       - label: "Title"
         name: "title"
@@ -79,10 +114,38 @@ collections:
   # ==================== EVENTS ====================
   - name: "events"
     label: "Events"
+    label_singular: "Event"
     folder: "_events"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    description: "Upcoming and past events"
+    preview_path: "newsroom.html"
+    summary: "{{title}}  ·  {{type}}  ·  {{date}}"
+    sortable_fields:
+      fields: ["title", "date", "type"]
+      default:
+        field: "date"
+        direction: "Descending"
+    view_filters:
+      - label: "In Person"
+        field: "type"
+        pattern: "in-person"
+      - label: "Virtual"
+        field: "type"
+        pattern: "virtual"
+      - label: "Hybrid"
+        field: "type"
+        pattern: "hybrid"
+      - label: "On Demand"
+        field: "type"
+        pattern: "on-demand"
+    view_groups:
+      - label: "Type"
+        field: "type"
+      - label: "Year"
+        field: "date"
+        pattern: '\d{4}'
     fields:
       - label: "Title"
         name: "title"
@@ -152,10 +215,40 @@ collections:
   # ==================== POSITIONS ====================
   - name: "positions"
     label: "Positions"
+    label_singular: "Position"
     folder: "_positions"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    description: "Job openings and career opportunities"
+    preview_path: "positions.html"
+    summary: "{{title}}  ·  {{type}}  ·  {{location}}  ·  {{date}}"
+    sortable_fields:
+      fields: ["title", "date", "type", "division"]
+      default:
+        field: "date"
+        direction: "Descending"
+    view_filters:
+      - label: "Attorney"
+        field: "type"
+        pattern: "attorney"
+      - label: "Non-Attorney"
+        field: "type"
+        pattern: "non-attorney"
+      - label: "Contractor"
+        field: "type"
+        pattern: "contractor"
+      - label: "Internship"
+        field: "type"
+        pattern: "internship"
+      - label: "New Positions"
+        field: "is_new"
+        pattern: true
+    view_groups:
+      - label: "Type"
+        field: "type"
+      - label: "Division"
+        field: "division"
     fields:
       - label: "Job Title"
         name: "title"
@@ -240,6 +333,7 @@ collections:
   # ==================== ANNOUNCEMENT BANNER ====================
   - name: "settings"
     label: "Site Settings"
+    description: "Global site configuration"
     files:
       - name: "announcement"
         label: "Announcement Banner"
