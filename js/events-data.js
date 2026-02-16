@@ -1,16 +1,17 @@
 // Shared Training Events Data
 // Used by both the home page events widget and the training calendar
+// NOTE: Keep in sync with _events/ CMS collection — only CMS-managed events should appear here
 
 const GPDC_EVENTS = [
     {
         id: 1,
-        title: "GPDC Emory Collaboration: Rapid Screening & Red-Flag Identification in Client Interviews",
+        title: "GPDC Emory Collaboration: Rapid Screening & Red-Flag Identification",
         date: new Date(2026, 1, 20, 13, 0),
         endDate: new Date(2026, 1, 20, 17, 0),
         location: "Emory University School of Law",
         type: "in-person",
         description: "Collaborative training with Emory University on rapid screening techniques and identifying red flags during client interviews.",
-        image: "https://images.unsplash.com/photo-1516382799247-87df95d790b7?q=80&w=2348&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://images.unsplash.com/photo-1516382799247-87df95d790b7?q=80&w=2348&auto=format&fit=crop",
         registerUrl: "#"
     },
     {
@@ -21,81 +22,30 @@ const GPDC_EVENTS = [
         location: "Evergreen, Stone Mountain",
         type: "in-person",
         description: "Biannual meeting bringing together Circuit Public Defenders from across Georgia for updates, training, and collaboration.",
-        image: "https://images.unsplash.com/photo-1764471444363-e6dc0f9773bc?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://images.unsplash.com/photo-1764471444363-e6dc0f9773bc?q=80&w=987&auto=format&fit=crop",
         registerUrl: "#"
     },
     {
         id: 3,
-        title: "Leadership Academy - Spring Cohort",
-        date: new Date(2026, 2, 15),
-        location: "Atlanta, GA",
+        title: "Leadership Academy 2025-2026 Graduation",
+        date: new Date(2026, 4, 22, 9, 0),
+        endDate: new Date(2026, 4, 22, 12, 0),
+        location: "Athens, GA",
         type: "in-person",
-        description: "Intensive leadership development program for Assistant and Circuit Public Defenders.",
+        description: "Graduation for the 2025-2026 class of the Leadership Academy for Assistant and Circuit Public Defenders.",
         image: "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200c524675d5f75d8021d_Leadership%20Academy%20Graduation-10%20Large.jpeg",
-        registerUrl: "https://gapubdef.org/events/leadership-academy-spring-2026"
+        registerUrl: ""
     },
     {
         id: 4,
-        title: "Mental Health Defense Seminar",
-        date: new Date(2026, 2, 22),
-        location: "Atlanta, GA / Online",
-        type: "hybrid",
-        description: "Understanding mental health issues in criminal defense cases.",
-        image: null,
-        registerUrl: "https://gapubdef.org/events/mental-health-defense"
-    },
-    {
-        id: 5,
-        title: "Nxt Up Program Kickoff",
-        date: new Date(2026, 3, 8),
-        location: "Atlanta, GA",
-        type: "in-person",
-        description: "Executive-readiness program for Chief Assistant Public Defenders preparing for leadership roles.",
-        image: null,
-        registerUrl: "https://gapubdef.org/events/nxt-up-2026"
-    },
-    {
-        id: 6,
-        title: "Trial Advocacy Workshop",
-        date: new Date(2026, 4, 18),
-        endDate: new Date(2026, 4, 20),
-        location: "Macon, GA",
-        type: "in-person",
-        description: "Hands-on trial skills training with mock trials and expert feedback.",
-        image: null,
-        registerUrl: "https://gapubdef.org/events/trial-advocacy-workshop"
-    },
-    {
-        id: 7,
-        title: "Ethics in Public Defense",
-        date: new Date(2026, 5, 10),
-        location: "On-Demand",
-        type: "on-demand",
-        description: "Self-paced ethics CLE covering professional responsibility for public defenders.",
-        image: null,
-        registerUrl: "https://gapubdef.org/events/ethics-on-demand"
-    },
-    {
-        id: 8,
         title: "Public Defense Week 2026",
         date: new Date(2026, 6, 20),
         endDate: new Date(2026, 6, 25),
         location: "Athens, GA",
         type: "in-person",
-        description: "Annual flagship conference featuring Summer Public Defense Conference, Chief Assistant Training, and Transition into Law Practice Program.",
-        image: "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/66e891aa2febf78fe64b3da0_1Q8A3235_2.jpg",
+        description: "Annual flagship conference featuring Summer Public Defense Conference and Transition into Law Practice Program (TILPP).",
+        image: "/images/uploads/1Q8A9466.JPG",
         registerUrl: "https://gapubdef.org/events/public-defense-week-2026"
-    },
-    {
-        id: 9,
-        title: "Capital Defense Symposium",
-        date: new Date(2026, 8, 15),
-        endDate: new Date(2026, 8, 17),
-        location: "Atlanta, GA",
-        type: "in-person",
-        description: "Advanced training for capital defense attorneys and mitigation specialists.",
-        image: null,
-        registerUrl: "https://gapubdef.org/events/capital-defense-symposium"
     }
 ];
 
