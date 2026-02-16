@@ -49,6 +49,12 @@
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg"
     },
     {
+      "id": "kholmes",
+      "name": "Kenya Holmes",
+      "title": "Manager, Ladders Youth Program",
+      "photo": "https://gapubdef.org/wp-content/uploads/Kenya_Headshot24.jpg"
+    },
+    {
       "id": "gmurray",
       "name": "Gayle Murray",
       "title": "Division Director, Youth Advocacy",
@@ -67,6 +73,12 @@
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg"
     },
     {
+      "id": "cdelossantos",
+      "name": "Catia De Los Santos",
+      "title": "Manager, Client Support Services",
+      "photo": "https://gapubdef.org/wp-content/uploads/Tia_Headshot24.jpg"
+    },
+    {
       "id": "nstudelska",
       "name": "Nathaniel Studelska",
       "title": "Division Director, Capital Defense",
@@ -77,18 +89,6 @@
       "name": "Joy Walker",
       "title": "Division Director, Customer Support & Compliance",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg"
-    },
-    {
-      "id": "cdelossantos",
-      "name": "Catia De Los Santos",
-      "title": "Manager, Client Support Services",
-      "photo": "https://gapubdef.org/wp-content/uploads/Tia_Headshot24.jpg"
-    },
-    {
-      "id": "kholmes",
-      "name": "Kenya Holmes",
-      "title": "Manager, Ladders Youth Program",
-      "photo": "https://gapubdef.org/wp-content/uploads/Kenya_Headshot24.jpg"
     }
   ]
 }
