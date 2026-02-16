@@ -77,6 +77,18 @@
       "name": "Joy Walker",
       "title": "Division Director, Customer Support & Compliance",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg"
+    },
+    {
+      "id": "cdelossantos",
+      "name": "Catia De Los Santos",
+      "title": "Manager, Client Support Services",
+      "photo": "https://gapubdef.org/wp-content/uploads/Tia_Headshot24.jpg"
+    },
+    {
+      "id": "kholmes",
+      "name": "Kenya Holmes",
+      "title": "Manager, Ladders Youth Program",
+      "photo": "https://gapubdef.org/wp-content/uploads/Kenya_Headshot24.jpg"
     }
   ]
 }

@@ -48,7 +48,7 @@
     // Fetch a JSON data file with fallback
     async function fetchData(basePath, dataPath) {
         try {
-            const response = await fetch(basePath + dataPath + '?v=2');
+            const response = await fetch(basePath + dataPath + '?v=' + Date.now());
             if (!response.ok) throw new Error('Data file not found');
             return await response.json();
         } catch (error) {
@@ -63,7 +63,7 @@
         if (!element) return;
 
         try {
-            const response = await fetch(basePath + componentPath + '?v=2');
+            const response = await fetch(basePath + componentPath + '?v=3');
             if (!response.ok) throw new Error('Component not found');
 
             let html = await response.text();

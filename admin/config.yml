@@ -556,11 +556,11 @@ collections:
               - { label: "Image", name: "image", widget: "image", hint: "Fallback hero for article pages" }
               - { label: "Position", name: "position", widget: "string", default: "center center" }
 
-      # ==================== LEADERSHIP TEAM ====================
+      # ==================== DIRECTORS & MANAGERS (OUR TEAM) ====================
       - name: "leadership"
-        label: "Leadership Team"
+        label: "Directors and Managers (Our Team)"
         file: "_data/leadership.json"
-        description: "Executive leadership photos and info displayed on the Our Team page"
+        description: "Directors and managers photos displayed on the Our Team page"
         fields:
           - label: "Team Members"
             name: "members"
@@ -572,11 +572,11 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Photo", name: "photo", widget: "image" }
 
-      # ==================== DIVISION DIRECTORS ====================
+      # ==================== DIVISION IMAGES (DIVISIONS & SERVICES) ====================
       - name: "divisions_images"
-        label: "Division Directors & Images"
+        label: "Division Images (Divisions & Services)"
         file: "_data/divisions.json"
-        description: "Division card images and director photos for the Divisions page"
+        description: "Division card images and director photos for the Divisions & Services page"
         fields:
           - label: "Divisions"
             name: "divisions"
