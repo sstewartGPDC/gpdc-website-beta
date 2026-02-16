@@ -1,15 +1,15 @@
 ---
-title: "Assistant Public Defender"
+title: Assistant Public Defender
 date: 2026-01-15
 expires: 2026-06-15
 expired: false
-location: "Atlanta Circuit - Fulton County"
-type: "attorney"
-division: "local"
-county: "fulton"
+location: Atlanta Circuit - Fulton County
+type: attorney
+division: local
+county: fulton
 is_new: true
-description: "Represent indigent clients in criminal proceedings, including felony and misdemeanor cases. Requires Georgia Bar admission."
-apply_url: "apply.html"
+description: Represent indigent clients in criminal proceedings, including felony and misdemeanor cases. Requires Georgia Bar admission.
+apply_url: apply.html
 ---
 
 ## Position Overview
