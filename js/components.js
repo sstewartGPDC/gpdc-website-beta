@@ -178,7 +178,20 @@
         });
     }
 
+    // Division slug → leadership member ID mapping
+    const divisionLeaderMap = {
+        'training': 'tbertram',
+        'appellate-defense': 'whewitt',
+        'capital-defense': 'nstudelska',
+        'customer-support': 'jwalker',
+        'mental-health-defense': 'srhinehart',
+        'youth-defense': 'gmurray',
+        'conflict': 'aragas',
+        'administration': 'oalli'
+    };
+
     // Load divisions data and update division images
+    // Cross-references leadership.json for director photos
     async function loadDivisions(basePath) {
         var pagePath = window.location.pathname;
         var isDivisionsOverview = pagePath.endsWith('/divisions.html') || pagePath.endsWith('/divisions');
@@ -186,10 +199,32 @@
 
         if (!isDivisionsOverview && !isDivisionPage) return;
 
-        var data = await fetchData(basePath, '_data/divisions.json');
-        if (!data || !data.divisions) return;
+        // Fetch both divisions and leadership data in parallel
+        var [divData, leaderData] = await Promise.all([
+            fetchData(basePath, '_data/divisions.json'),
+            fetchData(basePath, '_data/leadership.json')
+        ]);
 
-        var divisions = data.divisions;
+        if (!divData || !divData.divisions) return;
+
+        var divisions = divData.divisions;
+
+        // Build leadership lookup by ID
+        var leaderLookup = {};
+        if (leaderData && leaderData.members) {
+            leaderData.members.forEach(function(m) {
+                leaderLookup[m.id] = m;
+            });
+        }
+
+        // Helper: get director photo for a division slug
+        function getDirectorPhoto(slug) {
+            var leaderId = divisionLeaderMap[slug];
+            if (leaderId && leaderLookup[leaderId]) {
+                return leaderLookup[leaderId].photo;
+            }
+            return null;
+        }
 
         if (isDivisionsOverview) {
             // Update division cards on the overview page
@@ -203,10 +238,13 @@
                     headerImg.src = div.header_image;
                 }
 
-                // Update director photo
+                // Update director photo from leadership data
                 var directorImg = card.querySelector('.division-card-leader img');
                 if (directorImg) {
-                    directorImg.src = div.director_photo;
+                    var photo = getDirectorPhoto(div.slug);
+                    if (photo) {
+                        directorImg.src = photo;
+                    }
                 }
             });
         }
@@ -214,8 +252,8 @@
         if (isDivisionPage) {
             // Extract the division slug from the URL
             var slug = pagePath.split('/divisions/')[1].replace('.html', '').replace(/\/$/, '');
-            var divData = divisions.find(function(d) { return d.slug === slug; });
-            if (!divData) return;
+            var divMatch = divisions.find(function(d) { return d.slug === slug; });
+            if (!divMatch) return;
 
             // Update leader profile image (supports both standard and training page layouts)
             var profileCard = document.querySelector('[data-division="' + slug + '"]');
@@ -223,7 +261,10 @@
                 var profileImg = profileCard.querySelector('.leader-profile-image img') ||
                                  profileCard.querySelector('.pd-leader-image img');
                 if (profileImg) {
-                    profileImg.src = divData.director_photo;
+                    var photo = getDirectorPhoto(slug);
+                    if (photo) {
+                        profileImg.src = photo;
+                    }
                 }
             }
         }

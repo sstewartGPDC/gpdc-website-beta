@@ -81,6 +81,7 @@ collections:
         name: "date"
         widget: "datetime"
         format: "YYYY-MM-DD"
+        time_format: false
         hint: "Publication date"
 
       - label: "Featured"
@@ -121,7 +122,7 @@ collections:
     extension: "md"
     description: "Upcoming and past events"
     preview_path: "newsroom.html"
-    summary: "{{title}}  ·  {{type}}  ·  {{date}}"
+    summary: "{{title}}  ·  {{type}}  ·  {{date}}  ·  {{location}}"
     sortable_fields: ["title", "date", "type"]
     view_filters:
       - label: "In Person"
@@ -152,20 +153,28 @@ collections:
         name: "date"
         widget: "datetime"
         format: "YYYY-MM-DD"
+        time_format: false
         hint: "Event start date"
 
       - label: "End Date"
         name: "end_date"
         widget: "datetime"
         format: "YYYY-MM-DD"
+        time_format: false
         required: false
         hint: "Event end date (leave blank for single-day events)"
 
-      - label: "Time"
+      - label: "Start Time"
         name: "time"
         widget: "string"
         required: false
-        hint: "e.g. 1:00 PM - 5:00 PM"
+        hint: "e.g. 9:00 AM"
+
+      - label: "End Time"
+        name: "end_time"
+        widget: "string"
+        required: false
+        hint: "e.g. 5:00 PM"
 
       - label: "Location"
         name: "location"
@@ -218,7 +227,7 @@ collections:
     extension: "md"
     description: "Job openings and career opportunities"
     preview_path: "positions.html"
-    summary: "{{title}}  ·  {{type}}  ·  {{location}}  ·  {{date}}"
+    summary: "{{title}}  ·  {{type}}  ·  {{division}}  ·  {{location}}  ·  {{expired | ternary('EXPIRED','ACTIVE')}}"
     sortable_fields: ["title", "date", "type", "division"]
     view_filters:
       - label: "Attorney"
@@ -259,12 +268,14 @@ collections:
         name: "date"
         widget: "datetime"
         format: "YYYY-MM-DD"
+        time_format: false
         hint: "Date the position was posted"
 
       - label: "Expiration Date"
         name: "expires"
         widget: "datetime"
         format: "YYYY-MM-DD"
+        time_format: false
         required: false
         hint: "Position will automatically show as expired after this date (leave blank for no expiration)"
 
@@ -556,9 +567,9 @@ collections:
               - { label: "Image", name: "image", widget: "image", hint: "Fallback hero for article pages" }
               - { label: "Position", name: "position", widget: "string", default: "center center" }
 
-      # ==================== DIRECTORS & MANAGERS (OUR TEAM) ====================
+      # ==================== OUR TEAM ====================
       - name: "leadership"
-        label: "Directors and Managers (Our Team)"
+        label: "Our Team"
         file: "_data/leadership.json"
         description: "Directors and managers photos displayed on the Our Team page"
         fields:
@@ -574,9 +585,9 @@ collections:
 
       # ==================== DIVISION IMAGES (DIVISIONS & SERVICES) ====================
       - name: "divisions_images"
-        label: "Division Images (Divisions & Services)"
+        label: "Division Images"
         file: "_data/divisions.json"
-        description: "Division card images and director photos for the Divisions & Services page"
+        description: "Header images for the Divisions & Services page. Director photos are managed in 'Our Team'."
         fields:
           - label: "Divisions"
             name: "divisions"
@@ -585,6 +596,3 @@ collections:
             fields:
               - { label: "Slug", name: "slug", widget: "string", hint: "URL slug (e.g. administration, appellate-defense)" }
               - { label: "Header Image", name: "header_image", widget: "image", hint: "Background image on the division card" }
-              - { label: "Director Photo", name: "director_photo", widget: "image", hint: "Director headshot" }
-              - { label: "Director Name", name: "director_name", widget: "string" }
-              - { label: "Director Title", name: "director_title", widget: "string" }
