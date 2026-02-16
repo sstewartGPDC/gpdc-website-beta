@@ -3574,10 +3574,7 @@ body.nav-open {
 }
 
 .map-layout {
-    display: grid;
-    grid-template-columns: 1fr 400px;
-    gap: 2rem;
-    align-items: start;
+    display: block;
 }
 
 .georgia-map {
@@ -3586,6 +3583,8 @@ body.nav-open {
     padding: 1.5rem;
     box-shadow: var(--shadow-sm);
     position: relative;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .georgia-map svg {
@@ -3702,34 +3701,49 @@ body.nav-open {
     color: var(--text-dark);
 }
 
-/* Fullscreen Map */
-.georgia-map.fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9999;
-    background: white;
-    border-radius: 0;
-    padding: 1rem;
-    margin: 0;
-    overflow: auto;
+/* Floating Search Bar (overlays map) */
+.map-floating-search {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 11;
+    width: 320px;
+    max-width: calc(100% - 5rem);
 }
 
-.georgia-map.fullscreen #mapContainer {
-    height: auto;
-    min-height: calc(100vh - 2rem);
+.map-floating-search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--text-light);
+    pointer-events: none;
+    z-index: 1;
 }
 
-.georgia-map.fullscreen #mapContainer svg {
+.map-floating-search-input {
     width: 100%;
-    height: auto;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.875rem;
+    border: 1.5px solid var(--border-light);
+    border-radius: 10px;
+    background: var(--bg-white);
+    color: var(--text-dark);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    outline: none;
+    transition: all 0.3s var(--ease-out);
 }
 
-.georgia-map.fullscreen .map-controls {
-    top: 1.5rem;
-    right: 1.5rem;
+.map-floating-search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1), 0 0 0 3px var(--primary-subtle);
+}
+
+.map-floating-search-input::placeholder {
+    color: var(--text-light);
 }
 
 /* Map Container */
@@ -3831,173 +3845,382 @@ body.nav-open {
     line-height: 1.3;
 }
 
-.map-info-panel {
+/* ==================== Circuit Detail Modal ==================== */
+.circuit-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s var(--ease-out);
+    padding: 1rem;
+}
+
+.circuit-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.circuit-modal {
+    background: var(--bg-white);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.circuit-modal-overlay.active .circuit-modal {
+    transform: translateY(0) scale(1);
+}
+
+.circuit-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.circuit-modal-close:hover {
+    background: var(--border-light);
+    transform: scale(1.05);
+}
+
+.circuit-modal-close svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-medium);
+}
+
+.circuit-modal-circuit-name {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+    padding-right: 2rem;
+}
+
+.circuit-modal-county-label {
+    font-size: 0.8125rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.circuit-modal-detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.circuit-modal-detail-row:first-of-type {
+    margin-top: 0.75rem;
+}
+
+.circuit-modal-detail-row:last-of-type {
+    border-bottom: none;
+}
+
+.circuit-modal-detail-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--primary-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.circuit-modal-detail-icon svg {
+    width: 16px;
+    height: 16px;
+    color: var(--primary);
+}
+
+.circuit-modal-detail-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.circuit-modal-detail-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-light);
+    margin-bottom: 0.125rem;
+}
+
+.circuit-modal-detail-value {
+    font-size: 0.9375rem;
+    color: var(--text-dark);
+}
+
+.circuit-modal-detail-value a {
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.circuit-modal-detail-value a:hover {
+    color: var(--primary);
+}
+
+.circuit-modal-counties-list {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.circuit-modal-counties-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.circuit-modal-counties-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+}
+
+.circuit-modal-county-tag {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    background: var(--bg-light);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-medium);
+}
+
+.circuit-modal-county-tag.active-county {
+    background: var(--primary-subtle);
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.circuit-modal-actions {
+    margin-top: 1.25rem;
+}
+
+.circuit-modal-view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: white;
+    background: var(--primary);
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out);
+}
+
+.circuit-modal-view-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.circuit-modal-view-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Mobile-only action buttons in modal */
+.circuit-modal-mobile-actions {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .circuit-modal {
+        padding: 1.5rem;
+        margin: 0.5rem;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .circuit-modal-mobile-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+    }
+
+    .circuit-modal-action-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.375rem;
+        padding: 0.75rem;
+        font-family: 'Manrope', sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        border-radius: 10px;
+        border: 1.5px solid var(--primary);
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .circuit-modal-action-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .circuit-modal-action-btn--call {
+        background: var(--primary);
+        color: white;
+    }
+
+    .circuit-modal-action-btn--directions {
+        background: var(--bg-white);
+        color: var(--primary);
+    }
+}
+
+/* ==================== Circuit Directory (below map) ==================== */
+.circuit-directory {
+    margin-top: 2rem;
     background: var(--bg-white);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: var(--shadow-sm);
-    max-height: 600px;
-    overflow-y: auto;
 }
 
-.map-search-box {
-    position: relative;
-    margin-bottom: 1rem;
-}
-
-.map-search-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
-    color: var(--primary);
-}
-
-.map-search-input {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.75rem;
-    font-family: 'Manrope', sans-serif;
-    font-size: 0.875rem;
-    border: 1.5px solid var(--border-light);
-    border-radius: 8px;
-    outline: none;
-    transition: all 0.3s var(--ease-out);
-}
-
-.map-search-input:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--primary-subtle);
-}
-
-.map-info-content {
-    margin-bottom: 1rem;
-}
-
-.map-info-placeholder {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-light);
-}
-
-.map-info-placeholder svg {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 0.75rem;
-    opacity: 0.5;
-}
-
-.map-info-placeholder p {
-    font-size: 0.875rem;
-}
-
-.circuit-info-card {
-    padding: 1rem;
-    background: var(--bg-light);
-    border-radius: 10px;
-}
-
-.circuit-info-card h2.selected-county-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: var(--text-dark);
-}
-
-.circuit-info-card h3 {
-    font-size: 1.125rem;
-    margin-bottom: 0.25rem;
-    color: var(--primary);
-}
-
-.circuit-info-card h3.circuit-name-subtitle {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-}
-
-.circuit-counties-label {
-    font-size: 0.8125rem;
-    color: var(--text-light);
-    margin-bottom: 1rem;
-}
-
-.circuit-info-details {
-    margin-bottom: 1rem;
-}
-
-.circuit-info-row {
+.circuit-directory-header {
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.8125rem;
-}
-
-.circuit-info-row strong {
-    color: var(--text-dark);
-    min-width: 140px;
-    flex-shrink: 0;
-}
-
-.circuit-info-row span,
-.circuit-info-row a {
-    color: var(--text-medium);
-}
-
-.circuit-info-row a:hover {
-    color: var(--primary);
-}
-
-.circuit-email-link {
-    display: inline-flex;
     align-items: center;
-}
-
-.circuit-email-link svg {
-    transition: stroke 0.2s ease;
-}
-
-.circuit-email-link:hover svg {
-    stroke: var(--primary);
-}
-
-.circuit-info-card .circuit-description {
-    font-size: 0.8125rem;
-    color: var(--text-medium);
-    line-height: 1.5;
+    justify-content: space-between;
     margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-light);
 }
 
-.map-circuits-list {
-    max-height: 300px;
+.circuit-directory-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.circuit-directory-count {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.circuit-directory-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.5rem;
+    max-height: 420px;
     overflow-y: auto;
-    border-top: 1px solid var(--border-light);
-    padding-top: 1rem;
 }
 
-.circuit-list-item {
-    padding: 0.75rem;
+.circuit-directory-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.25s var(--ease-out);
-    margin-bottom: 0.25rem;
+    transition: all 0.2s var(--ease-out);
+    border: 1px solid transparent;
 }
 
-.circuit-list-item:hover {
+.circuit-directory-item:hover {
     background: var(--primary-subtle);
+    border-color: rgba(184, 92, 56, 0.15);
 }
 
-.circuit-list-name {
+.circuit-directory-item.highlighted {
+    background: var(--primary-subtle);
+    border-color: var(--primary);
+}
+
+.circuit-directory-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.circuit-directory-item-name {
     font-weight: 600;
     font-size: 0.875rem;
     color: var(--text-dark);
 }
 
-.circuit-list-counties {
+.circuit-directory-item-counties {
     font-size: 0.75rem;
     color: var(--text-light);
+    margin-top: 0.125rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.circuit-directory-item-arrow {
+    width: 16px;
+    height: 16px;
+    color: var(--text-light);
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.circuit-directory-item:hover .circuit-directory-item-arrow {
+    transform: translateX(2px);
+    color: var(--primary);
+}
+
+.circuit-directory-empty {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-light);
+    grid-column: 1 / -1;
+}
+
+.circuit-directory-empty svg {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 0.75rem;
+    opacity: 0.4;
+}
+
+.circuit-directory-empty p {
+    font-size: 0.875rem;
 }
 
 /* FYPD Mobile View - Base (hidden on desktop) */
@@ -4298,21 +4521,24 @@ body.nav-open {
 
 @media (max-width: 1024px) {
     .map-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .map-info-panel {
-        max-height: none;
+        display: block;
     }
 
     .georgia-map {
         max-width: 100%;
-        margin: 0 auto;
+    }
+
+    .circuit-directory-list {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 768px) {
     .map-layout {
+        display: none;
+    }
+
+    .circuit-directory {
         display: none;
     }
 

@@ -40,6 +40,15 @@
                 <div class="map-layout">
                     <!-- Georgia Map SVG -->
                     <div class="georgia-map" id="georgiaMap">
+                        <!-- Floating Search Bar -->
+                        <div class="map-floating-search" id="mapFloatingSearch">
+                            <svg class="map-floating-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                            <input type="text" class="map-floating-search-input" id="mapSearch" placeholder="Search by county, circuit, or defender..." autocomplete="off">
+                        </div>
+
                         <div class="map-loading" id="mapLoading">
                             <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="32"/>
@@ -53,33 +62,19 @@
                                 <circle cx="12" cy="10" r="3"/>
                             </svg>
                             <p><strong>Interactive Map</strong></p>
-                            <p style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">Use the search or circuit list on the right to find your public defender office.</p>
+                            <p style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">Use the search or browse the circuit directory below to find your public defender office.</p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Circuit Info Panel -->
-                    <div class="map-info-panel" id="mapInfoPanel">
-                        <div class="map-search-box">
-                            <svg class="map-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="11" cy="11" r="8"/>
-                                <path d="M21 21l-4.35-4.35"/>
-                            </svg>
-                            <input type="text" class="map-search-input" id="mapSearch" placeholder="Search by county or circuit..." autocomplete="off">
-                        </div>
-
-                        <div class="map-info-content" id="mapInfoContent">
-                            <div class="map-info-placeholder">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                                <p>Click on a circuit or search to view office details</p>
-                            </div>
-                        </div>
-
-                        <div class="map-circuits-list" id="mapCircuitsList">
-                            <!-- Circuits will be populated by JS -->
-                        </div>
+                <!-- Circuit Directory (below map) -->
+                <div class="circuit-directory" id="circuitDirectory">
+                    <div class="circuit-directory-header">
+                        <h3>All Circuit Offices</h3>
+                        <span class="circuit-directory-count" id="circuitDirectoryCount">44 circuits</span>
+                    </div>
+                    <div class="circuit-directory-list" id="circuitDirectoryList">
+                        <!-- Populated by JS -->
                     </div>
                 </div>
 
@@ -152,6 +147,20 @@
 
     <!-- Footer (loaded dynamically) -->
     <div id="site-footer"></div>
+
+    <!-- Circuit Detail Modal -->
+    <div class="circuit-modal-overlay" id="circuitModalOverlay">
+        <div class="circuit-modal" id="circuitModal">
+            <button class="circuit-modal-close" id="circuitModalClose" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="circuit-modal-body" id="circuitModalBody">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
 
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
