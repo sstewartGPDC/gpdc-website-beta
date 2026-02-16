@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Crop and resize images for the GPDC website. Select from presets for team headshots, hero images, division cards, and more.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Crop Tool | Georgia Public Defender Council</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Cropper.js -->
+    <link rel="stylesheet" href="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.css">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Image Crop Tool | Georgia Public Defender Council">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/66e9df4a3e925a89e1be2971_BlackGold%20-%20SYMBOL%20MARK.png">
+    <meta property="og:site_name" content="Georgia Public Defender Council">
+    <style>
+        /* ——— Crop Tool Page Styles ——— */
+        .crop-page-section {
+            padding: 48px 0 80px;
+            background: #f9f8f6;
+            min-height: 60vh;
+        }
+        .crop-page-section .container {
+            max-width: 960px;
+        }
+        .crop-page-header {
+            margin-bottom: 32px;
+        }
+        .crop-page-header h2 {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary, #1a1a1a);
+            margin-bottom: 8px;
+        }
+        .crop-page-header p {
+            font-size: 15px;
+            color: var(--text-secondary, #666);
+            line-height: 1.7;
+            max-width: 640px;
+        }
+
+        /* Crop tool card wrapper */
+        .crop-tool {
+            background: #fff;
+            border: 1px solid var(--border-light, #e5e2de);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Upload zone */
+        .crop-upload-zone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 64px 32px;
+            border: 2px dashed #d5d0ca;
+            border-radius: 12px;
+            margin: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #faf9f7;
+        }
+        .crop-upload-zone:hover,
+        .crop-upload-zone.drag-over {
+            border-color: var(--primary, #B85C38);
+            background: rgba(184, 92, 56, 0.04);
+        }
+        .crop-upload-icon {
+            color: var(--primary, #B85C38);
+            margin-bottom: 16px;
+            opacity: 0.7;
+        }
+        .crop-upload-text {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        .crop-upload-link {
+            color: var(--primary, #B85C38);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        .crop-upload-hint {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Workspace */
+        .crop-workspace {
+            padding: 20px;
+        }
+
+        /* Presets */
+        .crop-presets {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .crop-preset-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 8px 14px;
+            border: 1.5px solid var(--border-light, #e5e2de);
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+        .crop-preset-btn:hover {
+            border-color: var(--primary, #B85C38);
+            background: rgba(184, 92, 56, 0.04);
+        }
+        .crop-preset-btn.active {
+            border-color: var(--primary, #B85C38);
+            background: rgba(184, 92, 56, 0.08);
+            box-shadow: 0 0 0 1px var(--primary, #B85C38);
+        }
+        .crop-preset-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+        }
+        .crop-preset-btn.active .crop-preset-label { color: var(--primary, #B85C38); }
+        .crop-preset-dims {
+            font-size: 10px;
+            color: #999;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Cropper canvas area */
+        .crop-canvas-wrap {
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            max-height: 500px;
+        }
+        .crop-canvas-wrap img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* Controls bar */
+        .crop-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .crop-controls-group {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .crop-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border-light, #e5e2de);
+            border-radius: 8px;
+            background: #fff;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+        .crop-btn:hover {
+            border-color: var(--primary, #B85C38);
+            color: var(--primary, #B85C38);
+            background: rgba(184, 92, 56, 0.04);
+        }
+        .crop-btn-secondary {
+            width: auto;
+            padding: 0 14px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Quality + info bar */
+        .crop-output-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 16px;
+            background: #faf9f7;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .crop-quality {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #555;
+            font-weight: 500;
+        }
+        .crop-quality input[type="range"] {
+            width: 100px;
+            accent-color: var(--primary, #B85C38);
+        }
+        .crop-info {
+            font-size: 12px;
+            color: #888;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Download button */
+        .crop-download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            background: var(--primary, #B85C38);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .crop-download-btn:hover {
+            background: #a04e2f;
+        }
+
+        /* ——— Responsive ——— */
+        @media (max-width: 640px) {
+            .crop-page-section { padding: 32px 0 48px; }
+            .crop-presets { gap: 6px; }
+            .crop-preset-btn { padding: 6px 10px; }
+            .crop-canvas-wrap { max-height: 350px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- Header (loaded dynamically) -->
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="page-hero page-hero-sm" id="page-hero" data-hero="tools">
+        <div class="page-hero-bg">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80" alt="Image tools" style="object-position: center center">
+        </div>
+        <div class="page-hero-content">
+            <p class="label">TOOLS</p>
+            <h1 class="page-hero-title">Image Crop Tool</h1>
+            <p class="page-hero-subtitle">Crop and resize images to fit perfectly across the website.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="crop-page-section">
+        <div class="container">
+            <div class="crop-page-header">
+                <h2>Crop &amp; Resize</h2>
+                <p>Select a preset that matches where your image will appear on the site, adjust the crop area, then download the optimized result.</p>
+            </div>
+
+            <!-- Crop Tool Mount Point -->
+            <div id="cropToolContainer"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="site-footer"></div>
+
+    <!-- Scripts -->
+    <script src="../js/components.js?v=4"></script>
+    <script src="../js/main.js"></script>
+    <script src="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.js"></script>
+    <script src="../js/crop-tool.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new CropTool(document.getElementById('cropToolContainer'));
+        });
+    </script>
+</body>
+</html>

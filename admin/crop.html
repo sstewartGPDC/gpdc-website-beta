@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Image Crop Tool — GPDC Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Cropper.js -->
+  <link rel="stylesheet" href="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.css">
+  <style>
+    /* ——— Reset & Base ——— */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Manrope', -apple-system, sans-serif;
+      background: #f5f3f0;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    /* ——— Admin Toolbar ——— */
+    .admin-toolbar {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .admin-toolbar a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .admin-toolbar a:hover { color: #fff; }
+    .admin-toolbar .toolbar-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.15);
+    }
+    .admin-toolbar h1 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .admin-toolbar .toolbar-accent {
+      color: #B85C38;
+    }
+
+    /* ——— Page Layout ——— */
+    .page-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+    }
+
+    .page-intro {
+      margin-bottom: 28px;
+    }
+    .page-intro h2 {
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    .page-intro p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ——— Workflow Steps ——— */
+    .workflow-steps {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .workflow-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #e5e2de;
+      border-radius: 10px;
+      padding: 12px 16px;
+      flex: 1;
+      min-width: 180px;
+    }
+    .workflow-step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #B85C38;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .workflow-step-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    /* ——— Crop Tool Styles ——— */
+    .crop-tool {
+      background: #fff;
+      border: 1px solid #e5e2de;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* Upload zone */
+    .crop-upload-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 32px;
+      border: 2px dashed #d5d0ca;
+      border-radius: 12px;
+      margin: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #faf9f7;
+    }
+    .crop-upload-zone:hover,
+    .crop-upload-zone.drag-over {
+      border-color: #B85C38;
+      background: rgba(184, 92, 56, 0.04);
+    }
+    .crop-upload-icon {
+      color: #B85C38;
+      margin-bottom: 16px;
+      opacity: 0.7;
+    }
+    .crop-upload-text {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+    .crop-upload-link {
+      color: #B85C38;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .crop-upload-hint {
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* Workspace */
+    .crop-workspace {
+      padding: 20px;
+    }
+
+    /* Presets */
+    .crop-presets {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .crop-preset-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 14px;
+      border: 1.5px solid #e5e2de;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .crop-preset-btn:hover {
+      border-color: #B85C38;
+      background: rgba(184, 92, 56, 0.04);
+    }
+    .crop-preset-btn.active {
+      border-color: #B85C38;
+      background: rgba(184, 92, 56, 0.08);
+      box-shadow: 0 0 0 1px #B85C38;
+    }
+    .crop-preset-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #333;
+    }
+    .crop-preset-btn.active .crop-preset-label { color: #B85C38; }
+    .crop-preset-dims {
+      font-size: 10px;
+      color: #999;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Cropper canvas area */
+    .crop-canvas-wrap {
+      background: #1a1a1a;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      max-height: 500px;
+    }
+    .crop-canvas-wrap img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* Controls bar */
+    .crop-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .crop-controls-group {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .crop-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 36px;
+      height: 36px;
+      border: 1px solid #e5e2de;
+      border-radius: 8px;
+      background: #fff;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .crop-btn:hover {
+      border-color: #B85C38;
+      color: #B85C38;
+      background: rgba(184, 92, 56, 0.04);
+    }
+    .crop-btn-secondary {
+      width: auto;
+      padding: 0 14px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Quality + info bar */
+    .crop-output-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px;
+      background: #faf9f7;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .crop-quality {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #555;
+      font-weight: 500;
+    }
+    .crop-quality input[type="range"] {
+      width: 100px;
+      accent-color: #B85C38;
+    }
+    .crop-info {
+      font-size: 12px;
+      color: #888;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Download button */
+    .crop-download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px;
+      background: #B85C38;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .crop-download-btn:hover {
+      background: #a04e2f;
+    }
+
+    /* ——— Responsive ——— */
+    @media (max-width: 640px) {
+      .page-container { padding: 20px 16px 48px; }
+      .workflow-steps { flex-direction: column; }
+      .crop-presets { gap: 6px; }
+      .crop-preset-btn { padding: 6px 10px; }
+      .crop-canvas-wrap { max-height: 350px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Admin Toolbar -->
+  <div class="admin-toolbar">
+    <a href="/admin/">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to CMS
+    </a>
+    <div class="toolbar-divider"></div>
+    <h1><span class="toolbar-accent">GPDC</span> Image Crop Tool</h1>
+  </div>
+
+  <!-- Page Content -->
+  <div class="page-container">
+    <div class="page-intro">
+      <h2>Crop & Resize Images</h2>
+      <p>Prepare images for upload to the CMS. Select a preset to match where the image will appear on the site, crop to fit, then download and upload via the CMS media library.</p>
+    </div>
+
+    <!-- Workflow guidance -->
+    <div class="workflow-steps">
+      <div class="workflow-step">
+        <div class="workflow-step-num">1</div>
+        <div class="workflow-step-text">Upload or drag an image</div>
+      </div>
+      <div class="workflow-step">
+        <div class="workflow-step-num">2</div>
+        <div class="workflow-step-text">Select a preset &amp; crop</div>
+      </div>
+      <div class="workflow-step">
+        <div class="workflow-step-num">3</div>
+        <div class="workflow-step-text">Download the result</div>
+      </div>
+      <div class="workflow-step">
+        <div class="workflow-step-num">4</div>
+        <div class="workflow-step-text">Upload to CMS</div>
+      </div>
+    </div>
+
+    <!-- Crop Tool Mount Point -->
+    <div id="cropToolContainer"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.js"></script>
+  <script src="/js/crop-tool.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      new CropTool(document.getElementById('cropToolContainer'));
+    });
+  </script>
+</body>
+</html>

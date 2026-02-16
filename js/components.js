@@ -39,7 +39,8 @@
         if (path.includes('/divisions/') ||
             path.includes('/local-offices/') ||
             path.includes('/articles/') ||
-            path.includes('/circuits/')) {
+            path.includes('/circuits/') ||
+            path.includes('/tools/')) {
             return '../';
         }
         return '';
