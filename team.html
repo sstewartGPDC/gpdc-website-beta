@@ -593,7 +593,7 @@
             margin-bottom: 1.5rem;
             position: sticky;
             top: 131px;
-            z-index: 90;
+            z-index: 99;
             background: transparent;
             transition: box-shadow 0.2s ease;
         }
@@ -901,7 +901,7 @@
 
     <!-- Featured Executive Director -->
     <section class="featured-executive" id="section-executives">
-        <div class="featured-card fade-in">
+        <div class="featured-card fade-in" data-person="oalli">
             <div class="featured-image">
                 <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69656b087d941f495fc4f0ca_Photo_OmotayoAlli%20Large.jpeg" alt="Omotayo Alli">
             </div>
@@ -1339,22 +1339,24 @@
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
     <script>
-        // Team member images for modal
-        const teamImages = {
-            'oalli': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69656b087d941f495fc4f0ca_Photo_OmotayoAlli%20Large.jpeg',
-            'dberry': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c67762d2fade434e262703_1Q8A9141-2.jpg',
-            'nglaser': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872c9ffbd0f9572847b9dd_1Q8A7858%20-%20Natalie%20Glaser.jpg',
-            'toconnor': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b903965e2274281ccde_1Q8A7048%20-%20Thomas%20O%27Connor.jpg',
-            'lonley': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c677863ff4222b883eea29_1Q8A9150.jpg',
-            'traiford': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b7a0e15d3bc250a0509_1Q8A7063%20-%20Terry%20Raiford.jpg',
-            'tbertram': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png',
-            'whewitt': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg',
-            'gmurray': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69667a90b3630f4474adc250_Murray%2C%20Gayle%20Large.jpeg',
-            'aragas': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a58835e230b9f2298be_1Q8A7115%20-%20Arnold%20Ragas.jpg',
-            'srhinehart': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg',
-            'nstudelska': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png',
-            'jwalker': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg'
-        };
+        // Fallback team member images (overridden by CMS data via window.teamImages)
+        if (!window.teamImages) {
+            window.teamImages = {
+                'oalli': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69656b087d941f495fc4f0ca_Photo_OmotayoAlli%20Large.jpeg',
+                'dberry': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c67762d2fade434e262703_1Q8A9141-2.jpg',
+                'nglaser': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872c9ffbd0f9572847b9dd_1Q8A7858%20-%20Natalie%20Glaser.jpg',
+                'toconnor': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b903965e2274281ccde_1Q8A7048%20-%20Thomas%20O%27Connor.jpg',
+                'lonley': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c677863ff4222b883eea29_1Q8A9150.jpg',
+                'traiford': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b7a0e15d3bc250a0509_1Q8A7063%20-%20Terry%20Raiford.jpg',
+                'tbertram': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png',
+                'whewitt': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg',
+                'gmurray': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69667a90b3630f4474adc250_Murray%2C%20Gayle%20Large.jpeg',
+                'aragas': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a58835e230b9f2298be_1Q8A7115%20-%20Arnold%20Ragas.jpg',
+                'srhinehart': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg',
+                'nstudelska': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png',
+                'jwalker': 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg'
+            };
+        }
 
         // Contact modal functions
         function openContactModal(name, title, personId) {
@@ -1364,7 +1366,7 @@
             const modalTitle = document.getElementById('modalTitle');
             const contactRecipient = document.getElementById('contactRecipient');
 
-            avatar.src = teamImages[personId] || 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png';
+            avatar.src = (window.teamImages && window.teamImages[personId]) || 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png';
             avatar.alt = name;
             modalName.textContent = name;
             modalTitle.textContent = title;
@@ -1543,19 +1545,42 @@ ${message}`;
 
             // Add shadow + merge tabs border when A-Z bar is stuck
             const tabsBar = document.querySelector('.team-tabs');
+            const navEl = document.querySelector('.nav');
+            const stickyTop = (navEl ? navEl.offsetHeight : 60) + (tabsBar ? tabsBar.offsetHeight : 0) + 2;
             const stickyObserver = new IntersectionObserver(([entry]) => {
                 const isStuck = !entry.isIntersecting;
                 azBar.classList.toggle('scrolled', isStuck);
                 if (tabsBar) tabsBar.classList.toggle('az-joined', isStuck);
-            }, { threshold: 0, rootMargin: '-132px 0px 0px 0px' });
+            }, { threshold: 0, rootMargin: '-' + stickyTop + 'px 0px 0px 0px' });
             const header = document.querySelector('#section-cpds .team-section-header');
             if (header) stickyObserver.observe(header);
         }
 
         function scrollToLetter(letter) {
             const el = document.getElementById('cpd-letter-' + letter);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (!el) return;
+            const nav = document.querySelector('.nav');
+            const tabs = document.querySelector('.team-tabs');
+            const azBar = document.getElementById('cpd-az-bar');
+            const offset = (nav ? nav.offsetHeight : 60) + (tabs ? tabs.offsetHeight : 0) + (azBar ? azBar.offsetHeight : 0) + 12;
+            const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: top, behavior: 'smooth' });
         }
+
+        // Dynamically set A-Z bar top to sit below nav + tabs
+        function updateAzBarTop() {
+            const nav = document.querySelector('.nav');
+            const tabs = document.querySelector('.team-tabs');
+            const azBar = document.getElementById('cpd-az-bar');
+            if (!azBar || !tabs) return;
+            const navH = nav ? nav.offsetHeight : 60;
+            const tabsH = tabs.offsetHeight;
+            azBar.style.top = (navH + tabsH) + 'px';
+        }
+        window.addEventListener('resize', updateAzBarTop);
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(updateAzBarTop, 100);
+        });
 
         // Initialize CPDs on page load
         document.addEventListener('DOMContentLoaded', populateCPDs);

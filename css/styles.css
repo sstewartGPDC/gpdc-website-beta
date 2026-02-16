@@ -1199,10 +1199,8 @@ section {
 }
 
 .featured-article {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    align-items: stretch;
+    display: block;
+    position: relative;
     background: var(--bg-white);
     border-radius: 12px;
     overflow: hidden;
@@ -1844,10 +1842,6 @@ body.nav-open {
 
     .logo-symbol {
         display: block;
-    }
-
-    .featured-article {
-        grid-template-columns: 1fr;
     }
 
     .featured-image {
@@ -4133,8 +4127,8 @@ body.nav-open {
     margin-bottom: 0.75rem;
     scrollbar-width: none;
     position: sticky;
-    top: 0;
-    z-index: 10;
+    top: 60px;
+    z-index: 99;
     background: var(--bg-white);
 }
 
@@ -4791,11 +4785,11 @@ body.has-announcement .breadcrumbs {
 /* Newsletter Card — full width row within grid */
 .connect-newsletter-card {
     grid-column: 1 / -1;
-    flex-direction: row;
-    text-align: left;
+    flex-direction: column;
+    text-align: center;
     align-items: center;
-    gap: 2rem;
-    padding: 1.75rem 2.5rem;
+    gap: 1rem;
+    padding: 2.25rem 2.5rem;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     border-radius: 14px;
     border: none;
@@ -4827,6 +4821,9 @@ body.has-announcement .breadcrumbs {
 .connect-newsletter-body {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .connect-newsletter-body h3 {
@@ -4847,6 +4844,7 @@ body.has-announcement .breadcrumbs {
     gap: 0.5rem;
     width: 100%;
     max-width: 480px;
+    justify-content: center;
 }
 
 .connect-newsletter-form input {

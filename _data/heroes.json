@@ -1,0 +1,109 @@
+{
+  "home": {
+    "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80",
+    "position": "center center"
+  },
+  "about": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Georgia_State_Capitol%2C_Atlanta%2C_West_view_20160716_1.jpg",
+    "position": "center center",
+    "label": "ABOUT US",
+    "title": "Who We Are",
+    "subtitle": "Providing high-quality legal defense for individuals accused of crimes who cannot afford representation."
+  },
+  "team": {
+    "image": "https://images.unsplash.com/photo-1454923634634-bd1614719a7b?w=1600&q=80",
+    "position": "center center",
+    "label": "ABOUT US",
+    "title": "Our Team",
+    "subtitle": "Meet the dedicated professionals working to ensure justice for all Georgians."
+  },
+  "divisions": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Georgia_State_Capitol%2C_Atlanta%2C_West_view_20160716_1.jpg",
+    "position": "center center",
+    "label": "ABOUT US",
+    "title": "Divisions and Services",
+    "subtitle": "Specialized divisions working together to provide comprehensive legal defense across Georgia."
+  },
+  "foundation": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Georgia_State_Capitol%2C_Atlanta%2C_West_view_20160716_1.jpg",
+    "position": "center center",
+    "label": "ABOUT US",
+    "title": "Our Foundation",
+    "subtitle": "The history, mission, and impact of public defense in Georgia."
+  },
+  "clients": {
+    "image": "https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=1600&q=80",
+    "position": "center center",
+    "label": "CLIENTS & FAMILIES",
+    "title": "Clients and Families",
+    "subtitle": "Resources and information for those we serve and their loved ones."
+  },
+  "find-defender": {
+    "image": "https://images.unsplash.com/photo-1743796055664-3473eedab36e?q=80&w=2148&auto=format&fit=crop",
+    "position": "center center",
+    "label": "CLIENTS & FAMILIES",
+    "title": "Find My Public Defender",
+    "subtitle": "Locate the public defender office serving your county."
+  },
+  "apply": {
+    "image": "https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=1600&q=80",
+    "position": "center center",
+    "label": "CLIENTS & FAMILIES",
+    "title": "Applying For Legal Representation",
+    "subtitle": "Learn how to request a public defender if you cannot afford an attorney."
+  },
+  "legal-process": {
+    "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80",
+    "position": "center center",
+    "label": "CLIENTS & FAMILIES",
+    "title": "The Legal Process",
+    "subtitle": "Understanding the steps in a criminal case in Georgia."
+  },
+  "faq": {
+    "image": "https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=1600&q=80",
+    "position": "center center",
+    "label": "CLIENTS & FAMILIES",
+    "title": "FAQs and Resources",
+    "subtitle": "Answers to common questions about public defense in Georgia."
+  },
+  "careers": {
+    "image": "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1600&q=80",
+    "position": "center center",
+    "label": "CAREERS",
+    "title": "Join Our Team",
+    "subtitle": "Build a meaningful career defending the constitutional rights of Georgians."
+  },
+  "positions": {
+    "image": "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1600&q=80",
+    "position": "center center",
+    "label": "CAREERS",
+    "title": "Available Positions",
+    "subtitle": "Current job openings across Georgia's public defender offices."
+  },
+  "newsroom": {
+    "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80",
+    "position": "center center",
+    "label": "NEWSROOM",
+    "title": "News & Updates",
+    "subtitle": "The latest news and announcements from GPDC."
+  },
+  "contact": {
+    "image": "https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?q=80&w=1310&auto=format&fit=crop",
+    "position": "center center",
+    "label": "CONTACT",
+    "title": "Contact Us",
+    "subtitle": "Get in touch with the Georgia Public Defender Council."
+  },
+  "division-default": {
+    "image": "https://images.unsplash.com/photo-1521791055366-0d553872125f?w=1600&q=80",
+    "position": "center center"
+  },
+  "circuit-default": {
+    "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80",
+    "position": "center center"
+  },
+  "article-default": {
+    "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80",
+    "position": "center center"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "divisions": [
+    {
+      "slug": "administration",
+      "header_image": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Georgia_State_Capitol%2C_Atlanta%2C_West_view_20160716_1.jpg",
+      "director_photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69656b087d941f495fc4f0ca_Photo_OmotayoAlli%20Large.jpeg",
+      "director_name": "Omotayo Alli",
+      "director_title": "Executive Director"
+    },
+    {
+      "slug": "appellate-defense",
+      "header_image": "https://www.ramsa.com/sites/default/files/A14033%202021A54_450.jpg",
+      "director_photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg",
+      "director_name": "William Hewitt",
+      "director_title": "Division Director"
+    },
+    {
+      "slug": "capital-defense",
+      "header_image": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=800&q=80",
+      "director_photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png",
+      "director_name": "Nathaniel Studelska",
+      "director_title": "Division Director"
+    },
+    {
+      "slug": "customer-support",
+      "header_image": "https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67e19c378ea9d881704ef7cc_67c9e88671b7f6e28f196e65_pexels-jep-gambardella-7689684.jpg",
+      "director_photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg",
+      "director_name": "Joy Walker",
+      "director_title": "Division Director"
+    },
+    {
+      "slug": "mental-health-defense",
+      "header_image": "https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/6822861f36d92356181baae0_pexels-pavel-danilyuk-8152733.jpg",
+      "director_photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg",
+      "director_name": "Sabrina Rhinehart",
+      "director_title": "Division Director"
+    },
+    {
+      "slug": "training",
+      "header_image": "https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67e19c360d5ae0152ef417ef_67cb126c69ca156bb3621956_pexels-fauxels-3184298.jpg",
+      "director_photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png",
+      "director_name": "Trish Bertram",
+      "director_title": "Division Director"
+    },
+    {
+      "slug": "social-services",
+      "header_image": "https://bisoncredit.com/wp-content/uploads/2023/10/Tenant-Debt-Collection-for-Landlords-and-Property-Managers.webp",
+      "director_photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png",
+      "director_name": "Division Director",
+      "director_title": "Social Services"
+    },
+    {
+      "slug": "youth-defense",
+      "header_image": "images/youth-defense.jpg",
+      "director_photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69667a90b3630f4474adc250_Murray%2C%20Gayle%20Large.jpeg",
+      "director_name": "Gayle Murray",
+      "director_title": "Division Director"
+    }
+  ]
+}

@@ -391,3 +391,200 @@ collections:
             widget: "string"
             required: false
             hint: "URL the link points to"
+
+      # ==================== HERO IMAGES ====================
+      - name: "heroes"
+        label: "Hero Images"
+        file: "_data/heroes.json"
+        description: "Background images and text for page hero sections"
+        fields:
+          - label: "Home"
+            name: "home"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image", hint: "Hero background image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center", hint: "CSS object-position (e.g. center top, center center)" }
+
+          - label: "About Us"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Our Team"
+            name: "team"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Divisions"
+            name: "divisions"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Foundation"
+            name: "foundation"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Clients & Families"
+            name: "clients"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Find My Public Defender"
+            name: "find-defender"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Apply for Representation"
+            name: "apply"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "The Legal Process"
+            name: "legal-process"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "FAQs"
+            name: "faq"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Careers"
+            name: "careers"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Available Positions"
+            name: "positions"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Newsroom"
+            name: "newsroom"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Contact Us"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+
+          - label: "Division Default"
+            name: "division-default"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image", hint: "Fallback hero for division pages" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+
+          - label: "Circuit Default"
+            name: "circuit-default"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image", hint: "Fallback hero for local office pages" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+
+          - label: "Article Default"
+            name: "article-default"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "image", widget: "image", hint: "Fallback hero for article pages" }
+              - { label: "Position", name: "position", widget: "string", default: "center center" }
+
+      # ==================== LEADERSHIP TEAM ====================
+      - name: "leadership"
+        label: "Leadership Team"
+        file: "_data/leadership.json"
+        description: "Executive leadership photos and info displayed on the Our Team page"
+        fields:
+          - label: "Team Members"
+            name: "members"
+            widget: "list"
+            label_singular: "Team Member"
+            fields:
+              - { label: "ID", name: "id", widget: "string", hint: "Short unique ID (e.g. oalli, dberry)" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Photo", name: "photo", widget: "image" }
+
+      # ==================== DIVISION DIRECTORS ====================
+      - name: "divisions_images"
+        label: "Division Directors & Images"
+        file: "_data/divisions.json"
+        description: "Division card images and director photos for the Divisions page"
+        fields:
+          - label: "Divisions"
+            name: "divisions"
+            widget: "list"
+            label_singular: "Division"
+            fields:
+              - { label: "Slug", name: "slug", widget: "string", hint: "URL slug (e.g. administration, appellate-defense)" }
+              - { label: "Header Image", name: "header_image", widget: "image", hint: "Background image on the division card" }
+              - { label: "Director Photo", name: "director_photo", widget: "image", hint: "Director headshot" }
+              - { label: "Director Name", name: "director_name", widget: "string" }
+              - { label: "Director Title", name: "director_title", widget: "string" }
