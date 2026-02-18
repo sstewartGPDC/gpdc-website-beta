@@ -6259,6 +6259,36 @@ body.has-announcement .breadcrumbs {
     border-radius: 10px;
 }
 
+.article-featured-image figcaption {
+    font-size: 0.8125rem;
+    color: var(--text-muted, #6b7280);
+    text-align: center;
+    margin-top: 0.625rem;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* Inline Article Images */
+.article-inline-image {
+    margin: 2rem 0;
+}
+
+.article-inline-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.article-inline-image figcaption {
+    font-size: 0.8125rem;
+    color: var(--text-muted, #6b7280);
+    text-align: center;
+    margin-top: 0.625rem;
+    line-height: 1.5;
+    font-style: italic;
+}
+
 /* Article Page Layout — Sidebar + Body */
 .article-layout {
     display: grid;
@@ -6312,6 +6342,22 @@ body.has-announcement .breadcrumbs {
     line-height: 1.7;
     color: var(--text-medium);
     position: relative;
+}
+
+.article-body a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+}
+
+.article-body a:hover {
+    color: var(--primary-dark, #1a4731);
+}
+
+.article-body strong {
+    font-weight: 700;
+    color: var(--text-dark);
 }
 
 /* Section Divider */

@@ -49,6 +49,22 @@ function parseFrontmatter(content) {
 }
 
 function markdownToHtml(md) {
+  // Process inline markdown (bold, italic, links, inline images)
+  function inlineMarkdown(text) {
+    return text
+      // Inline images with captions: ![alt](url) → <figure>
+      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function(match, alt, url) {
+        const caption = alt ? `\n            <figcaption>${alt}</figcaption>` : '';
+        return `</p>\n            <figure class="article-inline-image">\n            <img src="${url}" alt="${alt.replace(/"/g, '&quot;')}">${caption}\n            </figure>\n            <p>`;
+      })
+      // Links: [text](url) → <a>
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+      // Bold: **text** → <strong>
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      // Italic: *text* → <em> (single asterisks, not preceded/followed by space for safety)
+      .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '<em>$1</em>');
+  }
+
   return md
     .replace(/^### (.+)$/gm, '            <h3>$1</h3>')
     .replace(/^> (.+)$/gm, '            <blockquote>$1</blockquote>')
@@ -57,10 +73,12 @@ function markdownToHtml(md) {
     .map(block => {
       block = block.trim();
       if (!block) return '';
-      if (block.startsWith('<')) return '\n' + block;
-      return '\n            <p>' + block + '</p>';
+      if (block.startsWith('<')) return '\n' + inlineMarkdown(block);
+      return '\n            <p>' + inlineMarkdown(block) + '</p>';
     })
-    .join('\n');
+    .join('\n')
+    // Clean up empty <p></p> tags created by image extraction
+    .replace(/<p>\s*<\/p>/g, '');
 }
 
 function formatDate(dateStr) {
@@ -151,9 +169,10 @@ articles.forEach(article => {
         </div>
     </section>
 
-    ${article.image ? `<div class="article-featured-image reveal">
-        <img src="${article.image}" alt="${(article.image_alt || article.title).replace(/"/g, '&quot;')}">
-    </div>` : ''}
+    ${article.image ? `<figure class="article-featured-image reveal">
+        <img src="${article.image}" alt="${(article.image_alt || article.title).replace(/"/g, '&quot;')}"${article.image_position ? ` style="object-position: ${article.image_position}"` : ''}>
+        ${article.image_alt ? `<figcaption>${article.image_alt}</figcaption>` : ''}
+    </figure>` : ''}
 
     <!-- Article Content -->
     <div class="article-layout">
@@ -249,7 +268,7 @@ if (fs.existsSync(newsroomPath)) {
   // Build featured article HTML — matches existing newsroom.html card structure
   const featuredHtml = `<a href="articles/${featured.slug}.html" class="featured-article" data-category="${categorySlug(featured.category)}">
                 <div class="featured-image">
-                    <img src="${featured.image || ''}" alt="${(featured.image_alt || featured.title).replace(/"/g, '&quot;')}">
+                    <img src="${featured.image || ''}" alt="${(featured.image_alt || featured.title).replace(/"/g, '&quot;')}"${featured.image_position ? ` style="object-position: ${featured.image_position}"` : ''}>
                 </div>
                 <div class="featured-content">
                     <span class="featured-badge">Featured</span>
@@ -278,7 +297,7 @@ if (fs.existsSync(newsroomPath)) {
     return `                <a href="articles/${a.slug}.html" class="news-card${hidden}" data-category="${categorySlug(a.category)}">
                     <div class="card-image">
                         <span class="card-category">${a.category || 'News'}</span>
-                        ${a.image ? `<img loading="lazy" src="${a.image}" alt="${(a.image_alt || a.title).replace(/"/g, '&quot;')}">` : ''}
+                        ${a.image ? `<img loading="lazy" src="${a.image}" alt="${(a.image_alt || a.title).replace(/"/g, '&quot;')}"${a.image_position ? ` style="object-position: ${a.image_position}"` : ''}>` : ''}
                     </div>
                     <div class="card-content">
                         <div class="card-meta">
@@ -329,7 +348,7 @@ if (fs.existsSync(indexPath)) {
     const leadHtml = `<!-- Featured Story — Hero -->
             <a href="articles/${featured.slug}.html" class="editorial-lead fade-in">
                 <div class="editorial-lead-image">
-                    <img loading="lazy" src="${featured.image || ''}" alt="${(featured.image_alt || featured.title).replace(/"/g, '&quot;')}">
+                    <img loading="lazy" src="${featured.image || ''}" alt="${(featured.image_alt || featured.title).replace(/"/g, '&quot;')}"${featured.image_position ? ` style="object-position: ${featured.image_position}"` : ''}>
                 </div>
                 <div class="editorial-lead-overlay">
                     <span class="editorial-badge">Featured</span>
@@ -358,7 +377,7 @@ if (fs.existsSync(indexPath)) {
     const storiesHtml = secondaryArticles.map(a => {
       return `                <a href="articles/${a.slug}.html" class="editorial-story">
                     <div class="editorial-story-image">
-                        <img loading="lazy" src="${a.image || ''}" alt="${(a.image_alt || a.title).replace(/"/g, '&quot;')}">
+                        <img loading="lazy" src="${a.image || ''}" alt="${(a.image_alt || a.title).replace(/"/g, '&quot;')}"${a.image_position ? ` style="object-position: ${a.image_position}"` : ''}>
                     </div>
                     <div class="editorial-story-body">
                         <div class="editorial-story-meta">

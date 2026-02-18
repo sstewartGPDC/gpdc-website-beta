@@ -96,11 +96,37 @@ collections:
         required: false
         hint: "Main article image — appears on cards and at the top of the article"
 
-      - label: "Image Alt Text"
+      - label: "Image Alt Text / Caption"
         name: "image_alt"
         widget: "string"
         required: false
-        hint: "Describe the image for screen readers (e.g. 'Staff meeting in the Atlanta office')"
+        hint: "Describe the image — shown as a caption below the photo and read by screen readers"
+
+      - label: "Image Focus"
+        name: "image_position"
+        widget: "select"
+        required: false
+        default: "center center"
+        options:
+          - label: "Center (Default)"
+            value: "center center"
+          - label: "Top"
+            value: "center top"
+          - label: "Bottom"
+            value: "center bottom"
+          - label: "Left"
+            value: "left center"
+          - label: "Right"
+            value: "right center"
+          - label: "Top Left"
+            value: "left top"
+          - label: "Top Right"
+            value: "right top"
+          - label: "Bottom Left"
+            value: "left bottom"
+          - label: "Bottom Right"
+            value: "right bottom"
+        hint: "Which part of the image to keep visible when cropped on cards"
 
       - label: "Card Excerpt"
         name: "excerpt"
