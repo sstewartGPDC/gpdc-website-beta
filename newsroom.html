@@ -454,11 +454,18 @@
 
     <!-- Category Tabs -->
     <div class="page-filters">
-        <button class="filter-btn active" data-filter="all">All News <span class="tab-count">15</span></button>
-        <button class="filter-btn" data-filter="events">Events <span class="tab-count">5</span></button>
-        <button class="filter-btn" data-filter="local-offices">Local Offices <span class="tab-count">4</span></button>
-        <button class="filter-btn" data-filter="training">Training <span class="tab-count">5</span></button>
-        <button class="filter-btn" data-filter="divisions">Divisions <span class="tab-count">1</span></button>
+        <button class="filter-toggle" aria-expanded="false" aria-label="Toggle filters">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+            <span>Filter</span>
+            <svg class="filter-toggle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="filter-pills">
+            <button class="filter-btn active" data-filter="all">All News <span class="tab-count">15</span></button>
+            <button class="filter-btn" data-filter="events">Events <span class="tab-count">5</span></button>
+            <button class="filter-btn" data-filter="local-offices">Local Offices <span class="tab-count">4</span></button>
+            <button class="filter-btn" data-filter="training">Training <span class="tab-count">5</span></button>
+            <button class="filter-btn" data-filter="divisions">Divisions <span class="tab-count">1</span></button>
+        </div>
     </div>
 
     <!-- Main Content -->
@@ -895,6 +902,17 @@
     <script src="js/main.js?v=11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Collapsible filter toggle for mobile
+            var filterToggle = document.querySelector('.filter-toggle');
+            var filterPills = document.querySelector('.filter-pills');
+            if (filterToggle && filterPills) {
+                filterToggle.addEventListener('click', function() {
+                    var expanded = filterToggle.getAttribute('aria-expanded') === 'true';
+                    filterToggle.setAttribute('aria-expanded', String(!expanded));
+                    filterPills.classList.toggle('filters-expanded');
+                });
+            }
+
             const BATCH = 6;
             const filterBtns = document.querySelectorAll('.page-filters .filter-btn');
             const featuredArticle = document.querySelector('.featured-article');

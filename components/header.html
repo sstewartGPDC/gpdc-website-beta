@@ -209,7 +209,16 @@
             </button>
             <div class="mobile-nav-sublinks">
                 <a href="{{BASE}}clients.html" class="mobile-nav-sublink">Clients & Families</a>
-                <a href="{{BASE}}find-defender.html" class="mobile-nav-sublink">Find My Public Defender</a>
+                <!-- Inline FMPD Search Widget -->
+                <div class="fmpd-inline-search">
+                    <div class="fmpd-search-label">Find My Public Defender</div>
+                    <div class="fmpd-search-input-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        <input type="text" id="fmpdNavSearch" placeholder="Type your county name..." autocomplete="off">
+                    </div>
+                    <div class="fmpd-search-results" id="fmpdNavResults"></div>
+                    <a href="{{BASE}}find-defender.html" class="fmpd-browse-link">Browse All Circuits →</a>
+                </div>
                 <a href="{{BASE}}apply.html" class="mobile-nav-sublink">Applying For Representation</a>
                 <a href="{{BASE}}faq.html" class="mobile-nav-sublink">FAQs & Resources</a>
             </div>

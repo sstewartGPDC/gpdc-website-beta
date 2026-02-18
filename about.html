@@ -27,35 +27,7 @@
     <!-- Hero Section (loaded from components.js) -->
     <section class="page-hero" id="page-hero" data-hero="about"></section>
 
-    <!-- Quick Links -->
-    <section class="quick-links">
-        <div class="container">
-            <div class="quick-links-grid fade-in">
-                <a href="#mission" class="quick-link-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 16v-4M12 8h.01"/>
-                    </svg>
-                    <span>Our Mission</span>
-                </a>
-                <a href="#principles" class="quick-link-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                    <span>Our Purpose</span>
-                </a>
-                <a href="#facts" class="quick-link-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 20V10M12 20V4M6 20v-6"/>
-                    </svg>
-                    <span>Fast Facts</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mission Section -->
+    <!-- Mission & Principles Section (combined) -->
     <section class="content-section" id="mission">
         <div class="container">
             <div class="content-grid fade-in">
@@ -69,90 +41,74 @@
                     <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67c528c6baf7f0c0a1c38df2_close-up-workers-with-briefcases.jpg" alt="Legal consultation">
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Principles Section -->
-    <section class="principles-section" id="principles">
-        <div class="container">
-            <div class="section-header centered fade-in">
-                <p class="label">OUR PURPOSE</p>
-                <h2 class="section-title">Four Foundational Principles</h2>
-                <p class="section-subtitle">Our work is guided by these core values that define how we serve our clients and uphold justice.</p>
-            </div>
-
-            <div class="principles-grid">
-                <div class="principle-card fade-in fade-in-delay-1">
-                    <div class="principle-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                            <path d="M22 4L12 14.01l-3-3"/>
-                        </svg>
+            <!-- Principles (merged into mission) -->
+            <div class="principles-inline fade-in" id="principles">
+                <p class="label" style="text-align:center; margin-bottom: 0.5rem;">OUR PURPOSE</p>
+                <h3 class="section-title" style="text-align:center; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1.5rem;">Four Foundational Principles</h3>
+                <div class="principles-grid">
+                    <div class="principle-card fade-in fade-in-delay-1">
+                        <div class="principle-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                        </div>
+                        <h3>Effective</h3>
+                        <p>We employ competent legal strategies and thorough case preparation to provide the most effective defense for every client.</p>
                     </div>
-                    <h3>Effective</h3>
-                    <p>We employ competent legal strategies and thorough case preparation to provide the most effective defense for every client.</p>
-                </div>
 
-                <div class="principle-card fade-in fade-in-delay-2">
-                    <div class="principle-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
+                    <div class="principle-card fade-in fade-in-delay-2">
+                        <div class="principle-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>Ethical</h3>
+                        <p>We maintain the highest standards of integrity, honoring our professional obligations and the trust placed in us by our clients.</p>
                     </div>
-                    <h3>Ethical</h3>
-                    <p>We maintain the highest standards of integrity, honoring our professional obligations and the trust placed in us by our clients.</p>
-                </div>
 
-                <div class="principle-card fade-in fade-in-delay-3">
-                    <div class="principle-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
+                    <div class="principle-card fade-in fade-in-delay-3">
+                        <div class="principle-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3>Timely</h3>
+                        <p>We respond promptly to our clients' needs, understanding that swift action is often critical in legal matters.</p>
                     </div>
-                    <h3>Timely</h3>
-                    <p>We respond promptly to our clients' needs, understanding that swift action is often critical in legal matters.</p>
-                </div>
 
-                <div class="principle-card fade-in fade-in-delay-1">
-                    <div class="principle-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
-                            <path d="M6 1v3M10 1v3M14 1v3"/>
-                        </svg>
+                    <div class="principle-card fade-in fade-in-delay-1">
+                        <div class="principle-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+                                <path d="M6 1v3M10 1v3M14 1v3"/>
+                            </svg>
+                        </div>
+                        <h3>Zealous</h3>
+                        <p>We advocate passionately for our clients, fighting tirelessly to protect their rights and achieve the best possible outcomes.</p>
                     </div>
-                    <h3>Zealous</h3>
-                    <p>We advocate passionately for our clients, fighting tirelessly to protect their rights and achieve the best possible outcomes.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Fast Facts Section -->
-    <section class="facts-section" id="facts">
+    <!-- Fast Facts — Compact Stat Bar -->
+    <section class="facts-bar" id="facts">
         <div class="container">
-            <div class="section-header centered fade-in">
-                <p class="label">FAST FACTS</p>
-                <h2 class="section-title">GPDC By The Numbers</h2>
-            </div>
-
-            <div class="facts-grid">
-                <div class="fact-card fade-in fade-in-delay-1">
+            <div class="facts-bar-grid fade-in">
+                <div class="facts-bar-item">
                     <div class="fact-number">85%</div>
                     <div class="fact-label">of Georgia criminal cases</div>
-                    <p class="fact-description">We represent approximately 85% of all criminal defendants in Georgia who cannot afford private counsel.</p>
                 </div>
-
-                <div class="fact-card fade-in fade-in-delay-2">
+                <div class="facts-bar-item">
                     <div class="fact-number">400+</div>
                     <div class="fact-label">Licensed Attorneys</div>
-                    <p class="fact-description">Our team includes over 400 bar-licensed attorneys dedicated to providing quality legal defense.</p>
                 </div>
-
-                <div class="fact-card fade-in fade-in-delay-3">
+                <div class="facts-bar-item">
                     <div class="fact-number">45</div>
                     <div class="fact-label">Circuit Offices</div>
-                    <p class="fact-description">We operate across 45 of Georgia's 49 judicial circuits, serving communities statewide.</p>
                 </div>
             </div>
         </div>

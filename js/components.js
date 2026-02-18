@@ -480,6 +480,107 @@
                 this.setAttribute('aria-expanded', !isExpanded);
             });
         });
+
+        // FMPD inline search in mobile nav
+        initFmpdNavSearch();
+    }
+
+    // Initialize the FMPD county search in the mobile nav
+    function initFmpdNavSearch() {
+        var searchInput = document.getElementById('fmpdNavSearch');
+        var resultsContainer = document.getElementById('fmpdNavResults');
+        if (!searchInput || !resultsContainer) return;
+
+        var basePath = getBasePath();
+        var debounceTimer = null;
+
+        searchInput.addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            var query = this.value.trim().toLowerCase();
+
+            if (query.length < 2) {
+                resultsContainer.innerHTML = '';
+                return;
+            }
+
+            debounceTimer = setTimeout(function() {
+                searchCounty(query, resultsContainer, basePath);
+            }, 200);
+        });
+
+        // Prevent nav from closing when interacting with search
+        searchInput.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    function searchCounty(query, container, basePath) {
+        var circuits = window.circuitData;
+        if (!circuits || !circuits.length) {
+            container.innerHTML = '<div class="fmpd-no-results">Loading circuit data...</div>';
+            return;
+        }
+
+        // Normalize query: replace hyphens with spaces for matching
+        var normalizedQuery = query.replace(/-/g, ' ');
+        var results = [];
+
+        circuits.forEach(function(circuit) {
+            circuit.counties.forEach(function(county) {
+                var countyLower = county.toLowerCase();
+                if (countyLower.indexOf(normalizedQuery) === 0 || countyLower.indexOf(query) === 0) {
+                    results.push({
+                        county: county,
+                        circuit: circuit.circuit,
+                        slug: circuit.slug,
+                        phone: circuit.phone || '',
+                        defender: circuit.defender || ''
+                    });
+                }
+            });
+        });
+
+        // Also check opt-out circuits
+        var optOuts = window.optOutCircuits;
+        if (optOuts && optOuts.length) {
+            optOuts.forEach(function(circuit) {
+                circuit.counties.forEach(function(county) {
+                    var countyLower = county.toLowerCase();
+                    if (countyLower.indexOf(normalizedQuery) === 0 || countyLower.indexOf(query) === 0) {
+                        results.push({
+                            county: county,
+                            circuit: circuit.circuit,
+                            slug: '',
+                            phone: '',
+                            note: circuit.note || ''
+                        });
+                    }
+                });
+            });
+        }
+
+        // Limit to 4 results
+        results = results.slice(0, 4);
+
+        if (results.length === 0) {
+            container.innerHTML = '<div class="fmpd-no-results">No county found matching "' + query + '"</div>';
+            return;
+        }
+
+        container.innerHTML = results.map(function(r) {
+            if (r.note) {
+                return '<div class="fmpd-result-item">' +
+                    '<div class="fmpd-result-circuit">' + r.county + ' County</div>' +
+                    '<div class="fmpd-result-county">' + r.note + '</div>' +
+                    '</div>';
+            }
+            var href = basePath + 'circuits/' + r.slug + '.html';
+            return '<a href="' + href + '" class="fmpd-result-item">' +
+                '<div class="fmpd-result-circuit">' + r.circuit + '</div>' +
+                '<div class="fmpd-result-county">' + r.county + ' County — ' + r.defender + '</div>' +
+                (r.phone ? '<div class="fmpd-result-phone">' + r.phone + '</div>' : '') +
+                '</a>';
+        }).join('');
     }
 
     // Run when DOM is ready

@@ -142,6 +142,11 @@
             font-weight: 500;
         }
 
+        /* Hide filter toggle on desktop */
+        .pos-filter-toggle {
+            display: none;
+        }
+
         /* Filter pills (centered) */
         .positions-type-filters {
             display: flex;
@@ -492,26 +497,76 @@
                 border-radius: 12px;
             }
 
+            .positions-toolbar {
+                flex-wrap: wrap;
+            }
+
             .positions-type-filters {
                 position: static;
                 transform: none;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                flex-wrap: nowrap;
-                gap: 0.125rem;
+                display: none;
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 0.375rem;
+                padding-top: 0.5rem;
+            }
+            .positions-type-filters.pos-filters-expanded {
+                display: flex;
+                animation: posFilterSlide 0.2s ease-out;
+            }
+            @keyframes posFilterSlide {
+                from { opacity: 0; transform: translateY(-6px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            /* Show filter toggle on mobile */
+            .pos-filter-toggle {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.375rem;
+                padding: 0.4rem 0.875rem;
+                font-family: 'Manrope', sans-serif;
+                font-size: 0.8125rem;
+                font-weight: 600;
+                color: var(--text-medium);
+                background: var(--bg-light);
+                border: 1px solid var(--border-light);
+                border-radius: 50px;
+                cursor: pointer;
+                min-height: 38px;
+                -webkit-tap-highlight-color: transparent;
+                transition: all 0.2s ease;
+                flex-shrink: 0;
+            }
+            .pos-filter-toggle:hover,
+            .pos-filter-toggle[aria-expanded="true"] {
+                background: var(--primary-subtle);
+                color: var(--primary);
+                border-color: var(--primary);
             }
 
             .type-pill {
                 padding: 0.4rem 0.75rem;
-                font-size: 0.75rem;
+                font-size: 0.8125rem;
                 min-height: 44px;
                 display: flex;
                 align-items: center;
                 flex-shrink: 0;
             }
 
+            /* Show location dropdown in toolbar on mobile */
             .positions-toolbar-right {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-left: auto;
+            }
+            .positions-toolbar-right .positions-results-bar {
                 display: none;
+            }
+            .positions-location-select {
+                font-size: 0.8125rem;
+                min-height: 38px;
             }
 
             .positions-section {
@@ -576,6 +631,10 @@
                 </svg>
                 <input type="text" id="positionSearch" placeholder="Search positions..." class="positions-search">
             </div>
+            <button class="pos-filter-toggle" id="posFilterToggle" aria-expanded="false" aria-label="Toggle filters">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+                <span>Filter</span>
+            </button>
             <div class="positions-type-filters" id="typeFilters">
                 <button class="type-pill active" data-filter="all">All <span class="pill-count" id="countAll">8</span></button>
                 <button class="type-pill" data-filter="attorney">Attorneys <span class="pill-count" id="countAttorney">0</span></button>
@@ -711,6 +770,17 @@
     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Filter toggle for mobile
+            var posFilterToggle = document.getElementById('posFilterToggle');
+            var posTypeFilters = document.getElementById('typeFilters');
+            if (posFilterToggle && posTypeFilters) {
+                posFilterToggle.addEventListener('click', function() {
+                    var expanded = posFilterToggle.getAttribute('aria-expanded') === 'true';
+                    posFilterToggle.setAttribute('aria-expanded', String(!expanded));
+                    posTypeFilters.classList.toggle('pos-filters-expanded');
+                });
+            }
+
             // Sticky toolbar shadow on scroll
             var toolbarWrap = document.querySelector('.positions-toolbar-wrap');
             if (toolbarWrap) {
