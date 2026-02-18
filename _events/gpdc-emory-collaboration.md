@@ -2,8 +2,8 @@
 title: 'GPDC Emory Collaboration: Rapid Screening & Red-Flag Identification'
 date: 2026-02-20
 end_date: ''
-time: 1:00 PM - 5:00 PM
-end_time: ''
+time: 1:00 PM
+end_time: 5:00 PM
 location: Emory University School of Law
 type: in-person
 description: Collaborative training with Emory University on rapid screening techniques and identifying red flags during client interviews.
