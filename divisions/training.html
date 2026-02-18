@@ -479,34 +479,34 @@
             background: var(--primary-dark) !important;
         }
 
-        /* Event type color overlays — primary palette tints */
+        /* Event type color overlays — distinct per type */
         .calendar-day.has-event-in-person {
-            background: rgba(184, 92, 56, 0.12);
-            color: var(--primary-dark);
+            background: rgba(46, 125, 50, 0.14);
+            color: #2e7d32;
             font-weight: 600;
         }
 
         .calendar-day.has-event-online {
-            background: rgba(184, 92, 56, 0.08);
-            color: var(--primary);
+            background: rgba(21, 101, 192, 0.12);
+            color: #1565c0;
             font-weight: 600;
         }
 
         .calendar-day.has-event-hybrid {
-            background: rgba(184, 92, 56, 0.18);
-            color: var(--primary-dark);
+            background: rgba(239, 108, 0, 0.14);
+            color: #ef6c00;
             font-weight: 600;
         }
 
         .calendar-day.has-event-on-demand {
-            background: rgba(154, 74, 44, 0.10);
-            color: var(--primary);
+            background: rgba(123, 31, 162, 0.12);
+            color: #7b1fa2;
             font-weight: 600;
         }
 
         .calendar-day.has-event-multi {
-            background: linear-gradient(135deg, rgba(184, 92, 56, 0.15) 0%, rgba(154, 74, 44, 0.22) 100%);
-            color: var(--primary-dark);
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.14) 0%, rgba(21, 101, 192, 0.14) 50%, rgba(239, 108, 0, 0.14) 100%);
+            color: var(--text-dark);
             font-weight: 700;
         }
 
@@ -536,10 +536,10 @@
             border-radius: 4px;
         }
 
-        .legend-swatch.swatch-in-person { background: rgba(184, 92, 56, 0.12); border: 1px solid rgba(184, 92, 56, 0.3); }
-        .legend-swatch.swatch-online { background: rgba(184, 92, 56, 0.08); border: 1px solid rgba(184, 92, 56, 0.2); }
-        .legend-swatch.swatch-hybrid { background: rgba(184, 92, 56, 0.18); border: 1px solid rgba(184, 92, 56, 0.35); }
-        .legend-swatch.swatch-on-demand { background: rgba(154, 74, 44, 0.10); border: 1px solid rgba(154, 74, 44, 0.25); }
+        .legend-swatch.swatch-in-person { background: rgba(46, 125, 50, 0.14); border: 1px solid rgba(46, 125, 50, 0.35); }
+        .legend-swatch.swatch-online { background: rgba(21, 101, 192, 0.12); border: 1px solid rgba(21, 101, 192, 0.3); }
+        .legend-swatch.swatch-hybrid { background: rgba(239, 108, 0, 0.14); border: 1px solid rgba(239, 108, 0, 0.35); }
+        .legend-swatch.swatch-on-demand { background: rgba(123, 31, 162, 0.12); border: 1px solid rgba(123, 31, 162, 0.3); }
 
         /* ==================== RIGHT COLUMN: Next Event + Mini-cards ==================== */
         .events-right-column {
