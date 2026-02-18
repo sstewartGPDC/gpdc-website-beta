@@ -899,30 +899,14 @@
         <button class="filter-btn" data-section="council">Council Members</button>
     </div>
 
-    <!-- Featured Executive Director -->
+    <!-- Featured Executive Director (populated by JS from leadership.json) -->
     <section class="featured-executive" id="section-executives">
-        <div class="featured-card fade-in" data-person="oalli">
-            <div class="featured-image">
-                <img src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69656b087d941f495fc4f0ca_Photo_OmotayoAlli%20Large.jpeg" alt="Omotayo Alli">
-            </div>
-            <div class="featured-content">
-                <p class="label">EXECUTIVE DIRECTOR</p>
-                <h2>Omotayo Alli</h2>
-                <p class="featured-title">JD, MPA, SPHR</p>
-                <p class="featured-bio">Leading the Georgia Public Defender Council with a commitment to ensuring quality legal representation for all Georgians. Focused on augmenting indigent defense services and promoting rehabilitative outcomes throughout the state.</p>
-                <a href="assets/docs/Omotayo-Alli-Biography.pdf" class="btn btn-primary" style="width: auto; display: inline-flex;" download>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                            <polyline points="7 10 12 15 17 10"/>
-                            <line x1="12" y1="15" x2="12" y2="3"/>
-                        </svg>
-                        <span>Download Bio</span>
-                    </a>
-            </div>
+        <div class="featured-card fade-in" id="featuredExecutive">
+            <!-- Populated dynamically from leadership.json -->
         </div>
     </section>
 
-    <!-- Executive Team -->
+    <!-- Executive Team (populated by JS from leadership.json) -->
     <section class="team-section-new">
         <div class="container">
             <div class="team-section-header fade-in">
@@ -931,119 +915,13 @@
                 <p class="section-explainer">Our executive team provides strategic direction and oversight for the Georgia Public Defender Council, ensuring effective administration of indigent defense services across the state.</p>
             </div>
 
-            <div class="team-grid-new">
-                <div class="team-card-new fade-in" data-person="oalli">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69656b087d941f495fc4f0ca_Photo_OmotayoAlli%20Large.jpeg" alt="Omotayo Alli">
-                    </div>
-                    <div class="team-info">
-                        <h3>Omotayo Alli</h3>
-                        <p class="team-title">Executive Director</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Omotayo Alli', 'Executive Director', 'oalli')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="dberry">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c67762d2fade434e262703_1Q8A9141-2.jpg" alt="D'Andre Berry">
-                    </div>
-                    <div class="team-info">
-                        <h3>D'Andre Berry</h3>
-                        <p class="team-title">Director, Information Systems & Performance Metrics</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('D\'Andre Berry', 'Director, Information Systems & Performance Metrics', 'dberry')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="nglaser">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872c9ffbd0f9572847b9dd_1Q8A7858%20-%20Natalie%20Glaser.jpg" alt="Natalie Glaser">
-                    </div>
-                    <div class="team-info">
-                        <h3>Natalie Glaser</h3>
-                        <p class="team-title">Chief Legal Officer</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Natalie Glaser', 'Chief Legal Officer', 'nglaser')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="toconnor">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b903965e2274281ccde_1Q8A7048%20-%20Thomas%20O%27Connor.jpg" alt="Thomas O'Connor">
-                    </div>
-                    <div class="team-info">
-                        <h3>Thomas O'Connor</h3>
-                        <p class="team-title">Director, Strategic Planning, Research & Communications</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Thomas O\'Connor', 'Director, Strategic Planning, Research & Communications', 'toconnor')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="lonley">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c677863ff4222b883eea29_1Q8A9150.jpg" alt="LaWanda Onley">
-                    </div>
-                    <div class="team-info">
-                        <h3>LaWanda Onley</h3>
-                        <p class="team-title">Director, Administration</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('LaWanda Onley', 'Director, Administration', 'lonley')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="traiford">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b7a0e15d3bc250a0509_1Q8A7063%20-%20Terry%20Raiford.jpg" alt="Terry Raiford">
-                    </div>
-                    <div class="team-info">
-                        <h3>Terry Raiford</h3>
-                        <p class="team-title">Chief Financial Officer</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Terry Raiford', 'Chief Financial Officer', 'traiford')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="team-grid-new" id="executivesGrid">
+                <!-- Populated dynamically from leadership.json -->
             </div>
         </div>
     </section>
 
-    <!-- Division Directors Section -->
+    <!-- Division Directors Section (populated by JS from leadership.json) -->
     <section class="team-section-new team-section-alt" id="section-directors" style="display: none;">
         <div class="container">
             <div class="team-section-header fade-in">
@@ -1052,186 +930,8 @@
                 <p class="section-explainer">Division Directors and Managers lead specialized units that provide critical support services, training, and expertise to public defenders across our 45 circuit offices statewide.</p>
             </div>
 
-            <div class="team-grid-new">
-                <div class="team-card-new fade-in" data-person="tbertram">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Trish Bertram">
-                    </div>
-                    <div class="team-info">
-                        <h3>Trish Bertram</h3>
-                        <p class="team-title">Director, Professional Development and Training</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Trish Bertram', 'Director, Professional Development and Training', 'tbertram')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="whewitt">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg" alt="William Hewitt">
-                    </div>
-                    <div class="team-info">
-                        <h3>William Hewitt</h3>
-                        <p class="team-title">Director, Appeals</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('William Hewitt', 'Director, Appeals', 'whewitt')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="gmurray">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69667a90b3630f4474adc250_Murray%2C%20Gayle%20Large.jpeg" alt="Gayle Murray">
-                    </div>
-                    <div class="team-info">
-                        <h3>Gayle Murray</h3>
-                        <p class="team-title">Director, Youth Advocacy</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Gayle Murray', 'Director, Youth Advocacy', 'gmurray')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="aragas">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a58835e230b9f2298be_1Q8A7115%20-%20Arnold%20Ragas.jpg" alt="Arnold Ragas">
-                    </div>
-                    <div class="team-info">
-                        <h3>Arnold Ragas</h3>
-                        <p class="team-title">Director, Specialized Unit</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Arnold Ragas', 'Director, Specialized Unit', 'aragas')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="srhinehart">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg" alt="Sabrina Rhinehart">
-                    </div>
-                    <div class="team-info">
-                        <h3>Sabrina Rhinehart</h3>
-                        <p class="team-title">Director, Mental Health Defense</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Sabrina Rhinehart', 'Director, Mental Health Defense', 'srhinehart')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="nstudelska">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png" alt="Nathaniel Studelska">
-                    </div>
-                    <div class="team-info">
-                        <h3>Nathaniel Studelska</h3>
-                        <p class="team-title">Director, Capital Defense</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Nathaniel Studelska', 'Director, Capital Defense', 'nstudelska')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="jwalker">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg" alt="Joy Walker">
-                    </div>
-                    <div class="team-info">
-                        <h3>Joy Walker</h3>
-                        <p class="team-title">Manager, Customer Support & Compliance</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Joy Walker', 'Manager, Customer Support & Compliance', 'jwalker')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="cdelossantos">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://gapubdef.org/wp-content/uploads/Tia_Headshot24.jpg" alt="Catia De Los Santos">
-                    </div>
-                    <div class="team-info">
-                        <h3>Catia De Los Santos</h3>
-                        <p class="team-title">Manager, Client Support Services</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Catia De Los Santos', 'Manager, Client Support Services', 'cdelossantos')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="kholmes">
-                    <div class="team-image">
-                        <img loading="lazy" src="https://gapubdef.org/wp-content/uploads/Kenya_Headshot24.jpg" alt="Kenya Holmes">
-                    </div>
-                    <div class="team-info">
-                        <h3>Kenya Holmes</h3>
-                        <p class="team-title">Manager, Ladders Youth Program</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Kenya Holmes', 'Manager, Ladders Youth Program', 'kholmes')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card-new fade-in" data-person="shoover">
-                    <div class="team-image">
-                        <img loading="lazy" src="/images/uploads/1Q8A9125 Large.jpeg" alt="Shawn Hoover">
-                    </div>
-                    <div class="team-info">
-                        <h3>Shawn Hoover</h3>
-                        <p class="team-title">Manager, Gang & RICO</p>
-                        <div class="team-contact-icons">
-                            <button class="team-contact-btn" onclick="openContactModal('Shawn Hoover', 'Manager, Gang & RICO', 'shoover')" title="Send Email">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                    <path d="M22 6l-10 7L2 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="team-grid-new" id="directorsGrid">
+                <!-- Populated dynamically from leadership.json -->
             </div>
         </div>
     </section>
@@ -1390,7 +1090,7 @@
     <!-- Footer (loaded dynamically) -->
     <div id="site-footer"></div>
 
-    <script src="js/components.js?v=3"></script>
+    <script src="js/components.js?v=4"></script>
     <script src="js/main.js"></script>
     <script>
         // Fallback team member images (overridden by CMS data via window.teamImages)

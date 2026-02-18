@@ -133,7 +133,56 @@
         }
     }
 
-    // Load leadership data and update team page images
+    // Default placeholder image for members without photos
+    var PLACEHOLDER_IMG = 'https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/696679f045b5c1a68607201e_general-img-landscape.png';
+
+    // Helper: escape single quotes for onclick attributes
+    function escAttr(str) {
+        return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    // Generate a single team card HTML
+    function renderTeamCard(member) {
+        return '<div class="team-card-new fade-in" data-person="' + member.id + '">' +
+            '<div class="team-image">' +
+                '<img loading="lazy" src="' + (member.photo || PLACEHOLDER_IMG) + '" alt="' + escAttr(member.name) + '">' +
+            '</div>' +
+            '<div class="team-info">' +
+                '<h3>' + member.name + '</h3>' +
+                '<p class="team-title">' + member.title + '</p>' +
+                '<div class="team-contact-icons">' +
+                    '<button class="team-contact-btn" onclick="openContactModal(\'' + escAttr(member.name) + '\', \'' + escAttr(member.title) + '\', \'' + member.id + '\')" title="Send Email">' +
+                        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+                            '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>' +
+                            '<path d="M22 6l-10 7L2 6"/>' +
+                        '</svg>' +
+                    '</button>' +
+                '</div>' +
+            '</div>' +
+        '</div>';
+    }
+
+    // Generate the featured executive card HTML
+    function renderFeaturedCard(member) {
+        return '<div class="featured-image">' +
+                '<img src="' + (member.photo || PLACEHOLDER_IMG) + '" alt="' + escAttr(member.name) + '">' +
+            '</div>' +
+            '<div class="featured-content">' +
+                '<p class="label">' + member.title.toUpperCase() + '</p>' +
+                '<h2>' + member.name + '</h2>' +
+                '<p class="featured-bio">Leading the Georgia Public Defender Council with a commitment to ensuring quality legal representation for all Georgians. Focused on augmenting indigent defense services and promoting rehabilitative outcomes throughout the state.</p>' +
+                '<a href="assets/docs/Omotayo-Alli-Biography.pdf" class="btn btn-primary" style="width: auto; display: inline-flex;" download>' +
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+                        '<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>' +
+                        '<polyline points="7 10 12 15 17 10"/>' +
+                        '<line x1="12" y1="15" x2="12" y2="3"/>' +
+                    '</svg>' +
+                    '<span>Download Bio</span>' +
+                '</a>' +
+            '</div>';
+    }
+
+    // Load leadership data and dynamically render team sections
     async function loadLeadership(basePath) {
         // Only run on team.html
         const pagePath = window.location.pathname;
@@ -153,27 +202,33 @@
         // Expose to global scope so the inline modal script can use it
         window.teamImages = teamImagesMap;
 
-        // Update featured executive section image
-        var featuredImg = document.querySelector('.featured-executive .featured-image img');
-        if (featuredImg) {
-            var featuredId = featuredImg.closest('[data-person]')
-                ? featuredImg.closest('[data-person]').dataset.person
-                : 'oalli'; // default to executive director
-            var featuredMember = members.find(function(m) { return m.id === featuredId; });
-            if (featuredMember) {
-                featuredImg.src = featuredMember.photo;
-            }
+        // Split members by role (preserve JSON order within each group)
+        var executives = members.filter(function(m) { return m.role === 'executive'; });
+        var directors = members.filter(function(m) { return m.role !== 'executive'; });
+
+        // Render featured executive card (first executive in the list)
+        var featuredEl = document.getElementById('featuredExecutive');
+        if (featuredEl && executives.length > 0) {
+            featuredEl.setAttribute('data-person', executives[0].id);
+            featuredEl.innerHTML = renderFeaturedCard(executives[0]);
         }
 
-        // Update all team cards with data-person attribute
-        members.forEach(function(member) {
-            var cards = document.querySelectorAll('[data-person="' + member.id + '"]');
-            cards.forEach(function(card) {
-                var img = card.querySelector('.team-image img') ||
-                          card.querySelector('.featured-image img');
-                if (img) {
-                    img.src = member.photo;
-                }
+        // Render executives grid (all executives, in JSON order)
+        var execGrid = document.getElementById('executivesGrid');
+        if (execGrid) {
+            execGrid.innerHTML = executives.map(renderTeamCard).join('');
+        }
+
+        // Render directors/managers grid (in JSON order)
+        var dirGrid = document.getElementById('directorsGrid');
+        if (dirGrid) {
+            dirGrid.innerHTML = directors.map(renderTeamCard).join('');
+        }
+
+        // Trigger fade-in animations for dynamically added cards
+        requestAnimationFrame(function() {
+            document.querySelectorAll('.team-card-new.fade-in, .featured-card.fade-in').forEach(function(el) {
+                el.classList.add('visible');
             });
         });
     }

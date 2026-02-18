@@ -4,96 +4,112 @@
       "id": "oalli",
       "name": "Omotayo Alli",
       "title": "Executive Director",
+      "role": "executive",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69656b087d941f495fc4f0ca_Photo_OmotayoAlli%20Large.jpeg"
     },
     {
       "id": "dberry",
       "name": "D'Andre Berry",
       "title": "Director, Information Systems & Performance Metrics",
+      "role": "executive",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c67762d2fade434e262703_1Q8A9141-2.jpg"
     },
     {
       "id": "nglaser",
       "name": "Natalie Glaser",
       "title": "Chief Legal Officer",
+      "role": "executive",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872c9ffbd0f9572847b9dd_1Q8A7858%20-%20Natalie%20Glaser.jpg"
     },
     {
       "id": "toconnor",
       "name": "Thomas O'Connor",
       "title": "Director, Strategic Planning, Research & Communications",
+      "role": "executive",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b903965e2274281ccde_1Q8A7048%20-%20Thomas%20O%27Connor.jpg"
     },
     {
       "id": "lonley",
       "name": "LaWanda Onley",
       "title": "Director of Finance and Administration",
+      "role": "executive",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c677863ff4222b883eea29_1Q8A9150.jpg"
     },
     {
       "id": "traiford",
       "name": "Terry Raiford",
       "title": "Director of General Counsel, Legislative Affairs & Human Resources",
+      "role": "executive",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872b7a0e15d3bc250a0509_1Q8A7063%20-%20Terry%20Raiford.jpg"
     },
     {
       "id": "tbertram",
       "name": "Trish Bertram",
       "title": "Division Director, Professional Development & Training",
+      "role": "director",
       "photo": "/images/uploads/003-Ur5j_qI9uRI.jpeg"
     },
     {
       "id": "whewitt",
       "name": "William Hewitt",
       "title": "Division Director, Appellate Defense",
+      "role": "director",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67c75b1cdea1b5003be86cb8_1Q8A7280%20-%20William%20Hewitt.jpg"
     },
     {
       "id": "kholmes",
       "name": "Kenya Holmes",
       "title": "Manager, Ladders Youth Program",
+      "role": "director",
       "photo": "https://gapubdef.org/wp-content/uploads/Kenya_Headshot24.jpg"
     },
     {
       "id": "shoover",
       "name": "Shawn Hoover",
       "title": "Manager, Gang & RICO",
+      "role": "director",
       "photo": "/images/uploads/1Q8A9125 Large.jpeg"
     },
     {
       "id": "gmurray",
       "name": "Gayle Murray",
       "title": "Division Director, Youth Advocacy",
+      "role": "director",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/69667a90b3630f4474adc250_Murray%2C%20Gayle%20Large.jpeg"
     },
     {
       "id": "aragas",
       "name": "Arnold Ragas",
       "title": "Division Director, Conflict",
+      "role": "director",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a58835e230b9f2298be_1Q8A7115%20-%20Arnold%20Ragas.jpg"
     },
     {
       "id": "srhinehart",
       "name": "Sabrina Rhinehart",
       "title": "Division Director, Mental Health",
+      "role": "director",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872bc9b945b1f3785e6031_1Q8A7099%20-%20Sabrina%20Rhinehart.jpg"
     },
     {
       "id": "cdelossantos",
       "name": "Catia De Los Santos",
       "title": "Manager, Client Support Services",
+      "role": "director",
       "photo": "https://gapubdef.org/wp-content/uploads/Tia_Headshot24.jpg"
     },
     {
       "id": "nstudelska",
       "name": "Nathaniel Studelska",
       "title": "Division Director, Capital Defense",
+      "role": "director",
       "photo": "/images/uploads/1710362362688.jpeg"
     },
     {
       "id": "jwalker",
       "name": "Joy Walker",
       "title": "Division Director, Customer Support & Compliance",
+      "role": "director",
       "photo": "https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/67872a9d712ff3d5dd58518c_1Q8A6820-2%20-%20Joy%20Walker.jpg"
     }
   ]
