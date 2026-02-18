@@ -1,12 +1,13 @@
 ---
-title: "Mark Alexander Appointed Circuit Public Defender for Northeastern Judicial Circuit"
-description: "Mark Alexander is appointed as the new Circuit Public Defender for Georgia's Northeastern Judicial Circuit, bringing extensive legal experience."
-category: "Local Offices"
+title: Mark Alexander Appointed Circuit Public Defender for Northeastern Judicial Circuit
+description: Mark Alexander is appointed as the new Circuit Public Defender for Georgia's Northeastern Judicial Circuit, bringing extensive legal experience.
+category: Local Offices
 date: 2025-09-16
 featured: false
-image: "https://gapubdef.org/wp-content/uploads/Alexander_Mark_Photo.jpg"
-image_alt: "Mark Alexander, Circuit Public Defender for Northeastern Judicial Circuit"
-excerpt: "Mark Alexander has been named the new Circuit Public Defender for the Northeastern Judicial Circuit, bringing more than three decades of courtroom experience to a role that carries significant responsibility for indigent defense in the region."
+image: https://gapubdef.org/wp-content/uploads/Alexander_Mark_Photo.jpg
+image_alt: Mark Alexander, Circuit Public Defender for Northeastern Judicial Circuit
+image_position: center center
+excerpt: Mark Alexander has been named the new Circuit Public Defender for the Northeastern Judicial Circuit, bringing more than three decades of courtroom experience to a role that carries significant responsibility for indigent defense in the region.
 ---
 
 Mark Alexander has been named the new Circuit Public Defender for the Northeastern Judicial Circuit, bringing more than three decades of courtroom experience to a role that carries significant responsibility for indigent defense in the region. Alexander succeeds Brad Morris, who served in the position for over twenty years and oversaw the handling of more than 67,000 cases during his tenure.
