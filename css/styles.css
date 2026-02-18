@@ -5734,39 +5734,7 @@ body.has-announcement .breadcrumbs {
     opacity: 1;
 }
 
-/* ==================== ENHANCED PAGE TRANSITIONS ==================== */
-.page-transition {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-white);
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s var(--ease-out);
-}
-
-.page-transition.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.page-transition.exit {
-    animation: pageTransitionExit 0.5s var(--ease-out) forwards;
-}
-
-@keyframes pageTransitionExit {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-}
+/* Enhanced page transitions removed — using slim progress bar (line ~2034) */
 
 /* Page content fade in animation */
 .page-content {

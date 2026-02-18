@@ -439,6 +439,18 @@ function initPageTransitions() {
             }, 150 + (index * 100));
         });
     });
+
+    // Handle back-forward cache (bfcache) — restore page state on back/forward
+    window.addEventListener('pageshow', (e) => {
+        if (e.persisted) {
+            // Clear any stuck transition overlay
+            pageTransition.classList.remove('active');
+            pageTransition.classList.remove('exit');
+            // Ensure all sections are visible (bfcache may restore pre-animation state)
+            document.querySelectorAll('.section-animate').forEach(s => s.classList.add('visible'));
+            document.body.classList.add('page-loaded');
+        }
+    });
 }
 
 // ==================== PARALLAX HERO EFFECT ====================
