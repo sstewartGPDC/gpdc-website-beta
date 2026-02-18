@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 /**
  * GPDC Build Script
- * Reads _articles/*.md (Decap CMS source) and generates:
- *   1. articles/*.html (individual article pages)
+ * Reads CMS markdown sources and generates frontend output:
+ *   1. articles/*.html (individual article pages from _articles/*.md)
  *   2. Updated newsroom.html (news grid cards + featured article)
  *   3. Updated index.html (featured article on homepage)
+ *   4. Auto-expire job postings in _positions/*.md
+ *   5. js/events-data.js (from _events/*.md)
+ *   6. Updated positions.html (job cards from _positions/*.md)
  *
- * Runs on every Netlify deploy via: node build.js
+ * Runs on every deploy via: node build.js
  */
 
 const fs = require('fs');
@@ -379,4 +382,231 @@ if (fs.existsSync(positionsDir)) {
   }
 }
 
-console.log(`\nBuild complete! ${articles.length} articles processed.`);
+// ——————————————————————————————
+// 5. Generate js/events-data.js from _events/*.md
+// ——————————————————————————————
+
+/**
+ * Parse a time string like "9:00 AM", "5:00 PM", "9:00 AM - 12:00 PM"
+ * Returns { hour, minute } for the first (start) time, or null
+ */
+function parseTime(timeStr) {
+  if (!timeStr || timeStr === "''") return null;
+  // Remove wrapping quotes if present
+  const cleaned = timeStr.replace(/^['"]|['"]$/g, '').trim();
+  if (!cleaned) return null;
+
+  // Match "H:MM AM/PM" pattern (take the first time if range)
+  const m = cleaned.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+  if (!m) return null;
+
+  let hour = parseInt(m[1], 10);
+  const minute = parseInt(m[2], 10);
+  const period = m[3].toUpperCase();
+
+  if (period === 'PM' && hour !== 12) hour += 12;
+  if (period === 'AM' && hour === 12) hour = 0;
+
+  return { hour, minute };
+}
+
+/**
+ * Parse the end time from a time range string like "9:00 AM - 12:00 PM"
+ * Returns { hour, minute } for the second (end) time, or null
+ */
+function parseEndTime(timeStr) {
+  if (!timeStr || timeStr === "''") return null;
+  const cleaned = timeStr.replace(/^['"]|['"]$/g, '').trim();
+  if (!cleaned) return null;
+
+  // Match everything after the dash/hyphen
+  const parts = cleaned.split(/\s*[-–]\s*/);
+  if (parts.length < 2) return null;
+
+  const m = parts[1].match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+  if (!m) return null;
+
+  let hour = parseInt(m[1], 10);
+  const minute = parseInt(m[2], 10);
+  const period = m[3].toUpperCase();
+
+  if (period === 'PM' && hour !== 12) hour += 12;
+  if (period === 'AM' && hour === 12) hour = 0;
+
+  return { hour, minute };
+}
+
+const eventsDir = path.join(__dirname, '_events');
+const eventsOutputPath = path.join(__dirname, 'js', 'events-data.js');
+
+if (fs.existsSync(eventsDir)) {
+  const eventFiles = fs.readdirSync(eventsDir).filter(f => f.endsWith('.md'));
+  console.log(`\nFound ${eventFiles.length} events to build.`);
+
+  const events = eventFiles.map(file => {
+    const content = fs.readFileSync(path.join(eventsDir, file), 'utf-8');
+    const { data } = parseFrontmatter(content);
+    return data;
+  });
+
+  // Sort by date ascending
+  events.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+
+  // Build the JS array entries
+  const eventEntries = events.map((evt, i) => {
+    const id = i + 1;
+    const title = (evt.title || '').replace(/'/g, "\\'");
+    const description = (evt.description || '').replace(/'/g, "\\'");
+    const location = (evt.location || '').replace(/'/g, "\\'");
+    const image = (evt.image || '').replace(/^''$/, '').replace(/'/g, "\\'");
+    let registerUrl = (evt.register_url || '').replace(/^''$/, '').replace(/'/g, "\\'");
+
+    // Map type: CMS uses "virtual", frontend uses "online"
+    let type = evt.type || 'in-person';
+    if (type === 'virtual') type = 'online';
+
+    // Parse start date + time
+    const dateParts = (evt.date || '').split('-').map(Number);
+    const startTime = parseTime(evt.time);
+    let dateArgs = `${dateParts[0]}, ${dateParts[1] - 1}, ${dateParts[2]}`;
+    if (startTime) {
+      dateArgs += `, ${startTime.hour}, ${startTime.minute}`;
+    }
+
+    // Parse end date + end time
+    let endDateLine = '';
+    const endDateStr = evt.end_date && evt.end_date !== "''" ? evt.end_date : '';
+    if (endDateStr) {
+      const endParts = endDateStr.split('-').map(Number);
+      const endTime = parseEndTime(evt.time) || parseTime(evt.end_time);
+      let endArgs = `${endParts[0]}, ${endParts[1] - 1}, ${endParts[2]}`;
+      if (endTime) {
+        endArgs += `, ${endTime.hour}, ${endTime.minute}`;
+      }
+      endDateLine = `\n        endDate: new Date(${endArgs}),`;
+    } else if (startTime) {
+      // Single-day event with start time — check for end time in time field
+      const endTime = parseEndTime(evt.time);
+      if (endTime) {
+        endDateLine = `\n        endDate: new Date(${dateParts[0]}, ${dateParts[1] - 1}, ${dateParts[2]}, ${endTime.hour}, ${endTime.minute}),`;
+      }
+    }
+
+    return `    {
+        id: ${id},
+        title: '${title}',
+        date: new Date(${dateArgs}),${endDateLine}
+        location: '${location}',
+        type: '${type}',
+        description: '${description}',
+        image: '${image}',
+        registerUrl: '${registerUrl}'
+    }`;
+  });
+
+  const eventsJs = `// Auto-generated by build.js from _events/*.md — DO NOT EDIT MANUALLY
+// Last built: ${new Date().toISOString()}
+
+const GPDC_EVENTS = [
+${eventEntries.join(',\n')}
+];
+
+// Helper function to get upcoming events sorted by date
+function getUpcomingEvents(limit) {
+    limit = limit || null;
+    var now = new Date();
+    var events = GPDC_EVENTS
+        .filter(function(e) { return e.date >= now || (e.endDate && e.endDate >= now); })
+        .sort(function(a, b) { return a.date - b.date; });
+
+    if (limit) {
+        events = events.slice(0, limit);
+    }
+
+    return events;
+}
+`;
+
+  fs.writeFileSync(eventsOutputPath, eventsJs);
+  console.log(`  ✓ js/events-data.js generated (${events.length} events)`);
+} else {
+  console.log('\nNo _events directory found, skipping events build.');
+}
+
+// ——————————————————————————————
+// 6. Update positions.html from _positions/*.md
+// ——————————————————————————————
+
+const positionsPath = path.join(__dirname, 'positions.html');
+if (fs.existsSync(positionsDir) && fs.existsSync(positionsPath)) {
+  const posFiles2 = fs.readdirSync(positionsDir).filter(f => f.endsWith('.md'));
+  console.log(`\nBuilding ${posFiles2.length} position cards.`);
+
+  const positions = posFiles2.map(file => {
+    const content = fs.readFileSync(path.join(positionsDir, file), 'utf-8');
+    const { data } = parseFrontmatter(content);
+    return data;
+  });
+
+  // Sort: non-expired first, then by date descending (newest first)
+  positions.sort((a, b) => {
+    if (a.expired !== b.expired) return a.expired ? 1 : -1;
+    return (b.date || '').localeCompare(a.date || '');
+  });
+
+  // Format type label: "attorney" → "Attorney", "non-attorney" → "Non-Attorney"
+  function typeLabel(type) {
+    return (type || '').split('-').map(function(w) {
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    }).join('-');
+  }
+
+  const posCardsHtml = positions.map(pos => {
+    const isNew = pos.is_new === true;
+    const isExpired = pos.expired === true;
+    const type = pos.type || 'attorney';
+    const county = (pos.county || 'statewide').toLowerCase();
+    const applyUrl = pos.apply_url || 'contact.html';
+
+    const expiredAttr = isExpired ? ' data-expired="true"' : '';
+    const newBadge = isNew && !isExpired
+      ? '\n                    <span class="position-new-badge">New</span>'
+      : '';
+
+    return `            <div class="position-card fade-in" data-type="${type}" data-county="${county}"${expiredAttr}>
+                <div class="position-card-header">
+                    <span class="position-type-badge ${type}">${typeLabel(type)}</span>${newBadge}
+                </div>
+                <div class="position-card-content">
+                    <h3 class="position-title">${pos.title || 'Untitled Position'}</h3>
+                    <div class="position-location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        ${pos.location || 'Georgia'}
+                    </div>
+                    <div class="position-posted">Posted ${formatDate(pos.date)}</div>
+                    <p class="position-description">${(pos.description || '').replace(/"/g, '&quot;')}</p>
+                </div>
+                <div class="position-card-footer">
+                    <a href="${applyUrl}" class="apply-btn">
+                        Apply Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>`;
+  }).join('\n\n');
+
+  // Replace position cards in positions.html
+  // The grid div contains all cards, then closes with </div> before <!-- No Results Message -->
+  let positionsHtml = fs.readFileSync(positionsPath, 'utf-8');
+  positionsHtml = positionsHtml.replace(
+    /(<div class="positions-grid" id="positionsGrid">)[\s\S]*?(\s*<\/div>\s*\n\s*<!-- No Results Message -->)/,
+    `$1\n\n${posCardsHtml}\n\n        </div>\n\n        <!-- No Results Message -->`
+  );
+
+  fs.writeFileSync(positionsPath, positionsHtml);
+  console.log(`  ✓ positions.html updated (${positions.length} cards)`);
+} else {
+  console.log('\nSkipping positions build (missing directory or positions.html).');
+}
+
+console.log(`\nBuild complete! ${articles.length} articles, events, and positions processed.`);
