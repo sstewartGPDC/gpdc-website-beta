@@ -2,7 +2,8 @@
 title: Leadership Academy 2025-2026 Graduation
 date: 2026-05-22
 end_date: ''
-time: 9:00 AM - 12:00 PM
+time: 9:00 AM
+end_time: 12:00 PM
 location: Athens, GA
 type: in-person
 description: Graduation for the 2025-2026 class  of the Leadership Academy for Assistant and Circuit Public Defenders.
