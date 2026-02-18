@@ -9,7 +9,7 @@ image_alt: Retired Circuit Public Defender of the Augusta Judicial Circuit, Kate
 excerpt: Katherine “Kate” Mason, a longtime Augusta public defender and former statewide leader with the Georgia Public Defender Council (GPDC), was honored at a retirement celebration. Lee Prescott brings more than two decades of public defense and leadership experience.
 ---
 
-**AUGUSTA, GA** — Katherine “Kate” Mason, a longtime Augusta public defender and former statewide leader with the Georgia Public Defender Council (GPDC), was honored at a retirement celebration. The event also included the swearing-in of Lee Prescott as circuit public defender of the Augusta Judicial Circuit.
+Katherine “Kate” Mason, a longtime Augusta public defender and former statewide leader with the Georgia Public Defender Council (GPDC), was honored at a retirement celebration. The event also included the swearing-in of Lee Prescott as circuit public defender of the Augusta Judicial Circuit.
 
 The on Thursday, Feb. 5, 2026, event was held at the Augusta Judicial Circuit Office of the Public Defender located at 902 Greene St., Augusta, GA 30901.
 
