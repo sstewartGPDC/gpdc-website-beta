@@ -23,7 +23,7 @@ function throttle(fn, delay = 16) {
 // Circuit Data - All Georgia Judicial Circuits
 // Updated: February 5, 2026 — phone, address, fax, and additional offices synced from gapubdef.org
 // Backup saved to: js/circuitData-backup-2026-02-05.js
-const circuitData = [
+var circuitData = [
     { circuit: "Alapaha Circuit", counties: ["Atkinson", "Berrien", "Clinch", "Cook", "Lanier"], slug: "alapaha-circuit", defender: "Gabriel Cason", address: "105 North Parrish Ave, Adel, GA 31620", phone: "229-896-2858", fax: "229-896-2875", description: "The Alapaha Judicial Circuit is located in southern Georgia and encompasses five counties: Atkinson, Berrien, Clinch, Cook, and Lanier. This circuit primarily covers rural areas known for their agricultural landscapes and small-town charm." },
     { circuit: "Alcovy Circuit", counties: ["Newton", "Walton"], slug: "alcovy-circuit", defender: "Anthony Carter", address: "1160 Pace St, Covington, GA 30014", phone: "770-788-3750", fax: "770-788-3757", additionalOffices: [{ location: "Walton County", address: "303 S. Hammond Dr., Suite 98, Monroe, GA 30655", phone: "770-266-1540", fax: "770-266-1545" }], description: "The Alcovy Judicial Circuit serves Newton and Walton Counties in the north-central Piedmont region of Georgia, providing public defense services to communities east of metropolitan Atlanta." },
     { circuit: "Appalachian Circuit", counties: ["Fannin", "Gilmer", "Pickens"], slug: "appalachian-circuit", defender: "Clint Hooker", address: "1 Broad St, Ste 001, Ellijay, GA 30540", phone: "706-698-7322", fax: "706-698-7333", description: "The Appalachian Judicial Circuit covers three mountainous counties in north Georgia: Fannin, Gilmer, and Pickens. The circuit is known for its scenic beauty and outdoor recreation." },
@@ -121,7 +121,7 @@ function initScrollAnimations() {
 }
 
 // Opt-Out Circuits - Counties that manage their own public defense
-const optOutCircuits = [
+var optOutCircuits = [
     { circuit: "Blue Ridge Circuit", counties: ["Cherokee"], note: "Cherokee County operates its own public defender office independently." },
     { circuit: "Cobb Circuit", counties: ["Cobb"], note: "Cobb County operates its own public defender office independently." },
     { circuit: "Douglas Circuit", counties: ["Douglas"], note: "Douglas County operates its own public defender office independently." },

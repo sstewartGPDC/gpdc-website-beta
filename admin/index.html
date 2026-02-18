@@ -241,6 +241,66 @@
     }
 
     /* ============================================================
+       Council & Circuit Badges
+       ============================================================ */
+    .gpdc-role-chairman {
+      background: rgba(184, 92, 56, 0.12);
+      color: #B85C38;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .gpdc-role-member {
+      background: #f0ede9;
+      color: #6b6b6b;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .gpdc-role-exec {
+      background: rgba(37,99,235,0.10);
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .gpdc-role-director {
+      background: rgba(34,197,94,0.10);
+      color: #16a34a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .gpdc-defender {
+      background: rgba(184, 92, 56, 0.08);
+      color: #B85C38;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    .gpdc-defender svg {
+      width: 12px;
+      height: 12px;
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+
+    .gpdc-phone {
+      background: #f0ede9;
+      color: #6b6b6b;
+      font-size: 10.5px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ============================================================
        List Card Hover Accent
        ============================================================ */
     [class*="ListCard-card"] {
@@ -280,7 +340,7 @@
       script.onload = function() {
         // Sveltia has loaded and executed. Load card enhancer in the new context.
         var enhancer = document.createElement('script');
-        enhancer.src = 'card-enhancer.js?v=1';
+        enhancer.src = 'card-enhancer.js?v=2';
         document.head.appendChild(enhancer);
       };
       document.body.appendChild(script);

@@ -360,9 +360,48 @@
             // Search is handled by main.js which has complete circuit data
         });
 
-        // Load CMS-managed image data (runs in parallel, non-blocking)
+        // Load CMS-managed data (runs in parallel, non-blocking)
         loadLeadership(basePath);
         loadDivisions(basePath);
+        loadCircuits(basePath);
+        loadCouncil(basePath);
+    }
+
+    // Load circuit data from CMS and override the hardcoded global
+    async function loadCircuits(basePath) {
+        var data = await fetchData(basePath, '_data/circuits.json');
+        if (!data) return;
+
+        if (data.circuits && data.circuits.length > 0) {
+            window.circuitData = data.circuits;
+        }
+        if (data.optOutCircuits && data.optOutCircuits.length > 0) {
+            window.optOutCircuits = data.optOutCircuits;
+        }
+
+        // Notify county-map.js and other scripts that fresh data is available
+        window.dispatchEvent(new CustomEvent('circuitDataUpdated'));
+    }
+
+    // Load council members and dynamically render on team.html
+    async function loadCouncil(basePath) {
+        var pagePath = window.location.pathname;
+        if (!pagePath.endsWith('/team.html') && !pagePath.endsWith('/team')) return;
+
+        var data = await fetchData(basePath, '_data/council.json');
+        if (!data || !data.members) return;
+
+        var grid = document.getElementById('council-grid');
+        if (!grid) return;
+
+        grid.innerHTML = data.members.map(function(member, index) {
+            var isChairman = member.role && member.role.toLowerCase().indexOf('chairman') !== -1;
+            var delay = (index * 0.06).toFixed(2);
+            return '<div class="council-card" style="animation-delay: ' + delay + 's;">' +
+                '<h4>' + member.name + '</h4>' +
+                '<p class="council-role' + (isChairman ? ' chairman' : '') + '">' + member.role + '</p>' +
+            '</div>';
+        }).join('');
     }
 
     // Initialize navigation (mobile toggle, dropdowns, scroll behavior)

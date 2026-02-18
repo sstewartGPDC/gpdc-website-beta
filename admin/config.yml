@@ -24,7 +24,7 @@ collections:
     create: true
     slug: "{{slug}}"
     extension: "md"
-    description: "Newsroom articles displayed on the site"
+    description: "Newsroom articles — create, edit, and manage news content displayed on the site."
     preview_path: "articles/{{slug}}.html"
     summary: "{{title}}  ·  {{category}}  ·  {{date}}  ·  img:{{image}}"
     sortable_fields: ["title", "date", "category"]
@@ -57,12 +57,12 @@ collections:
       - label: "Title"
         name: "title"
         widget: "string"
-        hint: "Article headline"
+        hint: "Article headline — keep it concise and descriptive"
 
       - label: "Description"
         name: "description"
         widget: "text"
-        hint: "Short description for SEO and preview cards"
+        hint: "Short summary for search engines and social media previews (1-2 sentences)"
 
       - label: "Category"
         name: "category"
@@ -75,42 +75,42 @@ collections:
           - "Events"
           - "Policy"
           - "Community"
-        hint: "Article category"
+        hint: "Choose the best category — this determines which filter the article appears under"
 
-      - label: "Date"
+      - label: "Publish Date"
         name: "date"
         widget: "datetime"
         format: "YYYY-MM-DD"
         time_format: false
-        hint: "Publication date"
+        hint: "Date the article goes live on the site"
 
-      - label: "Featured"
+      - label: "Featured on Homepage"
         name: "featured"
         widget: "boolean"
         default: false
-        hint: "Show as featured article on homepage"
+        hint: "Turn on to feature this article prominently on the homepage"
 
-      - label: "Image"
+      - label: "Cover Image"
         name: "image"
         widget: "image"
         required: false
-        hint: "Main article image"
+        hint: "Main article image — appears on cards and at the top of the article"
 
       - label: "Image Alt Text"
         name: "image_alt"
         widget: "string"
         required: false
-        hint: "Describe the image for accessibility"
+        hint: "Describe the image for screen readers (e.g. 'Staff meeting in the Atlanta office')"
 
-      - label: "Excerpt"
+      - label: "Card Excerpt"
         name: "excerpt"
         widget: "text"
-        hint: "Short summary shown on cards and previews"
+        hint: "Short summary shown on preview cards in the newsroom (2-3 sentences)"
 
-      - label: "Body"
+      - label: "Full Article"
         name: "body"
         widget: "markdown"
-        hint: "Full article content"
+        hint: "The complete article body — use headings, bold, links, and images as needed"
 
   # ==================== EVENTS ====================
   - name: "events"
@@ -120,7 +120,7 @@ collections:
     create: true
     slug: "{{slug}}"
     extension: "md"
-    description: "Upcoming and past events"
+    description: "Conferences, trainings, and other events — manages the events timeline on the newsroom page."
     preview_path: "newsroom.html"
     summary: "{{title}}  ·  {{type}}  ·  {{date}}  ·  {{location}}"
     sortable_fields: ["title", "date", "type"]
@@ -144,17 +144,17 @@ collections:
         field: "date"
         pattern: '\d{4}'
     fields:
-      - label: "Title"
+      - label: "Event Name"
         name: "title"
         widget: "string"
-        hint: "Event name"
+        hint: "Full event name (e.g. '2026 Annual Training Conference')"
 
       - label: "Start Date"
         name: "date"
         widget: "datetime"
         format: "YYYY-MM-DD"
         time_format: false
-        hint: "Event start date"
+        hint: "First day of the event"
 
       - label: "End Date"
         name: "end_date"
@@ -162,7 +162,7 @@ collections:
         format: "YYYY-MM-DD"
         time_format: false
         required: false
-        hint: "Event end date (leave blank for single-day events)"
+        hint: "Last day of the event — leave blank for single-day events"
 
       - label: "Start Time"
         name: "time"
@@ -179,9 +179,9 @@ collections:
       - label: "Location"
         name: "location"
         widget: "string"
-        hint: "e.g. Atlanta, GA"
+        hint: "Venue or city (e.g. 'Atlanta, GA' or 'Zoom')"
 
-      - label: "Type"
+      - label: "Format"
         name: "type"
         widget: "select"
         options:
@@ -193,29 +193,30 @@ collections:
             value: "hybrid"
           - label: "On Demand"
             value: "on-demand"
+        hint: "How attendees will participate"
 
       - label: "Description"
         name: "description"
         widget: "text"
-        hint: "Short event description"
+        hint: "Brief description shown on the event card (1-2 sentences)"
 
-      - label: "Image"
+      - label: "Event Image"
         name: "image"
         widget: "image"
         required: false
-        hint: "Event image"
+        hint: "Optional image — flyers, venue photos, etc."
 
-      - label: "Registration URL"
+      - label: "Registration Link"
         name: "register_url"
         widget: "string"
         required: false
-        hint: "Link to registration page"
+        hint: "Full URL to the registration page"
 
-      - label: "Details"
+      - label: "Full Details"
         name: "body"
         widget: "markdown"
         required: false
-        hint: "Full event details (optional)"
+        hint: "Agenda, speaker info, or other details (optional)"
 
   # ==================== JOB POSTINGS ====================
   - name: "positions"
@@ -225,7 +226,7 @@ collections:
     create: true
     slug: "{{slug}}"
     extension: "md"
-    description: "Job openings and career opportunities"
+    description: "Career opportunities — manages the Available Positions page listings."
     preview_path: "positions.html"
     summary: "{{title}}  ·  {{type}}  ·  {{division}}  ·  {{location}}  ·  {{expired | ternary('EXPIRED','ACTIVE')}}"
     sortable_fields: ["title", "date", "type", "division"]
@@ -262,34 +263,34 @@ collections:
       - label: "Job Title"
         name: "title"
         widget: "string"
-        hint: "e.g. Assistant Public Defender"
+        hint: "Position title (e.g. 'Assistant Public Defender')"
 
       - label: "Posted Date"
         name: "date"
         widget: "datetime"
         format: "YYYY-MM-DD"
         time_format: false
-        hint: "Date the position was posted"
+        hint: "Date the position was listed"
 
-      - label: "Expiration Date"
+      - label: "Closing Date"
         name: "expires"
         widget: "datetime"
         format: "YYYY-MM-DD"
         time_format: false
         required: false
-        hint: "Position will automatically show as expired after this date (leave blank for no expiration)"
+        hint: "Applications close after this date — leave blank for open-until-filled"
 
       - label: "Expired"
         name: "expired"
         widget: "hidden"
         default: false
 
-      - label: "Location"
+      - label: "Office Location"
         name: "location"
         widget: "string"
-        hint: "e.g. Atlanta Circuit - Fulton County"
+        hint: "e.g. 'Atlanta Circuit — Fulton County'"
 
-      - label: "Type"
+      - label: "Position Type"
         name: "type"
         widget: "select"
         options:
@@ -301,6 +302,7 @@ collections:
             value: "contractor"
           - label: "Internship"
             value: "internship"
+        hint: "Classification for filtering"
 
       - label: "Division"
         name: "division"
@@ -324,54 +326,160 @@ collections:
             value: "mental-health"
           - label: "Conflict"
             value: "conflict"
+        hint: "Which GPDC division this role belongs to"
 
       - label: "County"
         name: "county"
         widget: "string"
-        hint: "e.g. fulton, cobb, statewide"
+        hint: "Lowercase county slug (e.g. 'fulton', 'cobb', 'statewide')"
 
-      - label: "New Position"
+      - label: "Show 'New' Badge"
         name: "is_new"
         widget: "boolean"
         default: true
-        hint: "Show 'New' badge on listing"
+        hint: "Displays a green 'New' badge on the listing — turn off after a few weeks"
 
       - label: "Short Description"
         name: "description"
         widget: "text"
-        hint: "Brief job description for the card"
+        hint: "1-2 sentence summary shown on the job card"
 
-      - label: "Apply URL"
+      - label: "Application Link"
         name: "apply_url"
         widget: "string"
         required: false
-        hint: "Link to application page"
+        hint: "URL to the external application or careers page"
 
-      - label: "Full Details"
+      - label: "Full Job Description"
         name: "body"
         widget: "markdown"
         required: false
-        hint: "Full job description, requirements, benefits, etc."
+        hint: "Complete description — responsibilities, qualifications, benefits, etc."
 
-  # ==================== ANNOUNCEMENT BANNER ====================
-  - name: "settings"
-    label: "Site Settings"
-    description: "Global site configuration"
+  # ==================================================================
+  #  PEOPLE & TEAMS
+  #  Leadership, Council Members — manages the Our Team page
+  # ==================================================================
+  - name: "people"
+    label: "People & Teams"
+    description: "Leadership team and council members displayed on the Our Team page."
     files:
-      - name: "announcement"
-        label: "Announcement Banner"
+      # ——— Leadership Team ———
+      - name: "leadership"
+        label: "Leadership Team"
+        file: "_data/leadership.json"
+        description: "Executives, directors, and managers shown on the Our Team page. Drag to reorder — the list order here is the display order on the site."
+        fields:
+          - label: "Team Members"
+            name: "members"
+            widget: "list"
+            label_singular: "Team Member"
+            summary: "{{fields.name}}  ·  {{fields.role}}  ·  {{fields.title}}"
+            fields:
+              - { label: "ID", name: "id", widget: "string", hint: "Short unique ID used internally (e.g. 'oalli', 'dberry'). Don't change after creation." }
+              - { label: "Full Name", name: "name", widget: "string", hint: "As it should appear on the site" }
+              - { label: "Job Title", name: "title", widget: "string", hint: "e.g. 'Executive Director' or 'Division Director, Capital Defense'" }
+              - { label: "Role", name: "role", widget: "select", options: ["Executive", "Director/Manager"], default: "Director/Manager", hint: "Executive = top leadership row, Director/Manager = division directors & managers row" }
+              - { label: "Photo", name: "photo", widget: "image", hint: "Square headshot works best — cropped to 1:1 on the site" }
+
+      # ——— Council Members ———
+      - name: "council"
+        label: "Council Members"
+        file: "_data/council.json"
+        description: "The governing body of the GPDC — shown on the Council Members tab of the Our Team page. Drag to reorder."
+        fields:
+          - label: "Members"
+            name: "members"
+            widget: "list"
+            label_singular: "Council Member"
+            summary: "{{fields.name}}  ·  {{fields.role}}"
+            fields:
+              - { label: "Full Name", name: "name", widget: "string", hint: "Council member's name as displayed on the site" }
+              - { label: "Role", name: "role", widget: "select", options: ["Chairman", "Vice Chairman", "Council Member"], default: "Council Member", hint: "Chairman gets a gold accent on the site" }
+
+  # ==================================================================
+  #  CIRCUIT OFFICES
+  #  All 44 GPDC circuits + opt-out circuits — powers the Find My
+  #  Public Defender page, local office pages, and CPD listings
+  # ==================================================================
+  - name: "circuits"
+    label: "Circuit Offices"
+    description: "All 44 circuit public defender offices and opt-out circuits. Changes here update the Find My Defender page, local office pages, and CPD listings on the Our Team page."
+    files:
+      - name: "circuit_data"
+        label: "Circuit Directory"
+        file: "_data/circuits.json"
+        description: "The master list of circuit offices. Each entry powers a local office page, map search results, and CPD cards."
+        fields:
+          - label: "Circuit Offices"
+            name: "circuits"
+            widget: "list"
+            label_singular: "Circuit Office"
+            summary: "{{fields.circuit}}  ·  {{fields.defender}}  ·  {{fields.phone}}"
+            fields:
+              - { label: "Circuit Name", name: "circuit", widget: "string", hint: "Full name (e.g. 'Atlanta Circuit')" }
+              - label: "Counties Served"
+                name: "counties"
+                widget: "list"
+                label_singular: "County"
+                field: { label: "County", name: "county", widget: "string" }
+                hint: "All counties in this judicial circuit"
+              - { label: "URL Slug", name: "slug", widget: "string", hint: "Lowercase, hyphenated (e.g. 'atlanta-circuit'). Must match the local office page filename." }
+              - { label: "Circuit Public Defender", name: "defender", widget: "string", hint: "Current CPD's full name" }
+              - { label: "Main Office Address", name: "address", widget: "string", hint: "Full mailing address" }
+              - { label: "Phone", name: "phone", widget: "string", hint: "e.g. 404-612-5200" }
+              - { label: "Fax", name: "fax", widget: "string", required: false, hint: "e.g. 404-730-5856 — leave blank if none" }
+              - { label: "Description", name: "description", widget: "text", required: false, hint: "Brief description of the circuit and its coverage area" }
+              - label: "Branch Offices"
+                name: "additionalOffices"
+                widget: "list"
+                required: false
+                label_singular: "Branch Office"
+                summary: "{{fields.location}}"
+                hint: "Satellite or branch offices beyond the main location"
+                fields:
+                  - { label: "Location Name", name: "location", widget: "string", hint: "e.g. 'Walton County' or 'Juvenile Division'" }
+                  - { label: "Address", name: "address", widget: "string" }
+                  - { label: "Phone", name: "phone", widget: "string", required: false }
+                  - { label: "Fax", name: "fax", widget: "string", required: false }
+
+          - label: "Opt-Out Circuits"
+            name: "optOutCircuits"
+            widget: "list"
+            label_singular: "Opt-Out Circuit"
+            summary: "{{fields.circuit}}  ·  {{fields.counties}}"
+            hint: "Counties that run their own independent public defender offices outside of GPDC."
+            fields:
+              - { label: "Circuit Name", name: "circuit", widget: "string", hint: "e.g. 'Cobb Circuit'" }
+              - label: "Counties"
+                name: "counties"
+                widget: "list"
+                label_singular: "County"
+                field: { label: "County", name: "county", widget: "string" }
+              - { label: "Note", name: "note", widget: "string", hint: "Brief explanation (e.g. 'Cobb County operates its own public defender office independently.')" }
+
+  # ==================================================================
+  #  ANNOUNCEMENT BANNER
+  #  Site-wide banner shown at the top of every page
+  # ==================================================================
+  - name: "announcement"
+    label: "Announcement Banner"
+    description: "The colored banner at the top of every page. Use it for urgent news, event reminders, or important links."
+    files:
+      - name: "banner"
+        label: "Banner Settings"
         file: "_data/announcement.json"
         fields:
-          - label: "Enabled"
+          - label: "Show Banner"
             name: "enabled"
             widget: "boolean"
             default: true
-            hint: "Show/hide the announcement banner"
+            hint: "Toggle the banner on or off site-wide"
 
-          - label: "ID"
+          - label: "Banner ID"
             name: "id"
             widget: "string"
-            hint: "Unique ID (changing this resets dismissed state for all users)"
+            hint: "Unique ID — changing this resets the 'dismissed' state for all visitors so they see the banner again"
 
           - label: "Icon"
             name: "icon"
@@ -385,215 +493,214 @@ collections:
                 value: "alert"
               - label: "Info"
                 value: "info"
+            hint: "Small icon shown to the left of the banner text"
 
-          - label: "Text"
+          - label: "Banner Text"
             name: "text"
             widget: "string"
-            hint: "Banner message text"
+            hint: "The main message (keep it short — one line works best)"
 
-          - label: "Link Text"
+          - label: "Button Label"
             name: "linkText"
             widget: "string"
             required: false
-            hint: "e.g. Learn More, Register Now"
+            hint: "Text for the optional button (e.g. 'Register Now', 'Learn More')"
 
-          - label: "Link URL"
+          - label: "Button URL"
             name: "linkUrl"
             widget: "string"
             required: false
-            hint: "URL the link points to"
+            hint: "Where the button links to — use a full URL or a relative path like '/newsroom.html'"
 
-      # ==================== HERO IMAGES ====================
-      - name: "heroes"
-        label: "Hero Images"
+  # ==================================================================
+  #  PAGE HEROES
+  #  Background images and text for the hero section at the top of each page
+  # ==================================================================
+  - name: "heroes"
+    label: "Page Heroes"
+    description: "Background images and text for the hero banners at the top of each page."
+    files:
+      - name: "hero_images"
+        label: "Hero Images & Text"
         file: "_data/heroes.json"
-        description: "Background images and text for page hero sections"
+        description: "Each page has a hero banner with a background image and optional title/subtitle. Update images and text here."
         fields:
           - label: "Home"
             name: "home"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image", hint: "Hero background image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center", hint: "CSS object-position (e.g. center top, center center)" }
+              - { label: "Background Image", name: "image", widget: "image", hint: "Homepage hero image — recommended 1600×600px or larger" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center", hint: "CSS object-position — adjust how the image is cropped (e.g. 'center top', '30% center')" }
 
           - label: "About Us"
             name: "about"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
-              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false, hint: "Small text above the title (e.g. 'ABOUT US')" }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false, hint: "One-line description shown below the title" }
 
           - label: "Our Team"
             name: "team"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Divisions"
             name: "divisions"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Foundation"
             name: "foundation"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Clients & Families"
             name: "clients"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Find My Public Defender"
             name: "find-defender"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Apply for Representation"
             name: "apply"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "The Legal Process"
             name: "legal-process"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "FAQs"
             name: "faq"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Careers"
             name: "careers"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Available Positions"
             name: "positions"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Newsroom"
             name: "newsroom"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Contact Us"
             name: "contact"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
-              - { label: "Label", name: "label", widget: "string", required: false }
-              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Background Image", name: "image", widget: "image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Section Label", name: "label", widget: "string", required: false }
+              - { label: "Page Title", name: "title", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
 
           - label: "Division Default"
             name: "division-default"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image", hint: "Fallback hero for division pages" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Fallback Image", name: "image", widget: "image", hint: "Used when a division page doesn't have its own hero image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
 
           - label: "Circuit Default"
             name: "circuit-default"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image", hint: "Fallback hero for local office pages" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Fallback Image", name: "image", widget: "image", hint: "Used when a local office page doesn't have its own hero image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
 
           - label: "Article Default"
             name: "article-default"
             widget: "object"
             fields:
-              - { label: "Image", name: "image", widget: "image", hint: "Fallback hero for article pages" }
-              - { label: "Position", name: "position", widget: "string", default: "center center" }
+              - { label: "Fallback Image", name: "image", widget: "image", hint: "Used when an article doesn't have a cover image" }
+              - { label: "Image Position", name: "position", widget: "string", default: "center center" }
 
-      # ==================== OUR TEAM ====================
-      - name: "leadership"
-        label: "Our Team"
-        file: "_data/leadership.json"
-        description: "Directors and managers photos displayed on the Our Team page"
-        fields:
-          - label: "Team Members"
-            name: "members"
-            widget: "list"
-            label_singular: "Team Member"
-            fields:
-              - { label: "ID", name: "id", widget: "string", hint: "Short unique ID (e.g. oalli, dberry)" }
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Role", name: "role", widget: "select", options: ["Executive", "Director/Manager"], default: "Director/Manager", hint: "Executive = top leadership, Director/Manager = division directors & managers" }
-              - { label: "Photo", name: "photo", widget: "image" }
-
-      # ==================== DIVISION IMAGES (DIVISIONS & SERVICES) ====================
-      - name: "divisions_images"
-        label: "Division Images"
+  # ==================================================================
+  #  DIVISION IMAGES
+  #  Header images for the Divisions & Services page cards
+  # ==================================================================
+  - name: "division_images"
+    label: "Division Images"
+    description: "Header images for division cards on the Divisions & Services page. Director photos are managed in People & Teams > Leadership."
+    files:
+      - name: "division_images_data"
+        label: "Division Card Images"
         file: "_data/divisions.json"
-        description: "Header images for the Divisions & Services page. Director photos are managed in 'Our Team'."
+        description: "Each division card on the Divisions page has a background image. Update them here."
         fields:
           - label: "Divisions"
             name: "divisions"
             widget: "list"
             label_singular: "Division"
+            summary: "{{fields.slug}}"
             fields:
-              - { label: "Slug", name: "slug", widget: "string", hint: "URL slug (e.g. administration, appellate-defense)" }
-              - { label: "Header Image", name: "header_image", widget: "image", hint: "Background image on the division card" }
+              - { label: "Division Slug", name: "slug", widget: "string", hint: "URL slug — must match the division page filename (e.g. 'administration', 'appellate-defense')" }
+              - { label: "Card Header Image", name: "header_image", widget: "image", hint: "Background image displayed on the division card — recommended 800×400px" }

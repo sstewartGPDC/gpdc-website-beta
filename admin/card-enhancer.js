@@ -11,6 +11,8 @@
   // SVG icons
   var calIcon = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 7h12M5 1v4M11 1v4"/></svg>';
   var pinIcon = '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1C5.2 1 3 3.1 3 5.7 3 9.5 8 15 8 15s5-5.5 5-9.3C13 3.1 10.8 1 8 1zm0 6.4c-.9 0-1.6-.7-1.6-1.6S7.1 4.2 8 4.2s1.6.7 1.6 1.6S8.9 7.4 8 7.4z"/></svg>';
+  var personIcon = '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm0 1c-3 0-5.5 1.5-5.5 3v1.5h11V12c0-1.5-2.5-3-5.5-3z"/></svg>';
+  var phoneIcon = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 11.3v2a1.3 1.3 0 01-1.4 1.3A12.6 12.6 0 012 2.4 1.3 1.3 0 013.3 1h2a1.3 1.3 0 011.3 1.1c.08.6.23 1.2.45 1.8a1.3 1.3 0 01-.3 1.4l-.8.8a10.4 10.4 0 003.9 3.9l.8-.8a1.3 1.3 0 011.4-.3c.6.22 1.2.37 1.8.45A1.3 1.3 0 0114 11.3z"/></svg>';
 
   // Division label map
   var divLabels = {
@@ -24,6 +26,11 @@
     if (hash.indexOf('/collections/events') !== -1) return 'events';
     if (hash.indexOf('/collections/articles') !== -1) return 'articles';
     if (hash.indexOf('/collections/positions') !== -1) return 'positions';
+    if (hash.indexOf('/collections/people') !== -1) {
+      if (hash.indexOf('/council') !== -1) return 'council';
+      if (hash.indexOf('/leadership') !== -1) return 'leadership';
+    }
+    if (hash.indexOf('/collections/circuits') !== -1) return 'circuits';
     return null;
   }
 
@@ -119,6 +126,59 @@
       + '</div>';
   }
 
+  function buildCouncilCard(parts) {
+    var name = (parts[0] || '').trim();
+    var role = (parts[1] || '').trim();
+
+    var isChairman = role.toLowerCase().indexOf('chairman') !== -1;
+    var roleClass = isChairman ? 'gpdc-role-chairman' : 'gpdc-role-member';
+    var roleBadge = role
+      ? '<span class="gpdc-badge ' + roleClass + '">' + role + '</span>'
+      : '';
+
+    return '<div class="gpdc-entry">'
+      + '<span class="gpdc-title">' + name + '</span>'
+      + '<span class="gpdc-badges">' + roleBadge + '</span>'
+      + '</div>';
+  }
+
+  function buildLeadershipCard(parts) {
+    var name = (parts[0] || '').trim();
+    var role = (parts[1] || '').trim();
+    var title = (parts[2] || '').trim();
+
+    var isExec = role === 'Executive';
+    var roleClass = isExec ? 'gpdc-role-exec' : 'gpdc-role-director';
+    var roleBadge = role
+      ? '<span class="gpdc-badge ' + roleClass + '">' + role + '</span>'
+      : '';
+
+    return '<div class="gpdc-entry">'
+      + '<span class="gpdc-title">' + name + '</span>'
+      + '<span class="gpdc-badges">' + roleBadge + '</span>'
+      + '</div>'
+      + (title ? '<div style="font-size:11.5px;color:#888;margin-top:2px;">' + title + '</div>' : '');
+  }
+
+  function buildCircuitCard(parts) {
+    var circuit = (parts[0] || '').trim();
+    var defender = (parts[1] || '').trim();
+    var phone = (parts[2] || '').trim();
+
+    var defenderBadge = defender
+      ? '<span class="gpdc-badge gpdc-defender">' + personIcon + ' ' + defender + '</span>'
+      : '';
+
+    var phoneBadge = phone
+      ? '<span class="gpdc-badge gpdc-phone">' + phoneIcon + ' ' + phone + '</span>'
+      : '';
+
+    return '<div class="gpdc-entry">'
+      + '<span class="gpdc-title">' + circuit + '</span>'
+      + '<span class="gpdc-badges">' + defenderBadge + phoneBadge + '</span>'
+      + '</div>';
+  }
+
   function enhanceCards() {
     var collection = getActiveCollection();
     if (!collection) return;
@@ -165,6 +225,15 @@
           break;
         case 'positions':
           html = buildPositionCard(parts);
+          break;
+        case 'council':
+          html = buildCouncilCard(parts);
+          break;
+        case 'leadership':
+          html = buildLeadershipCard(parts);
+          break;
+        case 'circuits':
+          html = buildCircuitCard(parts);
           break;
       }
 

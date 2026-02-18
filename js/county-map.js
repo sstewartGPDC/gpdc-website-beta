@@ -277,6 +277,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Re-render when CMS circuit data overrides the hardcoded fallback
+window.addEventListener('circuitDataUpdated', function() {
+    renderCircuitDirectory(circuitData);
+    renderMobileCircuits(circuitData);
+});
+
 function loadMap() {
     var mapLoading = document.getElementById('mapLoading');
     var mapContainer = document.getElementById('mapContainer');

@@ -946,45 +946,7 @@
             </div>
 
             <div class="council-grid fade-in" id="council-grid">
-                <div class="council-card" style="animation-delay: 0s;">
-                    <h4>Chris Cohilas</h4>
-                    <p class="council-role chairman">Chairman</p>
-                </div>
-
-                <div class="council-card" style="animation-delay: 0.06s;">
-                    <h4>Judge Murphy Miller</h4>
-                    <p class="council-role">Council Member</p>
-                </div>
-
-                <div class="council-card" style="animation-delay: 0.12s;">
-                    <h4>E. Lee Morris</h4>
-                    <p class="council-role">Council Member</p>
-                </div>
-
-                <div class="council-card" style="animation-delay: 0.18s;">
-                    <h4>Lamar Paris</h4>
-                    <p class="council-role">Council Member</p>
-                </div>
-
-                <div class="council-card" style="animation-delay: 0.24s;">
-                    <h4>Carlos Rodriguez</h4>
-                    <p class="council-role">Council Member</p>
-                </div>
-
-                <div class="council-card" style="animation-delay: 0.3s;">
-                    <h4>Donna Seagraves</h4>
-                    <p class="council-role">Council Member</p>
-                </div>
-
-                <div class="council-card" style="animation-delay: 0.36s;">
-                    <h4>Edward D. Tolley</h4>
-                    <p class="council-role">Council Member</p>
-                </div>
-
-                <div class="council-card" style="animation-delay: 0.42s;">
-                    <h4>Johnny E. C. Vines</h4>
-                    <p class="council-role">Council Member</p>
-                </div>
+                <!-- Populated dynamically from council.json -->
             </div>
         </div>
     </section>
@@ -1090,7 +1052,7 @@
     <!-- Footer (loaded dynamically) -->
     <div id="site-footer"></div>
 
-    <script src="js/components.js?v=4"></script>
+    <script src="js/components.js?v=5"></script>
     <script src="js/main.js"></script>
     <script>
         // Fallback team member images (overridden by CMS data via window.teamImages)
@@ -1341,6 +1303,9 @@ ${message}`;
 
         // Initialize CPDs on page load
         document.addEventListener('DOMContentLoaded', populateCPDs);
+
+        // Re-render CPDs when CMS circuit data overrides the hardcoded fallback
+        window.addEventListener('circuitDataUpdated', populateCPDs);
 
         // Team tabs functionality
         document.querySelectorAll('.team-tabs .filter-btn').forEach(tab => {
