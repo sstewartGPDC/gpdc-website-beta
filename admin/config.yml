@@ -581,7 +581,7 @@ collections:
               - { label: "ID", name: "id", widget: "string", hint: "Short unique ID (e.g. oalli, dberry)" }
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Role", name: "role", widget: "select", options: ["executive", "director"], default: "director", hint: "Executive = top leadership, Director = division directors & managers" }
+              - { label: "Role", name: "role", widget: "select", options: ["Executive", "Director/Manager"], default: "Director/Manager", hint: "Executive = top leadership, Director/Manager = division directors & managers" }
               - { label: "Photo", name: "photo", widget: "image" }
 
       # ==================== DIVISION IMAGES (DIVISIONS & SERVICES) ====================

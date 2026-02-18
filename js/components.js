@@ -203,8 +203,8 @@
         window.teamImages = teamImagesMap;
 
         // Split members by role (preserve JSON order within each group)
-        var executives = members.filter(function(m) { return m.role === 'executive'; });
-        var directors = members.filter(function(m) { return m.role !== 'executive'; });
+        var executives = members.filter(function(m) { return m.role === 'Executive'; });
+        var directors = members.filter(function(m) { return m.role !== 'Executive'; });
 
         // Render featured executive card (first executive in the list)
         var featuredEl = document.getElementById('featuredExecutive');
