@@ -23,15 +23,26 @@ function parseFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return { data: {}, body: content };
   const data = {};
-  match[1].split('\n').forEach(line => {
+  const lines = match[1].split('\n');
+  let currentKey = null;
+
+  lines.forEach(line => {
     const m = line.match(/^(\w[\w_]*)\s*:\s*(.*)$/);
     if (m) {
+      currentKey = m[1];
       let val = m[2].trim();
       if (val === 'true') val = true;
       else if (val === 'false') val = false;
       else if (/^\d{4}-\d{2}-\d{2}$/.test(val)) val = val; // keep date as string
       else if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
-      data[m[1]] = val;
+      else if (val.startsWith("'") && val.endsWith("'") && val.length >= 2) val = val.slice(1, -1);
+      data[currentKey] = val;
+    } else if (currentKey && /^\s+/.test(line)) {
+      // Continuation line (indented) — append to current key
+      const continuation = line.trim();
+      if (continuation && typeof data[currentKey] === 'string') {
+        data[currentKey] += ' ' + continuation;
+      }
     }
   });
   return { data, body: match[2].trim() };
@@ -235,21 +246,24 @@ if (fs.existsSync(newsroomPath)) {
   // Find the featured article (first one with featured: true, or newest)
   const featured = articles.find(a => a.featured === true) || articles[0];
 
-  // Build featured article HTML
+  // Build featured article HTML — matches existing newsroom.html card structure
   const featuredHtml = `<a href="articles/${featured.slug}.html" class="featured-article" data-category="${categorySlug(featured.category)}">
                 <div class="featured-image">
-                    <span class="featured-badge">Featured</span>
-                    ${featured.image ? `<img src="${featured.image}" alt="${(featured.image_alt || featured.title).replace(/"/g, '&quot;')}">` : ''}
+                    <img src="${featured.image || ''}" alt="${(featured.image_alt || featured.title).replace(/"/g, '&quot;')}">
                 </div>
                 <div class="featured-content">
-                    <div class="featured-meta">
-                        <span class="featured-category">${featured.category}</span>
-                        <span class="featured-date">${formatDate(featured.date)}</span>
-                    </div>
+                    <span class="featured-badge">Featured</span>
                     <h2>${featured.title}</h2>
+                    <div class="featured-meta">
+                        <span class="featured-category">${featured.category || 'News'}</span>
+                        <span class="featured-meta-sep">&bull;</span>
+                        <span class="featured-date">${formatDate(featured.date)}</span>
+                        <span class="featured-meta-sep">&bull;</span>
+                        <span class="featured-read-time">${readingTime(featured.body)}</span>
+                    </div>
                     <p class="featured-excerpt">${featured.excerpt || featured.description || ''}</p>
                     <span class="read-more">
-                        Read Full Article
+                        Read Article
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -263,33 +277,37 @@ if (fs.existsSync(newsroomPath)) {
     const hidden = i >= 6 ? ' hidden' : '';
     return `                <a href="articles/${a.slug}.html" class="news-card${hidden}" data-category="${categorySlug(a.category)}">
                     <div class="card-image">
-                        <span class="card-category">${a.category}</span>
+                        <span class="card-category">${a.category || 'News'}</span>
                         ${a.image ? `<img loading="lazy" src="${a.image}" alt="${(a.image_alt || a.title).replace(/"/g, '&quot;')}">` : ''}
                     </div>
                     <div class="card-content">
-                        <div class="card-date">${formatDate(a.date)}</div>
+                        <div class="card-meta">
+                            <span class="card-meta-category">${a.category || 'News'}</span>
+                            <span class="card-meta-sep">&bull;</span>
+                            <span class="card-date">${formatDate(a.date)}</span>
+                        </div>
                         <h3>${a.title}</h3>
                         <p class="card-excerpt">${a.excerpt || a.description || ''}</p>
-                        <span class="card-link">
-                            Read More
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </span>
+                        <div class="card-footer">
+                            <span class="card-read-time">${readingTime(a.body)}</span>
+                            <span class="card-link">Read Article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
                     </div>
                 </a>`;
   }).join('\n\n');
 
   // Replace featured article section
+  // Match from the featured article comment to just before <!-- Section Header -->
   newsroom = newsroom.replace(
-    /<!-- Featured Article -->\s*<a href="articles\/[^"]*"[\s\S]*?<\/a>\s*(?=\n\s*<!-- Section Header -->)/,
-    `<!-- Featured Article -->\n            ${featuredHtml}\n\n            `
+    /<!-- Featured Article[^>]*-->\s*<a href="articles\/[^"]*"[\s\S]*?<\/a>\s*(?=\n\s*(?:<!-- Section Header -->|\s*<div class="section-header"))/,
+    `<!-- Featured Article — Editorial Lead -->\n            ${featuredHtml}\n\n            `
   );
 
   // Replace news grid contents
+  // Match from opening grid div through all cards to the closing </div> before <!-- Load More -->
   newsroom = newsroom.replace(
-    /(<div class="news-grid" id="newsGrid">)[\s\S]*?(<\/div>\s*\n\s*<!-- No Results -->)/,
-    `$1\n${cardsHtml}\n            $2`
+    /(<div class="news-grid" id="newsGrid">)[\s\S]*?(<\/div>\s*\n\s*(?:<!-- Load More -->|<!-- No Results))/,
+    `$1\n${cardsHtml}\n            </div>\n\n            <!-- Load More -->`
   );
 
   fs.writeFileSync(newsroomPath, newsroom);
@@ -297,7 +315,7 @@ if (fs.existsSync(newsroomPath)) {
 }
 
 // ——————————————————————————————
-// 3. Update homepage featured article
+// 3. Update homepage editorial newsroom section
 // ——————————————————————————————
 
 const indexPath = path.join(__dirname, 'index.html');
@@ -305,36 +323,67 @@ if (fs.existsSync(indexPath)) {
   let index = fs.readFileSync(indexPath, 'utf-8');
   const featured = articles.find(a => a.featured === true) || articles[0];
 
-  // Update the featured article link on homepage if it exists
-  // Look for the newsroom section with featured article
-  const featuredLinkRegex = /<a\s+href="articles\/[^"]*\.html"\s+class="featured-article"/;
-  if (featuredLinkRegex.test(index)) {
-    index = index.replace(
-      /<a\s+href="articles\/[^"]*\.html"\s+class="featured-article"[\s\S]*?<\/a>/,
-      `<a href="articles/${featured.slug}.html" class="featured-article" data-category="${categorySlug(featured.category)}">
-                <div class="featured-image">
-                    <span class="featured-badge">Featured</span>
-                    ${featured.image ? `<img src="${featured.image}" alt="${(featured.image_alt || featured.title).replace(/"/g, '&quot;')}">` : ''}
+  // Update the featured (lead) story on homepage
+  const editorialLeadRegex = /<!-- Featured Story[^>]*-->\s*<a href="articles\/[^"]*"[\s\S]*?<\/a>\s*(?=\n\s*<!-- Secondary Stories -->)/;
+  if (editorialLeadRegex.test(index)) {
+    const leadHtml = `<!-- Featured Story — Hero -->
+            <a href="articles/${featured.slug}.html" class="editorial-lead fade-in">
+                <div class="editorial-lead-image">
+                    <img loading="lazy" src="${featured.image || ''}" alt="${(featured.image_alt || featured.title).replace(/"/g, '&quot;')}">
                 </div>
-                <div class="featured-content">
-                    <div class="featured-meta">
-                        <span class="featured-category">${featured.category}</span>
-                        <span class="featured-date">${formatDate(featured.date)}</span>
+                <div class="editorial-lead-overlay">
+                    <span class="editorial-badge">Featured</span>
+                    <h2 class="editorial-lead-headline">${featured.title}</h2>
+                    <div class="editorial-lead-meta">
+                        <span class="editorial-meta-category">${featured.category || 'News'}</span>
+                        <span class="editorial-meta-sep">&bull;</span>
+                        <span class="editorial-meta-date">${formatDate(featured.date)}</span>
+                        <span class="editorial-meta-sep">&bull;</span>
+                        <span class="editorial-meta-read">${readingTime(featured.body)}</span>
                     </div>
-                    <h2>${featured.title}</h2>
-                    <p class="featured-excerpt">${featured.excerpt || featured.description || ''}</p>
-                    <span class="read-more">
-                        Read Full Article
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
+                    <p class="editorial-lead-excerpt">${featured.excerpt || featured.description || ''}</p>
+                    <span class="editorial-lead-read-btn">Read Article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                 </div>
-            </a>`
-    );
-    fs.writeFileSync(indexPath, index);
+            </a>
+
+            `;
+    index = index.replace(editorialLeadRegex, leadHtml);
     console.log(`  ✓ index.html updated (featured article)`);
   }
+
+  // Update secondary stories (next 3 articles after featured)
+  const secondaryArticles = articles.filter(a => a.slug !== featured.slug).slice(0, 3);
+  const secondaryRegex = /<!-- Secondary Stories -->\s*<div class="editorial-secondary fade-in">[\s\S]*?<\/div>\s*(?=\n\s*<!-- Bottom rule)/;
+  if (secondaryRegex.test(index) && secondaryArticles.length > 0) {
+    const storiesHtml = secondaryArticles.map(a => {
+      return `                <a href="articles/${a.slug}.html" class="editorial-story">
+                    <div class="editorial-story-image">
+                        <img loading="lazy" src="${a.image || ''}" alt="${(a.image_alt || a.title).replace(/"/g, '&quot;')}">
+                    </div>
+                    <div class="editorial-story-body">
+                        <div class="editorial-story-meta">
+                            <span class="editorial-meta-category">${a.category || 'News'}</span>
+                            <span class="editorial-meta-sep">&bull;</span>
+                            <span class="editorial-meta-date">${formatDate(a.date)}</span>
+                        </div>
+                        <h3 class="editorial-story-headline">${a.title}</h3>
+                        <p class="editorial-story-excerpt">${a.excerpt || a.description || ''}</p>
+                        <div class="editorial-story-footer">
+                            <span class="editorial-meta-read">${readingTime(a.body)}</span>
+                            <span class="editorial-read-btn">Read Article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </div>
+                </a>`;
+    }).join('\n\n');
+
+    index = index.replace(
+      secondaryRegex,
+      `<!-- Secondary Stories -->\n            <div class="editorial-secondary fade-in">\n${storiesHtml}\n            </div>\n\n            `
+    );
+    console.log(`  ✓ index.html updated (${secondaryArticles.length} secondary stories)`);
+  }
+
+  fs.writeFileSync(indexPath, index);
 }
 
 // ——————————————————————————————
