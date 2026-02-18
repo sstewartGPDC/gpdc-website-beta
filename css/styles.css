@@ -2544,9 +2544,9 @@ body.nav-open {
 }
 
 .support-card p {
-    font-size: 0.8125rem;
+    font-size: 0.9375rem;
     color: var(--text-medium);
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 /* ==================== FINDER SECTION ==================== */
