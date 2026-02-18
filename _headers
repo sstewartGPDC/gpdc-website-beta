@@ -1,0 +1,39 @@
+# Cloudflare Pages Headers
+# See: https://developers.cloudflare.com/pages/configuration/headers/
+
+# Security headers for all pages
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Cache static assets aggressively
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache most JS aggressively (libraries, components, main)
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# EXCEPT auto-generated files — bust cache on every deploy
+/js/events-data.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Don't cache HTML (so updates appear immediately)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Don't cache admin panel
+/admin/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Don't cache data files (announcement, leadership, circuits, etc.)
+/_data/*
+  Cache-Control: public, max-age=0, must-revalidate
