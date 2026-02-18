@@ -6,6 +6,7 @@ date: 2026-02-10
 featured: true
 image: /images/uploads/1Q8A8034-2048x1365.jpg
 image_alt: Retired Circuit Public Defender of the Augusta Judicial Circuit, Kate Mason, with Executive Director Omotayo Alli.
+image_position: center center
 excerpt: Katherine “Kate” Mason, a longtime Augusta public defender and former statewide leader with the Georgia Public Defender Council (GPDC), was honored at a retirement celebration. Lee Prescott brings more than two decades of public defense and leadership experience.
 ---
 
