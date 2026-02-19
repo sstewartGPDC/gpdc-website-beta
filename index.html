@@ -120,6 +120,7 @@
             </div>
 
             <div class="events-timeline-footer fade-in">
+                <div class="editorial-rule"></div>
                 <a href="divisions/training.html#events" class="editorial-more-link">
                     <span>Full Calendar</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -177,13 +178,13 @@
             inset: 0;
             background: linear-gradient(
                 to top,
-                rgba(15, 15, 15, 0.92) 0%,
-                rgba(15, 15, 15, 0.55) 50%,
+                rgba(15, 15, 15, 0.88) 0%,
+                rgba(15, 15, 15, 0.3) 45%,
                 rgba(15, 15, 15, 0.02) 100%
             );
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: space-between;
             padding: 2.5rem;
         }
 
@@ -199,7 +200,12 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             border-radius: 50px;
-            margin-bottom: 1rem;
+            margin-bottom: 0;
+            align-self: flex-start;
+        }
+
+        .editorial-lead-excerpt {
+            display: none;
         }
 
         .editorial-lead-headline {
@@ -458,10 +464,6 @@
             .editorial-lead-headline {
                 font-size: 2rem;
             }
-
-            .editorial-lead-excerpt {
-                font-size: 0.9rem;
-            }
         }
 
         @media (max-width: 900px) {
@@ -506,11 +508,7 @@
             }
 
             .editorial-lead-excerpt {
-                font-size: 0.85rem;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+                display: none;
             }
 
             .editorial-story {
@@ -842,6 +840,10 @@
         .events-timeline-footer {
             text-align: center;
             padding-top: 1.5rem;
+        }
+
+        .events-timeline-footer .editorial-rule {
+            margin-bottom: 1.5rem;
         }
 
         /* ==================== EVENT MODAL ==================== */
