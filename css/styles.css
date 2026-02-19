@@ -926,6 +926,25 @@ h1, h2, h3, h4 {
     animation: fadeSlideUp 0.8s var(--ease-out) 0.6s forwards;
 }
 
+/* Glassmorphic FMPD button — desktop hero */
+.hero-fmpd-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.hero-fmpd-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    color: white;
+    transform: translateY(-1px);
+}
+
 /* Hero FMPD Inline Search — mobile only */
 .hero-fmpd-search {
     display: none;
