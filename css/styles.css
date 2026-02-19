@@ -3965,7 +3965,7 @@ body.nav-open {
 /* ==================== MILESTONES SIDEBAR ==================== */
 .newsroom-layout {
     display: grid;
-    grid-template-columns: minmax(0, 860px) 260px;
+    grid-template-columns: 260px minmax(0, 860px);
     gap: 2.5rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -3973,14 +3973,9 @@ body.nav-open {
 }
 
 .milestones-sidebar {
-    order: 2;
     position: sticky;
     top: 150px;
     align-self: start;
-}
-
-.newsroom-content {
-    order: 1;
 }
 
 .milestones-panel {
