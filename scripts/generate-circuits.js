@@ -35,7 +35,10 @@ const icons = {
     apply: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>',
     clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
     fax: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>',
-    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    newspaper: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><line x1="10" y1="6" x2="18" y2="6"/><line x1="10" y1="10" x2="18" y2="10"/><line x1="10" y1="14" x2="14" y2="14"/></svg>',
+    briefcase: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>',
+    chevron: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'
 };
 
 // ── Helpers ─────────────────────────────────────────────────────────────
@@ -222,18 +225,26 @@ ${countyBadges}
         </div>
     </section>
 ${additionalOfficesHtml}
-    <section class="circuit-news section-animate">
-        <div class="circuit-container">
-            <h2 class="circuit-section-title fade-in">News From Around the Circuits</h2>
-            <article class="news-article fade-in">
-                <div class="news-article-image"><img loading="lazy" src="https://cdn.prod.website-files.com/66c9595306b0d169d1677ecc/684200c524675d5f75d8021d_Leadership%20Academy%20Graduation-10%20Large.jpeg" alt="GPDC News"></div>
-                <div class="news-article-content">
-                    <div class="news-article-meta"><span class="news-article-date">March 17, 2025</span><a href="../newsroom.html" class="news-article-category">Local Offices</a></div>
-                    <h3 class="news-article-title">Georgia Public Defender Council Installs New Leaders</h3>
-                    <p class="news-article-excerpt">During a recent biannual Circuit Public Defender meeting, Executive Director Omotayo Alli installed new Circuit Public Defenders across the state.</p>
-                    <a href="../newsroom.html" class="link-arrow">Read ${icons.arrow}</a>
-                </div>
-            </article>
+    <section class="circuit-cta section-animate">
+        <div class="circuit-cta-inner">
+            <div class="circuit-cta-grid fade-in">
+                <a href="../newsroom.html" class="circuit-cta-card circuit-cta-card--news">
+                    <div class="circuit-cta-icon">${icons.newspaper}</div>
+                    <div class="circuit-cta-text">
+                        <h3>Latest News</h3>
+                        <p>Updates from GPDC and across Georgia's public defender circuits.</p>
+                    </div>
+                    <span class="circuit-cta-arrow">${icons.chevron}</span>
+                </a>
+                <a href="../careers.html" class="circuit-cta-card circuit-cta-card--careers">
+                    <div class="circuit-cta-icon">${icons.briefcase}</div>
+                    <div class="circuit-cta-text">
+                        <h3>Career Opportunities</h3>
+                        <p>Join our team and make a difference in public defense.</p>
+                    </div>
+                    <span class="circuit-cta-arrow">${icons.chevron}</span>
+                </a>
+            </div>
         </div>
     </section>
 
