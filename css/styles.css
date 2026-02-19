@@ -926,8 +926,9 @@ h1, h2, h3, h4 {
     animation: fadeSlideUp 0.8s var(--ease-out) 0.6s forwards;
 }
 
-/* Hero FMPD Inline Search */
+/* Hero FMPD Inline Search — mobile only */
 .hero-fmpd-search {
+    display: none;
     max-width: 420px;
     margin-top: 1.5rem;
     opacity: 0;
@@ -3834,6 +3835,14 @@ body.nav-open {
     /* Reduce hero title size on mobile */
     .hero-title {
         font-size: clamp(2rem, 5.5vw, 2.75rem);
+    }
+
+    /* Show FMPD search widget on mobile, hide button */
+    .hero-fmpd-btn {
+        display: none;
+    }
+    .hero-fmpd-search {
+        display: block;
     }
 
     .quick-links {

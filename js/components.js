@@ -574,7 +574,7 @@
                     '<div class="fmpd-result-county">' + r.note + '</div>' +
                     '</div>';
             }
-            var href = basePath + 'circuits/' + r.slug + '.html';
+            var href = basePath + 'local-offices/' + r.slug + '.html';
             return '<a href="' + href + '" class="fmpd-result-item">' +
                 '<div class="fmpd-result-circuit">' + r.circuit + '</div>' +
                 '<div class="fmpd-result-county">' + r.county + ' County — ' + r.defender + '</div>' +
