@@ -124,9 +124,9 @@ ${officeCards}
                     </div>`;
     }
 
-    // Build county badges
+    // Build county badges (inside hero)
     const countyBadges = counties.map(c =>
-        `                    <span class="circuit-county-badge">${escapeHtml(c)} County</span>`
+        `                <span class="circuit-county-badge">${escapeHtml(c)} County</span>`
     ).join('\n');
 
     return `<!DOCTYPE html>
@@ -155,6 +155,9 @@ ${officeCards}
             <p class="label circuit-hero-label">LOCAL OFFICE</p>
             <h1 class="circuit-hero-title">${escapeHtml(circuitName)}</h1>
             <p class="circuit-hero-subtitle">${countyLabel(countyCount)}</p>
+            <div class="circuit-hero-counties">
+${countyBadges}
+            </div>
         </div>
     </section>
 
@@ -180,15 +183,6 @@ ${officeCards}
                 <span class="circuit-action-label">Apply</span>
                 <span class="circuit-action-detail">Request a defender</span>
             </a>
-        </div>
-    </section>
-
-    <section class="circuit-counties section-animate">
-        <div class="circuit-container">
-            <h2 class="circuit-section-title fade-in">Counties Served</h2>
-            <div class="circuit-county-badges fade-in">
-${countyBadges}
-            </div>
         </div>
     </section>
 

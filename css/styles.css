@@ -1163,7 +1163,7 @@ h1, h2, h3, h4 {
 .circuit-hero-content {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 8rem 1.5rem 4rem;
+    padding: 8rem 1.5rem 5rem;
     color: white;
 }
 
@@ -1494,17 +1494,15 @@ section {
     font-weight: 500;
 }
 
-/* County badges */
-.circuit-counties {
-    padding: 2rem 1.5rem;
-    background: var(--bg-white);
-}
-
-.circuit-county-badges {
+/* County badges (inside hero) */
+.circuit-hero-counties {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 0.75rem;
+    margin-top: 1.25rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideUp 0.8s var(--ease-out) 0.9s forwards;
 }
 
 .circuit-county-badge {
@@ -1514,19 +1512,20 @@ section {
     font-size: 0.8125rem;
     font-weight: 600;
     border-radius: 50px;
-    background: var(--primary-subtle);
-    color: var(--primary);
-    border: 1.5px solid rgba(184, 92, 56, 0.15);
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     transition: all 0.3s var(--ease-out);
     letter-spacing: 0.01em;
 }
 
 .circuit-county-badge:hover {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
+    background: rgba(255,255,255,0.9);
+    color: var(--text-dark);
+    border-color: rgba(255,255,255,0.9);
     transform: translateY(-1px);
-    box-shadow: var(--shadow-btn);
 }
 
 /* Two-column map + office info */
@@ -1656,9 +1655,6 @@ a.circuit-contact-value:hover {
     .circuit-detail-map iframe {
         min-height: 280px;
     }
-    .circuit-counties {
-        padding: 1.5rem 1.25rem;
-    }
     .circuit-additional {
         padding: 3rem 1.25rem;
     }
@@ -1685,11 +1681,10 @@ a.circuit-contact-value:hover {
         box-shadow: var(--shadow-md);
     }
     .circuit-county-badge:hover {
-        background: var(--primary-subtle);
-        color: var(--primary);
-        border-color: rgba(184, 92, 56, 0.15);
+        background: rgba(255,255,255,0.15);
+        color: rgba(255,255,255,0.9);
+        border-color: rgba(255,255,255,0.25);
         transform: none;
-        box-shadow: none;
     }
 }
 
