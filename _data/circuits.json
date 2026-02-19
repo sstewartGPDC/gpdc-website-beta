@@ -1,58 +1,954 @@
 {
   "circuits": [
-    { "circuit": "Alapaha Circuit", "counties": ["Atkinson", "Berrien", "Clinch", "Cook", "Lanier"], "slug": "alapaha-circuit", "defender": "Gabriel Cason", "address": "105 North Parrish Ave, Adel, GA 31620", "phone": "229-896-2858", "fax": "229-896-2875", "description": "The Alapaha Judicial Circuit is located in southern Georgia and encompasses five counties: Atkinson, Berrien, Clinch, Cook, and Lanier. This circuit primarily covers rural areas known for their agricultural landscapes and small-town charm." },
-    { "circuit": "Alcovy Circuit", "counties": ["Newton", "Walton"], "slug": "alcovy-circuit", "defender": "Anthony Carter", "address": "1160 Pace St, Covington, GA 30014", "phone": "770-788-3750", "fax": "770-788-3757", "additionalOffices": [{ "location": "Walton County", "address": "303 S. Hammond Dr., Suite 98, Monroe, GA 30655", "phone": "770-266-1540", "fax": "770-266-1545" }], "description": "The Alcovy Judicial Circuit serves Newton and Walton Counties in the north-central Piedmont region of Georgia, providing public defense services to communities east of metropolitan Atlanta." },
-    { "circuit": "Appalachian Circuit", "counties": ["Fannin", "Gilmer", "Pickens"], "slug": "appalachian-circuit", "defender": "Clint Hooker", "address": "1 Broad St, Ste 001, Ellijay, GA 30540", "phone": "706-698-7322", "fax": "706-698-7333", "description": "The Appalachian Judicial Circuit covers three mountainous counties in north Georgia: Fannin, Gilmer, and Pickens. The circuit is known for its scenic beauty and outdoor recreation." },
-    { "circuit": "Atlanta Circuit", "counties": ["Fulton"], "slug": "atlanta-circuit", "defender": "Maurice Kenner", "address": "100 Peachtree Street, NW, Suite 1600, Atlanta, GA 30303", "phone": "404-612-5200", "fax": "404-730-5856", "description": "The Atlanta Judicial Circuit is located in north-central Georgia and encompasses Fulton County. This circuit covers a highly urbanized area, including the city of Atlanta, the state's capital and largest city." },
-    { "circuit": "Atlantic Circuit", "counties": ["Bryan", "Evans", "Liberty", "Long", "McIntosh", "Tattnall"], "slug": "atlantic-circuit", "defender": "Joshua Brockington", "address": "201 South Main Street, Suite 2400, Hinesville, GA 31313", "phone": "912-369-6338", "fax": "912-369-8327", "additionalOffices": [{ "location": "Bryan County", "address": "P.O. Box 1270, Pembroke, GA 31321", "phone": "912-653-4605" }, { "location": "McIntosh County", "address": "102 Madison Street, Darien, GA 31305", "phone": "912-437-3880" }, { "location": "Tattnall County", "address": "108 W. Brazell St, Suite 321, Reidsville, GA 30453", "phone": "912-557-4426", "fax": "912-557-4428" }, { "location": "Appling/Jeff Davis/Wayne Counties", "address": "241 East Walnut Street, Jesup, GA 31598", "phone": "912-427-9066" }], "description": "The Atlantic Judicial Circuit serves six coastal and near-coastal counties in southeastern Georgia, including the area surrounding Fort Stewart military installation." },
-    { "circuit": "Augusta Circuit", "counties": ["Burke", "Richmond"], "slug": "augusta-circuit", "defender": "Lee Prescott", "address": "902 Greene Street, Augusta, GA 30901", "phone": "706-312-5105", "description": "The Augusta Judicial Circuit encompasses two counties in the Central Savannah River Area, including Georgia's second-largest city, Augusta." },
-    { "circuit": "Brunswick Circuit", "counties": ["Appling", "Camden", "Glynn", "Jeff Davis", "Wayne"], "slug": "brunswick-circuit", "defender": "Stephen Tillman", "address": "11 Judicial Lane, Suite 111, Brunswick, GA 31520", "phone": "912-554-7072", "fax": "912-279-2964", "additionalOffices": [{ "location": "Camden County", "address": "403 Georgia Avenue, Woodbine, GA 31569", "phone": "912-673-9488" }, { "location": "Appling/Jeff Davis/Wayne Counties", "address": "241 East Walnut Street, Jesup, GA 31598", "phone": "912-427-9066" }], "description": "The Brunswick Judicial Circuit covers five counties along Georgia's southeastern coast, including the historic port city of Brunswick and the Golden Isles." },
-    { "circuit": "Chattahoochee Circuit", "counties": ["Chattahoochee", "Harris", "Marion", "Muscogee", "Talbot", "Taylor"], "slug": "chattahoochee-circuit", "defender": "T. Moffett Flournoy", "address": "420 10th Street, Ste 001, Columbus, GA 31901", "phone": "706-653-4301", "fax": "706-225-4309", "description": "The Chattahoochee Judicial Circuit serves six counties in west-central Georgia, including Columbus, the state's third-largest city." },
-    { "circuit": "Cherokee Circuit", "counties": ["Bartow", "Gordon"], "slug": "cherokee-circuit", "defender": "Christopher Paul", "address": "128 W. Cherokee Ave, Cartersville, GA 30120", "phone": "678-721-3254", "fax": "678-721-3255", "description": "The Cherokee Judicial Circuit covers Bartow and Gordon Counties in northwest Georgia, an area with a rich history in the Cherokee Nation." },
-    { "circuit": "Clayton Circuit", "counties": ["Clayton"], "slug": "clayton-circuit", "defender": "Douglas Smith", "address": "6525 Professional Place, Riverdale, GA 30274", "phone": "678-479-5036", "fax": "678-479-5037", "description": "The Clayton Judicial Circuit serves Clayton County, located south of Atlanta and home to Hartsfield-Jackson Atlanta International Airport." },
-    { "circuit": "Conasauga Circuit", "counties": ["Murray", "Whitfield"], "slug": "conasauga-circuit", "defender": "Amanda McCoy", "address": "121 North 4th Avenue, Chatsworth, GA 30705", "phone": "706-517-8547", "fax": "706-517-7405", "additionalOffices": [{ "location": "Whitfield County", "address": "214 W. King Street, Dalton, GA 30720", "phone": "706-876-1576", "fax": "706-876-1528" }], "description": "The Conasauga Judicial Circuit serves Murray and Whitfield Counties in northwest Georgia, known as the 'Carpet Capital of the World.'" },
-    { "circuit": "Columbia Circuit", "counties": ["Columbia"], "slug": "columbia-circuit", "defender": "Mack Taylor", "address": "7045 Evans Town Center Boulevard, 3rd Floor, Evans, GA 30209", "phone": "706-447-6750", "description": "The Columbia Judicial Circuit serves Columbia County in east Georgia." },
-    { "circuit": "Cordele Circuit", "counties": ["Ben Hill", "Crisp", "Dooly", "Wilcox"], "slug": "cordele-circuit", "defender": "Kyle Hollomon", "address": "716-B 16th Avenue East, Cordele, GA 31015", "phone": "229-426-5091", "fax": "229-426-5093", "description": "The Cordele Judicial Circuit covers four counties in south-central Georgia, an agricultural region known for its watermelon production." },
-    { "circuit": "Coweta Circuit", "counties": ["Coweta", "Meriwether", "Troup"], "slug": "coweta-circuit", "defender": "Ricardo Samper", "address": "8B Madison Street, Newnan, GA 30263", "phone": "770-254-2704", "fax": "770-254-2706", "additionalOffices": [{ "location": "Meriwether County", "address": "126 North Court Square, Greenville, GA 30222", "phone": "706-672-2056" }, { "location": "Troup County", "address": "134 Bull St, LaGrange, GA 30240", "phone": "706-883-3000", "fax": "706-883-3004" }], "description": "The Coweta Judicial Circuit serves three counties in west Georgia, including the cities of Newnan and LaGrange." },
-    { "circuit": "Dekalb Circuit", "counties": ["DeKalb"], "slug": "dekalb-circuit", "defender": "Letitia Delan", "address": "320 Church Street, Decatur, GA 30030", "phone": "404-371-2222", "fax": "404-371-2298", "description": "The Dekalb Judicial Circuit serves DeKalb County, one of Georgia's most populous and diverse counties, located east of Atlanta." },
-    { "circuit": "Dougherty Circuit", "counties": ["Dougherty"], "slug": "dougherty-circuit", "defender": "Troy Golden", "address": "225 Pine Avenue, Room 100, Albany, GA 31701", "phone": "229-483-6240", "fax": "229-438-3927", "description": "The Dougherty Judicial Circuit serves Dougherty County in southwest Georgia, home to the city of Albany, a regional hub for commerce and healthcare." },
-    { "circuit": "Dublin Circuit", "counties": ["Johnson", "Laurens", "Treutlen", "Twiggs"], "slug": "dublin-circuit", "defender": "Clay Tapley", "address": "1506 Bellvue Rd, Dublin, GA 31021", "phone": "478-272-7210", "fax": "478-272-3378", "description": "The Dublin Judicial Circuit covers four counties in central Georgia, centered around the city of Dublin." },
-    { "circuit": "Eastern Circuit", "counties": ["Chatham"], "slug": "eastern-circuit", "defender": "Todd Martin", "address": "222 W Oglethorpe Ave, Suite 130, Savannah, GA 31401", "phone": "912-447-4901", "fax": "912-447-4909", "additionalOffices": [{ "location": "Juvenile Division", "address": "197 Carl Griffin Dr, Savannah, GA 31405", "phone": "912-652-6904", "fax": "912-652-6923" }], "description": "The Eastern Judicial Circuit serves Chatham County, home to the historic city of Savannah and Georgia's busiest seaport." },
-    { "circuit": "Enotah Circuit", "counties": ["Lumpkin", "Towns", "Union", "White"], "slug": "enotah-circuit", "defender": "Penny Hunter", "address": "194 Courthouse Hill, Annex B, Dahlonega, GA 30533", "phone": "706-864-1555", "fax": "706-864-1367", "additionalOffices": [{ "location": "Towns County", "address": "48 River St, Ste 1, Hiawassee, GA 30546", "phone": "706-896-7819", "fax": "706-896-8441" }, { "location": "Union County", "address": "65 Courthouse Street, Suite 265, Blairsville, GA 30512", "phone": "706-745-8156", "fax": "706-745-8166" }, { "location": "White County", "address": "59 South Main Street, Suite C, Cleveland, GA 30528", "phone": "706-348-8577", "fax": "706-348-8578" }], "description": "The Enotah Judicial Circuit covers four mountain counties in northeast Georgia, including popular tourist destinations in the Blue Ridge Mountains." },
-    { "circuit": "Flint Circuit", "counties": ["Henry"], "slug": "flint-circuit", "defender": "Jennifer Lewis", "address": "30 Atlanta Street, McDonough, GA 30253", "phone": "770-288-7460", "fax": "770-288-7468", "description": "The Flint Judicial Circuit serves Henry County, a rapidly growing suburban community south of Atlanta." },
-    { "circuit": "Griffin Circuit", "counties": ["Fayette", "Pike", "Spalding", "Upson"], "slug": "griffin-circuit", "defender": "William Imhoff", "address": "175 Johnson Ave, Ste 001, Fayetteville, GA 30214", "phone": "770-716-4340", "fax": "770-460-8685", "additionalOffices": [{ "location": "Pike/Spalding Counties", "address": "141 West Solomon Street, Suite 4099, Griffin, GA 30224", "phone": "770-467-4725", "fax": "770-467-4724" }, { "location": "Upson County", "address": "715 Andrews Drive, Thomaston, GA 30286", "phone": "706-647-7020", "fax": "706-647-7032" }], "description": "The Griffin Judicial Circuit covers four counties in west-central Georgia, including the city of Griffin, known for its textile history." },
-    { "circuit": "Lookout Mountain Circuit", "counties": ["Catoosa", "Chattooga", "Dade", "Walker"], "slug": "lookout-mountain-circuit", "defender": "Jad Johnson", "address": "72 Millennium Circle, Ringgold, GA 30736", "phone": "706-935-3400", "fax": "706-935-3582", "additionalOffices": [{ "location": "Chattooga County", "address": "10035 Commerce Street, Summerville, GA 30747", "phone": "706-857-9243", "fax": "706-857-9218" }, { "location": "Dade County", "address": "111 Railway Lane, Trenton, GA 30752", "phone": "706-657-2602", "fax": "706-657-2744" }, { "location": "Walker County", "address": "101 Napier Street, LaFayette, GA 30739", "phone": "706-638-3290", "fax": "706-638-7331" }], "description": "The Lookout Mountain Judicial Circuit covers four counties in Georgia's northwest corner, including areas near Lookout Mountain and Chickamauga Battlefield." },
-    { "circuit": "Macon Circuit", "counties": ["Bibb", "Crawford", "Peach"], "slug": "macon-circuit", "defender": "Rick Waller Jr.", "address": "201 Second Street, Ste 550, Macon, GA 31201", "phone": "478-621-5950", "fax": "478-621-5975", "description": "The Macon Judicial Circuit serves three counties in central Georgia, including Macon, a major hub of commerce, transportation, and higher education." },
-    { "circuit": "Middle Georgia Circuit", "counties": ["Candler", "Emanuel", "Jefferson", "Toombs", "Washington"], "slug": "middle-georgia-circuit", "defender": "Brandi Payne", "address": "360 Bulldog Rd. Ste. A, Lyons, GA 30436", "phone": "478-237-9014", "fax": "478-237-9017", "description": "The Middle Georgia Judicial Circuit covers five counties in east-central Georgia, a primarily rural agricultural region." },
-    { "circuit": "Mountain Circuit", "counties": ["Habersham", "Rabun", "Stephens"], "slug": "mountain-circuit", "defender": "Jeanne Tiger", "address": "226 Grant Street, Clarkesville, GA 30523", "phone": "706-754-6427", "fax": "706-754-8064", "description": "The Mountain Judicial Circuit serves three counties in northeast Georgia's Blue Ridge Mountains, a popular destination for tourism and outdoor recreation." },
-    { "circuit": "Northeastern Circuit", "counties": ["Dawson", "Hall"], "slug": "northeastern-circuit", "defender": "Mark Alexander", "address": "1 Courthouse Square, Dawsonville, GA 30534", "phone": "770-718-5523", "fax": "770-718-5538", "additionalOffices": [{ "location": "Hall County", "address": "111 Spring Street, SE, Gainesville, GA 30501", "phone": "770-718-5523", "fax": "770-718-5538" }], "description": "The Northeastern Judicial Circuit covers two counties in the foothills of the Blue Ridge Mountains in northeast Georgia." },
-    { "circuit": "Northern Circuit", "counties": ["Elbert", "Franklin", "Hart", "Madison", "Oglethorpe"], "slug": "northern-circuit", "defender": "Amanda Grantham", "address": "461 Cook St. Ste J, Royston, GA 30662", "phone": "706-246-9320", "fax": "706-246-9325", "description": "The Northern Judicial Circuit serves five counties in northeast Georgia along the South Carolina border." },
-    { "circuit": "Ocmulgee Circuit", "counties": ["Baldwin", "Greene", "Hancock", "Jasper", "Jones", "Morgan", "Putnam", "Wilkinson"], "slug": "ocmulgee-circuit", "defender": "Kristin Waller", "address": "121 N. Wilkinson St., Milledgeville, GA 31059", "phone": "478-445-8100", "fax": "478-445-8111", "additionalOffices": [{ "location": "Greene County", "address": "113 N. Main St, Suite 123, Greensboro, GA 30642" }, { "location": "Hancock County", "address": "12630 Broad Street, Suite J, Sparta, GA 31087" }, { "location": "Jasper County", "address": "126 W Greene Street, Monticello, GA 31064" }, { "location": "Jones County", "address": "166 Industrial Blvd, Gray, GA 31032", "phone": "478-986-6185", "fax": "478-986-6359" }, { "location": "Morgan County", "address": "1380 Monticello Rd, Madison, GA 30650" }, { "location": "Putnam County", "address": "100 S Jefferson Street, Eatonton, GA 31024" }, { "location": "Wilkinson County", "address": "100 Bacon Street, Irwinton, GA 31042" }], "description": "The Ocmulgee Judicial Circuit covers eight counties in central Georgia, including Milledgeville, the state's former capital." },
-    { "circuit": "Oconee Circuit", "counties": ["Bleckley", "Dodge", "Montgomery", "Pulaski", "Telfair", "Wheeler"], "slug": "oconee-circuit", "defender": "Ashley McLaughlin", "address": "5120 Norman Street, Eastman, GA 31023", "phone": "478-448-1801", "fax": "478-448-1805", "description": "The Oconee Judicial Circuit serves six rural counties in central Georgia, an agricultural region known for its forestry and farming." },
-    { "circuit": "Ogeechee Circuit", "counties": ["Bulloch", "Effingham", "Jenkins", "Screven"], "slug": "ogeechee-circuit", "defender": "Renata Newbill-Jallow", "address": "30 N Main St, Statesboro, GA 30458", "phone": "912-764-6292", "fax": "912-489-3223", "description": "The Ogeechee Judicial Circuit covers four counties in east Georgia, including Statesboro, home to Georgia Southern University." },
-    { "circuit": "Pataula Circuit", "counties": ["Clay", "Early", "Miller", "Quitman", "Randolph", "Seminole", "Terrell"], "slug": "pataula-circuit", "defender": "Marla Chambless", "address": "575 College Street, Blakely, GA 39823", "phone": "229-758-6236", "fax": "229-758-6187", "additionalOffices": [{ "location": "Randolph/Terrell Counties", "address": "181 Cuthbert St, Colquitt, GA 39837" }], "description": "The Pataula Judicial Circuit serves seven rural counties in southwest Georgia along the Alabama and Florida borders." },
-    { "circuit": "Paulding Circuit", "counties": ["Paulding"], "slug": "paulding-circuit", "defender": "Michael Syrop", "address": "1387 Industrial Blvd., N, Dallas, GA 30132", "phone": "770-443-3463", "fax": "770-443-9936", "description": "The Paulding Judicial Circuit encompasses Paulding County, one of the fastest-growing counties in metropolitan Atlanta's western suburbs." },
-    { "circuit": "Piedmont Circuit", "counties": ["Banks", "Barrow", "Jackson"], "slug": "piedmont-circuit", "defender": "Donna Seagraves", "address": "5000 Jackson Pkwy, Suite 270, Jefferson, GA 30549", "phone": "706-387-6317", "fax": "706-387-6329", "additionalOffices": [{ "location": "Barrow County", "address": "652 Barrow Park Dr., Suite C, Winder, GA 30680", "phone": "770-307-3006", "fax": "770-307-0839" }], "description": "The Piedmont Judicial Circuit serves three counties in northeast Georgia, a mix of rural communities and growing suburbs." },
-    { "circuit": "Rockdale Circuit", "counties": ["Rockdale"], "slug": "rockdale-circuit", "defender": "Gina Bernard", "address": "882 Main Street, Conyers, GA 30012", "phone": "770-278-7820", "fax": "770-918-6313", "description": "The Rockdale Judicial Circuit encompasses Rockdale County, a suburban community east of Atlanta with a diverse population." },
-    { "circuit": "Rome Circuit", "counties": ["Floyd"], "slug": "rome-circuit", "defender": "Sean Lowe", "address": "12 East Fourth Avenue, Suite 10, Rome, GA 30161", "phone": "706-234-0975", "fax": "706-234-0978", "description": "The Rome Judicial Circuit serves Floyd County in northwest Georgia, home to the city of Rome, situated at the confluence of three rivers." },
-    { "circuit": "South Georgia Circuit", "counties": ["Baker", "Calhoun", "Decatur", "Grady", "Mitchell"], "slug": "south-georgia-circuit", "defender": "Tre McLendon", "address": "118 River St, Bainbridge, GA 39818", "phone": "229-246-2877", "fax": "229-246-9158", "description": "The South Georgia Judicial Circuit covers five counties in the southwest corner of Georgia, a region known for hunting plantations and agriculture." },
-    { "circuit": "Southern Circuit", "counties": ["Brooks", "Colquitt", "Echols", "Lowndes", "Thomas"], "slug": "southern-circuit", "defender": "Wade Krueger", "address": "106 S Patterson St, Suite 201, Valdosta, GA 31601", "phone": "229-671-2800", "fax": "229-245-5220", "additionalOffices": [{ "location": "Colquitt County", "address": "9 South Main St, Ste 105, Moultrie, GA 31768", "phone": "229-616-7070", "fax": "229-616-7067" }, { "location": "Thomas County", "address": "418 Smith Ave, Thomasville, GA 31792", "phone": "229-226-3616", "fax": "229-226-5696" }], "description": "The Southern Judicial Circuit serves five counties in south Georgia, including Valdosta, home to Valdosta State University." },
-    { "circuit": "Southwestern Circuit", "counties": ["Lee", "Macon", "Schley", "Stewart", "Sumter", "Webster"], "slug": "southwestern-circuit", "defender": "David Winheim", "address": "510 West Lamar Street, 2nd Floor, Americus, GA 31709", "phone": "229-928-4610", "fax": "229-928-4594", "description": "The Southwestern Judicial Circuit covers six counties in southwest Georgia, including Americus, home to Georgia Southwestern State University." },
-    { "circuit": "Tallapoosa Circuit", "counties": ["Haralson", "Polk"], "slug": "tallapoosa-circuit", "defender": "David Smith", "address": "4485 Highway 120, Suite 1600, Buchanan, GA 30113", "phone": "770-646-6629", "fax": "770-646-6628", "additionalOffices": [{ "location": "Polk County", "address": "109 East Avenue, Cedartown, GA 30125", "phone": "770-748-3480", "fax": "770-748-3493" }], "description": "The Tallapoosa Judicial Circuit covers Haralson and Polk Counties in west Georgia near the Alabama border." },
-    { "circuit": "Tifton Circuit", "counties": ["Irwin", "Tift", "Turner", "Worth"], "slug": "tifton-circuit", "defender": "Janice Prince", "address": "1212 Chestnut Ave, Tifton, GA 31794", "phone": "229-387-6488", "fax": "229-387-6234", "description": "The Tifton Judicial Circuit serves four counties in south-central Georgia, with Tifton serving as a regional agricultural research center." },
-    { "circuit": "Toombs Circuit", "counties": ["Glascock", "Lincoln", "McDuffie", "Taliaferro", "Warren", "Wilkes"], "slug": "toombs-circuit", "defender": "Caryn Lobdell", "address": "306 Greenway Street, Suite 1600, Thomson, GA 30824", "phone": "706-595-7650", "fax": "706-595-6030", "description": "The Toombs Judicial Circuit serves six counties in east-central Georgia, a region with rich colonial and Civil War history." },
-    { "circuit": "Towaliga Circuit", "counties": ["Butts", "Lamar", "Monroe"], "slug": "towaliga-circuit", "defender": "David Tatem", "address": "135 L. Cary Bittick Drive, Forsyth, GA 31029", "phone": "478-994-0040", "fax": "478-994-0018", "description": "The Towaliga Judicial Circuit covers three counties in central Georgia between Atlanta and Macon along Interstate 75." },
-    { "circuit": "Waycross Circuit", "counties": ["Bacon", "Brantley", "Charlton", "Coffee", "Pierce", "Ware"], "slug": "waycross-circuit", "defender": "Joshua Larkey", "address": "605 Church Street, Suite D, Waycross, GA 31501", "phone": "912-287-4360", "fax": "912-287-4362", "description": "The Waycross Judicial Circuit serves six counties in southeast Georgia, including areas adjacent to the Okefenokee Swamp." },
-    { "circuit": "West Georgia Circuit", "counties": ["Carroll", "Heard"], "slug": "west-georgia-circuit", "defender": "Maryellen Simmons", "address": "166A Independence Drive, Carrollton, GA 30116", "phone": "770-830-1323", "fax": "770-830-0715", "additionalOffices": [{ "location": "Heard County", "address": "215 East Court Square, Suite 4099, Franklin, GA 30217", "phone": "706-675-0288" }], "description": "The West Georgia Judicial Circuit serves Carroll and Heard Counties in west Georgia, a growing region west of metropolitan Atlanta." },
-    { "circuit": "Western Circuit", "counties": ["Clarke", "Oconee"], "slug": "western-circuit", "defender": "John Donnelly", "address": "440 College Avenue, Suite 220, Athens, GA 30601", "phone": "706-369-6440", "description": "The Western Judicial Circuit serves Clarke and Oconee Counties, home to the University of Georgia in Athens." }
+    {
+      "circuit": "Alapaha Circuit",
+      "counties": [
+        "Atkinson",
+        "Berrien",
+        "Clinch",
+        "Cook",
+        "Lanier"
+      ],
+      "slug": "alapaha-circuit",
+      "defender": "Gabriel Cason",
+      "address": "105 North Parrish Ave, Adel, GA 31620",
+      "phone": "229-896-2858",
+      "fax": "229-896-2875",
+      "description": "The Alapaha Judicial Circuit is located in southern Georgia and encompasses five counties: Atkinson, Berrien, Clinch, Cook, and Lanier. This circuit primarily covers rural areas known for their agricultural landscapes and small-town charm.",
+      "region": "south"
+    },
+    {
+      "circuit": "Alcovy Circuit",
+      "counties": [
+        "Newton",
+        "Walton"
+      ],
+      "slug": "alcovy-circuit",
+      "defender": "Anthony Carter",
+      "address": "1160 Pace St, Covington, GA 30014",
+      "phone": "770-788-3750",
+      "fax": "770-788-3757",
+      "additionalOffices": [
+        {
+          "location": "Walton County",
+          "address": "303 S. Hammond Dr., Suite 98, Monroe, GA 30655",
+          "phone": "770-266-1540",
+          "fax": "770-266-1545"
+        }
+      ],
+      "description": "The Alcovy Judicial Circuit serves Newton and Walton Counties in the north-central Piedmont region of Georgia, providing public defense services to communities east of metropolitan Atlanta.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Appalachian Circuit",
+      "counties": [
+        "Fannin",
+        "Gilmer",
+        "Pickens"
+      ],
+      "slug": "appalachian-circuit",
+      "defender": "Clint Hooker",
+      "address": "1 Broad St, Ste 001, Ellijay, GA 30540",
+      "phone": "706-698-7322",
+      "fax": "706-698-7333",
+      "description": "The Appalachian Judicial Circuit covers three mountainous counties in north Georgia: Fannin, Gilmer, and Pickens. The circuit is known for its scenic beauty and outdoor recreation.",
+      "region": "mountains"
+    },
+    {
+      "circuit": "Atlanta Circuit",
+      "counties": [
+        "Fulton"
+      ],
+      "slug": "atlanta-circuit",
+      "defender": "Maurice Kenner",
+      "address": "100 Peachtree Street, NW, Suite 1600, Atlanta, GA 30303",
+      "phone": "404-612-5200",
+      "fax": "404-730-5856",
+      "description": "The Atlanta Judicial Circuit is located in north-central Georgia and encompasses Fulton County. This circuit covers a highly urbanized area, including the city of Atlanta, the state's capital and largest city.",
+      "region": "metro"
+    },
+    {
+      "circuit": "Atlantic Circuit",
+      "counties": [
+        "Bryan",
+        "Evans",
+        "Liberty",
+        "Long",
+        "McIntosh",
+        "Tattnall"
+      ],
+      "slug": "atlantic-circuit",
+      "defender": "Joshua Brockington",
+      "address": "201 South Main Street, Suite 2400, Hinesville, GA 31313",
+      "phone": "912-369-6338",
+      "fax": "912-369-8327",
+      "additionalOffices": [
+        {
+          "location": "Bryan County",
+          "address": "P.O. Box 1270, Pembroke, GA 31321",
+          "phone": "912-653-4605"
+        },
+        {
+          "location": "McIntosh County",
+          "address": "102 Madison Street, Darien, GA 31305",
+          "phone": "912-437-3880"
+        },
+        {
+          "location": "Tattnall County",
+          "address": "108 W. Brazell St, Suite 321, Reidsville, GA 30453",
+          "phone": "912-557-4426",
+          "fax": "912-557-4428"
+        },
+        {
+          "location": "Appling/Jeff Davis/Wayne Counties",
+          "address": "241 East Walnut Street, Jesup, GA 31598",
+          "phone": "912-427-9066"
+        }
+      ],
+      "description": "The Atlantic Judicial Circuit serves six coastal and near-coastal counties in southeastern Georgia, including the area surrounding Fort Stewart military installation.",
+      "region": "coastal"
+    },
+    {
+      "circuit": "Augusta Circuit",
+      "counties": [
+        "Burke",
+        "Richmond"
+      ],
+      "slug": "augusta-circuit",
+      "defender": "Lee Prescott",
+      "address": "902 Greene Street, Augusta, GA 30901",
+      "phone": "706-312-5105",
+      "description": "The Augusta Judicial Circuit encompasses two counties in the Central Savannah River Area, including Georgia's second-largest city, Augusta.",
+      "region": "augusta"
+    },
+    {
+      "circuit": "Brunswick Circuit",
+      "counties": [
+        "Appling",
+        "Camden",
+        "Glynn",
+        "Jeff Davis",
+        "Wayne"
+      ],
+      "slug": "brunswick-circuit",
+      "defender": "Stephen Tillman",
+      "address": "11 Judicial Lane, Suite 111, Brunswick, GA 31520",
+      "phone": "912-554-7072",
+      "fax": "912-279-2964",
+      "additionalOffices": [
+        {
+          "location": "Camden County",
+          "address": "403 Georgia Avenue, Woodbine, GA 31569",
+          "phone": "912-673-9488"
+        },
+        {
+          "location": "Appling/Jeff Davis/Wayne Counties",
+          "address": "241 East Walnut Street, Jesup, GA 31598",
+          "phone": "912-427-9066"
+        }
+      ],
+      "description": "The Brunswick Judicial Circuit covers five counties along Georgia's southeastern coast, including the historic port city of Brunswick and the Golden Isles.",
+      "region": "coastal"
+    },
+    {
+      "circuit": "Chattahoochee Circuit",
+      "counties": [
+        "Chattahoochee",
+        "Harris",
+        "Marion",
+        "Muscogee",
+        "Talbot",
+        "Taylor"
+      ],
+      "slug": "chattahoochee-circuit",
+      "defender": "T. Moffett Flournoy",
+      "address": "420 10th Street, Ste 001, Columbus, GA 31901",
+      "phone": "706-653-4301",
+      "fax": "706-225-4309",
+      "description": "The Chattahoochee Judicial Circuit serves six counties in west-central Georgia, including Columbus, the state's third-largest city.",
+      "region": "augusta"
+    },
+    {
+      "circuit": "Cherokee Circuit",
+      "counties": [
+        "Bartow",
+        "Gordon"
+      ],
+      "slug": "cherokee-circuit",
+      "defender": "Christopher Paul",
+      "address": "128 W. Cherokee Ave, Cartersville, GA 30120",
+      "phone": "678-721-3254",
+      "fax": "678-721-3255",
+      "description": "The Cherokee Judicial Circuit covers Bartow and Gordon Counties in northwest Georgia, an area with a rich history in the Cherokee Nation.",
+      "region": "mountains"
+    },
+    {
+      "circuit": "Clayton Circuit",
+      "counties": [
+        "Clayton"
+      ],
+      "slug": "clayton-circuit",
+      "defender": "Douglas Smith",
+      "address": "6525 Professional Place, Riverdale, GA 30274",
+      "phone": "678-479-5036",
+      "fax": "678-479-5037",
+      "description": "The Clayton Judicial Circuit serves Clayton County, located south of Atlanta and home to Hartsfield-Jackson Atlanta International Airport.",
+      "region": "metro"
+    },
+    {
+      "circuit": "Conasauga Circuit",
+      "counties": [
+        "Murray",
+        "Whitfield"
+      ],
+      "slug": "conasauga-circuit",
+      "defender": "Amanda McCoy",
+      "address": "121 North 4th Avenue, Chatsworth, GA 30705",
+      "phone": "706-517-8547",
+      "fax": "706-517-7405",
+      "additionalOffices": [
+        {
+          "location": "Whitfield County",
+          "address": "214 W. King Street, Dalton, GA 30720",
+          "phone": "706-876-1576",
+          "fax": "706-876-1528"
+        }
+      ],
+      "description": "The Conasauga Judicial Circuit serves Murray and Whitfield Counties in northwest Georgia, known as the 'Carpet Capital of the World.'",
+      "region": "mountains"
+    },
+    {
+      "circuit": "Columbia Circuit",
+      "counties": [
+        "Columbia"
+      ],
+      "slug": "columbia-circuit",
+      "defender": "Mack Taylor",
+      "address": "7045 Evans Town Center Boulevard, 3rd Floor, Evans, GA 30209",
+      "phone": "706-447-6750",
+      "description": "The Columbia Judicial Circuit serves Columbia County in east Georgia.",
+      "region": "augusta"
+    },
+    {
+      "circuit": "Cordele Circuit",
+      "counties": [
+        "Ben Hill",
+        "Crisp",
+        "Dooly",
+        "Wilcox"
+      ],
+      "slug": "cordele-circuit",
+      "defender": "Kyle Hollomon",
+      "address": "716-B 16th Avenue East, Cordele, GA 31015",
+      "phone": "229-426-5091",
+      "fax": "229-426-5093",
+      "description": "The Cordele Judicial Circuit covers four counties in south-central Georgia, an agricultural region known for its watermelon production.",
+      "region": "south"
+    },
+    {
+      "circuit": "Coweta Circuit",
+      "counties": [
+        "Coweta",
+        "Meriwether",
+        "Troup"
+      ],
+      "slug": "coweta-circuit",
+      "defender": "Ricardo Samper",
+      "address": "8B Madison Street, Newnan, GA 30263",
+      "phone": "770-254-2704",
+      "fax": "770-254-2706",
+      "additionalOffices": [
+        {
+          "location": "Meriwether County",
+          "address": "126 North Court Square, Greenville, GA 30222",
+          "phone": "706-672-2056"
+        },
+        {
+          "location": "Troup County",
+          "address": "134 Bull St, LaGrange, GA 30240",
+          "phone": "706-883-3000",
+          "fax": "706-883-3004"
+        }
+      ],
+      "description": "The Coweta Judicial Circuit serves three counties in west Georgia, including the cities of Newnan and LaGrange.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Dekalb Circuit",
+      "counties": [
+        "DeKalb"
+      ],
+      "slug": "dekalb-circuit",
+      "defender": "Letitia Delan",
+      "address": "320 Church Street, Decatur, GA 30030",
+      "phone": "404-371-2222",
+      "fax": "404-371-2298",
+      "description": "The Dekalb Judicial Circuit serves DeKalb County, one of Georgia's most populous and diverse counties, located east of Atlanta.",
+      "region": "metro"
+    },
+    {
+      "circuit": "Dougherty Circuit",
+      "counties": [
+        "Dougherty"
+      ],
+      "slug": "dougherty-circuit",
+      "defender": "Troy Golden",
+      "address": "225 Pine Avenue, Room 100, Albany, GA 31701",
+      "phone": "229-483-6240",
+      "fax": "229-438-3927",
+      "description": "The Dougherty Judicial Circuit serves Dougherty County in southwest Georgia, home to the city of Albany, a regional hub for commerce and healthcare.",
+      "region": "south"
+    },
+    {
+      "circuit": "Dublin Circuit",
+      "counties": [
+        "Johnson",
+        "Laurens",
+        "Treutlen",
+        "Twiggs"
+      ],
+      "slug": "dublin-circuit",
+      "defender": "Clay Tapley",
+      "address": "1506 Bellvue Rd, Dublin, GA 31021",
+      "phone": "478-272-7210",
+      "fax": "478-272-3378",
+      "description": "The Dublin Judicial Circuit covers four counties in central Georgia, centered around the city of Dublin.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Eastern Circuit",
+      "counties": [
+        "Chatham"
+      ],
+      "slug": "eastern-circuit",
+      "defender": "Todd Martin",
+      "address": "222 W Oglethorpe Ave, Suite 130, Savannah, GA 31401",
+      "phone": "912-447-4901",
+      "fax": "912-447-4909",
+      "additionalOffices": [
+        {
+          "location": "Juvenile Division",
+          "address": "197 Carl Griffin Dr, Savannah, GA 31405",
+          "phone": "912-652-6904",
+          "fax": "912-652-6923"
+        }
+      ],
+      "description": "The Eastern Judicial Circuit serves Chatham County, home to the historic city of Savannah and Georgia's busiest seaport.",
+      "region": "coastal"
+    },
+    {
+      "circuit": "Enotah Circuit",
+      "counties": [
+        "Lumpkin",
+        "Towns",
+        "Union",
+        "White"
+      ],
+      "slug": "enotah-circuit",
+      "defender": "Penny Hunter",
+      "address": "194 Courthouse Hill, Annex B, Dahlonega, GA 30533",
+      "phone": "706-864-1555",
+      "fax": "706-864-1367",
+      "additionalOffices": [
+        {
+          "location": "Towns County",
+          "address": "48 River St, Ste 1, Hiawassee, GA 30546",
+          "phone": "706-896-7819",
+          "fax": "706-896-8441"
+        },
+        {
+          "location": "Union County",
+          "address": "65 Courthouse Street, Suite 265, Blairsville, GA 30512",
+          "phone": "706-745-8156",
+          "fax": "706-745-8166"
+        },
+        {
+          "location": "White County",
+          "address": "59 South Main Street, Suite C, Cleveland, GA 30528",
+          "phone": "706-348-8577",
+          "fax": "706-348-8578"
+        }
+      ],
+      "description": "The Enotah Judicial Circuit covers four mountain counties in northeast Georgia, including popular tourist destinations in the Blue Ridge Mountains.",
+      "region": "mountains"
+    },
+    {
+      "circuit": "Flint Circuit",
+      "counties": [
+        "Henry"
+      ],
+      "slug": "flint-circuit",
+      "defender": "Jennifer Lewis",
+      "address": "30 Atlanta Street, McDonough, GA 30253",
+      "phone": "770-288-7460",
+      "fax": "770-288-7468",
+      "description": "The Flint Judicial Circuit serves Henry County, a rapidly growing suburban community south of Atlanta.",
+      "region": "metro"
+    },
+    {
+      "circuit": "Griffin Circuit",
+      "counties": [
+        "Fayette",
+        "Pike",
+        "Spalding",
+        "Upson"
+      ],
+      "slug": "griffin-circuit",
+      "defender": "William Imhoff",
+      "address": "175 Johnson Ave, Ste 001, Fayetteville, GA 30214",
+      "phone": "770-716-4340",
+      "fax": "770-460-8685",
+      "additionalOffices": [
+        {
+          "location": "Pike/Spalding Counties",
+          "address": "141 West Solomon Street, Suite 4099, Griffin, GA 30224",
+          "phone": "770-467-4725",
+          "fax": "770-467-4724"
+        },
+        {
+          "location": "Upson County",
+          "address": "715 Andrews Drive, Thomaston, GA 30286",
+          "phone": "706-647-7020",
+          "fax": "706-647-7032"
+        }
+      ],
+      "description": "The Griffin Judicial Circuit covers four counties in west-central Georgia, including the city of Griffin, known for its textile history.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Lookout Mountain Circuit",
+      "counties": [
+        "Catoosa",
+        "Chattooga",
+        "Dade",
+        "Walker"
+      ],
+      "slug": "lookout-mountain-circuit",
+      "defender": "Jad Johnson",
+      "address": "72 Millennium Circle, Ringgold, GA 30736",
+      "phone": "706-935-3400",
+      "fax": "706-935-3582",
+      "additionalOffices": [
+        {
+          "location": "Chattooga County",
+          "address": "10035 Commerce Street, Summerville, GA 30747",
+          "phone": "706-857-9243",
+          "fax": "706-857-9218"
+        },
+        {
+          "location": "Dade County",
+          "address": "111 Railway Lane, Trenton, GA 30752",
+          "phone": "706-657-2602",
+          "fax": "706-657-2744"
+        },
+        {
+          "location": "Walker County",
+          "address": "101 Napier Street, LaFayette, GA 30739",
+          "phone": "706-638-3290",
+          "fax": "706-638-7331"
+        }
+      ],
+      "description": "The Lookout Mountain Judicial Circuit covers four counties in Georgia's northwest corner, including areas near Lookout Mountain and Chickamauga Battlefield.",
+      "region": "mountains"
+    },
+    {
+      "circuit": "Macon Circuit",
+      "counties": [
+        "Bibb",
+        "Crawford",
+        "Peach"
+      ],
+      "slug": "macon-circuit",
+      "defender": "Rick Waller Jr.",
+      "address": "201 Second Street, Ste 550, Macon, GA 31201",
+      "phone": "478-621-5950",
+      "fax": "478-621-5975",
+      "description": "The Macon Judicial Circuit serves three counties in central Georgia, including Macon, a major hub of commerce, transportation, and higher education.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Middle Georgia Circuit",
+      "counties": [
+        "Candler",
+        "Emanuel",
+        "Jefferson",
+        "Toombs",
+        "Washington"
+      ],
+      "slug": "middle-georgia-circuit",
+      "defender": "Brandi Payne",
+      "address": "360 Bulldog Rd. Ste. A, Lyons, GA 30436",
+      "phone": "478-237-9014",
+      "fax": "478-237-9017",
+      "description": "The Middle Georgia Judicial Circuit covers five counties in east-central Georgia, a primarily rural agricultural region.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Mountain Circuit",
+      "counties": [
+        "Habersham",
+        "Rabun",
+        "Stephens"
+      ],
+      "slug": "mountain-circuit",
+      "defender": "Jeanne Tiger",
+      "address": "226 Grant Street, Clarkesville, GA 30523",
+      "phone": "706-754-6427",
+      "fax": "706-754-8064",
+      "description": "The Mountain Judicial Circuit serves three counties in northeast Georgia's Blue Ridge Mountains, a popular destination for tourism and outdoor recreation.",
+      "region": "mountains"
+    },
+    {
+      "circuit": "Northeastern Circuit",
+      "counties": [
+        "Dawson",
+        "Hall"
+      ],
+      "slug": "northeastern-circuit",
+      "defender": "Mark Alexander",
+      "address": "1 Courthouse Square, Dawsonville, GA 30534",
+      "phone": "770-718-5523",
+      "fax": "770-718-5538",
+      "additionalOffices": [
+        {
+          "location": "Hall County",
+          "address": "111 Spring Street, SE, Gainesville, GA 30501",
+          "phone": "770-718-5523",
+          "fax": "770-718-5538"
+        }
+      ],
+      "description": "The Northeastern Judicial Circuit covers two counties in the foothills of the Blue Ridge Mountains in northeast Georgia.",
+      "region": "mountains"
+    },
+    {
+      "circuit": "Northern Circuit",
+      "counties": [
+        "Elbert",
+        "Franklin",
+        "Hart",
+        "Madison",
+        "Oglethorpe"
+      ],
+      "slug": "northern-circuit",
+      "defender": "Amanda Grantham",
+      "address": "461 Cook St. Ste J, Royston, GA 30662",
+      "phone": "706-246-9320",
+      "fax": "706-246-9325",
+      "description": "The Northern Judicial Circuit serves five counties in northeast Georgia along the South Carolina border.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Ocmulgee Circuit",
+      "counties": [
+        "Baldwin",
+        "Greene",
+        "Hancock",
+        "Jasper",
+        "Jones",
+        "Morgan",
+        "Putnam",
+        "Wilkinson"
+      ],
+      "slug": "ocmulgee-circuit",
+      "defender": "Kristin Waller",
+      "address": "121 N. Wilkinson St., Milledgeville, GA 31059",
+      "phone": "478-445-8100",
+      "fax": "478-445-8111",
+      "additionalOffices": [
+        {
+          "location": "Greene County",
+          "address": "113 N. Main St, Suite 123, Greensboro, GA 30642"
+        },
+        {
+          "location": "Hancock County",
+          "address": "12630 Broad Street, Suite J, Sparta, GA 31087"
+        },
+        {
+          "location": "Jasper County",
+          "address": "126 W Greene Street, Monticello, GA 31064"
+        },
+        {
+          "location": "Jones County",
+          "address": "166 Industrial Blvd, Gray, GA 31032",
+          "phone": "478-986-6185",
+          "fax": "478-986-6359"
+        },
+        {
+          "location": "Morgan County",
+          "address": "1380 Monticello Rd, Madison, GA 30650"
+        },
+        {
+          "location": "Putnam County",
+          "address": "100 S Jefferson Street, Eatonton, GA 31024"
+        },
+        {
+          "location": "Wilkinson County",
+          "address": "100 Bacon Street, Irwinton, GA 31042"
+        }
+      ],
+      "description": "The Ocmulgee Judicial Circuit covers eight counties in central Georgia, including Milledgeville, the state's former capital.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Oconee Circuit",
+      "counties": [
+        "Bleckley",
+        "Dodge",
+        "Montgomery",
+        "Pulaski",
+        "Telfair",
+        "Wheeler"
+      ],
+      "slug": "oconee-circuit",
+      "defender": "Ashley McLaughlin",
+      "address": "5120 Norman Street, Eastman, GA 31023",
+      "phone": "478-448-1801",
+      "fax": "478-448-1805",
+      "description": "The Oconee Judicial Circuit serves six rural counties in central Georgia, an agricultural region known for its forestry and farming.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Ogeechee Circuit",
+      "counties": [
+        "Bulloch",
+        "Effingham",
+        "Jenkins",
+        "Screven"
+      ],
+      "slug": "ogeechee-circuit",
+      "defender": "Renata Newbill-Jallow",
+      "address": "30 N Main St, Statesboro, GA 30458",
+      "phone": "912-764-6292",
+      "fax": "912-489-3223",
+      "description": "The Ogeechee Judicial Circuit covers four counties in east Georgia, including Statesboro, home to Georgia Southern University.",
+      "region": "coastal"
+    },
+    {
+      "circuit": "Pataula Circuit",
+      "counties": [
+        "Clay",
+        "Early",
+        "Miller",
+        "Quitman",
+        "Randolph",
+        "Seminole",
+        "Terrell"
+      ],
+      "slug": "pataula-circuit",
+      "defender": "Marla Chambless",
+      "address": "575 College Street, Blakely, GA 39823",
+      "phone": "229-758-6236",
+      "fax": "229-758-6187",
+      "additionalOffices": [
+        {
+          "location": "Randolph/Terrell Counties",
+          "address": "181 Cuthbert St, Colquitt, GA 39837"
+        }
+      ],
+      "description": "The Pataula Judicial Circuit serves seven rural counties in southwest Georgia along the Alabama and Florida borders.",
+      "region": "south"
+    },
+    {
+      "circuit": "Paulding Circuit",
+      "counties": [
+        "Paulding"
+      ],
+      "slug": "paulding-circuit",
+      "defender": "Michael Syrop",
+      "address": "1387 Industrial Blvd., N, Dallas, GA 30132",
+      "phone": "770-443-3463",
+      "fax": "770-443-9936",
+      "description": "The Paulding Judicial Circuit encompasses Paulding County, one of the fastest-growing counties in metropolitan Atlanta's western suburbs.",
+      "region": "metro"
+    },
+    {
+      "circuit": "Piedmont Circuit",
+      "counties": [
+        "Banks",
+        "Barrow",
+        "Jackson"
+      ],
+      "slug": "piedmont-circuit",
+      "defender": "Donna Seagraves",
+      "address": "5000 Jackson Pkwy, Suite 270, Jefferson, GA 30549",
+      "phone": "706-387-6317",
+      "fax": "706-387-6329",
+      "additionalOffices": [
+        {
+          "location": "Barrow County",
+          "address": "652 Barrow Park Dr., Suite C, Winder, GA 30680",
+          "phone": "770-307-3006",
+          "fax": "770-307-0839"
+        }
+      ],
+      "description": "The Piedmont Judicial Circuit serves three counties in northeast Georgia, a mix of rural communities and growing suburbs.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Rockdale Circuit",
+      "counties": [
+        "Rockdale"
+      ],
+      "slug": "rockdale-circuit",
+      "defender": "Gina Bernard",
+      "address": "882 Main Street, Conyers, GA 30012",
+      "phone": "770-278-7820",
+      "fax": "770-918-6313",
+      "description": "The Rockdale Judicial Circuit encompasses Rockdale County, a suburban community east of Atlanta with a diverse population.",
+      "region": "metro"
+    },
+    {
+      "circuit": "Rome Circuit",
+      "counties": [
+        "Floyd"
+      ],
+      "slug": "rome-circuit",
+      "defender": "Sean Lowe",
+      "address": "12 East Fourth Avenue, Suite 10, Rome, GA 30161",
+      "phone": "706-234-0975",
+      "fax": "706-234-0978",
+      "description": "The Rome Judicial Circuit serves Floyd County in northwest Georgia, home to the city of Rome, situated at the confluence of three rivers.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "South Georgia Circuit",
+      "counties": [
+        "Baker",
+        "Calhoun",
+        "Decatur",
+        "Grady",
+        "Mitchell"
+      ],
+      "slug": "south-georgia-circuit",
+      "defender": "Tre McLendon",
+      "address": "118 River St, Bainbridge, GA 39818",
+      "phone": "229-246-2877",
+      "fax": "229-246-9158",
+      "description": "The South Georgia Judicial Circuit covers five counties in the southwest corner of Georgia, a region known for hunting plantations and agriculture.",
+      "region": "south"
+    },
+    {
+      "circuit": "Southern Circuit",
+      "counties": [
+        "Brooks",
+        "Colquitt",
+        "Echols",
+        "Lowndes",
+        "Thomas"
+      ],
+      "slug": "southern-circuit",
+      "defender": "Wade Krueger",
+      "address": "106 S Patterson St, Suite 201, Valdosta, GA 31601",
+      "phone": "229-671-2800",
+      "fax": "229-245-5220",
+      "additionalOffices": [
+        {
+          "location": "Colquitt County",
+          "address": "9 South Main St, Ste 105, Moultrie, GA 31768",
+          "phone": "229-616-7070",
+          "fax": "229-616-7067"
+        },
+        {
+          "location": "Thomas County",
+          "address": "418 Smith Ave, Thomasville, GA 31792",
+          "phone": "229-226-3616",
+          "fax": "229-226-5696"
+        }
+      ],
+      "description": "The Southern Judicial Circuit serves five counties in south Georgia, including Valdosta, home to Valdosta State University.",
+      "region": "south"
+    },
+    {
+      "circuit": "Southwestern Circuit",
+      "counties": [
+        "Lee",
+        "Macon",
+        "Schley",
+        "Stewart",
+        "Sumter",
+        "Webster"
+      ],
+      "slug": "southwestern-circuit",
+      "defender": "David Winheim",
+      "address": "510 West Lamar Street, 2nd Floor, Americus, GA 31709",
+      "phone": "229-928-4610",
+      "fax": "229-928-4594",
+      "description": "The Southwestern Judicial Circuit covers six counties in southwest Georgia, including Americus, home to Georgia Southwestern State University.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Tallapoosa Circuit",
+      "counties": [
+        "Haralson",
+        "Polk"
+      ],
+      "slug": "tallapoosa-circuit",
+      "defender": "David Smith",
+      "address": "4485 Highway 120, Suite 1600, Buchanan, GA 30113",
+      "phone": "770-646-6629",
+      "fax": "770-646-6628",
+      "additionalOffices": [
+        {
+          "location": "Polk County",
+          "address": "109 East Avenue, Cedartown, GA 30125",
+          "phone": "770-748-3480",
+          "fax": "770-748-3493"
+        }
+      ],
+      "description": "The Tallapoosa Judicial Circuit covers Haralson and Polk Counties in west Georgia near the Alabama border.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Tifton Circuit",
+      "counties": [
+        "Irwin",
+        "Tift",
+        "Turner",
+        "Worth"
+      ],
+      "slug": "tifton-circuit",
+      "defender": "Janice Prince",
+      "address": "1212 Chestnut Ave, Tifton, GA 31794",
+      "phone": "229-387-6488",
+      "fax": "229-387-6234",
+      "description": "The Tifton Judicial Circuit serves four counties in south-central Georgia, with Tifton serving as a regional agricultural research center.",
+      "region": "south"
+    },
+    {
+      "circuit": "Toombs Circuit",
+      "counties": [
+        "Glascock",
+        "Lincoln",
+        "McDuffie",
+        "Taliaferro",
+        "Warren",
+        "Wilkes"
+      ],
+      "slug": "toombs-circuit",
+      "defender": "Caryn Lobdell",
+      "address": "306 Greenway Street, Suite 1600, Thomson, GA 30824",
+      "phone": "706-595-7650",
+      "fax": "706-595-6030",
+      "description": "The Toombs Judicial Circuit serves six counties in east-central Georgia, a region with rich colonial and Civil War history.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Towaliga Circuit",
+      "counties": [
+        "Butts",
+        "Lamar",
+        "Monroe"
+      ],
+      "slug": "towaliga-circuit",
+      "defender": "David Tatem",
+      "address": "135 L. Cary Bittick Drive, Forsyth, GA 31029",
+      "phone": "478-994-0040",
+      "fax": "478-994-0018",
+      "description": "The Towaliga Judicial Circuit covers three counties in central Georgia between Atlanta and Macon along Interstate 75.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Waycross Circuit",
+      "counties": [
+        "Bacon",
+        "Brantley",
+        "Charlton",
+        "Coffee",
+        "Pierce",
+        "Ware"
+      ],
+      "slug": "waycross-circuit",
+      "defender": "Joshua Larkey",
+      "address": "605 Church Street, Suite D, Waycross, GA 31501",
+      "phone": "912-287-4360",
+      "fax": "912-287-4362",
+      "description": "The Waycross Judicial Circuit serves six counties in southeast Georgia, including areas adjacent to the Okefenokee Swamp.",
+      "region": "south"
+    },
+    {
+      "circuit": "West Georgia Circuit",
+      "counties": [
+        "Carroll",
+        "Heard"
+      ],
+      "slug": "west-georgia-circuit",
+      "defender": "Maryellen Simmons",
+      "address": "166A Independence Drive, Carrollton, GA 30116",
+      "phone": "770-830-1323",
+      "fax": "770-830-0715",
+      "additionalOffices": [
+        {
+          "location": "Heard County",
+          "address": "215 East Court Square, Suite 4099, Franklin, GA 30217",
+          "phone": "706-675-0288"
+        }
+      ],
+      "description": "The West Georgia Judicial Circuit serves Carroll and Heard Counties in west Georgia, a growing region west of metropolitan Atlanta.",
+      "region": "piedmont"
+    },
+    {
+      "circuit": "Western Circuit",
+      "counties": [
+        "Clarke",
+        "Oconee"
+      ],
+      "slug": "western-circuit",
+      "defender": "John Donnelly",
+      "address": "440 College Avenue, Suite 220, Athens, GA 30601",
+      "phone": "706-369-6440",
+      "description": "The Western Judicial Circuit serves Clarke and Oconee Counties, home to the University of Georgia in Athens.",
+      "region": "piedmont"
+    }
   ],
   "optOutCircuits": [
-    { "circuit": "Blue Ridge Circuit", "counties": ["Cherokee"], "note": "Cherokee County operates its own public defender office independently." },
-    { "circuit": "Cobb Circuit", "counties": ["Cobb"], "note": "Cobb County operates its own public defender office independently." },
-    { "circuit": "Douglas Circuit", "counties": ["Douglas"], "note": "Douglas County operates its own public defender office independently." },
-    { "circuit": "Bell-Forsyth Circuit", "counties": ["Forsyth"], "note": "Forsyth County operates its own public defender office independently." },
-    { "circuit": "Gwinnett Circuit", "counties": ["Gwinnett"], "note": "Gwinnett County operates its own public defender office independently." },
-    { "circuit": "Houston Circuit", "counties": ["Houston"], "note": "Houston County operates its own public defender office independently." },
-    { "circuit": "Stone Mountain Circuit", "counties": ["DeKalb"], "note": "Note: DeKalb County is served by the state system through the Dekalb Circuit." }
+    {
+      "circuit": "Blue Ridge Circuit",
+      "counties": [
+        "Cherokee"
+      ],
+      "note": "Cherokee County operates its own public defender office independently."
+    },
+    {
+      "circuit": "Cobb Circuit",
+      "counties": [
+        "Cobb"
+      ],
+      "note": "Cobb County operates its own public defender office independently."
+    },
+    {
+      "circuit": "Douglas Circuit",
+      "counties": [
+        "Douglas"
+      ],
+      "note": "Douglas County operates its own public defender office independently."
+    },
+    {
+      "circuit": "Bell-Forsyth Circuit",
+      "counties": [
+        "Forsyth"
+      ],
+      "note": "Forsyth County operates its own public defender office independently."
+    },
+    {
+      "circuit": "Gwinnett Circuit",
+      "counties": [
+        "Gwinnett"
+      ],
+      "note": "Gwinnett County operates its own public defender office independently."
+    },
+    {
+      "circuit": "Houston Circuit",
+      "counties": [
+        "Houston"
+      ],
+      "note": "Houston County operates its own public defender office independently."
+    },
+    {
+      "circuit": "Stone Mountain Circuit",
+      "counties": [
+        "DeKalb"
+      ],
+      "note": "Note: DeKalb County is served by the state system through the Dekalb Circuit."
+    }
   ]
 }
