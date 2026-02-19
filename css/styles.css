@@ -6327,10 +6327,18 @@ body.has-announcement .breadcrumbs {
 .section-animate {
     opacity: 0;
     transform: translateY(30px);
+    animation: showFallback 0s 3s forwards; /* Safety net: show content if JS fails */
 }
 
 .section-animate.visible {
     animation: sectionFadeIn 0.7s var(--ease-out) forwards;
+}
+
+@keyframes showFallback {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes sectionFadeIn {

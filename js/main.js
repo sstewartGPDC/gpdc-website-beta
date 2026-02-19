@@ -397,61 +397,8 @@ function initButtonRipples() {
 }
 
 // ==================== PAGE TRANSITIONS ====================
-function initPageTransitions() {
-    const pageTransition = document.getElementById('pageTransition');
-    if (!pageTransition) return;
-
-    const internalLinks = document.querySelectorAll('a[href]:not([href^="#"]):not([href^="http"]):not([href^="mailto"]):not([href^="tel"])');
-
-    internalLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            if (href === window.location.pathname || href.startsWith('http')) return;
-
-            e.preventDefault();
-            pageTransition.classList.add('active');
-
-            setTimeout(() => {
-                window.location.href = href;
-            }, 400);
-        });
-    });
-
-    // Page load animation
-    window.addEventListener('load', () => {
-        // Remove transition overlay
-        if (pageTransition.classList.contains('active')) {
-            setTimeout(() => {
-                pageTransition.classList.remove('active');
-                pageTransition.classList.add('exit');
-            }, 100);
-        }
-
-        // Add page content animation class
-        document.body.classList.add('page-loaded');
-
-        // Staggered section animations
-        const sections = document.querySelectorAll('section:not(.hero):not(.pd-hero)');
-        sections.forEach((section, index) => {
-            section.classList.add('section-animate');
-            setTimeout(() => {
-                section.classList.add('visible');
-            }, 150 + (index * 100));
-        });
-    });
-
-    // Handle back-forward cache (bfcache) — restore page state on back/forward
-    window.addEventListener('pageshow', (e) => {
-        if (e.persisted) {
-            // Clear any stuck transition overlay
-            pageTransition.classList.remove('active');
-            pageTransition.classList.remove('exit');
-            // Ensure all sections are visible (bfcache may restore pre-animation state)
-            document.querySelectorAll('.section-animate').forEach(s => s.classList.add('visible'));
-            document.body.classList.add('page-loaded');
-        }
-    });
-}
+// Moved to js/transitions.js to prevent FOUC.
+// initPageTransitions() is now defined there and called from DOMContentLoaded below.
 
 // ==================== PARALLAX HERO EFFECT ====================
 function initParallax() {
