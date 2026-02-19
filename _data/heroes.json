@@ -4,8 +4,8 @@
     "position": "center center"
   },
   "about": {
-    "image": "/images/programs/summer-conference-group.jpg",
-    "position": "center 30%",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Georgia_State_Capitol%2C_Atlanta%2C_West_view_20160716_1.jpg",
+    "position": "center center",
     "label": "ABOUT US",
     "title": "Who We Are",
     "subtitle": "Providing high-quality legal defense for individuals accused of crimes who cannot afford representation."
