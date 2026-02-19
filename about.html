@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=16">
+    <link rel="stylesheet" href="css/styles.css?v=21">
     <!-- Open Graph -->
     <meta property="og:title" content="About Us | Georgia Public Defender Council">
     <meta property="og:description" content="Learn about the Georgia Public Defender Council's mission, history, and commitment to providing quality legal defense for Georgia citizens.">
@@ -21,100 +21,192 @@
 <body>
     <div class="page-transition" id="pageTransition"></div>
 
-    <!-- Header (loaded dynamically) -->
+    <!-- Header -->
     <div id="site-header"></div>
 
-    <!-- Hero Section (loaded from components.js) -->
-    <section class="page-hero" id="page-hero" data-hero="about"></section>
+    <!-- Hero -->
+    <section class="page-hero page-hero-bold" id="page-hero" data-hero="about"></section>
 
-    <!-- Mission & Principles Section (combined) -->
-    <section class="content-section" id="mission">
+    <!-- Mission Band — Authoritative Opening -->
+    <section class="about-mission-band">
+        <div class="about-mission-inner fade-in">
+            <p class="about-mission-quote">The Georgia Public Defender Council is committed to providing high-quality legal defense for individuals accused of crimes who cannot afford representation. Every person deserves a fair trial and competent legal counsel, regardless of their financial circumstances.</p>
+            <span class="about-mission-attr">Our Mission</span>
+        </div>
+    </section>
+
+    <!-- Who We Are — Story Section -->
+    <section class="content-section" id="story">
         <div class="container">
             <div class="content-grid fade-in">
                 <div class="content-text">
-                    <p class="label">OUR MISSION</p>
-                    <h2 class="section-title">Defending Rights, Empowering Clients</h2>
-                    <p class="content-paragraph">The Georgia Public Defender Council (GPDC) is committed to providing high-quality legal defense for individuals accused of crimes who cannot afford representation. We believe that every person deserves a fair trial and competent legal counsel, regardless of their financial circumstances.</p>
-                    <p class="content-paragraph">Our mission is to ensure that the constitutional right to counsel is upheld throughout the state of Georgia, protecting the rights of the accused and maintaining the integrity of our justice system.</p>
+                    <p class="label">WHO WE ARE</p>
+                    <h2 class="section-title">Georgia's Public Defense Agency</h2>
+                    <p class="content-paragraph">The Georgia Public Defender Council (GPDC) is the statewide agency responsible for ensuring that every Georgian accused of a crime has access to qualified legal counsel. We oversee public defense across all 159 counties through 45 circuit offices staffed by more than 400 licensed attorneys.</p>
+                    <p class="content-paragraph">From felony trials and appeals to juvenile defense and mental health advocacy, GPDC's specialized divisions handle approximately 85% of all criminal cases in the state. Our work protects the constitutional right to counsel and strengthens the integrity of Georgia's justice system.</p>
                 </div>
                 <div class="content-image">
-                    <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67c528c6baf7f0c0a1c38df2_close-up-workers-with-briefcases.jpg" alt="Legal consultation">
-                </div>
-            </div>
-
-            <!-- Principles (merged into mission) -->
-            <div class="principles-inline fade-in" id="principles">
-                <p class="label" style="text-align:center; margin-bottom: 0.5rem;">OUR PURPOSE</p>
-                <h3 class="section-title" style="text-align:center; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1.5rem;">Four Foundational Principles</h3>
-                <div class="principles-grid">
-                    <div class="principle-card fade-in fade-in-delay-1">
-                        <div class="principle-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                                <path d="M22 4L12 14.01l-3-3"/>
-                            </svg>
-                        </div>
-                        <h3>Effective</h3>
-                        <p>We employ competent legal strategies and thorough case preparation to provide the most effective defense for every client.</p>
-                    </div>
-
-                    <div class="principle-card fade-in fade-in-delay-2">
-                        <div class="principle-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <h3>Ethical</h3>
-                        <p>We maintain the highest standards of integrity, honoring our professional obligations and the trust placed in us by our clients.</p>
-                    </div>
-
-                    <div class="principle-card fade-in fade-in-delay-3">
-                        <div class="principle-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                        </div>
-                        <h3>Timely</h3>
-                        <p>We respond promptly to our clients' needs, understanding that swift action is often critical in legal matters.</p>
-                    </div>
-
-                    <div class="principle-card fade-in fade-in-delay-1">
-                        <div class="principle-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
-                                <path d="M6 1v3M10 1v3M14 1v3"/>
-                            </svg>
-                        </div>
-                        <h3>Zealous</h3>
-                        <p>We advocate passionately for our clients, fighting tirelessly to protect their rights and achieve the best possible outcomes.</p>
-                    </div>
+                    <img src="/images/uploads/1Q8A8034-2048x1365.jpg" alt="Executive Director Omotayo Alli with retired Circuit Public Defender Kate Mason" style="object-position: center center">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Fast Facts — Compact Stat Bar -->
-    <section class="facts-bar" id="facts">
+    <!-- Timeline — History Highlights -->
+    <section class="about-timeline-section">
         <div class="container">
-            <div class="facts-bar-grid fade-in">
-                <div class="facts-bar-item">
-                    <div class="fact-number">85%</div>
-                    <div class="fact-label">of Georgia criminal cases</div>
+            <div class="section-header centered fade-in">
+                <p class="label">OUR HISTORY</p>
+                <h2 class="section-title">Key Milestones</h2>
+            </div>
+            <div class="about-timeline fade-in">
+                <div class="about-timeline-line"></div>
+                <div class="about-timeline-item fade-in fade-in-delay-1">
+                    <div class="about-timeline-year">2003</div>
+                    <div class="about-timeline-dot"></div>
+                    <div class="about-timeline-content">
+                        <h3>The Georgia Indigent Defense Act</h3>
+                        <p>House Bill 770 creates the Georgia Public Defender Standards Council, replacing a fragmented county-by-county system with a unified statewide public defense agency. Championed by Chief Justice Norman S. Fletcher, the landmark legislation reorganizes indigent defense across 49 judicial circuits.</p>
+                    </div>
                 </div>
-                <div class="facts-bar-item">
-                    <div class="fact-number">400+</div>
-                    <div class="fact-label">Licensed Attorneys</div>
-                </div>
-                <div class="facts-bar-item">
-                    <div class="fact-number">45</div>
-                    <div class="fact-label">Circuit Offices</div>
+                <div class="about-timeline-item fade-in fade-in-delay-2">
+                    <div class="about-timeline-year">2020</div>
+                    <div class="about-timeline-dot"></div>
+                    <div class="about-timeline-content">
+                        <h3>A New Era of Growth</h3>
+                        <p>Omotayo Alli is appointed Executive Director by Governor Brian Kemp, becoming the first woman and first person of color to lead the agency. Under her leadership, GPDC establishes 14 new regional offices, creates specialized divisions, achieves historic pay parity between public defenders and district attorneys, and launches the Ladders Reentry Program.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer (loaded dynamically) -->
+    <!-- Principles — Elevated -->
+    <section class="content-section content-section-alt" id="principles">
+        <div class="container">
+            <div class="section-header centered fade-in">
+                <p class="label">OUR VALUES</p>
+                <h2 class="section-title">Foundational Principles</h2>
+            </div>
+            <div class="principles-grid">
+                <div class="principle-card fade-in fade-in-delay-1">
+                    <div class="principle-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                    </div>
+                    <h3>Effective</h3>
+                    <p>We employ competent legal strategies and thorough case preparation to provide the most effective defense for every client.</p>
+                </div>
+                <div class="principle-card fade-in fade-in-delay-2">
+                    <div class="principle-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Ethical</h3>
+                    <p>We maintain the highest standards of integrity, honoring our professional obligations and the trust placed in us by our clients.</p>
+                </div>
+                <div class="principle-card fade-in fade-in-delay-3">
+                    <div class="principle-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3>Timely</h3>
+                    <p>We respond promptly to our clients' needs, understanding that swift action is often critical in legal matters.</p>
+                </div>
+                <div class="principle-card fade-in fade-in-delay-1">
+                    <div class="principle-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+                            <path d="M6 1v3M10 1v3M14 1v3"/>
+                        </svg>
+                    </div>
+                    <h3>Zealous</h3>
+                    <p>We advocate passionately for our clients, fighting tirelessly to protect their rights and achieve the best possible outcomes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Band — Bold Dark -->
+    <section class="about-stats">
+        <div class="about-stats-inner">
+            <div class="about-stat fade-in">
+                <div class="count-up">85%</div>
+                <div class="about-stat-label">of Criminal Cases</div>
+            </div>
+            <div class="about-stat fade-in">
+                <div class="count-up">400+</div>
+                <div class="about-stat-label">Licensed Attorneys</div>
+            </div>
+            <div class="about-stat fade-in">
+                <div class="count-up">45</div>
+                <div class="about-stat-label">Circuit Offices</div>
+            </div>
+            <div class="about-stat fade-in">
+                <div class="count-up">20+</div>
+                <div class="about-stat-label">Years Serving Georgia</div>
+            </div>
+            <div class="about-stat fade-in">
+                <div class="count-up">159</div>
+                <div class="about-stat-label">Counties Covered</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA — Multiple Paths -->
+    <section class="about-cta-section">
+        <div class="container">
+            <div class="section-header centered fade-in">
+                <p class="label">GET INVOLVED</p>
+                <h2 class="section-title">How Can We Help?</h2>
+            </div>
+            <div class="about-cta-grid">
+                <a href="find-defender.html" class="about-cta-card fade-in fade-in-delay-1">
+                    <div class="about-cta-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>Find Your Defender</h3>
+                    <p>Locate the public defender office serving your county and learn how to apply for representation.</p>
+                    <span class="about-cta-link">Find My Office <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+                <a href="careers.html" class="about-cta-card fade-in fade-in-delay-2">
+                    <div class="about-cta-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2"/>
+                            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                        </svg>
+                    </div>
+                    <h3>Join Our Team</h3>
+                    <p>Build a meaningful career in public defense. We're hiring attorneys, investigators, and support staff statewide.</p>
+                    <span class="about-cta-link">View Careers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+                <a href="contact.html" class="about-cta-card fade-in fade-in-delay-3">
+                    <div class="about-cta-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="M22 6l-10 7L2 6"/>
+                        </svg>
+                    </div>
+                    <h3>Get in Touch</h3>
+                    <p>Have questions about GPDC, our programs, or public defense in Georgia? We'd love to hear from you.</p>
+                    <span class="about-cta-link">Contact Us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect With Us -->
+    <div id="site-connect"></div>
+
+    <!-- Footer -->
     <div id="site-footer"></div>
 
     <script src="js/components.js"></script>

@@ -4,11 +4,11 @@
     "position": "center center"
   },
   "about": {
-    "image": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Georgia_State_Capitol%2C_Atlanta%2C_West_view_20160716_1.jpg",
-    "position": "center center",
+    "image": "/images/programs/summer-conference-group.jpg",
+    "position": "center 30%",
     "label": "ABOUT US",
-    "title": "Who We Are",
-    "subtitle": "Providing high-quality legal defense for individuals accused of crimes who cannot afford representation."
+    "title": "Defending Rights,<br><em>Empowering Clients</em>",
+    "subtitle": "Georgia's statewide public defense agency — ensuring constitutional representation for every person who cannot afford an attorney."
   },
   "team": {
     "image": "https://images.unsplash.com/photo-1454923634634-bd1614719a7b?w=1600&q=80",
