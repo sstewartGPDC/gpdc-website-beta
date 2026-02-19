@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=15">
+    <link rel="stylesheet" href="css/styles.css?v=16">
     <!-- Open Graph -->
     <meta property="og:title" content="Georgia Public Defender Council">
     <meta property="og:description" content="The Georgia Public Defender Council provides constitutional defense services across Georgia, supporting public defenders and ensuring justice for all.">
@@ -35,7 +35,7 @@
             <p class="label hero-label">HOME</p>
             <h1 class="hero-title">Defending Rights<br><em>Empowering Clients</em></h1>
             <div class="hero-actions">
-                <a href="about.html" class="btn btn-primary">
+                <a href="about.html" class="btn btn-primary hero-about-btn">
                     <span>Learn About Us</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -47,13 +47,13 @@
             </div>
             <!-- Inline FMPD Search (mobile only) -->
             <div class="hero-fmpd-search">
-                <div class="hero-fmpd-label">Find My Public Defender</div>
                 <div class="hero-fmpd-input-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                    <input type="text" id="heroFmpdSearch" placeholder="Enter your county name..." autocomplete="off">
+                    <svg class="hero-fmpd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <input type="text" id="heroFmpdSearch" placeholder="Search your county..." autocomplete="off">
+                    <svg class="hero-fmpd-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
                 </div>
                 <div class="hero-fmpd-results" id="heroFmpdResults"></div>
-                <a href="find-defender.html" class="hero-fmpd-fallback">Or browse all 45 circuit offices →</a>
+                <a href="find-defender.html" class="hero-fmpd-fallback">Browse all circuit offices →</a>
             </div>
         </div>
         <div class="hero-scroll">
@@ -1180,11 +1180,12 @@
                         container.innerHTML = '<div class="hero-fmpd-no-results">No county found matching "' + query + '"</div>';
                         return;
                     }
+                    var arrow = '<svg class="hero-fmpd-result-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 18l6-6-6-6"/></svg>';
                     container.innerHTML = results.map(function(r) {
                         if (r.note) {
-                            return '<div class="hero-fmpd-result"><div class="hero-fmpd-result-circuit">' + r.county + ' County</div><div class="hero-fmpd-result-detail">' + r.note + '</div></div>';
+                            return '<div class="hero-fmpd-result"><div class="hero-fmpd-result-info"><div class="hero-fmpd-result-circuit">' + r.county + ' County</div><div class="hero-fmpd-result-detail">' + r.note + '</div></div></div>';
                         }
-                        return '<a href="local-offices/' + r.slug + '.html" class="hero-fmpd-result"><div class="hero-fmpd-result-circuit">' + r.circuit + '</div><div class="hero-fmpd-result-detail">' + r.county + ' County — ' + r.defender + '</div>' + (r.phone ? '<div class="hero-fmpd-result-phone">' + r.phone + '</div>' : '') + '</a>';
+                        return '<a href="local-offices/' + r.slug + '.html" class="hero-fmpd-result"><div class="hero-fmpd-result-info"><div class="hero-fmpd-result-circuit">' + r.circuit + '</div><div class="hero-fmpd-result-detail">' + r.county + ' County — ' + r.defender + '</div>' + (r.phone ? '<div class="hero-fmpd-result-phone">' + r.phone + '</div>' : '') + '</div>' + arrow + '</a>';
                     }).join('');
                 }
             })();
