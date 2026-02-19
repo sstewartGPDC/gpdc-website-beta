@@ -4027,6 +4027,15 @@ body.nav-open {
     }
     .hero-fmpd-search {
         display: block;
+        align-items: center;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .hero-fmpd-label {
+        color: white;
     }
 
     .quick-links {
