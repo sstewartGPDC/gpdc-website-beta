@@ -4850,8 +4850,9 @@ body.nav-open {
 
 .map-container {
     background: var(--bg-light);
-    border-radius: 16px;
-    padding: 2rem;
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid var(--border-light);
 }
 
 .map-header {
@@ -4860,12 +4861,16 @@ body.nav-open {
 }
 
 .map-header h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.625rem;
+    font-weight: 700;
+    margin-bottom: 0.375rem;
+    color: var(--text-dark);
 }
 
 .map-header p {
     color: var(--text-medium);
+    font-size: 0.9375rem;
 }
 
 .map-header-mobile {
@@ -4890,10 +4895,16 @@ body.nav-open {
 
 .georgia-map {
     background: var(--bg-white);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 1.5rem;
     box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
     position: relative;
+    transition: box-shadow 0.3s ease;
+}
+
+.georgia-map:hover {
+    box-shadow: var(--shadow-md);
 }
 
 .georgia-map svg {
@@ -4929,18 +4940,19 @@ body.nav-open {
 
 /* County SVG Map Styles */
 .county {
-    fill: #f5f5f0 !important;
-    stroke: #ccc !important;
+    fill: #f7f5f0 !important;
+    stroke: #d4d0c8 !important;
     stroke-width: 0.5 !important;
     cursor: pointer;
-    transition: fill 0.15s ease, stroke 0.15s ease;
+    transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
 }
 
 .county:hover,
 .county.hovered {
-    fill: #d4c9a8 !important;
+    fill: #e8dcc8 !important;
     stroke: var(--primary) !important;
-    stroke-width: 1 !important;
+    stroke-width: 1.25 !important;
+    filter: drop-shadow(0 0 2px rgba(184, 92, 56, 0.2));
 }
 
 .county.highlighted {
@@ -4951,27 +4963,43 @@ body.nav-open {
 
 .county.active {
     fill: var(--primary) !important;
-    stroke: #8B7355 !important;
+    stroke: var(--primary-dark) !important;
     stroke-width: 1.5 !important;
+    filter: drop-shadow(0 0 4px rgba(184, 92, 56, 0.3));
 }
 
 .county.circuit-member {
-    fill: rgba(184, 92, 56, 0.15) !important;
-    stroke: #ccc !important;
-    stroke-width: 0.5 !important;
+    fill: rgba(184, 92, 56, 0.12) !important;
+    stroke: rgba(184, 92, 56, 0.35) !important;
+    stroke-width: 0.75 !important;
 }
 
 .county.opt-out {
-    fill: #e0e0e0 !important;
-    stroke: #bbb !important;
+    fill: #eaeaea !important;
+    stroke: #c0c0c0 !important;
     stroke-width: 0.5 !important;
     cursor: default;
 }
 
 .county.opt-out:hover {
-    fill: #d5d5d5 !important;
-    stroke: #999 !important;
+    fill: #e0e0e0 !important;
+    stroke: #aaa !important;
     stroke-width: 0.5 !important;
+}
+
+/* Geolocation-detected county */
+.county.geo-detected {
+    fill: #2d7d46 !important;
+    stroke: #1b5e30 !important;
+    stroke-width: 1.5 !important;
+    filter: drop-shadow(0 0 6px rgba(45, 125, 70, 0.4));
+    animation: geo-pulse 2s ease-in-out;
+}
+
+@keyframes geo-pulse {
+    0% { filter: drop-shadow(0 0 0px rgba(45, 125, 70, 0)); }
+    50% { filter: drop-shadow(0 0 10px rgba(45, 125, 70, 0.5)); }
+    100% { filter: drop-shadow(0 0 6px rgba(45, 125, 70, 0.4)); }
 }
 
 /* Map Controls */
@@ -4981,17 +5009,17 @@ body.nav-open {
     right: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.375rem;
     z-index: 10;
 }
 
 .map-control-btn {
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
     background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -5001,20 +5029,27 @@ body.nav-open {
 
 .map-control-btn:hover {
     background: var(--bg-light);
-    transform: scale(1.05);
+    transform: scale(1.08);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    border-color: var(--primary-light);
+}
+
+.map-control-btn:active {
+    transform: scale(0.96);
 }
 
 .map-control-btn svg {
-    width: 18px;
-    height: 18px;
-    color: var(--text-dark);
+    width: 16px;
+    height: 16px;
+    color: var(--text-medium);
 }
 
 /* Sidebar: Search + Circuit List */
 .map-sidebar {
     background: var(--bg-white);
-    border-radius: 12px;
+    border-radius: 14px;
     box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
     display: flex;
     flex-direction: column;
     max-height: 640px;
@@ -5060,6 +5095,114 @@ body.nav-open {
 
 .map-sidebar-search-input::placeholder {
     color: var(--text-light);
+}
+
+/* Geolocation Button (desktop sidebar) */
+.geo-locate-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.625rem 1rem;
+    margin-top: 0.625rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--primary-subtle);
+    border: 1.5px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.geo-locate-btn:hover {
+    background: rgba(184, 92, 56, 0.12);
+    border-color: rgba(184, 92, 56, 0.2);
+    transform: translateY(-1px);
+}
+
+.geo-locate-btn:active {
+    transform: translateY(0);
+}
+
+.geo-locate-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.geo-locate-btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.geo-locate-btn.loading svg {
+    animation: spin 1s linear infinite;
+}
+
+.geo-locate-btn.success {
+    color: #2d7d46;
+    background: rgba(45, 125, 70, 0.08);
+    border-color: rgba(45, 125, 70, 0.2);
+}
+
+.geo-locate-btn.error {
+    color: #c0392b;
+    background: rgba(192, 57, 43, 0.06);
+    border-color: rgba(192, 57, 43, 0.15);
+}
+
+/* Mobile geolocation button */
+.fypd-mobile-geo-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-top: 0.75rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--primary-subtle);
+    border: 1.5px solid transparent;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    min-height: 48px;
+}
+
+.fypd-mobile-geo-btn:active {
+    transform: scale(0.98);
+    background: rgba(184, 92, 56, 0.12);
+}
+
+.fypd-mobile-geo-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.fypd-mobile-geo-btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.fypd-mobile-geo-btn.loading svg.geo-icon {
+    animation: spin 1s linear infinite;
+}
+
+.fypd-mobile-geo-btn.success {
+    color: #2d7d46;
+    background: rgba(45, 125, 70, 0.08);
+}
+
+.fypd-mobile-geo-btn.error {
+    color: #c0392b;
+    background: rgba(192, 57, 43, 0.06);
 }
 
 .map-sidebar-directory {
@@ -5217,14 +5360,14 @@ body.nav-open {
 
 .circuit-modal {
     background: var(--bg-white);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 2rem;
     max-width: 480px;
     width: 100%;
     position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.04);
     transform: translateY(20px) scale(0.95);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .circuit-modal-overlay.active .circuit-modal {
@@ -5235,8 +5378,8 @@ body.nav-open {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border: none;
     border-radius: 50%;
     background: var(--bg-light);
@@ -5250,7 +5393,7 @@ body.nav-open {
 
 .circuit-modal-close:hover {
     background: var(--border-light);
-    transform: scale(1.05);
+    transform: scale(1.1) rotate(90deg);
 }
 
 .circuit-modal-close svg {
@@ -5366,12 +5509,21 @@ body.nav-open {
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--text-medium);
+    transition: all 0.2s ease;
 }
 
 .circuit-modal-county-tag.active-county {
     background: var(--primary-subtle);
     color: var(--primary);
     font-weight: 700;
+    box-shadow: 0 0 0 1.5px rgba(184, 92, 56, 0.25);
+}
+
+.circuit-modal-county-tag.geo-county {
+    background: rgba(45, 125, 70, 0.08);
+    color: #2d7d46;
+    font-weight: 700;
+    box-shadow: 0 0 0 1.5px rgba(45, 125, 70, 0.25);
 }
 
 .circuit-modal-actions {
@@ -5419,6 +5571,7 @@ body.nav-open {
         margin: 0.5rem;
         max-height: 90vh;
         overflow-y: auto;
+        border-radius: 20px;
     }
 
     .circuit-modal-mobile-actions {
@@ -5437,11 +5590,16 @@ body.nav-open {
         font-family: 'Manrope', sans-serif;
         font-size: 0.8125rem;
         font-weight: 700;
-        border-radius: 10px;
+        border-radius: 12px;
         border: 1.5px solid var(--primary);
         text-decoration: none;
         cursor: pointer;
         transition: all 0.2s ease;
+        min-height: 48px;
+    }
+
+    .circuit-modal-action-btn:active {
+        transform: scale(0.97);
     }
 
     .circuit-modal-action-btn svg {
@@ -5467,7 +5625,7 @@ body.nav-open {
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1rem;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.2s var(--ease-out);
     border: 1px solid transparent;
@@ -5475,7 +5633,12 @@ body.nav-open {
 
 .circuit-directory-item:hover {
     background: var(--primary-subtle);
-    border-color: rgba(184, 92, 56, 0.15);
+    border-color: rgba(184, 92, 56, 0.12);
+    transform: translateX(2px);
+}
+
+.circuit-directory-item:active {
+    transform: translateX(2px) scale(0.99);
 }
 
 .circuit-directory-item.highlighted {
@@ -5703,11 +5866,16 @@ body.nav-open {
 
 .fypd-circuit-card {
     background: var(--bg-white);
-    border-radius: 10px;
+    border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 1px 6px rgba(0,0,0,0.04);
     border: 1px solid var(--border-light);
     transition: all 0.2s ease;
+}
+
+.fypd-circuit-card:active {
+    transform: scale(0.99);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
 .fypd-circuit-card-header {
@@ -5791,6 +5959,94 @@ body.nav-open {
 .fypd-view-btn:hover {
     background: var(--primary-subtle);
     border-color: var(--primary-light);
+}
+
+/* Mobile Map */
+.fypd-mobile-map-wrapper {
+    margin: 0.25rem 0 1rem;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.fypd-mobile-map-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    background: var(--bg-white);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.fypd-mobile-map-toggle:active {
+    background: var(--bg-light);
+}
+
+.fypd-mobile-map-toggle svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-light);
+    transition: transform 0.3s ease;
+}
+
+.fypd-mobile-map-toggle.open svg {
+    transform: rotate(180deg);
+}
+
+.fypd-mobile-map-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fypd-mobile-map-toggle-label svg {
+    width: 18px;
+    height: 18px;
+    color: var(--primary);
+}
+
+.fypd-mobile-map-inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fypd-mobile-map-inner.expanded {
+    max-height: 600px;
+}
+
+.fypd-mobile-map-container {
+    padding: 0.5rem;
+    position: relative;
+}
+
+.fypd-mobile-map-container svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.fypd-mobile-map-container .county {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Tip text below mobile map */
+.fypd-mobile-map-tip {
+    text-align: center;
+    font-size: 0.6875rem;
+    color: var(--text-light);
+    padding: 0.375rem 0.75rem 0.625rem;
+    font-style: italic;
 }
 
 /* Results count */

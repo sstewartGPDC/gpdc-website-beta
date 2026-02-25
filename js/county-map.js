@@ -237,6 +237,7 @@ const countyToCircuit = {
 };
 
 let mapLoaded = false;
+let mobileMapLoaded = false;
 let currentZoom = 1;
 let isPanning = false;
 let startX, startY, scrollLeft, scrollTop;
@@ -259,6 +260,10 @@ document.addEventListener('DOMContentLoaded', function() {
     renderMobileCircuits(circuitData);
     initMobileAlphaBar();
     initMobileSearch();
+    initMobileMapToggle();
+
+    // Initialize geolocation buttons
+    initGeolocation();
 
     // Modal close handlers
     var modalOverlay = document.getElementById('circuitModalOverlay');
@@ -891,4 +896,287 @@ function initMobileSearch() {
 
         renderMobileCircuits(filtered);
     });
+}
+
+// ==================== MOBILE MAP (collapsible) ====================
+
+function initMobileMapToggle() {
+    var toggle = document.getElementById('mobileMapToggle');
+    var inner = document.getElementById('mobileMapInner');
+    if (!toggle || !inner) return;
+
+    toggle.addEventListener('click', function() {
+        var isOpen = inner.classList.contains('expanded');
+        if (isOpen) {
+            inner.classList.remove('expanded');
+            toggle.classList.remove('open');
+        } else {
+            inner.classList.add('expanded');
+            toggle.classList.add('open');
+            // Lazy-load the mobile map SVG on first open
+            if (!mobileMapLoaded) {
+                loadMobileMap();
+            }
+        }
+    });
+}
+
+function loadMobileMap() {
+    var container = document.getElementById('mobileMapContainer');
+    if (!container) return;
+
+    var isLocalFile = window.location.protocol === 'file:';
+    if (isLocalFile) {
+        container.innerHTML = '<p style="text-align:center; padding:2rem; color:var(--text-light); font-size:0.8125rem;">Map preview not available in local mode.</p>';
+        return;
+    }
+
+    fetch('images/georgia-wiki.svg')
+        .then(function(response) {
+            if (!response.ok) throw new Error('Failed to load map');
+            return response.text();
+        })
+        .then(function(svgContent) {
+            container.innerHTML = svgContent;
+            var svg = container.querySelector('svg');
+            if (svg) {
+                mobileMapLoaded = true;
+                initMobileMapInteractions(svg);
+            }
+        })
+        .catch(function() {
+            container.innerHTML = '<p style="text-align:center; padding:2rem; color:var(--text-light); font-size:0.8125rem;">Could not load map.</p>';
+        });
+}
+
+function initMobileMapInteractions(svg) {
+    var counties = svg.querySelectorAll('.county');
+
+    counties.forEach(function(county) {
+        var fipsCode = county.id;
+        var countyName = fipsToCounty[fipsCode] || fipsCode;
+        var circuitSlug = countyToCircuit[countyName];
+
+        county.dataset.name = countyName;
+        if (circuitSlug) {
+            county.dataset.circuit = circuitSlug;
+        } else {
+            county.classList.add('opt-out');
+        }
+
+        // Tap to select (mobile — no hover needed)
+        county.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (circuitSlug) {
+                var circuit = circuitData.find(function(c) { return c.slug === circuitSlug; });
+                if (circuit) {
+                    // Highlight on mobile map
+                    svg.querySelectorAll('.county.active, .county.circuit-member').forEach(function(c) {
+                        c.classList.remove('active', 'circuit-member');
+                    });
+                    selectCircuitOnSvg(svg, circuitSlug, countyName);
+                    openCircuitModal(circuit, countyName);
+                }
+            }
+        });
+    });
+}
+
+function selectCircuitOnSvg(svg, circuitSlug, clickedCountyName) {
+    svg.querySelectorAll('.county').forEach(function(county) {
+        var countyName = county.dataset.name || fipsToCounty[county.id] || county.id;
+        var countyCircuit = countyToCircuit[countyName];
+        if (countyCircuit === circuitSlug) {
+            if (clickedCountyName && countyName === clickedCountyName) {
+                county.classList.add('active');
+            } else {
+                county.classList.add('circuit-member');
+            }
+        }
+    });
+}
+
+// ==================== GEOLOCATION ====================
+
+function initGeolocation() {
+    var desktopBtn = document.getElementById('geoLocateBtn');
+    var mobileBtn = document.getElementById('mobileGeoLocateBtn');
+
+    // Hide buttons if geolocation is not supported
+    if (!navigator.geolocation) {
+        if (desktopBtn) desktopBtn.style.display = 'none';
+        if (mobileBtn) mobileBtn.style.display = 'none';
+        return;
+    }
+
+    if (desktopBtn) {
+        desktopBtn.addEventListener('click', function() { runGeolocation(desktopBtn); });
+    }
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', function() { runGeolocation(mobileBtn); });
+    }
+}
+
+function runGeolocation(btn) {
+    var labelEl = btn.querySelector('span');
+    var origLabel = labelEl.textContent;
+
+    // Set loading state
+    btn.classList.remove('success', 'error');
+    btn.classList.add('loading');
+    labelEl.textContent = 'Locating…';
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            reverseGeocodeCounty(lat, lon, btn, labelEl, origLabel);
+        },
+        function(error) {
+            btn.classList.remove('loading');
+            btn.classList.add('error');
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    labelEl.textContent = 'Location access denied';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    labelEl.textContent = 'Location unavailable';
+                    break;
+                default:
+                    labelEl.textContent = 'Could not get location';
+            }
+            setTimeout(function() {
+                btn.classList.remove('error');
+                labelEl.textContent = origLabel;
+            }, 4000);
+        },
+        { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }
+    );
+}
+
+function reverseGeocodeCounty(lat, lon, btn, labelEl, origLabel) {
+    // Use the FCC Census Block API (free, no key required, returns county)
+    var url = 'https://geo.fcc.gov/api/census/area?lat=' + lat + '&lon=' + lon + '&format=json';
+
+    fetch(url)
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            btn.classList.remove('loading');
+
+            if (!data.results || data.results.length === 0) {
+                geoError(btn, labelEl, origLabel, 'Not in Georgia');
+                return;
+            }
+
+            var result = data.results[0];
+            var stateFips = result.state_fips;
+            var countyNameRaw = result.county_name;
+
+            // Georgia FIPS = 13
+            if (stateFips !== '13') {
+                geoError(btn, labelEl, origLabel, 'Not in Georgia');
+                return;
+            }
+
+            // Match county name to our mapping
+            var countySlug = countyNameRaw.toLowerCase()
+                .replace(/\s+county$/i, '')
+                .replace(/\s+/g, '-');
+
+            var circuitSlug = countyToCircuit[countySlug];
+
+            if (!circuitSlug) {
+                // Try without hyphens (e.g., "Ben Hill" -> "ben-hill")
+                // The countyToCircuit already uses hyphenated slugs, so try matching
+                var found = false;
+                for (var key in countyToCircuit) {
+                    if (key === countySlug || key.replace(/-/g, ' ') === countySlug.replace(/-/g, ' ')) {
+                        circuitSlug = countyToCircuit[key];
+                        countySlug = key;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    // Check optional/opt-out counties
+                    geoError(btn, labelEl, origLabel, countyNameRaw + ' - opt-out county');
+                    return;
+                }
+            }
+
+            var circuit = circuitData.find(function(c) { return c.slug === circuitSlug; });
+            if (!circuit) {
+                geoError(btn, labelEl, origLabel, 'Circuit not found');
+                return;
+            }
+
+            // Success!
+            btn.classList.add('success');
+            labelEl.textContent = countyNameRaw + ' County';
+
+            // Highlight on desktop map
+            if (mapLoaded) {
+                var desktopSvg = document.querySelector('#mapContainer svg');
+                if (desktopSvg) {
+                    desktopSvg.querySelectorAll('.county.active, .county.circuit-member, .county.geo-detected').forEach(function(c) {
+                        c.classList.remove('active', 'circuit-member', 'geo-detected');
+                    });
+                    selectCircuit(desktopSvg, circuitSlug, countySlug);
+                    // Add special geo-detected class to the user's county
+                    desktopSvg.querySelectorAll('.county').forEach(function(c) {
+                        if (c.dataset.name === countySlug) {
+                            c.classList.remove('active');
+                            c.classList.add('geo-detected');
+                        }
+                    });
+                }
+            }
+
+            // Highlight on mobile map if loaded
+            if (mobileMapLoaded) {
+                var mobileSvg = document.querySelector('#mobileMapContainer svg');
+                if (mobileSvg) {
+                    mobileSvg.querySelectorAll('.county.active, .county.circuit-member, .county.geo-detected').forEach(function(c) {
+                        c.classList.remove('active', 'circuit-member', 'geo-detected');
+                    });
+                    selectCircuitOnSvg(mobileSvg, circuitSlug, countySlug);
+                    mobileSvg.querySelectorAll('.county').forEach(function(c) {
+                        if (c.dataset.name === countySlug) {
+                            c.classList.remove('active');
+                            c.classList.add('geo-detected');
+                        }
+                    });
+                }
+
+                // Expand mobile map to show the result
+                var inner = document.getElementById('mobileMapInner');
+                var toggle = document.getElementById('mobileMapToggle');
+                if (inner && !inner.classList.contains('expanded')) {
+                    inner.classList.add('expanded');
+                    if (toggle) toggle.classList.add('open');
+                }
+            }
+
+            // Open modal with geo-county flag
+            openCircuitModal(circuit, countySlug);
+
+            // Reset button after delay
+            setTimeout(function() {
+                btn.classList.remove('success');
+                labelEl.textContent = origLabel;
+            }, 6000);
+        })
+        .catch(function() {
+            geoError(btn, labelEl, origLabel, 'Location lookup failed');
+        });
+}
+
+function geoError(btn, labelEl, origLabel, message) {
+    btn.classList.remove('loading');
+    btn.classList.add('error');
+    labelEl.textContent = message;
+    setTimeout(function() {
+        btn.classList.remove('error');
+        labelEl.textContent = origLabel;
+    }, 4000);
 }
