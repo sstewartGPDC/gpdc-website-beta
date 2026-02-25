@@ -242,7 +242,7 @@
         'mental-health-defense': 'srhinehart',
         'youth-defense': 'gmurray',
         'conflict': 'aragas',
-        'administration': 'oalli'
+        'administration': 'lonley'
     };
 
     // Load divisions data and update division images
