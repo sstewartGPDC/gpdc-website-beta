@@ -2752,9 +2752,11 @@ body.nav-open {
 }
 
 .content-image img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: inherit;
 }
 
 .services-list {
