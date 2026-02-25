@@ -9,16 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css?v=16">
     <style>
-        /* Intranet Navigation */
+        /* Intranet Navigation — Glassmorphic Dark */
         .intranet-nav {
-            background: var(--text-dark);
-            padding: 0.75rem 1.5rem;
+            background: rgba(26, 26, 30, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 0.875rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
         .intranet-nav-brand {
@@ -30,46 +33,51 @@
 
         .intranet-nav-brand img {
             height: 36px;
+            width: auto;
+            filter: brightness(0) invert(1);
         }
 
         .intranet-nav-brand span {
             color: white;
-            font-weight: 700;
-            font-size: 1.125rem;
+            font-weight: 600;
+            font-size: 1.0625rem;
+            letter-spacing: -0.01em;
         }
 
         .intranet-nav-brand .badge {
-            background: var(--primary);
+            background: rgba(184, 92, 56, 0.9);
             color: white;
-            font-size: 0.65rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
+            font-size: 0.6rem;
+            padding: 0.2rem 0.625rem;
+            border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
         .logout-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
             font-size: 0.8125rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s var(--ease-spring);
             font-family: 'Manrope', sans-serif;
         }
 
         .logout-btn:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.12);
+            color: white;
         }
 
-        /* Hero */
+        /* Hero — Minimal Text-Only */
         .directory-hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 2.5rem 1.5rem;
-            color: white;
+            background: transparent;
+            padding: 3rem 1.5rem 1.5rem;
+            color: var(--text-dark);
         }
 
         .directory-hero-inner {
@@ -83,25 +91,30 @@
         }
 
         .directory-hero h1 {
-            font-size: 2rem;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 600;
+            font-size: 2.5rem;
             margin-bottom: 0.25rem;
+            letter-spacing: -0.025em;
+            color: var(--text-dark);
         }
 
         .directory-hero p {
-            opacity: 0.9;
-            font-size: 1rem;
+            color: var(--text-medium);
+            opacity: 1;
+            font-size: 1.0625rem;
         }
 
         .dev-access-btn {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 0.625rem 1.25rem;
-            border-radius: 8px;
-            font-size: 0.875rem;
+            background: rgba(184, 92, 56, 0.06);
+            border: 1px solid rgba(184, 92, 56, 0.15);
+            color: var(--primary-dark);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.8125rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s var(--ease-spring);
             font-family: 'Manrope', sans-serif;
             display: flex;
             align-items: center;
@@ -109,87 +122,13 @@
         }
 
         .dev-access-btn:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(184, 92, 56, 0.1);
         }
 
         .dev-access-btn svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Directory Tabs */
-        .directory-tabs {
-            background: var(--bg-white);
-            border-bottom: 1px solid var(--border-light);
-            position: sticky;
-            top: 60px;
-            z-index: 100;
-        }
-
-        .directory-tabs-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            padding: 0 1.5rem;
-        }
-
-        .directory-tab {
-            padding: 1rem 1.5rem;
-            border: none;
-            background: transparent;
-            font-family: 'Manrope', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-medium);
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .directory-tab:hover {
-            color: var(--text-dark);
-        }
-
-        .directory-tab.active {
+            width: 14px;
+            height: 14px;
             color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-
-        .directory-tab svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .tab-count {
-            background: var(--bg-light);
-            color: var(--text-medium);
-            font-size: 0.75rem;
-            padding: 0.15rem 0.5rem;
-            border-radius: 10px;
-            font-weight: 600;
-        }
-
-        .directory-tab.active .tab-count {
-            background: var(--primary-subtle);
-            color: var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Directory Section */
-        .directory-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
         }
 
         /* Search and Filter Bar */
@@ -209,19 +148,19 @@
 
         .directory-search input {
             width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.75rem;
-            border: 1px solid var(--border-light);
-            border-radius: 10px;
-            font-size: 0.9375rem;
+            padding: 1rem 1rem 1rem 3rem;
+            border: none;
+            border-radius: 16px;
+            font-size: 1rem;
             font-family: 'Manrope', sans-serif;
             background: var(--bg-white);
-            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.3s var(--ease-spring);
         }
 
         .directory-search input:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(199, 94, 0, 0.1);
+            box-shadow: 0 0 0 3px rgba(184, 92, 56, 0.12), 0 4px 16px rgba(0,0,0,0.06);
         }
 
         .directory-search svg {
@@ -240,27 +179,19 @@
             font-weight: 500;
         }
 
-        /* Directory Grid */
-        .directory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1rem;
-        }
-
-        /* Staff Card */
+        /* Staff Card (CPD) — Borderless */
         .staff-card {
             background: var(--bg-white);
-            border-radius: 12px;
-            padding: 1.25rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            border: 1px solid var(--border-light);
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+            border: none;
+            transition: all 0.4s var(--ease-spring);
         }
 
         .staff-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .staff-header {
@@ -352,25 +283,19 @@
             margin-top: 0.375rem;
         }
 
-        /* Statewide Support Cards */
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
-        }
-
+        /* Statewide Support Cards — Borderless */
         .support-card {
             background: var(--bg-white);
-            border-radius: 10px;
-            padding: 1rem;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-            border: 1px solid var(--border-light);
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+            border: none;
+            transition: all 0.4s var(--ease-spring);
         }
 
         .support-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .support-header {
@@ -454,21 +379,25 @@
             display: inline-block;
             font-size: 0.6875rem;
             font-weight: 500;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
+            padding: 0.25rem 0.625rem;
+            border-radius: 50px;
+            border: none;
+            background: var(--bg-light);
+            color: var(--text-medium);
         }
 
-        /* Category-colored pills - subtle tints with darker border */
-        .poc-pill.cat-communications { background: #f0f9fa; border: 1px solid #d4eaed; color: #4b7c83; }
-        .poc-pill.cat-customerservice { background: #faf0f8; border: 1px solid #edcfe6; color: #7a4b6e; }
-        .poc-pill.cat-finance { background: #faf8f0; border: 1px solid #ede8d4; color: #8a7340; }
-        .poc-pill.cat-investigations { background: #faf5f0; border: 1px solid #ede2d4; color: #8a6040; }
-        .poc-pill.cat-jcats { background: #f0faf8; border: 1px solid #d4ede9; color: #4b837a; }
-        .poc-pill.cat-legal { background: #f0f4fa; border: 1px solid #d4deeb; color: #4b6083; }
-        .poc-pill.cat-operations { background: #f0faf5; border: 1px solid #d4ede3; color: #4b8367; }
-        .poc-pill.cat-social { background: #faf0f0; border: 1px solid #edd4d4; color: #834b4b; }
-        .poc-pill.cat-itsupport { background: #f5f6f8; border: 1px solid #dfe1e5; color: #5a6270; }
-        .poc-pill.cat-training { background: #f5f0fa; border: 1px solid #e2d4ed; color: #6b4b83; }
+        /* Category-colored pills — muted tones */
+        .poc-pill.cat-communications { background: #f0f5f6; color: #5a7a80; }
+        .poc-pill.cat-customerservice { background: #f5f0f4; color: #7a5a6e; }
+        .poc-pill.cat-finance { background: #f5f3f0; color: #7a6a4a; }
+        .poc-pill.cat-investigations { background: #f5f2f0; color: #7a604a; }
+        .poc-pill.cat-jcats { background: #f0f5f4; color: #5a7a74; }
+        .poc-pill.cat-legal { background: #f0f2f5; color: #5a6a7a; }
+        .poc-pill.cat-operations { background: #f0f5f2; color: #5a7a64; }
+        .poc-pill.cat-social { background: #f5f0f0; color: #7a5a5a; }
+        .poc-pill.cat-itsupport { background: #f2f3f5; color: #5a6270; }
+        .poc-pill.cat-training { background: #f2f0f5; color: #6a5a7a; }
+        .poc-pill.cat-cpd { background: rgba(184, 92, 56, 0.06); color: var(--primary-dark); }
 
         .support-contact {
             display: flex;
@@ -488,62 +417,22 @@
             color: var(--primary);
         }
 
-        /* Category Headers for Support */
-        .category-section {
-            margin-bottom: 2rem;
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--border-light);
-        }
-
-        .category-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .category-icon svg {
-            width: 18px;
-            height: 18px;
-            color: white;
-        }
-
-        .category-title {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .category-count {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
         /* Support Layout with Sidebar */
         .support-layout {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
+            grid-template-columns: 260px 1fr;
+            gap: 2.5rem;
         }
 
         .support-sidebar {
             position: sticky;
-            top: 140px;
+            top: 60px;
             height: fit-content;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
         }
 
         .sidebar-header {
@@ -572,61 +461,86 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.75rem;
-            background: var(--bg-white);
-            border: 1px solid var(--border-light);
-            border-radius: 10px;
+            padding: 0.625rem 0.75rem;
+            background: transparent;
+            border: none;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s var(--ease-spring);
             text-align: left;
             font-family: 'Manrope', sans-serif;
         }
 
         .sidebar-item:hover {
-            border-color: var(--text-light);
-            background: var(--bg-light);
+            background: rgba(184, 92, 56, 0.05);
         }
 
         .sidebar-item.active {
-            border-color: #2563eb;
-            background: #eff6ff;
+            background: rgba(184, 92, 56, 0.08);
         }
 
         .sidebar-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            transition: all 0.3s var(--ease-spring);
+        }
+
+        /* Monochrome icon overrides — muted gray for inactive, primary for active */
+        .sidebar-icon {
+            background: linear-gradient(135deg, #9a9a9a, #7a7a7a) !important;
+            opacity: 0.55;
+        }
+
+        .sidebar-item:hover .sidebar-icon {
+            opacity: 0.75;
+        }
+
+        .sidebar-item.active .sidebar-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+            opacity: 1;
         }
 
         .sidebar-icon svg {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             color: white;
         }
 
         .sidebar-label {
             flex: 1;
             font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text-medium);
+            transition: color 0.3s var(--ease-spring);
+        }
+
+        .sidebar-item:hover .sidebar-label {
+            color: var(--text-dark);
+        }
+
+        .sidebar-item.active .sidebar-label {
             font-weight: 600;
             color: var(--text-dark);
         }
 
         .sidebar-count {
-            font-size: 0.75rem;
+            font-size: 0.6875rem;
             font-weight: 600;
             color: var(--text-light);
-            background: var(--bg-light);
+            background: transparent;
             padding: 0.2rem 0.5rem;
-            border-radius: 10px;
+            border-radius: 50px;
+            transition: all 0.3s var(--ease-spring);
         }
 
         .sidebar-item.active .sidebar-count {
-            background: #dbeafe;
-            color: #2563eb;
+            background: rgba(184, 92, 56, 0.12);
+            color: var(--primary);
         }
 
         .support-main {
@@ -637,40 +551,44 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.75rem 1rem;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: 10px;
+            padding: 0.75rem 1.25rem;
+            background: rgba(184, 92, 56, 0.04);
+            border: none;
+            border-radius: 12px;
             margin-bottom: 1.5rem;
         }
 
         .active-filter span {
             font-size: 0.875rem;
-            color: #1e40af;
+            color: var(--text-medium);
         }
 
         .active-filter strong {
             font-weight: 700;
+            color: var(--primary);
         }
 
         .active-filter button {
             display: flex;
             align-items: center;
             gap: 0.375rem;
-            padding: 0.375rem 0.75rem;
-            background: white;
-            border: 1px solid #bfdbfe;
-            border-radius: 6px;
+            padding: 0.375rem 0.875rem;
+            background: var(--bg-white);
+            border: none;
+            border-radius: 50px;
             font-size: 0.75rem;
             font-weight: 600;
-            color: #1e40af;
+            color: var(--text-medium);
             cursor: pointer;
             font-family: 'Manrope', sans-serif;
-            transition: all 0.2s ease;
+            transition: all 0.3s var(--ease-spring);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
         }
 
         .active-filter button:hover {
-            background: #dbeafe;
+            background: var(--bg-white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: var(--text-dark);
         }
 
         .active-filter button svg {
@@ -678,11 +596,117 @@
             height: 14px;
         }
 
-        /* Updated support grid for sidebar layout */
-        .support-main .support-grid {
+        /* A-Z Bar */
+        .cpd-az-bar {
+            display: flex;
+            justify-content: center;
+            padding: 0.75rem 0;
+            margin-bottom: 1.5rem;
+            position: sticky;
+            top: 60px;
+            z-index: 99;
+            background: transparent;
+            transition: box-shadow 0.3s var(--ease-out);
+        }
+
+        .cpd-az-bar-inner {
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            background: var(--bg-white);
+            border: none;
+            border-radius: 999px;
+            padding: 0.3rem 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .cpd-az-bar.scrolled .cpd-az-bar-inner {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .cpd-az-letter {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-light);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.25s var(--ease-spring);
+            border: none;
+            background: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .cpd-az-letter:hover {
+            color: var(--primary);
+            background: rgba(184, 92, 56, 0.06);
+        }
+
+        .cpd-az-letter.active {
+            color: white;
+            background: var(--primary);
+            box-shadow: 0 2px 8px rgba(184, 92, 56, 0.25);
+        }
+
+        .cpd-az-letter.disabled {
+            color: var(--border-light);
+            cursor: default;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        /* Letter Groups */
+        .cpd-letter-group {
+            scroll-margin-top: 120px;
+            margin-bottom: 2.5rem;
+        }
+
+        .cpd-letter-heading {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+            letter-spacing: -0.01em;
+        }
+
+        .cpd-letter-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 0.875rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        /* No results */
+        .no-results {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--text-light);
+        }
+
+        .no-results svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .no-results h3 {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .no-results p {
+            font-size: 0.875rem;
         }
 
         /* Dev Password Modal */
@@ -692,7 +716,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -700,7 +726,7 @@
             padding: 1.5rem;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s var(--ease-out);
         }
 
         .dev-modal-overlay.visible {
@@ -875,16 +901,25 @@
                 grid-template-columns: 240px 1fr;
                 gap: 1.5rem;
             }
+
+            .cpd-az-letter {
+                width: 24px;
+                height: 24px;
+                font-size: 0.6rem;
+            }
         }
 
         @media (max-width: 768px) {
-            .directory-grid,
-            .support-main .support-grid {
+            .cpd-letter-grid {
                 grid-template-columns: 1fr;
             }
 
             .directory-hero h1 {
-                font-size: 1.5rem;
+                font-size: 1.75rem;
+            }
+
+            .directory-hero {
+                padding: 2rem 1rem 1rem;
             }
 
             .directory-hero-inner {
@@ -894,17 +929,6 @@
 
             .dev-features-list {
                 grid-template-columns: 1fr;
-            }
-
-            .directory-tabs-inner {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .directory-tab {
-                white-space: nowrap;
-                padding: 0.875rem 1rem;
-                font-size: 0.8125rem;
             }
 
             /* Mobile sidebar - horizontal scrolling */
@@ -917,6 +941,8 @@
             .support-sidebar {
                 position: relative;
                 top: 0;
+                max-height: none;
+                overflow-y: visible;
             }
 
             .sidebar-header {
@@ -964,6 +990,28 @@
             .active-filter span {
                 font-size: 0.8125rem;
             }
+
+            /* A-Z bar mobile */
+            .cpd-az-bar {
+                top: 60px;
+            }
+
+            .cpd-az-bar-inner {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                max-width: 100%;
+            }
+
+            .cpd-az-bar-inner::-webkit-scrollbar {
+                display: none;
+            }
+
+            .cpd-az-letter {
+                width: 26px;
+                height: 26px;
+                font-size: 0.6rem;
+                flex-shrink: 0;
+            }
         }
     </style>
 </head>
@@ -971,7 +1019,7 @@
     <!-- Navigation -->
     <nav class="intranet-nav">
         <a href="dashboard.html" class="intranet-nav-brand">
-            <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/66e9df4a3e925a89e1be2971_BlackGold%20-%20SYMBOL%20MARK.png" alt="GPDC Logo">
+            <img src="https://cdn.prod.website-files.com/66c9595206b0d169d1677e69/67d1da318c23fdec16d221de_GPDC%20Logo_Website_Webclip.png" alt="GPDC Logo">
             <span>Team GPDC</span>
             <span class="badge">Intranet</span>
         </a>
@@ -1063,212 +1111,177 @@
         </div>
     </div>
 
-    <!-- Directory Tabs -->
-    <div class="directory-tabs">
-        <div class="directory-tabs-inner">
-            <button class="directory-tab active" data-tab="support">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
-                Statewide Support
-                <span class="tab-count">22</span>
-            </button>
-            <button class="directory-tab" data-tab="cpd">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-                Circuit Public Defenders
-                <span class="tab-count">46</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- Statewide Support Tab Content -->
-    <div class="tab-content active" id="support-tab">
-        <div class="support-layout">
-            <!-- Sidebar -->
-            <aside class="support-sidebar">
-                <div class="sidebar-header">
-                    <h3>Agency Areas</h3>
-                    <p>Click to filter by department</p>
-                </div>
-                <nav class="sidebar-nav">
-                    <button class="sidebar-item active" data-category="all">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="7" height="7"/>
-                                <rect x="14" y="3" width="7" height="7"/>
-                                <rect x="14" y="14" width="7" height="7"/>
-                                <rect x="3" y="14" width="7" height="7"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">All Areas</span>
-                        <span class="sidebar-count">22</span>
-                    </button>
-                    <button class="sidebar-item" data-category="communications">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #0891b2, #0e7490);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">Communications & Outreach</span>
-                        <span class="sidebar-count">3</span>
-                    </button>
-                    <button class="sidebar-item" data-category="customerservice">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #db2777, #be185d);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">Customer Service</span>
-                        <span class="sidebar-count">1</span>
-                    </button>
-                    <button class="sidebar-item" data-category="finance">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #d97706, #b45309);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="12" y1="1" x2="12" y2="23"/>
-                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">Finance</span>
-                        <span class="sidebar-count">2</span>
-                    </button>
-                    <button class="sidebar-item" data-category="investigations">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #ea580c, #c2410c);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="11" cy="11" r="8"/>
-                                <path d="M21 21l-4.35-4.35"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">Investigations</span>
-                        <span class="sidebar-count">1</span>
-                    </button>
-                    <button class="sidebar-item" data-category="itsupport">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #475569, #334155);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                <line x1="8" y1="21" x2="16" y2="21"/>
-                                <line x1="12" y1="17" x2="12" y2="21"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">IT Support</span>
-                        <span class="sidebar-count">1</span>
-                    </button>
-                    <button class="sidebar-item" data-category="jcats">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #0d9488, #0f766e);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                <path d="M2 17l10 5 10-5"/>
-                                <path d="M2 12l10 5 10-5"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">JCATS</span>
-                        <span class="sidebar-count">1</span>
-                    </button>
-                    <button class="sidebar-item" data-category="legal">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #2563eb, #1d4ed8);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">Legal & Defense</span>
-                        <span class="sidebar-count">7</span>
-                    </button>
-                    <button class="sidebar-item" data-category="operations">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #059669, #047857);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                <path d="M2 17l10 5 10-5"/>
-                                <path d="M2 12l10 5 10-5"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">Operations & Admin</span>
-                        <span class="sidebar-count">5</span>
-                    </button>
-                    <button class="sidebar-item" data-category="social">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">Social Services</span>
-                        <span class="sidebar-count">2</span>
-                    </button>
-                    <button class="sidebar-item" data-category="training">
-                        <span class="sidebar-icon" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-label">Training & Development</span>
-                        <span class="sidebar-count">1</span>
-                    </button>
-                </nav>
-            </aside>
-
-            <!-- Main Content -->
-            <div class="support-main">
-                <div class="directory-controls">
-                    <div class="directory-search">
+    <!-- Unified Staff Directory -->
+    <div class="support-layout">
+        <!-- Sidebar -->
+        <aside class="support-sidebar">
+            <div class="sidebar-header">
+                <h3>Filter by Area</h3>
+                <p>Click to filter by department</p>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="sidebar-item active" data-category="all">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">All Staff</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="cpd">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">Circuit Public Defenders</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="communications">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #0891b2, #0e7490);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">Communications & Outreach</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="customerservice">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #db2777, #be185d);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">Customer Service</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="finance">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #d97706, #b45309);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">Finance</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="investigations">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #ea580c, #c2410c);">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="11" cy="11" r="8"/>
                             <path d="M21 21l-4.35-4.35"/>
                         </svg>
-                        <input type="text" id="supportSearch" placeholder="Search by name, title, or area of support...">
-                    </div>
-                    <div class="directory-count">
-                        <span id="supportCount">22</span> contacts
-                    </div>
-                </div>
-
-                <div class="active-filter" id="activeFilter" style="display: none;">
-                    <span>Showing: <strong id="filterName">All</strong></span>
-                    <button id="clearFilter">
+                    </span>
+                    <span class="sidebar-label">Investigations</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="itsupport">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #475569, #334155);">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
                         </svg>
-                        Clear filter
-                    </button>
-                </div>
+                    </span>
+                    <span class="sidebar-label">IT Support</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="jcats">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #0d9488, #0f766e);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">JCATS</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="legal">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #2563eb, #1d4ed8);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">Legal & Defense</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="operations">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #059669, #047857);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">Operations & Admin</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="social">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">Social Services</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+                <button class="sidebar-item" data-category="training">
+                    <span class="sidebar-icon" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-label">Training & Development</span>
+                    <span class="sidebar-count">0</span>
+                </button>
+            </nav>
+        </aside>
 
-                <div class="support-grid" id="supportGrid">
-                    <!-- Support cards will be populated by JavaScript -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CPD Tab Content -->
-    <div class="tab-content" id="cpd-tab">
-        <section class="directory-section">
-            <!-- Search and Controls -->
+        <!-- Main Content -->
+        <div class="support-main">
             <div class="directory-controls">
                 <div class="directory-search">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
-                    <input type="text" id="directorySearch" placeholder="Search by name, circuit, or county...">
+                    <input type="text" id="directorySearch" placeholder="Search by name, title, circuit, or county...">
                 </div>
                 <div class="directory-count">
-                    <span id="staffCount">46</span> Circuit Public Defenders
+                    <span id="staffCount">0</span> contacts
                 </div>
             </div>
 
-            <!-- Staff Directory Grid -->
-            <div class="directory-grid" id="directoryGrid">
-                <!-- Staff cards will be populated by JavaScript -->
+            <div class="active-filter" id="activeFilter" style="display: none;">
+                <span>Showing: <strong id="filterName">All</strong></span>
+                <button id="clearFilter">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                    Clear filter
+                </button>
             </div>
-        </section>
+
+            <!-- A-Z Navigation Bar -->
+            <nav class="cpd-az-bar" id="az-bar"></nav>
+
+            <!-- Directory Content (letter groups) -->
+            <div id="directoryContent"></div>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -1287,6 +1300,8 @@
             sessionStorage.removeItem('gpdc_dev_auth');
             window.location.href = 'index.html';
         }
+
+        // ==================== DATA ====================
 
         // Statewide Support Data
         const statewideSupport = [
@@ -1315,7 +1330,7 @@
             { name: "Jo-Anna Zackery", title: "Community Outreach", poc: "Community Events and Outreach, Fundraising", email: "jzackery@gapubdef.org", phone: "", category: "communications" }
         ];
 
-        // Staff Directory Data (work contact info only - no personal cell/email)
+        // CPD Directory Data
         const staffDirectory = [
             { name: "Gabriel Cason", title: "Circuit Public Defender", circuit: "Alapaha", counties: "Atkinson, Berrien, Clinch, Cook, Lanier", email: "gcason@gapublicdefender.org", phone: "229-507-6401" },
             { name: "Anthony Carter", title: "Circuit Public Defender", circuit: "Alcovy", counties: "Newton, Walton", email: "acarter@gapublicdefender.org", phone: "770-266-1540" },
@@ -1364,19 +1379,170 @@
             { name: "John Donnelly", title: "Circuit Public Defender", circuit: "Western", counties: "Carroll, Heard", email: "jdonnelly@gapublicdefender.org", phone: "706-369-6447" }
         ];
 
+        // ==================== UNIFIED DATA LAYER ====================
+
         // Get initials from name
         function getInitials(name) {
             return name.split(' ').map(n => n[0]).join('').toUpperCase();
         }
 
-        // Render staff cards
-        function renderDirectory(staff) {
-            const grid = document.getElementById('directoryGrid');
-            const countEl = document.getElementById('staffCount');
+        // Extract last name, handling suffixes like Jr., Sr., III
+        function getLastName(name) {
+            const suffixes = ['jr.', 'jr', 'sr.', 'sr', 'ii', 'iii', 'iv'];
+            const parts = name.split(' ');
+            let last = parts[parts.length - 1];
+            if (suffixes.includes(last.toLowerCase()) && parts.length > 2) {
+                last = parts[parts.length - 2];
+            }
+            return last;
+        }
 
-            countEl.textContent = staff.length;
+        // Build unified staff array with deduplication
+        function buildUnifiedDirectory() {
+            const allStaff = [];
+            const emailMap = {};
 
-            grid.innerHTML = staff.map(person => `
+            // Add support staff, merging duplicates by email
+            statewideSupport.forEach(person => {
+                const key = person.email.toLowerCase();
+                if (emailMap[key]) {
+                    // Merge categories
+                    if (!emailMap[key].categories.includes(person.category)) {
+                        emailMap[key].categories.push(person.category);
+                    }
+                } else {
+                    const entry = {
+                        ...person,
+                        type: 'support',
+                        categories: [person.category]
+                    };
+                    emailMap[key] = entry;
+                    allStaff.push(entry);
+                }
+            });
+
+            // Add CPD staff
+            staffDirectory.forEach(person => {
+                const entry = {
+                    ...person,
+                    type: 'cpd',
+                    categories: ['cpd']
+                };
+                allStaff.push(entry);
+            });
+
+            return allStaff;
+        }
+
+        const allStaff = buildUnifiedDirectory();
+
+        // ==================== STATE ====================
+        let currentCategory = 'all';
+        let currentObserver = null;
+
+        // Category labels for display
+        const categoryLabels = {
+            all: 'All Staff',
+            cpd: 'Circuit Public Defenders',
+            communications: 'Communications & Outreach',
+            customerservice: 'Customer Service',
+            finance: 'Finance',
+            investigations: 'Investigations',
+            itsupport: 'IT Support',
+            jcats: 'JCATS',
+            legal: 'Legal & Defense',
+            operations: 'Operations & Admin',
+            social: 'Social Services',
+            training: 'Training & Development'
+        };
+
+        // ==================== FILTERING ====================
+
+        function getFilteredStaff() {
+            const query = document.getElementById('directorySearch').value.toLowerCase().trim();
+            let filtered = allStaff;
+
+            // Apply category filter
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(person => person.categories.includes(currentCategory));
+            }
+
+            // Apply search filter
+            if (query) {
+                filtered = filtered.filter(person => {
+                    const searchable = [
+                        person.name,
+                        person.title,
+                        person.poc || '',
+                        person.circuit || '',
+                        person.counties || ''
+                    ].join(' ').toLowerCase();
+                    return searchable.includes(query);
+                });
+            }
+
+            // Sort by last name
+            filtered.sort((a, b) => {
+                const aLast = getLastName(a.name).toUpperCase();
+                const bLast = getLastName(b.name).toUpperCase();
+                return aLast.localeCompare(bLast);
+            });
+
+            return filtered;
+        }
+
+        // ==================== RENDERING ====================
+
+        function renderSupportCard(person) {
+            function getPocPills(pocString, categories) {
+                const cat = categories[0] || 'operations';
+                return pocString.split(',').map(item =>
+                    `<span class="poc-pill cat-${cat}">${item.trim()}</span>`
+                ).join('');
+            }
+
+            return `
+                <div class="support-card">
+                    <div class="support-header">
+                        <div class="support-avatar">${getInitials(person.name)}</div>
+                        <div class="support-info">
+                            <div class="support-name">${person.name}</div>
+                            <div class="support-title">${person.title}</div>
+                        </div>
+                    </div>
+                    <div class="support-poc">
+                        <div class="support-poc-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                            Point of Contact For
+                        </div>
+                        <div class="support-poc-pills">${getPocPills(person.poc, person.categories)}</div>
+                    </div>
+                    <div class="support-contact">
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:${person.email}">${person.email}</a>
+                        </div>
+                        ${person.phone ? `
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            <a href="tel:${person.phone.replace(/[^0-9]/g, '')}">${person.phone}</a>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCPDCard(person) {
+            return `
                 <div class="staff-card">
                     <div class="staff-header">
                         <div class="staff-avatar">${getInitials(person.name)}</div>
@@ -1405,227 +1571,187 @@
                         <div class="staff-counties">Counties: ${person.counties}</div>
                     </div>
                 </div>
-            `).join('');
+            `;
         }
 
-        // Initialize directory
-        renderDirectory(staffDirectory);
+        function renderDirectory(filtered) {
+            const content = document.getElementById('directoryContent');
+            const countEl = document.getElementById('staffCount');
 
-        // CPD Search functionality
-        document.getElementById('directorySearch').addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
+            countEl.textContent = filtered.length;
 
-            if (!query) {
-                renderDirectory(staffDirectory);
+            if (filtered.length === 0) {
+                content.innerHTML = `
+                    <div class="no-results">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <h3>No results found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                `;
                 return;
             }
 
-            const filtered = staffDirectory.filter(person =>
-                person.name.toLowerCase().includes(query) ||
-                person.circuit.toLowerCase().includes(query) ||
-                person.counties.toLowerCase().includes(query)
-            );
+            // Group by first letter of last name
+            const groups = {};
+            filtered.forEach(person => {
+                const letter = getLastName(person.name)[0].toUpperCase();
+                if (!groups[letter]) groups[letter] = [];
+                groups[letter].push(person);
+            });
 
-            renderDirectory(filtered);
-        });
-
-        // Render statewide support cards
-        function renderSupport(staff) {
-            const grid = document.getElementById('supportGrid');
-            const countEl = document.getElementById('supportCount');
-
-            countEl.textContent = staff.length;
-
-            // Helper to convert POC string to pills with category color
-            function getPocPills(pocString, category) {
-                return pocString.split(',').map(item =>
-                    `<span class="poc-pill cat-${category}">${item.trim()}</span>`
-                ).join('');
-            }
-
-            grid.innerHTML = staff.map(person => `
-                <div class="support-card">
-                    <div class="support-header">
-                        <div class="support-avatar">${getInitials(person.name)}</div>
-                        <div class="support-info">
-                            <div class="support-name">${person.name}</div>
-                            <div class="support-title">${person.title}</div>
-                        </div>
-                    </div>
-                    <div class="support-poc">
-                        <div class="support-poc-label">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                <polyline points="22 4 12 14.01 9 11.01"/>
-                            </svg>
-                            Point of Contact For
-                        </div>
-                        <div class="support-poc-pills">${getPocPills(person.poc, person.category)}</div>
-                    </div>
-                    <div class="support-contact">
-                        <div class="contact-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <a href="mailto:${person.email}">${person.email}</a>
-                        </div>
-                        ${person.phone ? `
-                        <div class="contact-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-                            </svg>
-                            <a href="tel:${person.phone.replace(/[^0-9]/g, '')}">${person.phone}</a>
-                        </div>
-                        ` : ''}
+            // Build letter groups
+            const usedLetters = Object.keys(groups).sort();
+            content.innerHTML = usedLetters.map(letter => `
+                <div class="cpd-letter-group" id="letter-${letter}">
+                    <div class="cpd-letter-heading">${letter}</div>
+                    <div class="cpd-letter-grid">
+                        ${groups[letter].map(person =>
+                            person.type === 'cpd' ? renderCPDCard(person) : renderSupportCard(person)
+                        ).join('')}
                     </div>
                 </div>
             `).join('');
         }
 
-        // Initialize statewide support
-        renderSupport(statewideSupport);
+        // ==================== A-Z BAR ====================
 
-        // Current filter state
-        let currentCategory = 'all';
+        function buildAZBar(filtered) {
+            const azBar = document.getElementById('az-bar');
 
-        // Category labels for display
-        const categoryLabels = {
-            all: 'All Areas',
-            communications: 'Communications & Outreach',
-            customerservice: 'Customer Service',
-            finance: 'Finance',
-            investigations: 'Investigations',
-            itsupport: 'IT Support',
-            jcats: 'JCATS',
-            legal: 'Legal & Defense',
-            operations: 'Operations & Admin',
-            social: 'Social Services',
-            training: 'Training & Development'
-        };
+            // Determine which letters have entries
+            const usedLetters = new Set();
+            filtered.forEach(person => {
+                usedLetters.add(getLastName(person.name)[0].toUpperCase());
+            });
 
-        // Update sidebar counts dynamically
+            const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+            const buttonsHtml = allLetters.map(letter => {
+                const hasEntries = usedLetters.has(letter);
+                return `<button class="cpd-az-letter${hasEntries ? '' : ' disabled'}" data-letter="${letter}" ${hasEntries ? `onclick="scrollToLetter('${letter}')"` : ''}>${letter}</button>`;
+            }).join('');
+
+            azBar.innerHTML = `<div class="cpd-az-bar-inner">${buttonsHtml}</div>`;
+        }
+
+        function scrollToLetter(letter) {
+            const el = document.getElementById('letter-' + letter);
+            if (!el) return;
+            const nav = document.querySelector('.intranet-nav');
+            const azBar = document.getElementById('az-bar');
+            const offset = (nav ? nav.offsetHeight : 60) + (azBar ? azBar.offsetHeight : 48) + 12;
+            const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+
+        function setupIntersectionObserver() {
+            // Disconnect previous observer
+            if (currentObserver) {
+                currentObserver.disconnect();
+                currentObserver = null;
+            }
+
+            const groups = document.querySelectorAll('.cpd-letter-group');
+            if (groups.length === 0) return;
+
+            currentObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const letter = entry.target.id.replace('letter-', '');
+                        document.querySelectorAll('.cpd-az-letter').forEach(btn => {
+                            btn.classList.toggle('active', btn.dataset.letter === letter);
+                        });
+                    }
+                });
+            }, { rootMargin: '-120px 0px -50% 0px', threshold: 0 });
+
+            groups.forEach(group => currentObserver.observe(group));
+        }
+
+        // ==================== SIDEBAR COUNTS ====================
+
         function updateSidebarCounts() {
-            const counts = {
-                all: statewideSupport.length,
-                communications: statewideSupport.filter(p => p.category === 'communications').length,
-                customerservice: statewideSupport.filter(p => p.category === 'customerservice').length,
-                finance: statewideSupport.filter(p => p.category === 'finance').length,
-                investigations: statewideSupport.filter(p => p.category === 'investigations').length,
-                itsupport: statewideSupport.filter(p => p.category === 'itsupport').length,
-                jcats: statewideSupport.filter(p => p.category === 'jcats').length,
-                legal: statewideSupport.filter(p => p.category === 'legal').length,
-                operations: statewideSupport.filter(p => p.category === 'operations').length,
-                social: statewideSupport.filter(p => p.category === 'social').length,
-                training: statewideSupport.filter(p => p.category === 'training').length
-            };
+            const query = document.getElementById('directorySearch').value.toLowerCase().trim();
+
+            // Count for each category (factoring in search)
+            function countForCategory(cat) {
+                let pool = allStaff;
+                if (cat !== 'all') {
+                    pool = pool.filter(p => p.categories.includes(cat));
+                }
+                if (query) {
+                    pool = pool.filter(p => {
+                        const searchable = [p.name, p.title, p.poc || '', p.circuit || '', p.counties || ''].join(' ').toLowerCase();
+                        return searchable.includes(query);
+                    });
+                }
+                return pool.length;
+            }
 
             document.querySelectorAll('.sidebar-item').forEach(item => {
-                const category = item.dataset.category;
+                const cat = item.dataset.category;
                 const countEl = item.querySelector('.sidebar-count');
-                if (countEl && counts[category] !== undefined) {
-                    countEl.textContent = counts[category];
+                if (countEl) {
+                    countEl.textContent = countForCategory(cat);
                 }
             });
         }
 
-        // Filter support contacts by category
-        function filterByCategory(category) {
-            currentCategory = category;
-            const searchQuery = document.getElementById('supportSearch').value.toLowerCase().trim();
+        // ==================== MAIN ORCHESTRATOR ====================
 
-            let filtered = statewideSupport;
+        function updateView() {
+            const filtered = getFilteredStaff();
+            renderDirectory(filtered);
+            buildAZBar(filtered);
+            setupIntersectionObserver();
+            updateSidebarCounts();
 
-            // Apply category filter
-            if (category !== 'all') {
-                filtered = filtered.filter(person => person.category === category);
-            }
-
-            // Apply search filter if there's a query
-            if (searchQuery) {
-                filtered = filtered.filter(person =>
-                    person.name.toLowerCase().includes(searchQuery) ||
-                    person.title.toLowerCase().includes(searchQuery) ||
-                    person.poc.toLowerCase().includes(searchQuery)
-                );
-            }
-
-            renderSupport(filtered);
-
-            // Update active sidebar item
-            document.querySelectorAll('.sidebar-item').forEach(item => {
-                item.classList.remove('active');
-                if (item.dataset.category === category) {
-                    item.classList.add('active');
-                }
-            });
-
-            // Show/hide active filter bar
+            // Update active filter bar
             const activeFilterEl = document.getElementById('activeFilter');
             const filterNameEl = document.getElementById('filterName');
-            if (category !== 'all') {
+            if (currentCategory !== 'all') {
                 activeFilterEl.style.display = 'flex';
-                filterNameEl.textContent = categoryLabels[category];
+                filterNameEl.textContent = categoryLabels[currentCategory];
             } else {
                 activeFilterEl.style.display = 'none';
             }
         }
 
+        // ==================== EVENT WIRING ====================
+
         // Sidebar click handlers
         document.querySelectorAll('.sidebar-item').forEach(item => {
             item.addEventListener('click', () => {
-                filterByCategory(item.dataset.category);
+                currentCategory = item.dataset.category;
+
+                // Update active state
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                updateView();
             });
         });
 
         // Clear filter button
         document.getElementById('clearFilter').addEventListener('click', () => {
-            filterByCategory('all');
-            document.getElementById('supportSearch').value = '';
+            currentCategory = 'all';
+            document.getElementById('directorySearch').value = '';
+            document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+            document.querySelector('.sidebar-item[data-category="all"]').classList.add('active');
+            updateView();
         });
 
-        // Support Search functionality
-        document.getElementById('supportSearch').addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-
-            let filtered = statewideSupport;
-
-            // Apply category filter first
-            if (currentCategory !== 'all') {
-                filtered = filtered.filter(person => person.category === currentCategory);
-            }
-
-            // Then apply search filter
-            if (query) {
-                filtered = filtered.filter(person =>
-                    person.name.toLowerCase().includes(query) ||
-                    person.title.toLowerCase().includes(query) ||
-                    person.poc.toLowerCase().includes(query)
-                );
-            }
-
-            renderSupport(filtered);
+        // Search with debounce
+        let searchTimeout;
+        document.getElementById('directorySearch').addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(updateView, 150);
         });
 
-        // Initialize sidebar counts
-        updateSidebarCounts();
-
-        // Tab switching
-        document.querySelectorAll('.directory-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabId = tab.dataset.tab;
-
-                // Update active tab
-                document.querySelectorAll('.directory-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-
-                // Show corresponding content
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.getElementById(`${tabId}-tab`).classList.add('active');
-            });
-        });
+        // ==================== INITIALIZE ====================
+        updateView();
 
         // ==================== DEVELOPMENT ACCESS ====================
         const DEV_CODE = 'devaccess';
@@ -1637,7 +1763,6 @@
 
         // Check if already authenticated for dev
         if (sessionStorage.getItem('gpdc_dev_auth') === 'true') {
-            // Redirect to full dashboard
             window.location.href = 'dashboard-full.html';
         }
 
