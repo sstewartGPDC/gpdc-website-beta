@@ -1121,6 +1121,9 @@ function reverseGeocodeCounty(lat, lon, btn, labelEl, origLabel) {
             btn.classList.add('success');
             labelEl.textContent = countyNameClean + ' County';
 
+            // Show persistent "You are in..." banners
+            showGeoBanner(countyNameClean, circuit);
+
             // Highlight on desktop map
             if (mapLoaded) {
                 var desktopSvg = document.querySelector('#mapContainer svg');
@@ -1185,4 +1188,59 @@ function geoError(btn, labelEl, origLabel, message) {
         btn.classList.remove('error');
         labelEl.textContent = origLabel;
     }, 4000);
+}
+
+// ==================== GEO BANNER ("You are in…") ====================
+
+function showGeoBanner(countyName, circuit) {
+    // Build the banner HTML once, inject into both desktop + mobile containers
+    var bannerHTML = ''
+        + '<div class="geo-banner-dot"></div>'
+        + '<div class="geo-banner-text">'
+        +   'You are in <strong>' + countyName + ' County</strong>'
+        +   '<span class="geo-banner-circuit">' + circuit.circuit + '</span>'
+        + '</div>'
+        + '<button class="geo-banner-dismiss" aria-label="Dismiss" title="Dismiss">'
+        +   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">'
+        +     '<path d="M18 6L6 18M6 6l12 12"/>'
+        +   '</svg>'
+        + '</button>';
+
+    // Desktop banner — insert between search area and directory
+    injectGeoBanner('map-sidebar-search', bannerHTML, 'afterend');
+
+    // Mobile banner — insert after the search hero
+    injectGeoBanner('fypd-mobile-search-hero', bannerHTML, 'afterend');
+}
+
+function injectGeoBanner(siblingClass, bannerHTML, position) {
+    var sibling = document.querySelector('.' + siblingClass);
+    if (!sibling) return;
+
+    // Remove any existing banner in this context
+    var parent = sibling.parentElement;
+    var existing = parent.querySelector('.geo-banner');
+    if (existing) existing.remove();
+
+    var banner = document.createElement('div');
+    banner.className = 'geo-banner';
+    banner.innerHTML = bannerHTML;
+
+    // Insert relative to the sibling element
+    if (position === 'afterend') {
+        sibling.insertAdjacentElement('afterend', banner);
+    } else {
+        sibling.insertAdjacentElement('beforebegin', banner);
+    }
+
+    // Dismiss handler
+    var dismissBtn = banner.querySelector('.geo-banner-dismiss');
+    if (dismissBtn) {
+        dismissBtn.addEventListener('click', function() {
+            banner.style.opacity = '0';
+            banner.style.transform = 'translateY(-4px) scale(0.97)';
+            banner.style.transition = 'all 0.25s ease';
+            setTimeout(function() { banner.remove(); }, 250);
+        });
+    }
 }
