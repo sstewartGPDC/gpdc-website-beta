@@ -1055,39 +1055,47 @@ function runGeolocation(btn) {
 }
 
 function reverseGeocodeCounty(lat, lon, btn, labelEl, origLabel) {
-    // Use the FCC Census Block API (free, no key required, returns county)
-    var url = 'https://geo.fcc.gov/api/census/area?lat=' + lat + '&lon=' + lon + '&format=json';
+    // Use Nominatim (OpenStreetMap) — free, CORS-enabled, reliable for browsers
+    var url = 'https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lon
+        + '&format=json&zoom=8&addressdetails=1';
 
-    fetch(url)
-        .then(function(res) { return res.json(); })
+    fetch(url, {
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(function(res) {
+            if (!res.ok) throw new Error('Geocoding request failed');
+            return res.json();
+        })
         .then(function(data) {
             btn.classList.remove('loading');
 
-            if (!data.results || data.results.length === 0) {
+            if (!data.address) {
+                geoError(btn, labelEl, origLabel, 'Could not determine location');
+                return;
+            }
+
+            var state = data.address.state || '';
+            var countyRaw = data.address.county || '';
+
+            // Must be in Georgia
+            if (state.toLowerCase() !== 'georgia') {
                 geoError(btn, labelEl, origLabel, 'Not in Georgia');
                 return;
             }
 
-            var result = data.results[0];
-            var stateFips = result.state_fips;
-            var countyNameRaw = result.county_name;
-
-            // Georgia FIPS = 13
-            if (stateFips !== '13') {
-                geoError(btn, labelEl, origLabel, 'Not in Georgia');
+            if (!countyRaw) {
+                geoError(btn, labelEl, origLabel, 'Could not determine county');
                 return;
             }
 
-            // Match county name to our mapping
-            var countySlug = countyNameRaw.toLowerCase()
-                .replace(/\s+county$/i, '')
-                .replace(/\s+/g, '-');
+            // Nominatim returns "Fulton County" — strip " County" suffix and slugify
+            var countyNameClean = countyRaw.replace(/\s+county$/i, '').trim();
+            var countySlug = countyNameClean.toLowerCase().replace(/\s+/g, '-');
 
             var circuitSlug = countyToCircuit[countySlug];
 
             if (!circuitSlug) {
-                // Try without hyphens (e.g., "Ben Hill" -> "ben-hill")
-                // The countyToCircuit already uses hyphenated slugs, so try matching
+                // Fuzzy match: try alternate slug forms
                 var found = false;
                 for (var key in countyToCircuit) {
                     if (key === countySlug || key.replace(/-/g, ' ') === countySlug.replace(/-/g, ' ')) {
@@ -1098,8 +1106,7 @@ function reverseGeocodeCounty(lat, lon, btn, labelEl, origLabel) {
                     }
                 }
                 if (!found) {
-                    // Check optional/opt-out counties
-                    geoError(btn, labelEl, origLabel, countyNameRaw + ' - opt-out county');
+                    geoError(btn, labelEl, origLabel, countyNameClean + ' - opt-out county');
                     return;
                 }
             }
@@ -1112,7 +1119,7 @@ function reverseGeocodeCounty(lat, lon, btn, labelEl, origLabel) {
 
             // Success!
             btn.classList.add('success');
-            labelEl.textContent = countyNameRaw + ' County';
+            labelEl.textContent = countyNameClean + ' County';
 
             // Highlight on desktop map
             if (mapLoaded) {
@@ -1122,7 +1129,6 @@ function reverseGeocodeCounty(lat, lon, btn, labelEl, origLabel) {
                         c.classList.remove('active', 'circuit-member', 'geo-detected');
                     });
                     selectCircuit(desktopSvg, circuitSlug, countySlug);
-                    // Add special geo-detected class to the user's county
                     desktopSvg.querySelectorAll('.county').forEach(function(c) {
                         if (c.dataset.name === countySlug) {
                             c.classList.remove('active');
@@ -1157,7 +1163,7 @@ function reverseGeocodeCounty(lat, lon, btn, labelEl, origLabel) {
                 }
             }
 
-            // Open modal with geo-county flag
+            // Open modal
             openCircuitModal(circuit, countySlug);
 
             // Reset button after delay
