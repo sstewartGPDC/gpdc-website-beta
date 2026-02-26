@@ -5426,7 +5426,7 @@ body.nav-open {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
     margin-bottom: 0.75rem;
     border-radius: 10px;
     background: var(--primary-subtle);
@@ -5523,7 +5523,6 @@ body.nav-open {
 .circuit-modal-counties-list {
     margin-top: 0.75rem;
     padding-top: 0.75rem;
-    border-top: 1px solid var(--border-light);
 }
 
 .circuit-modal-counties-label {
