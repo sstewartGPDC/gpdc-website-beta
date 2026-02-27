@@ -614,6 +614,9 @@ function openCircuitModal(circuit, countyName, isGeoLocated) {
             +     '<circle cx="12" cy="12" r="8"/>'
             +   '</svg>'
             +   '<span>You are currently in <strong>' + formattedCountyName + ' County</strong></span>'
+            +   '<button class="geo-banner-close" aria-label="Close" onclick="document.getElementById(\'circuitModalClose\').click()">'
+            +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+            +   '</button>'
             + '</div>';
     }
 
