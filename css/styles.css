@@ -6188,6 +6188,93 @@ body.nav-open {
     .fypd-mobile-view {
         padding: 0 0.5rem;
     }
+
+    /* Condense search hero — hide decorative elements already shown in page hero */
+    .fypd-mobile-icon {
+        display: none;
+    }
+
+    .fypd-mobile-search-hero h3,
+    .fypd-mobile-search-hero p {
+        display: none;
+    }
+
+    .fypd-mobile-search-hero {
+        padding: 0.75rem 0 0.25rem;
+        margin-bottom: 0;
+    }
+
+    /* Tighter search input */
+    .fypd-mobile-search-input {
+        min-height: 44px;
+        padding: 0.625rem 1rem 0.625rem 2.5rem;
+        font-size: 0.9375rem;
+    }
+
+    /* Actions row: geo + map toggle side by side */
+    .fypd-mobile-actions-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .fypd-mobile-geo-btn {
+        min-height: 40px;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8125rem;
+        margin-top: 0;
+        width: auto;
+        flex: 1;
+    }
+
+    .fypd-mobile-map-wrapper {
+        flex: 1;
+        min-width: 0;
+        margin-top: 0;
+        border-radius: 50px;
+        border: none;
+        box-shadow: none;
+        overflow: visible;
+    }
+
+    /* When map is open, wrapper spans full width */
+    .fypd-mobile-map-wrapper:has(.fypd-mobile-map-inner.expanded) {
+        flex: 1 1 100%;
+        border-radius: 14px;
+        border: 1px solid var(--border-light);
+    }
+
+    .fypd-mobile-map-toggle {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8125rem;
+        border-radius: 50px;
+        border: 1.5px solid var(--border-light);
+        justify-content: center;
+        gap: 0.375rem;
+        background: var(--bg-white);
+    }
+
+    .fypd-mobile-map-toggle svg:last-child {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Smaller alpha filter buttons */
+    .fypd-alpha-bar {
+        padding: 0.35rem 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .fypd-alpha-btn {
+        min-width: 30px;
+        height: 30px;
+        font-size: 0.6875rem;
+    }
+
+    .map-section {
+        padding: 1.25rem 1rem;
+    }
 }
 
 

@@ -561,16 +561,20 @@ function initDarkMode() {
 }
 
 // ==================== ANNOUNCEMENT BANNER ====================
-function initAnnouncementBanner() {
-    // Configuration - Edit this to change the announcement
-    const announcement = {
-        enabled: true,
-        id: 'winter-cpd-2026', // Unique ID for dismissal tracking
-        icon: 'calendar', // 'calendar', 'megaphone', 'alert', or 'info'
-        text: 'Winter CPD Meeting - February 27-28, 2026',
-        linkText: 'Learn More',
-        linkUrl: 'divisions/training.html'
-    };
+async function initAnnouncementBanner() {
+    // Load announcement config from CMS data file
+    let announcement;
+    try {
+        // Determine path prefix based on page depth
+        const depth = (window.location.pathname.match(/\//g) || []).length - 1;
+        const prefix = '../'.repeat(Math.max(0, depth));
+        const resp = await fetch(prefix + '_data/announcement.json');
+        if (!resp.ok) throw new Error('Failed to load announcement data');
+        announcement = await resp.json();
+    } catch (e) {
+        // Fallback: no banner if CMS data can't be loaded
+        return;
+    }
 
     if (!announcement.enabled) return;
 
