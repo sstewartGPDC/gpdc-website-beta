@@ -17,14 +17,14 @@ const ROOT = path.resolve(__dirname, '..');
 const DATA_FILE = path.join(ROOT, '_data', 'circuits.json');
 const OUTPUT_DIR = path.join(ROOT, 'local-offices');
 
-// ── Region hero images ─────────────────────────────────────────────────
+// ── Region hero images (local) ──────────────────────────────────────────
 const regionImages = {
-    mountains: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80',
-    metro:     'https://images.unsplash.com/photo-1575917649111-0cee4e7e8852?w=1600&q=80',
-    piedmont:  'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80',
-    coastal:   'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80',
-    south:     'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80',
-    augusta:   'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1600&q=80'
+    mountains: '../images/regions/mountains.jpg',
+    metro:     '../images/regions/metro.jpg',
+    piedmont:  '../images/regions/piedmont.jpg',
+    coastal:   '../images/regions/coastal.jpg',
+    south:     '../images/regions/south.jpg',
+    augusta:   '../images/regions/augusta.jpg'
 };
 
 // ── SVG Icons ──────────────────────────────────────────────────────────
