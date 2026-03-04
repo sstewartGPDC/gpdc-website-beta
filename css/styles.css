@@ -8046,40 +8046,49 @@ body.has-announcement .breadcrumbs {
     align-items: center;
     gap: 0.75rem;
 }
+.tut-cmdk-keys-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
 .tut-cmdk-keys {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: transform 0.15s ease;
+    gap: 0.35rem;
 }
-.tut-cmdk-keys.pressed { transform: scale(0.95) translateY(2px); }
 .tut-cmdk-key {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    background: rgba(255,255,255,0.15);
-    border: 1.5px solid rgba(255,255,255,0.25);
-    border-radius: 10px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 0.6rem;
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.22);
+    border-radius: 9px;
     font-family: 'Manrope', sans-serif;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: white;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
     transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
-.tut-cmdk-keys.pressed .tut-cmdk-key {
-    transform: scale(0.92) translateY(2px);
-    background: rgba(255,255,255,0.25);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+.tut-cmdk-key-wide {
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
 }
-.tut-cmdk-plus {
-    font-size: 1rem;
+.tut-cmdk-keys-row.pressed .tut-cmdk-key {
+    transform: scale(0.92) translateY(2px);
+    background: rgba(255,255,255,0.22);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.tut-cmdk-divider {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.8rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.35);
 }
 .tut-cmdk-palette {
     width: 100%;
@@ -8159,62 +8168,6 @@ body.has-announcement .breadcrumbs {
 }
 .tut-cmdk-item-icon svg { width: 16px; height: 16px; color: var(--primary); }
 
-/* --- Floating "Site Guide" card --- */
-.tut-fab {
-    position: fixed;
-    bottom: 90px;
-    right: 24px;
-    z-index: 9998;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1rem 0.6rem 0.75rem;
-    background: var(--bg-white);
-    border: 1px solid var(--border-light);
-    border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-    cursor: pointer;
-    font-family: 'Manrope', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    opacity: 0;
-    transform: translateY(12px);
-    transition: all 0.35s var(--ease-out);
-    pointer-events: none;
-}
-.tut-fab.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-.tut-fab:hover {
-    box-shadow: 0 8px 32px rgba(0,0,0,0.16);
-    border-color: var(--primary-light);
-}
-.tut-fab-icon {
-    width: 28px;
-    height: 28px;
-    background: var(--primary-subtle);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.tut-fab-icon svg { width: 15px; height: 15px; color: var(--primary); }
-.tut-fab-dismiss {
-    margin-left: 0.25rem;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: background 0.2s;
-}
-.tut-fab-dismiss:hover { background: var(--bg-light); }
-.tut-fab-dismiss svg { width: 12px; height: 12px; color: var(--text-light); }
-
 /* --- Slide transition helper --- */
 .tut-slide-enter { animation: tutSlideIn 0.35s var(--ease-out) forwards; }
 .tut-slide-exit  { animation: tutSlideOut 0.2s var(--ease-out) forwards; }
@@ -8265,10 +8218,22 @@ body.has-announcement .breadcrumbs {
     .tut-title { font-size: 1.25rem; }
     .tut-desc { font-size: 0.875rem; }
     .tut-footer { padding: 0 1.5rem 1.25rem; }
-    .tut-fab { bottom: 80px; right: 16px; }
     .tut-fmpd-demo { width: 92%; }
-    .tut-cmdk-demo { width: 92%; }
-    .tut-cmdk-key { width: 38px; height: 38px; font-size: 1rem; }
+    .tut-cmdk-demo { width: 92%; gap: 0.4rem; }
+    .tut-cmdk-key { min-width: 30px; height: 30px; font-size: 0.75rem; padding: 0 0.4rem; border-radius: 7px; }
+    .tut-cmdk-key-wide { font-size: 0.6rem; }
+    .tut-cmdk-keys-row { gap: 0.4rem; }
+    .tut-cmdk-keys { gap: 0.25rem; }
+    .tut-cmdk-divider { font-size: 0.65rem; }
+    .tut-cmdk-search { padding: 0.5rem 0.75rem; }
+    .tut-cmdk-search svg { width: 14px; height: 14px; }
+    .tut-cmdk-input { font-size: 0.8rem; }
+    .tut-cmdk-results { padding: 0.35rem; }
+    .tut-cmdk-group { font-size: 0.6rem; padding: 0.25rem 0.5rem 0.15rem; }
+    .tut-cmdk-item { padding: 0.35rem 0.5rem; gap: 0.45rem; font-size: 0.75rem; }
+    .tut-cmdk-item-icon { width: 24px; height: 24px; }
+    .tut-cmdk-item-icon svg { width: 13px; height: 13px; }
+    .tut-cmdk-palette { border-radius: 10px; }
 }
 
 [data-theme="dark"] .tut-modal { background: var(--bg-white); }

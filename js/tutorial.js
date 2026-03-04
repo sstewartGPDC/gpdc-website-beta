@@ -59,7 +59,7 @@
         {
             id: 'navigate',
             icon: 'nav',
-            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+            image: null,
             subtitle: 'Site Navigation',
             title: 'Explore Six Key Sections',
             desc: 'Navigate through <strong>About Us</strong>, <strong>Clients & Families</strong>, <strong>Careers</strong>, <strong>Newsroom</strong>, and <strong>Contact</strong> — all accessible from the top navigation bar.',
@@ -84,7 +84,7 @@
         {
             id: 'search',
             icon: 'command',
-            image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&q=80',
+            image: null,
             subtitle: 'Power Feature',
             title: 'Search Anywhere, Instantly',
             desc: 'Press <kbd>⌘</kbd><kbd>K</kbd> (or <kbd>Ctrl</kbd><kbd>K</kbd>) to open the command palette. Jump to any page, circuit, or section in seconds.',
@@ -93,7 +93,7 @@
         {
             id: 'mobile',
             icon: 'mobile',
-            image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80',
+            image: null,
             subtitle: 'Responsive Design',
             title: 'Works on Every Device',
             desc: 'The site is fully responsive. Test it on your phone, tablet, or desktop — every feature adapts seamlessly to your screen size.',
@@ -101,7 +101,7 @@
         {
             id: 'beta',
             icon: 'alert',
-            image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80',
+            image: null,
             subtitle: 'Beta Notice',
             title: 'Known Limitations',
             desc: '<span class="tut-beta-badge">Beta</span> Some content is still being finalized. <strong>Events</strong>, <strong>Job Listings</strong>, and <strong>Newsroom Articles</strong> may contain placeholder data. All sections will be complete before public launch.',
@@ -109,7 +109,7 @@
         {
             id: 'feedback',
             icon: 'send',
-            image: 'https://images.unsplash.com/photo-1516387938699-a93567ec168e?w=600&q=80',
+            image: null,
             subtitle: 'Your Input Matters',
             title: 'Share Your Feedback',
             desc: 'Reply to the launch email with your thoughts. Report broken links, confusing flows, or anything that doesn\'t feel right. Your feedback shapes the final product.',
@@ -121,7 +121,6 @@
     // -----------------------------------------------------------------
     let currentStep = 0;
     let overlayEl = null;
-    let fabEl = null;
     let fmpdInterval = null;
     let cmdkInterval = null;
     let cmdkTimeouts = [];
@@ -133,7 +132,6 @@
     // -----------------------------------------------------------------
     function showTutorial() {
         if (overlayEl) return; // already open
-        hideFab();
 
         currentStep = 0;
         overlayEl = document.createElement('div');
@@ -174,10 +172,16 @@
                     </div>
                 </div>
                 <div class="tut-cmdk-demo" style="display:none">
-                    <div class="tut-cmdk-keys">
-                        <span class="tut-cmdk-key">⌘</span>
-                        <span class="tut-cmdk-plus">+</span>
-                        <span class="tut-cmdk-key">K</span>
+                    <div class="tut-cmdk-keys-row">
+                        <div class="tut-cmdk-keys">
+                            <span class="tut-cmdk-key">⌘</span>
+                            <span class="tut-cmdk-key">K</span>
+                        </div>
+                        <span class="tut-cmdk-divider">/</span>
+                        <div class="tut-cmdk-keys">
+                            <span class="tut-cmdk-key tut-cmdk-key-wide">Ctrl</span>
+                            <span class="tut-cmdk-key">K</span>
+                        </div>
                     </div>
                     <div class="tut-cmdk-palette">
                         <div class="tut-cmdk-search">
@@ -357,7 +361,7 @@
     //  CMD+K Command Palette Animation
     // -----------------------------------------------------------------
     function startCmdkDemo() {
-        const keysEl    = overlayEl.querySelector('.tut-cmdk-keys');
+        const keysRow   = overlayEl.querySelector('.tut-cmdk-keys-row');
         const paletteEl = overlayEl.querySelector('.tut-cmdk-palette');
         const inputEl   = overlayEl.querySelector('.tut-cmdk-input');
         const cursorEl  = overlayEl.querySelector('.tut-cmdk-cursor');
@@ -366,21 +370,24 @@
         let i = 0;
 
         // Reset state
-        keysEl.classList.remove('pressed');
+        keysRow.classList.remove('pressed');
         paletteEl.classList.remove('visible');
         resultsEl.classList.remove('visible');
         inputEl.textContent = '';
         cursorEl.style.display = '';
 
-        // Step 1: Keys press down
+        // Step 1: Both key groups press down simultaneously
         cmdkTimeouts.push(setTimeout(() => {
-            keysEl.classList.add('pressed');
-        }, 200));
+            keysRow.classList.add('pressed');
+        }, 300));
 
-        // Step 2: Palette fades in
+        // Step 2: Keys release, palette fades in
+        cmdkTimeouts.push(setTimeout(() => {
+            keysRow.classList.remove('pressed');
+        }, 600));
         cmdkTimeouts.push(setTimeout(() => {
             paletteEl.classList.add('visible');
-        }, 800));
+        }, 750));
 
         // Step 3: Start typing into search box
         cmdkTimeouts.push(setTimeout(() => {
@@ -398,7 +405,7 @@
                     }, 300));
                 }
             }, 75);
-        }, 1100));
+        }, 1050));
     }
 
     function stopCmdkDemo() {
@@ -443,7 +450,6 @@
         document.body.style.overflow = '';
         setTimeout(() => {
             if (overlayEl) { overlayEl.remove(); overlayEl = null; }
-            showFab();
         }, 400);
     }
 
@@ -501,41 +507,6 @@
     }
 
     // -----------------------------------------------------------------
-    //  Floating "Take a Tour" card
-    // -----------------------------------------------------------------
-    function createFab() {
-        if (fabEl) return;
-        fabEl = document.createElement('div');
-        fabEl.className = 'tut-fab';
-        fabEl.innerHTML = `
-            <div class="tut-fab-icon">${svg('help', 15)}</div>
-            <span>Site Guide</span>
-            <div class="tut-fab-dismiss" title="Dismiss">${svg('close', 12)}</div>
-        `;
-        document.body.appendChild(fabEl);
-
-        // Click to open tutorial
-        fabEl.addEventListener('click', (e) => {
-            if (e.target.closest('.tut-fab-dismiss')) {
-                hideFab();
-                localStorage.setItem('gpdc-tutorial-fab-hidden', 'true');
-                return;
-            }
-            showTutorial();
-        });
-    }
-
-    function showFab() {
-        if (localStorage.getItem('gpdc-tutorial-fab-hidden') === 'true') return;
-        if (!fabEl) createFab();
-        setTimeout(() => fabEl.classList.add('visible'), 100);
-    }
-
-    function hideFab() {
-        if (fabEl) fabEl.classList.remove('visible');
-    }
-
-    // -----------------------------------------------------------------
     //  Initialization — called from main.js
     // -----------------------------------------------------------------
     function initTutorial() {
@@ -546,10 +517,8 @@
         if (isNew) {
             // First visit (or tutorial updated): auto-expand after delay
             setTimeout(() => showTutorial(), 1200);
-        } else {
-            // Returning visitor: just show the FAB
-            setTimeout(() => showFab(), 2000);
         }
+        // Returning visitors access the tour via the quick-actions widget
     }
 
     // -----------------------------------------------------------------
