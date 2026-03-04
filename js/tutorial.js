@@ -51,7 +51,7 @@
         {
             id: 'welcome',
             icon: 'welcome',
-            image: 'images/screenshots/gpdc-home.png',
+            image: null,
             subtitle: 'Beta Preview',
             title: 'Welcome to the New GPDC Website',
             desc: 'You\'re among the first to explore the redesigned Georgia Public Defender Council website. This quick tour will walk you through the key features.',
@@ -67,7 +67,7 @@
         {
             id: 'fmpd',
             icon: 'search',
-            image: 'images/screenshots/gpdc-fmpd.png',
+            image: null,
             subtitle: 'Flagship Feature',
             title: 'Find My Public Defender',
             desc: 'Search by county, circuit, or name to instantly find your local public defender\'s office. Try geolocation for one-tap access.',
@@ -76,7 +76,7 @@
         {
             id: 'offices',
             icon: 'mappin',
-            image: 'images/screenshots/gpdc-office.png',
+            image: null,
             subtitle: '45 Judicial Circuits',
             title: 'Local Office Pages',
             desc: 'Every circuit has a dedicated page with quick-action cards — <strong>Call</strong>, <strong>Directions</strong>, <strong>Email</strong>, and <strong>Apply</strong> — plus hours and contact details.',
